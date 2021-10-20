@@ -1,0 +1,16 @@
+{
+    "name": "StrikeOut",
+    "rootNamespace": "",
+    "references": [
+        "8BitMischief.SharedUnityMischief"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

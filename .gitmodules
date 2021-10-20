@@ -1,0 +1,3 @@
+[submodule "Submodules/SharedUnityMischief"]
+	path = Submodules/SharedUnityMischief
+	url = https://github.com/8bitmischief/SharedUnityMischief.git

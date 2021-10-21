@@ -7,20 +7,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: 869a49137d964194b9e5505a04be222b, type: 3}
+  m_Name: Water Top
+  m_Shader: {fileID: -6465566751694194690, guid: 8fdf33898052a7441ad9b9498f2982bf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 8cd1cd5fea4157448b0d8d5766ebcec6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 33cd228c5a71c5d43b5f656ed7be4dfd, type: 3}
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8cd1cd5fea4157448b0d8d5766ebcec6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 33cd228c5a71c5d43b5f656ed7be4dfd, type: 3}
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -76,8 +77,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_c51e21389a06410f9e44914248e48db1: 20
-    - Vector1_f6c47715f9e64090bea7f59d80aafa15: 50
+    - Vector1_610b14ed47ee41d08e920dcb07863e56: 0.6
+    - Vector1_c51e21389a06410f9e44914248e48db1: 50
+    - Vector1_f6c47715f9e64090bea7f59d80aafa15: 100
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -87,7 +89,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -101,16 +103,15 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _WorkflowMode: 1
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - Color_ef72552bf7f6498daa4898d169647935: {r: 0.52075475, g: 0.7802553, b: 0.8679245, a: 0}
-    - Vector2_9183b50efc0f4ad6b0d4219f560acdc2: {r: 100, g: 100, b: 0, a: 0}
-    - Vector2_91d85ed6c9e94fabbdae6660fc8c13f4: {r: 0.2, g: 0.5, b: 0, a: 0}
-    - Vector2_d89e9958d8a1436c82f3dcd69250a70b: {r: 0.1, g: 0.05, b: 0, a: 0}
-    - Vector2_dd540ccbba174b6e87d551fa49e287c4: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - Vector2_9183b50efc0f4ad6b0d4219f560acdc2: {r: 220, g: 220, b: 0, a: 0}
+    - Vector2_91d85ed6c9e94fabbdae6660fc8c13f4: {r: 0.05, g: 1, b: 0, a: 0}
+    - Vector2_d89e9958d8a1436c82f3dcd69250a70b: {r: -0.05, g: -0.2, b: 0, a: 0}
+    - Vector2_dd540ccbba174b6e87d551fa49e287c4: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

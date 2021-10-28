@@ -7,14 +7,5 @@ namespace StrikeOut {
 
 		[Header("Managers")]
 		[SerializeField] private InputManager inputManager;
-
-		private void Awake () {
-			if (!ClaimSingletonInstanceOrDestroySelf(true))
-				return;
-		}
-
-		private void OnDestroy () {
-			ReleaseSingletonInstance();
-		}
 	}
 }

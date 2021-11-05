@@ -8,6 +8,9 @@ namespace StrikeOut {
 
 		public void Flip () => animator.Flip();
 
+		public override void UpdateState() {
+		}
+
 		public enum State {
 			None = 0,
 			Idle = 1,

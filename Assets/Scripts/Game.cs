@@ -1,13 +1,14 @@
 using UnityEngine;
+using SharedUnityMischief;
 
 namespace StrikeOut {
-	public class Game : SharedUnityMischief.Lifecycle.GameManager<Game> {
+	public class Game : SingletonMonoBehaviour<Game> {
 		public Scene scene => sceneManager?.scene ?? Scene.None;
-		public BaseballSceneManager baseball { get; private set; } = null;
+		public BossFightSceneManager baseball { get; private set; } = null;
 
 		private SceneManager sceneManager;
 
-		protected override void UpdateState () {
+		private void Update () {
 			if (sceneManager != null)
 				sceneManager.UpdateState();
 		}
@@ -15,7 +16,7 @@ namespace StrikeOut {
 		public void RegisterSceneManager (SceneManager sceneManager) {
 			this.sceneManager = sceneManager;
 			if (sceneManager.scene == Scene.Baseball)
-				baseball = sceneManager as BaseballSceneManager;
+				baseball = sceneManager as BossFightSceneManager;
 		}
 
 		public void UnregisterSceneManager (SceneManager sceneManager) {

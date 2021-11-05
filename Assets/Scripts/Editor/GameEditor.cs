@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEditor;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief;
 
 namespace StrikeOut {
 	[CustomEditor(typeof(Game), true)]
-	public class GameEditor : GameManagerEditor {
+	public class GameEditor : BaseEditor {
 		public override bool RequiresConstantRepaint () => Application.isPlaying;
 
 		protected override void DrawState () {

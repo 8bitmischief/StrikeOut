@@ -20,7 +20,7 @@ namespace StrikeOut {
 		}
 
 		private void SpawnBall (Vector3 position) {
-			BossFightManager.SpawnBall(position);
+			// BossFightManager.SpawnBall(position);
 		}
 
 		public enum State {

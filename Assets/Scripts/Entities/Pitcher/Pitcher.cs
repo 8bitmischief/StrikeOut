@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
+	public class Pitcher : OldAnimatedEntity<Pitcher.State, PitcherAnimator> {
 		private void OnEnable () {
 			animator.onSpawnBall += SpawnBall;
 		}

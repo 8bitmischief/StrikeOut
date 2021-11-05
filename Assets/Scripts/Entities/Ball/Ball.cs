@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(BallAnimator))]
-	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
+	public class Ball : OldAnimatedEntity<Ball.State, BallAnimator> {
 		private void OnEnable () {
 			animator.onChangeState += OnChangeState;
 		}

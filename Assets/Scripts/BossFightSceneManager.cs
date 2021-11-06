@@ -19,6 +19,8 @@ namespace StrikeOut {
 					updateLoop.Pause();
 				updateLoop.AdvanceOneFrame(true);
 			}
+			// Slow down time
+			updateLoop.timeScale = Game.I.input.slowTime.isHeld && Game.I.debugMode ? 0.10f : 1.00f;
 			// Update the game
 			if (!updateLoop.updateAutomatically)
 				updateLoop.Advance();

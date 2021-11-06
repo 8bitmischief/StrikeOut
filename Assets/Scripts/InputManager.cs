@@ -12,8 +12,11 @@ namespace StrikeOut {
 		[SerializeField] private SimulatedButtonControl _dodgeLeft;
 		[SerializeField] private SimulatedButtonControl _dodgeRight;
 		[SerializeField] private SimulatedButtonControl _pause;
+
+		[Header("Debug Controls")]
 		[SerializeField] private ButtonControl _togglePause;
 		[SerializeField] private ButtonControl _nextFrame;
+		[SerializeField] private ButtonControl _slowTime;
 
 		public SimulatedButtonControl swingNorth => _swingNorth;
 		public SimulatedButtonControl swingEast => _swingEast;
@@ -24,6 +27,7 @@ namespace StrikeOut {
 		public SimulatedButtonControl pause => _pause;
 		public ButtonControl togglePause => _togglePause;
 		public ButtonControl nextFrame => _nextFrame;
+		public ButtonControl slowTime => _slowTime;
 		public SimulatedControlMode mode {
 			get => _mode;
 			set {

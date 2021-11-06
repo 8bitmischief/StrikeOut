@@ -1,14 +1,13 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightSceneManager : SceneManager {
 		[Header("Children")]
-		[SerializeField] private UpdateLoopUpdater updater;
+		[SerializeField] private BossFightUpdateLoop updateLoop;
 
 		public override void UpdateState () {
-			if (!updater.updateAutomatically)
-				updater.UpdateState();
+			if (!updateLoop.updateAutomatically)
+				updateLoop.Advance();
 		}
 	}
 }

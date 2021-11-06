@@ -3,7 +3,11 @@ using SharedUnityMischief;
 
 namespace StrikeOut {
 	public class Game : SingletonMonoBehaviour<Game> {
+		[Header("Managers")]
+		[SerializeField] private InputManager _input;
+
 		public Scene scene => sceneManager?.scene ?? Scene.None;
+		public InputManager input => _input;
 		public BossFightSceneManager baseball { get; private set; } = null;
 
 		private SceneManager sceneManager;

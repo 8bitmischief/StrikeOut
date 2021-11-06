@@ -8,6 +8,7 @@ namespace StrikeOut {
 
 		protected override void UpdateState () {
 			entityManager.UpdateState();
+			Game.I.input.ConsumeInstantaneousInputs();
 		}
 	}
 }

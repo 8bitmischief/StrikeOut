@@ -12,6 +12,8 @@ namespace StrikeOut {
 		[SerializeField] private SimulatedButtonControl _dodgeLeft;
 		[SerializeField] private SimulatedButtonControl _dodgeRight;
 		[SerializeField] private SimulatedButtonControl _pause;
+		[SerializeField] private ButtonControl _togglePause;
+		[SerializeField] private ButtonControl _nextFrame;
 
 		public SimulatedButtonControl swingNorth => _swingNorth;
 		public SimulatedButtonControl swingEast => _swingEast;
@@ -20,33 +22,34 @@ namespace StrikeOut {
 		public SimulatedButtonControl dodgeLeft => _dodgeLeft;
 		public SimulatedButtonControl dodgeRight => _dodgeRight;
 		public SimulatedButtonControl pause => _pause;
-
+		public ButtonControl togglePause => _togglePause;
+		public ButtonControl nextFrame => _nextFrame;
 		public SimulatedControlMode mode {
 			get => _mode;
 			set {
 				_mode = value;
-				foreach (SimulatedButtonControl control in buttonControls)
+				foreach (SimulatedButtonControl control in gameplayControls)
 					control.mode = _mode;
 			}
 		}
 
-		private List<SimulatedButtonControl> buttonControls;
+		private List<SimulatedButtonControl> gameplayControls;
 		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
 
 		private void Awake () {
-			buttonControls = new List<SimulatedButtonControl>()
+			gameplayControls = new List<SimulatedButtonControl>()
 				{ swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight, pause };
 		}
 
 		public void ConsumeInstantaneousInputs () {
-			foreach (SimulatedButtonControl control in buttonControls)
+			foreach (SimulatedButtonControl control in gameplayControls)
 				control.ConsumeInstantaneousInputs();
 		}
 
 		public void SimulateUpdate () => SimulateUpdate(Time.deltaTime);
 
 		public void SimulateUpdate (float deltaTime) {
-			foreach (SimulatedButtonControl control in buttonControls)
+			foreach (SimulatedButtonControl control in gameplayControls)
 				control.SimulateUpdate(deltaTime);
 		}
 	}

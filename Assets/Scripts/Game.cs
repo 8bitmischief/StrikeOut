@@ -3,12 +3,16 @@ using SharedUnityMischief;
 
 namespace StrikeOut {
 	public class Game : SingletonMonoBehaviour<Game> {
-		[Header("Managers")]
+		[Header("Game Config")]
+		[SerializeField] private bool _debugMode = true;
+
+		[Header("Game Managers")]
 		[SerializeField] private InputManager _input;
 
 		public Scene scene => sceneManager?.scene ?? Scene.None;
 		public InputManager input => _input;
 		public BossFightSceneManager baseball { get; private set; } = null;
+		public bool debugMode => _debugMode;
 
 		private SceneManager sceneManager;
 

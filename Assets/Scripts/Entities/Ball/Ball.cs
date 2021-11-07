@@ -1,8 +1,9 @@
 using UnityEngine;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(BallAnimator))]
-	public class Ball : OldAnimatedEntity<Ball.State, BallAnimator> {
+	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
 		private void OnEnable () {
 			animator.onChangeState += OnChangeState;
 		}
@@ -13,7 +14,7 @@ namespace StrikeOut {
 
 		private void OnChangeState (State state, State prevState) {
 			if (state == State.Idle)
-				Destroy(gameObject);
+				Game.I.bossFight.DespawnEntity(this);
 		}
 
 		public enum State {

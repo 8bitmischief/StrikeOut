@@ -1,8 +1,9 @@
 using UnityEngine;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : OldAnimatedEntity<Pitcher.State, PitcherAnimator> {
+	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
 		private void OnEnable () {
 			animator.onSpawnBall += SpawnBall;
 		}
@@ -20,7 +21,7 @@ namespace StrikeOut {
 		}
 
 		private void SpawnBall (Vector3 position) {
-			// BossFightManager.SpawnBall(position);
+			Game.I.bossFight.SpawnBall(position);
 		}
 
 		public enum State {

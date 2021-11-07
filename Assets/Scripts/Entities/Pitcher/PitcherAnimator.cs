@@ -1,19 +1,22 @@
 using System;
 using UnityEngine;
-using SharedUnityMischief.Animation;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(Animator))]
-	public class PitcherAnimator : EnumStateMachineAnimator<Pitcher.State> {
-		private static readonly int PITCH_HASH = Animator.StringToHash("Pitch");
+	public class PitcherAnimator : EntityAnimator<Pitcher, Pitcher.State> {
+		private static readonly int pitchHash = Animator.StringToHash("Pitch");
 
 		public Action<Vector3> onSpawnBall;
 
 		[Header("Children")]
 		[SerializeField] private Transform spawnBallLocation;
 
-		public void Pitch () => Trigger(PITCH_HASH);
+		public void Pitch () => Trigger(pitchHash);
 
-		private void AnimationEvent_SpawnBall () => onSpawnBall?.Invoke(spawnBallLocation.transform.position);
+		protected override void OnAnimationEvent (AnimationEvent evt) {
+			if (evt.stringParameter == "Spawn Ball")
+				onSpawnBall?.Invoke(spawnBallLocation.transform.position);
+		}
 	}
 }

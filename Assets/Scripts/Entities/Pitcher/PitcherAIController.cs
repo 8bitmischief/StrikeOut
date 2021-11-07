@@ -1,17 +1,12 @@
 using UnityEngine;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(Pitcher))]
-	public class PitcherAIController : MonoBehaviour {
-		private Pitcher pitcher;
-
-		private void Awake () {
-			pitcher = GetComponent<Pitcher>();
-		}
-
+	public class PitcherAIController : EntityComponent<Pitcher> {
 		private void Update () {
-			if (pitcher.CanPitch())
-				pitcher.Pitch();
+			if (entity.CanPitch())
+				entity.Pitch();
 		}
 	}
 }

@@ -5,7 +5,9 @@ using SharedUnityMischief.Input.Control;
 namespace StrikeOut {
 	public class BossFightUpdateLoop : UpdateLoop {
 		[Header("Managers")]
-		[SerializeField] private EntityManager entityManager;
+		[SerializeField] private EntityManager _entityManager;
+
+		public EntityManager entityManager => _entityManager;
 
 		protected override void UpdateState () {
 			if (Game.I.input.mode == SimulatedControlMode.Simulate)

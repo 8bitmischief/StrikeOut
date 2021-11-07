@@ -1,7 +1,7 @@
 using UnityEngine;
-using SharedUnityMischief.Animation;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(Animator))]
-	public class BatterAnimator : EnumStateMachineAnimator<Batter.State> {}
+	public class BatterAnimator : EntityAnimator<Batter, Batter.State> {}
 }

@@ -1,12 +1,7 @@
 using UnityEngine;
+using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(Batter))]
-	public class BatterPlayerController : MonoBehaviour {
-		private Batter batter;
-
-		private void Awake () {
-			batter = GetComponent<Batter>();
-		}
-	}
+	public class BatterPlayerController : EntityComponent<Batter> {}
 }

@@ -9,7 +9,7 @@ namespace StrikeOut {
 		private static readonly Vector3 authoredHopRootMotion = new Vector3(3f, 0f, 0f);
 
 		public void Hop (Vector3 position) {
-			Trigger(hopHash, position - transform.position - authoredHopRootMotion);
+			Trigger(hopHash, position - transform.position - Vector3.Scale(authoredHopRootMotion, transform.localScale));
 		}
 
 		public void Flip () => Trigger(flipHash);

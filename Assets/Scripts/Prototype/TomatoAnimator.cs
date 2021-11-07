@@ -4,11 +4,14 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(Animator))]
 	public class TomatoAnimator : EntityAnimator<Tomato, Tomato.State> {
-		private static readonly int HOP_HASH = Animator.StringToHash("Hop");
-		private static readonly int FLIP_HASH = Animator.StringToHash("Flip");
+		private static readonly int hopHash = Animator.StringToHash("Hop");
+		private static readonly int flipHash = Animator.StringToHash("Flip");
+		private static readonly Vector3 authoredHopRootMotion = new Vector3(3f, 0f, 0f);
 
-		public void Hop () => Trigger(HOP_HASH);
+		public void Hop (Vector3 position) {
+			Trigger(hopHash, position - transform.position - authoredHopRootMotion);
+		}
 
-		public void Flip () => Trigger(FLIP_HASH);
+		public void Flip () => Trigger(flipHash);
 	}
 }

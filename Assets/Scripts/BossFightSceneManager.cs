@@ -3,6 +3,9 @@ using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightSceneManager : SceneManager {
+		public static readonly Vector3 batterLeftPosition = new Vector3(-2.5f, 0f, 0f);
+		public static readonly Vector3 batterRightPosition = new Vector3(2.5f, 0f, 0f);
+
 		[Header("Children")]
 		[SerializeField] private BossFightUpdateLoop updateLoop;
 

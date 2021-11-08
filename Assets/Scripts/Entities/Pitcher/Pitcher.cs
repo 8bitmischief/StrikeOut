@@ -23,7 +23,7 @@ namespace StrikeOut {
 		}
 
 		private void SpawnBall (Vector3 position) {
-			Game.I.bossFight.SpawnBall(position);
+			Ball ball = Game.I.bossFight.SpawnBall(position);
 		}
 
 		public enum State {

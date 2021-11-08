@@ -99,9 +99,15 @@ namespace StrikeOut {
 		protected override void OnEnterState (State state) {
 			switch (state) {
 				case State.SwitchSides:
-				case State.SideStepStart:
 				case State.SideStepEnd:
-					animator.SetRootMotionTarget(isOnRightSide ? BossFightSceneManager.batterRightPosition : BossFightSceneManager.batterLeftPosition);
+					animator.SetRootMotionTarget(isOnRightSide ?
+						BossFightSceneManager.batterRightPosition :
+						BossFightSceneManager.batterLeftPosition);
+					break;
+				case State.SideStepStart:
+					animator.SetRootMotionTarget(isOnRightSide ?
+						BossFightSceneManager.batterRightPosition + new Vector3(2.5f, 0f, 0f) :
+						BossFightSceneManager.batterLeftPosition - new Vector3(2.5f, 0f, 0f));
 					break;
 			}
 		}

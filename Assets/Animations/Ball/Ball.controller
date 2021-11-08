@@ -31,11 +31,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: 2
-  _authoredRootMotion: {x: 0, y: 0, z: 0}
+  _authoredRootMotion: {x: 0, y: 0, z: -25}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 1
   _yRootMotion: 1
-  _zRootMotion: 1
+  _zRootMotion: 2
 --- !u!1102 &-664935071180751856
 AnimatorState:
   serializedVersion: 6

@@ -11,14 +11,11 @@ namespace StrikeOut {
 
 		public Action onAllowAnimationCancels;
 
-		public void SwitchSides (Vector3 position)
-			=> Trigger(switchSidesHash, position - transform.position);
+		public void SwitchSides () => Trigger(switchSidesHash);
 
-		public void SideStep (Vector3 position)
-			=> Trigger(sideStepHash, position - transform.position);
+		public void SideStep () => Trigger(sideStepHash);
 
-		public void EndSideStep ()
-			=> Trigger(endSideStepHash);
+		public void EndSideStep () => Trigger(endSideStepHash);
 		
 		protected override void OnAnimationEvent (AnimationEvent evt) {
 			if (evt.stringParameter == "Allow Animation Cancels")

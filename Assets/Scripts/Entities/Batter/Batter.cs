@@ -8,13 +8,13 @@ namespace StrikeOut {
 
 		private bool canCancelAnimation = false;
 
-		private void OnEnable () {
-			animator.onChangeState += OnChangeState;
+		protected override void OnEnable () {
+			base.OnEnable();
 			animator.onAllowAnimationCancels += OnAllowAnimationCancels;
 		}
 
-		private void OnDisable () {
-			animator.onChangeState -= OnChangeState;
+		protected override void OnDisable () {
+			base.OnDisable();
 			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
 		}
 
@@ -85,18 +85,28 @@ namespace StrikeOut {
 		public void SwitchSides () {
 			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 			isOnRightSide = !isOnRightSide;
-			animator.SwitchSides(isOnRightSide ? BossFightSceneManager.batterRightPosition : BossFightSceneManager.batterLeftPosition);
+			animator.SwitchSides();
 		}
 
 		public void SideStep () {
-			animator.SideStep(isOnRightSide ? BossFightSceneManager.batterRightPosition : BossFightSceneManager.batterLeftPosition);
+			animator.SideStep();
 		}
 
 		public void EndSideStep () {
 			animator.EndSideStep();
 		}
 
-		private void OnChangeState (State state, State prevState) {
+		protected override void OnEnterState (State state) {
+			switch (state) {
+				case State.SwitchSides:
+				case State.SideStepStart:
+				case State.SideStepEnd:
+					animator.SetRootMotionTarget(isOnRightSide ? BossFightSceneManager.batterRightPosition : BossFightSceneManager.batterLeftPosition);
+					break;
+			}
+		}
+
+		protected override void OnLeaveState (State state) {
 			canCancelAnimation = false;
 		}
 

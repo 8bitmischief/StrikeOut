@@ -4,15 +4,7 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
-		private void OnEnable () {
-			animator.onChangeState += OnChangeState;
-		}
-
-		private void OnDisable () {
-			animator.onChangeState -= OnChangeState;
-		}
-
-		private void OnChangeState (State state, State prevState) {
+		protected override void OnChangeState (State state, State prevState) {
 			if (state == State.Idle)
 				Game.I.bossFight.DespawnEntity(this);
 		}

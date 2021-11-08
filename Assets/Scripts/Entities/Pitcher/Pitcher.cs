@@ -4,11 +4,13 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(PitcherAnimator))]
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
-		private void OnEnable () {
+		protected override void OnEnable () {
+			base.OnEnable();
 			animator.onSpawnBall += SpawnBall;
 		}
 
-		private void OnDisable () {
+		protected override void OnDisable () {
+			base.OnDisable();
 			animator.onSpawnBall -= SpawnBall;
 		}
 

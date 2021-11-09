@@ -1,5 +1,4 @@
 using UnityEngine;
-using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -7,6 +6,6 @@ namespace StrikeOut {
 	public class BallAnimator : EntityAnimator<Ball, Ball.State> {
 		private static readonly int pitchHash = Animator.StringToHash("Pitch");
 
-		public void Pitch () => Trigger(pitchHash);
+		public void Pitch (Vector3 targetPosition) => Trigger(pitchHash, targetPosition, true);
 	}
 }

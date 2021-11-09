@@ -100,14 +100,14 @@ namespace StrikeOut {
 			switch (state) {
 				case State.SwitchSides:
 				case State.SideStepEnd:
-					animator.SetRootMotionTarget(isOnRightSide ?
+					animator.SetRootMotion(isOnRightSide ?
 						BossFightSceneManager.batterRightPosition :
-						BossFightSceneManager.batterLeftPosition);
+						BossFightSceneManager.batterLeftPosition, true);
 					break;
 				case State.SideStepStart:
-					animator.SetRootMotionTarget(isOnRightSide ?
-						BossFightSceneManager.batterRightPosition + new Vector3(2.5f, 0f, 0f) :
-						BossFightSceneManager.batterLeftPosition - new Vector3(2.5f, 0f, 0f));
+					animator.SetRootMotion(isOnRightSide ?
+						BossFightSceneManager.batterRightPosition + new Vector3(3f, 0f, 0f) :
+						BossFightSceneManager.batterLeftPosition - new Vector3(3f, 0f, 0f), true);
 					break;
 			}
 		}

@@ -5,8 +5,8 @@ using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightSceneManager : SceneManager {
-		public static readonly Vector3 batterLeftPosition = new Vector3(-3f, 0f, 0f);
-		public static readonly Vector3 batterRightPosition = new Vector3(3f, 0f, 0f);
+		public static readonly Vector3 batterLeftPosition = new Vector3(-2.75f, 0f, 0f);
+		public static readonly Vector3 batterRightPosition = new Vector3(2.75f, 0f, 0f);
 		public static readonly Dictionary<CardinalDirection, Vector3> strikeZonePositions = new Dictionary<CardinalDirection, Vector3>() {
 			{ CardinalDirection.North, new Vector3(0f, 3.8f, 0f) },
 			{ CardinalDirection.East, new Vector3(1.1f, 2.5f, 0f) },

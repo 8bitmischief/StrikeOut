@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 4
   _authoredRootMotion: {x: 3, y: 0, z: 0}
-  _undoAuthoredRootMotion: 1
+  _undoAuthoredRootMotion: 0
   _xRootMotion: 2
   _yRootMotion: 1
   _zRootMotion: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state: 2
   _authoredRootMotion: {x: -5, y: 0, z: 0}
-  _undoAuthoredRootMotion: 1
+  _undoAuthoredRootMotion: 0
   _xRootMotion: 2
   _yRootMotion: 1
   _zRootMotion: 1
@@ -385,7 +385,7 @@ AnimatorStateMachine:
     m_Position: {x: 500, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8608543807117810166}
-    m_Position: {x: 500, y: 300, z: 0}
+    m_Position: {x: 500, y: 270, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -8972594241566325796}

@@ -15,12 +15,31 @@ namespace StrikeOut {
 			animator.onPitchBall -= PitchBall;
 		}
 
-		public bool CanPitch () {
+		public bool IsIdle () {
 			return animator.state == State.Idle;
 		}
 
 		public void Pitch () {
 			animator.Pitch();
+		}
+
+		public void LungeLeft () {
+			transform.localScale = new Vector3(1f, 1f, 1f);
+			animator.Lunge(new Vector3(-2.75f, 0f, 2.5f));
+		}
+
+		public void LungeRight () {
+			transform.localScale = new Vector3(-1f, 1f, 1f);
+			animator.Lunge(new Vector3(2.75f, 0f, 2.5f));
+		}
+
+		protected override void OnEnterState (State state) {
+			switch (state) {
+				case State.BackOff:
+					transform.localScale = new Vector3(1f, 1f, 1f);
+					animator.SetRootMotion(new Vector3(0f, 0f, 25f), true);
+					break;
+			}
 		}
 
 		private void PitchBall (Vector3 spawnPosition) {
@@ -44,7 +63,9 @@ namespace StrikeOut {
 		public enum State {
 			None = 0,
 			Idle = 1,
-			Pitch = 2
+			Pitch = 2,
+			Lunge = 3,
+			BackOff = 4
 		}
 	}
 }

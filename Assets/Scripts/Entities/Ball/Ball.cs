@@ -9,14 +9,11 @@ namespace StrikeOut {
 
 		public void Pitch (CardinalDirection strikeZone) {
 			this.strikeZone = strikeZone;
-			animator.Pitch();
+			animator.Pitch(BossFightSceneManager.strikeZonePositions[strikeZone]);
 		}
 
 		protected override void OnEnterState (State state) {
 			switch (state) {
-				case State.Pitch:
-					animator.SetRootMotionTarget(BossFightSceneManager.strikeZonePositions[strikeZone]);
-					break;
 				case State.Done:
 					Game.I.bossFight.DespawnEntity(this);
 					break;

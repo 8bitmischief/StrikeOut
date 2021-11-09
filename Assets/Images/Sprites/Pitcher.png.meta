@@ -11,6 +11,21 @@ TextureImporter:
   - first:
       213: -4737325895891296039
     second: Pitcher_2
+  - first:
+      213: 6222132977930122763
+    second: Pitcher_3
+  - first:
+      213: -6582441953914316396
+    second: Pitcher_4
+  - first:
+      213: -4786014347711230962
+    second: Pitcher_5
+  - first:
+      213: 7278214439134550890
+    second: Pitcher_6
+  - first:
+      213: 7299497092255564097
+    second: Pitcher_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -104,11 +119,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 192
         width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -125,11 +140,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 192
         width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,11 +161,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 192
         width: 64
         height: 64
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -158,6 +173,111 @@ TextureImporter:
       bones: []
       spriteID: 9d0e3267233a14eb0800000000000000
       internalID: -4737325895891296039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pitcher_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b06b4c62af4795650800000000000000
+      internalID: 6222132977930122763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pitcher_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4991f4e0be776a4a0800000000000000
+      internalID: -6582441953914316396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pitcher_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ccfb2ee49a49db0800000000000000
+      internalID: -4786014347711230962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pitcher_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bdbb38879610560800000000000000
+      internalID: 7278214439134550890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pitcher_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141c3e65ee50d4560800000000000000
+      internalID: 7299497092255564097
       vertices: []
       indices: 
       edges: []

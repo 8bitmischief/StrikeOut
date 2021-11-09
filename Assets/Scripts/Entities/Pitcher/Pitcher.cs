@@ -1,4 +1,5 @@
 using UnityEngine;
+using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -6,12 +7,12 @@ namespace StrikeOut {
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
 		protected override void OnEnable () {
 			base.OnEnable();
-			animator.onSpawnBall += SpawnBall;
+			animator.onPitchBall += PitchBall;
 		}
 
 		protected override void OnDisable () {
 			base.OnDisable();
-			animator.onSpawnBall -= SpawnBall;
+			animator.onPitchBall -= PitchBall;
 		}
 
 		public bool CanPitch () {
@@ -22,8 +23,22 @@ namespace StrikeOut {
 			animator.Pitch();
 		}
 
-		private void SpawnBall (Vector3 position) {
-			Ball ball = Game.I.bossFight.SpawnBall(position);
+		private void PitchBall (Vector3 spawnPosition) {
+			Ball ball = Game.I.bossFight.SpawnBall(spawnPosition);
+			switch (Random.Range(1, 5)) {
+				case 1:
+					ball.Pitch(CardinalDirection.North);
+					break;
+				case 2:
+					ball.Pitch(CardinalDirection.East);
+					break;
+				case 3:
+					ball.Pitch(CardinalDirection.South);
+					break;
+				case 4:
+					ball.Pitch(CardinalDirection.West);
+					break;
+			}
 		}
 
 		public enum State {

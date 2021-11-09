@@ -1,10 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
+using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightSceneManager : SceneManager {
 		public static readonly Vector3 batterLeftPosition = new Vector3(-3f, 0f, 0f);
 		public static readonly Vector3 batterRightPosition = new Vector3(3f, 0f, 0f);
+		public static readonly Dictionary<CardinalDirection, Vector3> strikeZonePositions = new Dictionary<CardinalDirection, Vector3>() {
+			{ CardinalDirection.North, new Vector3(0f, 3.8f, 0f) },
+			{ CardinalDirection.East, new Vector3(1.1f, 2.5f, 0f) },
+			{ CardinalDirection.South, new Vector3(0f, 1.2f, 0f) },
+			{ CardinalDirection.West, new Vector3(-1.1f, 2.5f, 0f) }
+		};
+		public static Vector3 northStrikeZonePosition => strikeZonePositions[CardinalDirection.North];
+		public static Vector3 eastStrikeZonePosition => strikeZonePositions[CardinalDirection.East];
+		public static Vector3 southStrikeZonePosition => strikeZonePositions[CardinalDirection.South];
+		public static Vector3 westStrikeZonePosition => strikeZonePositions[CardinalDirection.West];
 
 		[Header("Children")]
 		[SerializeField] private BossFightUpdateLoop updateLoop;

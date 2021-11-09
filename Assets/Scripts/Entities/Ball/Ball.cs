@@ -1,16 +1,23 @@
 using UnityEngine;
+using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
+		public CardinalDirection strikeZone { get; private set; } = CardinalDirection.None;
+
+		public void Pitch (CardinalDirection strikeZone) {
+			this.strikeZone = strikeZone;
+			animator.Pitch();
+		}
+
 		protected override void OnEnterState (State state) {
 			switch (state) {
 				case State.Pitch:
-					Vector3 target = new Vector3(0f, 3.2f, 0f);
-					animator.SetRootMotionTarget(target);
+					animator.SetRootMotionTarget(BossFightSceneManager.strikeZonePositions[strikeZone]);
 					break;
-				case State.Idle:
+				case State.Done:
 					Game.I.bossFight.DespawnEntity(this);
 					break;
 			}
@@ -19,7 +26,8 @@ namespace StrikeOut {
 		public enum State {
 			None = 0,
 			Idle = 1,
-			Pitch = 2
+			Done = 2,
+			Pitch = 3,
 		}
 	}
 }

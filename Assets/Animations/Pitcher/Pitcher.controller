@@ -98,7 +98,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &2890718560049160977
+--- !u!1101 &333625381976020534
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 2890718560049160977}
+  - {fileID: 333625381976020534}
   m_StateMachineBehaviours:
   - {fileID: 5105948783182158744}
   m_Position: {x: 50, y: 50, z: 0}

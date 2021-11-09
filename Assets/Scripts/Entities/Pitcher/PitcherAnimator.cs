@@ -7,7 +7,7 @@ namespace StrikeOut {
 	public class PitcherAnimator : EntityAnimator<Pitcher, Pitcher.State> {
 		private static readonly int pitchHash = Animator.StringToHash("Pitch");
 
-		public Action<Vector3> onSpawnBall;
+		public Action<Vector3> onPitchBall;
 
 		[Header("Children")]
 		[SerializeField] private Transform spawnBallLocation;
@@ -15,8 +15,8 @@ namespace StrikeOut {
 		public void Pitch () => Trigger(pitchHash);
 
 		protected override void OnAnimationEvent (AnimationEvent evt) {
-			if (evt.stringParameter == "Spawn Ball")
-				onSpawnBall?.Invoke(spawnBallLocation.transform.position);
+			if (evt.stringParameter == "Pitch Ball")
+				onPitchBall?.Invoke(spawnBallLocation.transform.position);
 		}
 	}
 }

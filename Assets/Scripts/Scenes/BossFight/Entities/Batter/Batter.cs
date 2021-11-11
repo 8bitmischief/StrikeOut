@@ -1,4 +1,5 @@
 using UnityEngine;
+using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -18,6 +19,19 @@ namespace StrikeOut {
 			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
 		}
 
+		public bool CanSwing (CardinalDirection direction) {
+			switch (state) {
+				case State.Swing:
+				case State.SideStepEnd:
+				case State.SwitchSides:
+					return canCancelAnimation;
+				case State.Idle:
+					return true;
+				default:
+					return false;
+			}
+		}
+
 		public bool CanDodgeLeft () {
 			if (isOnRightSide)
 				return CanSwitchSides() || CanEndSideStep();
@@ -34,6 +48,7 @@ namespace StrikeOut {
 
 		public bool CanSwitchSides () {
 			switch (state) {
+				case State.Swing:
 				case State.SideStepEnd:
 				case State.SwitchSides:
 					return canCancelAnimation;
@@ -46,6 +61,7 @@ namespace StrikeOut {
 
 		public bool CanSideStep () {
 			switch (state) {
+				case State.Swing:
 				case State.SideStepEnd:
 				case State.SwitchSides:
 					return canCancelAnimation;
@@ -58,6 +74,24 @@ namespace StrikeOut {
 		
 		public bool CanEndSideStep () {
 			return state == State.SideStepStart && canCancelAnimation;
+		}
+
+		public void Swing (CardinalDirection direction) {
+			switch	(direction) {
+				case CardinalDirection.North:
+					animator.SwingNorth();
+					break;
+				case CardinalDirection.South:
+					animator.SwingSouth();
+					break;
+				case CardinalDirection.East:
+				case CardinalDirection.West:
+					if (isOnRightSide == (direction == CardinalDirection.East))
+						animator.SwingInwards();
+					else
+						animator.SwingOutwards();
+					break;
+			}
 		}
 
 		public void DodgeLeft () {
@@ -98,6 +132,7 @@ namespace StrikeOut {
 
 		protected override void OnEnterState (State state) {
 			switch (state) {
+				case State.Swing:
 				case State.SwitchSides:
 				case State.SideStepEnd:
 					animator.SetRootMotion(isOnRightSide ?
@@ -106,8 +141,8 @@ namespace StrikeOut {
 					break;
 				case State.SideStepStart:
 					animator.SetRootMotion(isOnRightSide ?
-						BossFightScene.batterRightPosition + new Vector3(2f, 0f, 0f) :
-						BossFightScene.batterLeftPosition - new Vector3(2f, 0f, 0f), true);
+						BossFightScene.batterRightPosition + new Vector3(2.25f, 0f, 0f) :
+						BossFightScene.batterLeftPosition - new Vector3(2.25f, 0f, 0f), true);
 					break;
 			}
 		}
@@ -125,7 +160,8 @@ namespace StrikeOut {
 			Idle = 1,
 			SwitchSides = 2,
 			SideStepStart = 3,
-			SideStepEnd = 4
+			SideStepEnd = 4,
+			Swing = 5
 		}
 	}
 }

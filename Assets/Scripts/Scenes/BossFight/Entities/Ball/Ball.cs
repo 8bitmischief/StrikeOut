@@ -5,7 +5,7 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
-		public CardinalDirection strikeZone { get; private set; } = CardinalDirection.None;
+		public StrikeZone strikeZone { get; private set; } = StrikeZone.None;
 
 		private Vector3 prevPosition;
 		private Vector3 velocity = Vector3.zero;
@@ -44,13 +44,13 @@ namespace StrikeOut {
 			}
 		}
 
-		public void Throw (PitchType pitch, CardinalDirection strikeZone) {
+		public void Throw (PitchType pitch, StrikeZone strikeZone) {
 			this.strikeZone = strikeZone;
-			animator.Throw(pitch, BossFightScene.strikeZonePositions[strikeZone], true);
+			animator.Throw(pitch, Game.I.bossFight.GetStrikeZonePosition(strikeZone), true);
 		}
 
 		public void Throw (PitchType pitch, Vector3 position) {
-			this.strikeZone = CardinalDirection.None;
+			this.strikeZone = StrikeZone.None;
 			animator.Throw(pitch, position, false);
 		}
 

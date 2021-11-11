@@ -19,7 +19,7 @@ namespace StrikeOut {
 			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
 		}
 
-		public bool CanSwing (CardinalDirection direction) {
+		public bool CanSwing (StrikeZone strikeZone) {
 			switch (state) {
 				case State.Swing:
 				case State.SideStepEnd:
@@ -76,17 +76,17 @@ namespace StrikeOut {
 			return state == State.SideStepStart && canCancelAnimation;
 		}
 
-		public void Swing (CardinalDirection direction) {
-			switch	(direction) {
-				case CardinalDirection.North:
+		public void Swing (StrikeZone strikeZone) {
+			switch	(strikeZone) {
+				case StrikeZone.North:
 					animator.SwingNorth();
 					break;
-				case CardinalDirection.South:
+				case StrikeZone.South:
 					animator.SwingSouth();
 					break;
-				case CardinalDirection.East:
-				case CardinalDirection.West:
-					if (isOnRightSide == (direction == CardinalDirection.East))
+				case StrikeZone.East:
+				case StrikeZone.West:
+					if (isOnRightSide == (strikeZone == StrikeZone.East))
 						animator.SwingInwards();
 					else
 						animator.SwingOutwards();
@@ -136,13 +136,13 @@ namespace StrikeOut {
 				case State.SwitchSides:
 				case State.SideStepEnd:
 					animator.SetRootMotion(isOnRightSide ?
-						BossFightScene.batterRightPosition :
-						BossFightScene.batterLeftPosition, true);
+						Game.I.bossFight.batterRightPosition :
+						Game.I.bossFight.batterLeftPosition, true);
 					break;
 				case State.SideStepStart:
 					animator.SetRootMotion(isOnRightSide ?
-						BossFightScene.batterRightPosition + new Vector3(2.25f, 0f, 0f) :
-						BossFightScene.batterLeftPosition - new Vector3(2.25f, 0f, 0f), true);
+						Game.I.bossFight.batterDodgeRightPosition :
+						Game.I.bossFight.batterDodgeLeftPosition, true);
 					break;
 			}
 		}

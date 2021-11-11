@@ -1,22 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
-using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightScene : SceneManager {
-		public static readonly Vector3 batterLeftPosition = new Vector3(-2.8f, 0f, 0f);
-		public static readonly Vector3 batterRightPosition = new Vector3(2.8f, 0f, 0f);
-		public static readonly Dictionary<CardinalDirection, Vector3> strikeZonePositions = new Dictionary<CardinalDirection, Vector3>() {
-			{ CardinalDirection.North, new Vector3(0f, 4f, 0f) },
-			{ CardinalDirection.East, new Vector3(1.2f, 2.7f, 0f) },
-			{ CardinalDirection.South, new Vector3(0f, 1.4f, 0f) },
-			{ CardinalDirection.West, new Vector3(-1.2f, 2.7f, 0f) }
-		};
-		public static Vector3 northStrikeZonePosition => strikeZonePositions[CardinalDirection.North];
-		public static Vector3 eastStrikeZonePosition => strikeZonePositions[CardinalDirection.East];
-		public static Vector3 southStrikeZonePosition => strikeZonePositions[CardinalDirection.South];
-		public static Vector3 westStrikeZonePosition => strikeZonePositions[CardinalDirection.West];
+		public Vector3 batterLeftPosition => _batterLeft.position;
+		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;
+		public Vector3 batterRightPosition => _batterRight.position;
+		public Vector3 batterDodgeRightPosition => _batterDodgeRight.position;
+		public Vector3 northStrikeZonePosition => _northStrikeZone.position;
+		public Vector3 eastStrikeZonePosition => _eastStrikeZone.position;
+		public Vector3 southStrikeZonePosition => _southStrikeZone.position;
+		public Vector3 westStrikeZonePosition => _westStrikeZone.position;
+
+		[Header("Locations")]
+		[SerializeField] private Transform _batterLeft;
+		[SerializeField] private Transform _batterDodgeLeft;
+		[SerializeField] private Transform _batterRight;
+		[SerializeField] private Transform _batterDodgeRight;
+		[SerializeField] private Transform _northStrikeZone;
+		[SerializeField] private Transform _eastStrikeZone;
+		[SerializeField] private Transform _southStrikeZone;
+		[SerializeField] private Transform _westStrikeZone;
 
 		[Header("Children")]
 		[SerializeField] private BossFightUpdateLoop updateLoop;
@@ -54,5 +58,15 @@ namespace StrikeOut {
 		public Ball SpawnBall (Vector3 position) => updateLoop.entityManager.SpawnEntityFromPrefab(ballPrefab, position);
 
 		public void DespawnEntity (Entity entity) => updateLoop.entityManager.DespawnEntity(entity);
+
+		public Vector3 GetStrikeZonePosition (StrikeZone strikeZone) {
+			switch (strikeZone) {
+				case StrikeZone.North: return _northStrikeZone.position;
+				case StrikeZone.East: return _eastStrikeZone.position;
+				case StrikeZone.South: return _southStrikeZone.position;
+				case StrikeZone.West: return _westStrikeZone.position;
+				default: return Vector3.zero;
+			}
+		}
 	}
 }

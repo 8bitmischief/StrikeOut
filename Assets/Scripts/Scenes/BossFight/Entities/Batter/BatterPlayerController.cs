@@ -48,13 +48,13 @@ namespace StrikeOut {
 		private bool TryUsingInput (BatterInput input) {
 			switch (input) {
 				case BatterInput.SwingNorth:
-					return TrySwinging(CardinalDirection.North);
+					return TrySwinging(StrikeZone.North);
 				case BatterInput.SwingEast:
-					return TrySwinging(CardinalDirection.East);
+					return TrySwinging(StrikeZone.East);
 				case BatterInput.SwingSouth:
-					return TrySwinging(CardinalDirection.South);
+					return TrySwinging(StrikeZone.South);
 				case BatterInput.SwingWest:
-					return TrySwinging(CardinalDirection.West);
+					return TrySwinging(StrikeZone.West);
 				case BatterInput.DodgeLeft:
 					return TryDodgingLeft();
 				case BatterInput.DodgeRight:
@@ -63,9 +63,9 @@ namespace StrikeOut {
 			return false;
 		}
 
-		private bool TrySwinging (CardinalDirection direction) {
-			if (entity.CanSwing(direction)) {
-				entity.Swing(direction);
+		private bool TrySwinging (StrikeZone strikeZone) {
+			if (entity.CanSwing(strikeZone)) {
+				entity.Swing(strikeZone);
 				return true;
 			}
 			return false;

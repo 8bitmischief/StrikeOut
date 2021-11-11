@@ -8,7 +8,7 @@ namespace StrikeOut {
 		private static readonly int throwHash = Animator.StringToHash("Throw");
 		private static readonly int passesThroughStrikeZoneHash = Animator.StringToHash("Passes Through Strike Zone");
 
-		public void Throw (Ball.Pitch pitch, Vector3 targetPosition, bool passesThroughStrikeZone) {
+		public void Throw (PitchType pitch, Vector3 targetPosition, bool passesThroughStrikeZone) {
 			animator.SetInteger(pitchHash, (int) pitch);
 			animator.SetBool(passesThroughStrikeZoneHash, passesThroughStrikeZone);
 			Trigger(throwHash, targetPosition, true);

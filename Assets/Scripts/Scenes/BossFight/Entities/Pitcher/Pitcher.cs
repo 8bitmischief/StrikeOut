@@ -46,10 +46,10 @@ namespace StrikeOut {
 			Ball ball = Game.I.bossFight.SpawnBall(spawnPosition);
 			switch (Random.Range(1, 3)) {
 				case 1:
-					ball.Throw(Ball.Pitch.Curveball, CardinalDirection.North);
+					ball.Throw(PitchType.Curveball, CardinalDirection.North);
 					break;
 				case 2:
-					ball.Throw(Ball.Pitch.Curveball, new Vector3(5f, 2f, 0f));
+					ball.Throw(PitchType.Curveball, new Vector3(5f, 2f, 0f));
 					break;
 			}
 		}

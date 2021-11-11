@@ -36,24 +36,23 @@ namespace StrikeOut {
 			if (Game.I.input.nextFrame.justPressed && Game.I.debugMode) {
 				if (!updateLoop.isPaused)
 					updateLoop.Pause();
-				updateLoop.AdvanceOneFrame(true);
+				if (Game.I.input.alternateMode.isHeld)
+					updateLoop.Advance(0.018f, true);
+				else
+					updateLoop.AdvanceOneFrame(true);
 			}
 			// Slow down time
-			if (Game.I.input.slowTime.justPressed && Game.I.input.slowTime.isHeld)
-				updateLoop.timeScale = 0.10f;
-			if (Game.I.input.slowTime.justReleased && !Game.I.input.slowTime.isHeld)
+			if (Game.I.input.slowTime.justReleased)
 				updateLoop.timeScale = 1.00f;
+			else if (Game.I.input.slowTime.justPressed)
+				updateLoop.timeScale = 0.10f;
 			// Update the game
 			if (!updateLoop.updateAutomatically)
 				updateLoop.Advance();
 		}
 
-		public Ball SpawnBall (Vector3 position) {
-			return updateLoop.entityManager.SpawnEntityFromPrefab(ballPrefab, position);
-		}
+		public Ball SpawnBall (Vector3 position) => updateLoop.entityManager.SpawnEntityFromPrefab(ballPrefab, position);
 
-		public void DespawnEntity (Entity entity) {
-			updateLoop.entityManager.DespawnEntity(entity);
-		}
+		public void DespawnEntity (Entity entity) => updateLoop.entityManager.DespawnEntity(entity);
 	}
 }

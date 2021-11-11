@@ -106,8 +106,8 @@ namespace StrikeOut {
 					break;
 				case State.SideStepStart:
 					animator.SetRootMotion(isOnRightSide ?
-						BossFightScene.batterRightPosition + new Vector3(3f, 0f, 0f) :
-						BossFightScene.batterLeftPosition - new Vector3(3f, 0f, 0f), true);
+						BossFightScene.batterRightPosition + new Vector3(2f, 0f, 0f) :
+						BossFightScene.batterLeftPosition - new Vector3(2f, 0f, 0f), true);
 					break;
 			}
 		}

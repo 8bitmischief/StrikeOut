@@ -25,12 +25,12 @@ namespace StrikeOut {
 
 		public void LungeLeft () {
 			transform.localScale = new Vector3(1f, 1f, 1f);
-			animator.Lunge(new Vector3(-2.75f, 0f, 2.5f));
+			animator.Lunge(new Vector3(-2.6f, 0f, 3f));
 		}
 
 		public void LungeRight () {
 			transform.localScale = new Vector3(-1f, 1f, 1f);
-			animator.Lunge(new Vector3(2.75f, 0f, 2.5f));
+			animator.Lunge(new Vector3(2.6f, 0f, 3f));
 		}
 
 		protected override void OnEnterState (State state) {

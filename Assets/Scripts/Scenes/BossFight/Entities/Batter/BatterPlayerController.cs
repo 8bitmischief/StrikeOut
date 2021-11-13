@@ -1,5 +1,4 @@
 using UnityEngine;
-using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -31,7 +30,7 @@ namespace StrikeOut {
 					bufferedInput = BatterInput.None;
 
 			// Only buffer inputs for so long
-			if (bufferedInput != BatterInput.None && !UpdateLoop.I.isInterpolating) {
+			if (bufferedInput != BatterInput.None && !Game.I.bossFight.updateLoop.isInterpolating) {
 				bufferedInputFrames++;
 				if (bufferedInputFrames > maxBufferedInputFrames)
 					bufferedInput = BatterInput.None;

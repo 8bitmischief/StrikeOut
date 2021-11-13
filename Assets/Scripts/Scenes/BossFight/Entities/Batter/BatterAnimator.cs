@@ -14,6 +14,7 @@ namespace StrikeOut {
 		private static readonly int endSideStepHash = Animator.StringToHash("End Side Step");
 
 		public Action onAllowAnimationCancels;
+		public Action onTryHitBall;
 
 		public void SwingNorth () => Trigger(swingNorthHash);
 
@@ -30,8 +31,14 @@ namespace StrikeOut {
 		public void EndSideStep () => Trigger(endSideStepHash);
 		
 		protected override void OnAnimationEvent (AnimationEvent evt) {
-			if (evt.stringParameter == "Allow Animation Cancels")
-				onAllowAnimationCancels?.Invoke();
+			switch (evt.stringParameter) {
+				case "Allow Animation Cancels":
+					onAllowAnimationCancels?.Invoke();
+					break;
+				case "Try Hit Ball":
+					onTryHitBall?.Invoke();
+					break;
+			}
 		}
 	}
 }

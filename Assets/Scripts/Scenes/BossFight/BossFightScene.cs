@@ -1,17 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
 	public class BossFightScene : SceneManager {
-		public Vector3 batterLeftPosition => _batterLeft.position;
-		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;
-		public Vector3 batterRightPosition => _batterRight.position;
-		public Vector3 batterDodgeRightPosition => _batterDodgeRight.position;
-		public Vector3 northStrikeZonePosition => _northStrikeZone.position;
-		public Vector3 eastStrikeZonePosition => _eastStrikeZone.position;
-		public Vector3 southStrikeZonePosition => _southStrikeZone.position;
-		public Vector3 westStrikeZonePosition => _westStrikeZone.position;
-
 		[Header("Locations")]
 		[SerializeField] private Transform _batterLeft;
 		[SerializeField] private Transform _batterDodgeLeft;
@@ -23,10 +15,26 @@ namespace StrikeOut {
 		[SerializeField] private Transform _westStrikeZone;
 
 		[Header("Children")]
-		[SerializeField] private BossFightUpdateLoop updateLoop;
+		[SerializeField] private BossFightUpdateLoop _updateLoop;
 
 		[Header("Prefabs")]
 		[SerializeField] private Ball ballPrefab;
+
+		[Header("Data")]
+		[SerializeField] private PitchDataObject _pitchData;
+
+		public Vector3 batterLeftPosition => _batterLeft.position;
+		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;
+		public Vector3 batterRightPosition => _batterRight.position;
+		public Vector3 batterDodgeRightPosition => _batterDodgeRight.position;
+		public Vector3 northStrikeZonePosition => _northStrikeZone.position;
+		public Vector3 eastStrikeZonePosition => _eastStrikeZone.position;
+		public Vector3 southStrikeZonePosition => _southStrikeZone.position;
+		public Vector3 westStrikeZonePosition => _westStrikeZone.position;
+		public BossFightUpdateLoop updateLoop => _updateLoop;
+		public PitchDataObject pitchData => _pitchData;
+
+		[HideInInspector] public List<Ball> balls = new List<Ball>();
 
 		private void Update () {
 			// Pause the game

@@ -1,5 +1,4 @@
 using UnityEngine;
-using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -7,16 +6,19 @@ namespace StrikeOut {
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
 		public bool isOnRightSide { get; private set; } = false;
 
+		private StrikeZone strikeZone = StrikeZone.None;
 		private bool canCancelAnimation = false;
 
 		protected override void OnEnable () {
 			base.OnEnable();
 			animator.onAllowAnimationCancels += OnAllowAnimationCancels;
+			animator.onTryHitBall += OnTryHitBall;
 		}
 
 		protected override void OnDisable () {
 			base.OnDisable();
 			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
+			animator.onTryHitBall -= OnTryHitBall;
 		}
 
 		public bool CanSwing (StrikeZone strikeZone) {
@@ -77,7 +79,8 @@ namespace StrikeOut {
 		}
 
 		public void Swing (StrikeZone strikeZone) {
-			switch	(strikeZone) {
+			this.strikeZone = strikeZone;
+			switch (strikeZone) {
 				case StrikeZone.North:
 					animator.SwingNorth();
 					break;
@@ -137,12 +140,12 @@ namespace StrikeOut {
 				case State.SideStepEnd:
 					animator.SetRootMotion(isOnRightSide ?
 						Game.I.bossFight.batterRightPosition :
-						Game.I.bossFight.batterLeftPosition, true);
+						Game.I.bossFight.batterLeftPosition);
 					break;
 				case State.SideStepStart:
 					animator.SetRootMotion(isOnRightSide ?
 						Game.I.bossFight.batterDodgeRightPosition :
-						Game.I.bossFight.batterDodgeLeftPosition, true);
+						Game.I.bossFight.batterDodgeLeftPosition);
 					break;
 			}
 		}
@@ -153,6 +156,16 @@ namespace StrikeOut {
 
 		private void OnAllowAnimationCancels () {
 			canCancelAnimation = true;
+		}
+
+		private void OnTryHitBall () {
+			Ball targetBall = null;
+			foreach (Ball ball in Game.I.bossFight.balls)
+				if (ball.strikeZone == strikeZone && ball.isHittable)
+					if (targetBall == null || targetBall.framesUntilUnhittable > ball.framesUntilUnhittable)
+						targetBall = ball;
+			if (targetBall != null)
+				targetBall.Hit(new Vector3(15f, 5f, 50f));
 		}
 
 		public enum State {

@@ -15,7 +15,7 @@ namespace StrikeOut {
 
 		public void Pitch () => Trigger(pitchHash);
 
-		public void Lunge (Vector3 targetPosition) => Trigger(lungeHash, targetPosition, true);
+		public void Lunge (Vector3 target) => Trigger(lungeHash, target);
 
 		protected override void OnAnimationEvent (AnimationEvent evt) {
 			if (evt.stringParameter == "Pitch Ball")

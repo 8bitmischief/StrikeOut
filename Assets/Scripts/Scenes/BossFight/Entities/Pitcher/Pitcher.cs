@@ -1,5 +1,4 @@
 using UnityEngine;
-using SharedUnityMischief;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut {
@@ -37,7 +36,7 @@ namespace StrikeOut {
 			switch (state) {
 				case State.BackOff:
 					transform.localScale = new Vector3(1f, 1f, 1f);
-					animator.SetRootMotion(new Vector3(0f, 0f, 25f), true);
+					animator.SetRootMotion(new Vector3(0f, 0f, 25f));
 					break;
 			}
 		}
@@ -46,19 +45,19 @@ namespace StrikeOut {
 			Ball ball = Game.I.bossFight.SpawnBall(spawnPosition);
 			switch (Random.Range(1, 6)) {
 				case 1:
-					ball.Throw(PitchType.Curveball, StrikeZone.North);
+					ball.Pitch(PitchType.Curveball, StrikeZone.North);
 					break;
 				case 2:
-					ball.Throw(PitchType.Curveball, StrikeZone.East);
+					ball.Pitch(PitchType.Curveball, StrikeZone.East);
 					break;
 				case 3:
-					ball.Throw(PitchType.Curveball, StrikeZone.South);
+					ball.Pitch(PitchType.Curveball, StrikeZone.South);
 					break;
 				case 4:
-					ball.Throw(PitchType.Curveball, StrikeZone.West);
+					ball.Pitch(PitchType.Curveball, StrikeZone.West);
 					break;
 				case 5:
-					ball.Throw(PitchType.Curveball, new Vector3(5f, 2f, 0f));
+					ball.Pitch(PitchType.Curveball, new Vector3(5f, 2f, 0f));
 					break;
 			}
 		}

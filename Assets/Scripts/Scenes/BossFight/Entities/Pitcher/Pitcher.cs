@@ -43,7 +43,7 @@ namespace StrikeOut {
 
 		private void PitchBall (Vector3 spawnPosition) {
 			Ball ball = Game.I.bossFight.SpawnBall(spawnPosition);
-			switch (Random.Range(1, 6)) {
+			switch (Random.Range(1, 5)) { // 6)) {
 				case 1:
 					ball.Pitch(PitchType.Curveball, StrikeZone.North);
 					break;
@@ -56,9 +56,9 @@ namespace StrikeOut {
 				case 4:
 					ball.Pitch(PitchType.Curveball, StrikeZone.West);
 					break;
-				case 5:
-					ball.Pitch(PitchType.Curveball, new Vector3(5f, 2f, 0f));
-					break;
+				//case 5:
+				//	ball.Pitch(PitchType.Curveball, new Vector3(5f, 2f, 0f));
+				//	break;
 			}
 		}
 

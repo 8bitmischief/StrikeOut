@@ -55,9 +55,9 @@ namespace StrikeOut {
 			}
 			// Slow down time
 			if (Game.I.input.slowTime.justReleased)
-				updateLoop.timeScale = 1.00f;
+				Time.timeScale = 1.00f;
 			else if (Game.I.input.slowTime.justPressed)
-				updateLoop.timeScale = 0.10f;
+				Time.timeScale = 0.20f;
 			// Update the game
 			if (!updateLoop.updateAutomatically)
 				updateLoop.Advance();

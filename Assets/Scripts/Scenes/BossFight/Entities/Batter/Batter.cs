@@ -1,34 +1,12 @@
 using UnityEngine;
+using CameraShake;
 using SharedUnityMischief.Lifecycle;
-
-/*
-TODO:
-	Make batting more nuanced and juicy
-	I'm talkin'
-		screenshake
-		glass shattering on miss
-		sound effect
-		animation timing
-			swing faster when too early to emphasize the miss
-			swing faster + longer recoil when late
-			swing slower when early but not too early
-		more oomphy effects when perfect hitting
-		particles
-		trails
-		rotating sphere ball
-		"single" or "double" or "triple" or "home run"
-		points
-		fireworks explosion
-		variance in pitch location
-		lil indicator of where ball will connect
-			animation to sell when it'll pass strike zone
-		better sprite
-*/
 
 namespace StrikeOut {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
 		[SerializeField] private int preSwingFrames = 4;
+		[SerializeField] private BounceShake.Params hitBallShakeParams;
 
 		public bool isOnRightSide { get; private set; } = false;
 
@@ -193,8 +171,20 @@ namespace StrikeOut {
 		}
 
 		private void OnTryHitBall () {
-			if (targetBall != null)
-				targetBall.Hit(new Vector3(15f, 5f, 50f));
+			if (targetBall != null) {
+				Vector3 targetPosition = new Vector3(15f, 5f, 50f);
+				Vector3 shakeDirection;
+				if (targetBall.strikeZone == StrikeZone.North)
+					shakeDirection = new Vector3(1f, 0.3f, 0f);
+				else if (targetBall.strikeZone == StrikeZone.South)
+					shakeDirection = new Vector3(1f, -0.3f, 0f);
+				else
+					shakeDirection = new Vector3(1f, 0f, 0f);
+				if (isOnRightSide)
+					shakeDirection.x *= -1;
+				targetBall.Hit(targetPosition);
+				CameraShaker.Shake(new BounceShake(hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
+			}
 			targetBall = null;
 		}
 

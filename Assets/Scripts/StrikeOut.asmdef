@@ -2,7 +2,8 @@
     "name": "StrikeOut",
     "rootNamespace": "",
     "references": [
-        "8BitMischief.SharedUnityMischief"
+        "8BitMischief.SharedUnityMischief",
+        "com.gasgiant.camera-shake"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -5,24 +5,25 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(Animator))]
 	public class BatterAnimator : EntityAnimator<Batter, Batter.State> {
-		private static readonly int swingNorthHash = Animator.StringToHash("Swing North");
-		private static readonly int swingSouthHash = Animator.StringToHash("Swing South");
-		private static readonly int swingInwardsHash = Animator.StringToHash("Swing Inwards");
-		private static readonly int swingOutwardsHash = Animator.StringToHash("Swing Outwards");
+		private static readonly int swingHash = Animator.StringToHash("Swing");
+		private static readonly int swingDirectionHash = Animator.StringToHash("Swing Direction");
+		private static readonly int swingStartupFramesHash = Animator.StringToHash("Swing Startup Frames");
 		private static readonly int switchSidesHash = Animator.StringToHash("Switch Sides");
 		private static readonly int sideStepHash = Animator.StringToHash("Side Step");
 		private static readonly int endSideStepHash = Animator.StringToHash("End Side Step");
 
+		[SerializeField] public int fastestSwingStartupFrames = 2;
+		[SerializeField] public int defaultSwingStartupFrames = 4;
+		[SerializeField] public int slowestSwingStartupFrames = 8;
+
 		public Action onAllowAnimationCancels;
 		public Action onTryHitBall;
 
-		public void SwingNorth () => Trigger(swingNorthHash);
-
-		public void SwingSouth () => Trigger(swingSouthHash);
-
-		public void SwingInwards () => Trigger(swingInwardsHash);
-
-		public void SwingOutwards () => Trigger(swingOutwardsHash);
+		public void Swing (SwingDirection direction, int startupFrames) {
+			animator.SetInteger(swingDirectionHash, (int) direction);
+			animator.SetInteger(swingStartupFramesHash, startupFrames);
+			Trigger(swingHash);
+		}
 
 		public void SwitchSides () => Trigger(switchSidesHash);
 
@@ -39,6 +40,14 @@ namespace StrikeOut {
 					onTryHitBall?.Invoke();
 					break;
 			}
+		}
+
+		public enum SwingDirection {
+			None = 0,
+			North = 1,
+			Inside = 2,
+			South = 3,
+			Outside = 4
 		}
 	}
 }

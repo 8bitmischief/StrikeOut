@@ -17,9 +17,9 @@ MonoBehaviour:
     - Key: 1
       Value:
         earlyHitFrames: 7
-        lateHitFrames: 5
+        lateHitFrames: 7
     - Key: 2
       Value:
         earlyHitFrames: 7
-        lateHitFrames: 5
+        lateHitFrames: 7
     keyCollision: 0

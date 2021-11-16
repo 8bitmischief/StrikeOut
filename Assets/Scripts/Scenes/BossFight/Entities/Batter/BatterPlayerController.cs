@@ -9,7 +9,7 @@ namespace StrikeOut {
 		private BatterInput bufferedInput = BatterInput.None;
 		private int bufferedInputFrames = 0;
 
-		public override void UpdateState () {
+		public override void LateUpdateState () {
 			// Listen to inputs
 			if (Game.I.input.swingNorth.justPressed)
 				UseOrBufferInput(BatterInput.SwingNorth);

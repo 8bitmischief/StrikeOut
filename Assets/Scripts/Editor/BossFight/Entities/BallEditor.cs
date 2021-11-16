@@ -16,6 +16,10 @@ namespace StrikeOut {
 			EditorGUILayout.Toggle("Will Be Hittable", ball.willBeHittable);
 			EditorGUILayout.IntField("Frames Until Hittable", ball.framesUntilHittable);
 			EditorGUILayout.IntField("Frames Until Unhittable", ball.framesUntilUnhittable);
+			EditorGUILayout.Toggle("Has Passed Batting Line", ball.hasPassedBattingLine);
+			EditorGUILayout.Toggle("Will Pass Batting Line", ball.willPassBattingLine);
+			EditorGUILayout.IntField("Frames Until Pass Batting Line", ball.framesUntilPassBattingLine);
+			EditorGUILayout.IntField("Frames Since Passed Batting Line", ball.framesSincePassedBattingLine);
 			base.DrawState();
 		}
 	}

@@ -122,7 +122,7 @@ namespace StrikeOut {
 			int swingStartupFrames = animator.defaultSwingStartupFrames;
 			bool tryingToHitBall = false;
 			targetBall = null;
-			if (bestCandidateBall != null ) {
+			if (bestCandidateBall != null) {
 				// Figure out if the swing was early or late (- is early, + is late)
 				int framesEarlyOrLate;
 				if (bestCandidateBall.willPassBattingLine)
@@ -135,10 +135,10 @@ namespace StrikeOut {
 						targetBall = bestCandidateBall;
 					// The swing was late, speed up the animation
 					if (framesEarlyOrLate > 0)
-						swingStartupFrames -= Mathf.FloorToInt((framesEarlyOrLate + 1) / 3 );
+						swingStartupFrames -= Mathf.FloorToInt((framesEarlyOrLate) / 2);
 					// The swing was early, slow down the animation
 					else if (framesEarlyOrLate < 0)
-						swingStartupFrames += Mathf.FloorToInt((1 - framesEarlyOrLate) / 3);
+						swingStartupFrames += Mathf.FloorToInt((-framesEarlyOrLate) / 2);
 					// Keep the swing startup within actual limits
 					int slowestPossibleSwingStartupFrames = Mathf.Min(animator.slowestSwingStartupFrames, bestCandidateBall.framesUntilUnhittable - 1);
 					int fastestPossibleSwingStartupFrames = Mathf.Max(animator.fastestSwingStartupFrames, bestCandidateBall.isHittable ? 0 : bestCandidateBall.framesUntilHittable);
@@ -217,6 +217,7 @@ namespace StrikeOut {
 		}
 
 		protected override void OnEnterState (State state) {
+			// Calculate root motion
 			switch (state) {
 				case State.Swing:
 				case State.SwitchSides:

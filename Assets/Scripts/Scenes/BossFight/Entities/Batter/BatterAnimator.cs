@@ -19,9 +19,11 @@ namespace StrikeOut {
 		public Action onAllowAnimationCancels;
 		public Action onTryHitBall;
 
+		private int swingStartupFrames { get => animator.GetInteger(swingStartupFramesHash); set => animator.SetInteger(swingStartupFramesHash, value); }
+
 		public void Swing (SwingDirection direction, int startupFrames) {
 			animator.SetInteger(swingDirectionHash, (int) direction);
-			animator.SetInteger(swingStartupFramesHash, startupFrames);
+			swingStartupFrames = startupFrames;
 			Trigger(swingHash);
 		}
 
@@ -30,6 +32,25 @@ namespace StrikeOut {
 		public void SideStep () => Trigger(sideStepHash);
 
 		public void EndSideStep () => Trigger(endSideStepHash);
+
+		protected override void OnEnterState (Batter.State state) {
+			switch (state) {
+				case Batter.State.Swing:
+					if (swingStartupFrames == defaultSwingStartupFrames)
+						animationSpeed = 1.00f;
+					else
+						animationSpeed = 0.01f + ((float) defaultSwingStartupFrames) / ((float) swingStartupFrames);
+					break;
+			}
+		}
+
+		protected override void OnLeaveState (Batter.State state) {
+			switch (state) {
+				case Batter.State.Swing:
+					animationSpeed = 1.00f;
+					break;
+			}
+		}
 		
 		protected override void OnAnimationEvent (AnimationEvent evt) {
 			switch (evt.stringParameter) {
@@ -37,6 +58,7 @@ namespace StrikeOut {
 					onAllowAnimationCancels?.Invoke();
 					break;
 				case "Try Hit Ball":
+					animationSpeed = 1.00f;
 					onTryHitBall?.Invoke();
 					break;
 			}

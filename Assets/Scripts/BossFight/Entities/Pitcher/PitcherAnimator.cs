@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(Animator))]
 	public class PitcherAnimator : EntityAnimator<Pitcher, Pitcher.State> {
 		private static readonly int pitchHash = Animator.StringToHash("Pitch");

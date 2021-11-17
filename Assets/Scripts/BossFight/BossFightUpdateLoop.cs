@@ -2,7 +2,7 @@ using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 using SharedUnityMischief.Input.Control;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	public class BossFightUpdateLoop : UpdateLoop {
 		[Header("Managers")]
 		[SerializeField] private EntityManager _entityManager;

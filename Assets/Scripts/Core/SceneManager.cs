@@ -1,7 +1,12 @@
 using UnityEngine;
+using SharedUnityMischief;
 
 namespace StrikeOut {
-	public abstract class SceneManager : MonoBehaviour {
+	public interface ISceneManager {
+		Scene scene { get; }
+	}
+
+	public abstract class SceneManager<T> : SingletonMonoBehaviour<T>, ISceneManager where T : MonoBehaviour {
 		[Header("Scene Config")]
 		[SerializeField] private Scene _scene;
 

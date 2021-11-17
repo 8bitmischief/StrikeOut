@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	public class Shadow : MonoBehaviour {
 		private void LateUpdate () {
 			transform.position = new Vector3(

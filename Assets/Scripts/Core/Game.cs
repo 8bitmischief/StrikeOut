@@ -14,22 +14,17 @@ namespace StrikeOut {
 
 		public Scene scene => sceneManager?.scene ?? Scene.None;
 		public InputManager input => _input;
-		public BossFightScene bossFight { get; private set; } = null;
 		public bool debugMode => _debugMode;
 
-		private SceneManager sceneManager;
+		private ISceneManager sceneManager;
 
-		public void RegisterSceneManager (SceneManager sceneManager) {
+		public void RegisterSceneManager (ISceneManager sceneManager) {
 			this.sceneManager = sceneManager;
-			if (sceneManager.scene == Scene.BossFight)
-				bossFight = sceneManager as BossFightScene;
 		}
 
-		public void UnregisterSceneManager (SceneManager sceneManager) {
+		public void UnregisterSceneManager (ISceneManager sceneManager) {
 			if (this.sceneManager == sceneManager)
 				sceneManager = null;
-			if (bossFight == sceneManager)
-				bossFight = null;
 		}
 	}
 }

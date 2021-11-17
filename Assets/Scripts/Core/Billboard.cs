@@ -6,7 +6,9 @@ namespace StrikeOut {
 		[SerializeField] private bool yRotation = false;
 		[SerializeField] private bool zRotation = false;
 
+#pragma warning disable CS0109 // Ignore "does not hide an accessible" warning during builds
 		private new Camera camera;
+#pragma warning restore CS0109
 
 		private void Awake () {
 			camera = Camera.main;

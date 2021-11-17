@@ -1,12 +1,14 @@
 {
-    "name": "Editor",
+    "name": "StrikeOut.Editor.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:ed5a6432941b8bc4db4b00f7b3383d50",
+        "GUID:37815e614d5f9904a867ccb7e4ce661f",
         "GUID:14eb6d69025de474aa405140eb989c9d",
         "GUID:4519049946e45f94b9c211a38161bcbb"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	public enum StrikeZone {
 		None = 0,
 		North = 1,

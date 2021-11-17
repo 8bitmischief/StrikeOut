@@ -1,7 +1,7 @@
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(Pitcher))]
 	public class PitcherAIController : EntityComponent<Pitcher> {
 		public override void UpdateState () {

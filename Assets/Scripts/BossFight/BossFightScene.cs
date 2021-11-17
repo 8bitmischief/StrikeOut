@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
-	public class BossFightScene : SceneManager {
+namespace StrikeOut.BossFight {
+	public class BossFightScene : SceneManager<BossFightScene> {
 		[Header("Locations")]
 		[SerializeField] private Transform _batterLeft;
 		[SerializeField] private Transform _batterDodgeLeft;

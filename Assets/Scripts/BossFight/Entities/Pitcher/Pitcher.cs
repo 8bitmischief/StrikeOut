@@ -1,7 +1,7 @@
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(PitcherAnimator))]
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
 		protected override void OnEnable () {
@@ -42,7 +42,7 @@ namespace StrikeOut {
 		}
 
 		private void PitchBall (Vector3 spawnPosition) {
-			Ball ball = Game.I.bossFight.SpawnBall(spawnPosition);
+			Ball ball = BossFightScene.I.SpawnBall(spawnPosition);
 			switch (Random.Range(1, 5)) { // 6)) {
 				case 1:
 					ball.Pitch(PitchType.Curveball, StrikeZone.North);

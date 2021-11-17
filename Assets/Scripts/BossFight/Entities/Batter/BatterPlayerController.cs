@@ -1,7 +1,7 @@
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter> {
 		private int maxBufferedInputFrames = 8;
@@ -30,7 +30,7 @@ namespace StrikeOut {
 					bufferedInput = BatterInput.None;
 
 			// Only buffer inputs for so long
-			if (bufferedInput != BatterInput.None && !Game.I.bossFight.updateLoop.isInterpolating) {
+			if (bufferedInput != BatterInput.None && !BossFightScene.I.updateLoop.isInterpolating) {
 				bufferedInputFrames++;
 				if (bufferedInputFrames > maxBufferedInputFrames)
 					bufferedInput = BatterInput.None;

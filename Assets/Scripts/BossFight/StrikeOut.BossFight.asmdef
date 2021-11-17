@@ -1,0 +1,18 @@
+{
+    "name": "StrikeOut.BossFight",
+    "rootNamespace": "",
+    "references": [
+        "GUID:37815e614d5f9904a867ccb7e4ce661f",
+        "GUID:14eb6d69025de474aa405140eb989c9d",
+        "GUID:375f907a3759f3a4f80f868d1852e061"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

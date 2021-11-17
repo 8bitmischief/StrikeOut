@@ -2,7 +2,7 @@ using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Lifecycle;
 
-namespace StrikeOut {
+namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
 		[SerializeField] private ParticleSystem hitBallEffect;
@@ -87,7 +87,7 @@ namespace StrikeOut {
 			this.strikeZone = strikeZone;
 			// Find the ball that's most worth considering for this swing
 			Ball bestCandidateBall = null;
-			foreach (Ball ball in Game.I.bossFight.balls) {
+			foreach (Ball ball in BossFightScene.I.balls) {
 				bool chooseClosestToBattingLine = false;
 				if (bestCandidateBall == null)
 					bestCandidateBall = ball;
@@ -224,13 +224,13 @@ namespace StrikeOut {
 				case State.SwitchSides:
 				case State.SideStepEnd:
 					animator.SetRootMotion(isOnRightSide ?
-						Game.I.bossFight.batterRightPosition :
-						Game.I.bossFight.batterLeftPosition);
+						BossFightScene.I.batterRightPosition :
+						BossFightScene.I.batterLeftPosition);
 					break;
 				case State.SideStepStart:
 					animator.SetRootMotion(isOnRightSide ?
-						Game.I.bossFight.batterDodgeRightPosition :
-						Game.I.bossFight.batterDodgeLeftPosition);
+						BossFightScene.I.batterDodgeRightPosition :
+						BossFightScene.I.batterDodgeLeftPosition);
 					break;
 			}
 		}

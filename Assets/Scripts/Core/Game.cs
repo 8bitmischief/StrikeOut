@@ -7,16 +7,19 @@ namespace StrikeOut {
 		protected static void Reset () => ResetInstance();
 
 		[Header("Game Config")]
-		[SerializeField] private bool _debugMode = true;
+		public bool debugMode = true;
 
 		[Header("Game Managers")]
-		[SerializeField] private InputManager _input;
+		public InputManager input;
 
 		public Scene scene => sceneManager?.scene ?? Scene.None;
-		public InputManager input => _input;
-		public bool debugMode => _debugMode;
 
 		private ISceneManager sceneManager;
+
+		private void Update () {
+			if (input.start.justPressed)
+				Application.Quit();
+		}
 
 		public void RegisterSceneManager (ISceneManager sceneManager) {
 			this.sceneManager = sceneManager;

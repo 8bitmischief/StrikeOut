@@ -5,31 +5,20 @@ using SharedUnityMischief.Input.Control;
 namespace StrikeOut {
 	public class InputManager : SharedUnityMischief.Input.InputManager {
 		[Header("Controls")]
-		[SerializeField] private SimulatedButtonControl _swingNorth;
-		[SerializeField] private SimulatedButtonControl _swingEast;
-		[SerializeField] private SimulatedButtonControl _swingSouth;
-		[SerializeField] private SimulatedButtonControl _swingWest;
-		[SerializeField] private SimulatedButtonControl _dodgeLeft;
-		[SerializeField] private SimulatedButtonControl _dodgeRight;
-		[SerializeField] private SimulatedButtonControl _pause;
+		public SimulatedButtonControl swingNorth;
+		public SimulatedButtonControl swingEast;
+		public SimulatedButtonControl swingSouth;
+		public SimulatedButtonControl swingWest;
+		public SimulatedButtonControl dodgeLeft;
+		public SimulatedButtonControl dodgeRight;
+		public SimulatedButtonControl start;
 
 		[Header("Debug Controls")]
-		[SerializeField] private ButtonControl _togglePause;
-		[SerializeField] private ButtonControl _nextFrame;
-		[SerializeField] private ButtonControl _slowTime;
-		[SerializeField] private ButtonControl _alternateMode;
+		public ButtonControl togglePause;
+		public ButtonControl nextFrame;
+		public ButtonControl slowTime;
+		public ButtonControl alternateMode;
 
-		public SimulatedButtonControl swingNorth => _swingNorth;
-		public SimulatedButtonControl swingEast => _swingEast;
-		public SimulatedButtonControl swingSouth => _swingSouth;
-		public SimulatedButtonControl swingWest => _swingWest;
-		public SimulatedButtonControl dodgeLeft => _dodgeLeft;
-		public SimulatedButtonControl dodgeRight => _dodgeRight;
-		public SimulatedButtonControl pause => _pause;
-		public ButtonControl togglePause => _togglePause;
-		public ButtonControl nextFrame => _nextFrame;
-		public ButtonControl slowTime => _slowTime;
-		public ButtonControl alternateMode => _alternateMode;
 		public SimulatedControlMode mode {
 			get => _mode;
 			set {
@@ -43,8 +32,9 @@ namespace StrikeOut {
 		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
 
 		private void Awake () {
-			gameplayControls = new List<SimulatedButtonControl>()
-				{ swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight, pause };
+			gameplayControls = new List<SimulatedButtonControl>() {
+				swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight, start
+			};
 		}
 
 		public void ConsumeInstantaneousInputs () {

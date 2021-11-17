@@ -5,6 +5,7 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
+		[SerializeField] private ParticleSystem hitBallEffect;
 		[SerializeField] private BounceShake.Params hitBallShakeParams;
 
 		public bool isOnRightSide { get; private set; } = false;
@@ -256,6 +257,7 @@ namespace StrikeOut {
 					shakeDirection.x *= -1;
 				targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
+				ParticleSystem effect = Instantiate(hitBallEffect, new Vector3(targetBall.transform.position.x, targetBall.transform.position.y, 0f), Quaternion.identity);
 			}
 			targetBall = null;
 		}

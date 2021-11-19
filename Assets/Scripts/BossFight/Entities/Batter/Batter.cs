@@ -1,12 +1,12 @@
 using UnityEngine;
 using CameraShake;
-using SharedUnityMischief;
+using SharedUnityMischief.Effects;
 using SharedUnityMischief.Lifecycle;
 
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
-		[SerializeField] private ParticleEffect hitBallEffect;
+		[SerializeField] private ParticleEffectPool hitBallEffectPool;
 		[SerializeField] private BounceShake.Params hitBallShakeParams;
 
 		public bool isOnRightSide { get; private set; } = false;
@@ -258,8 +258,7 @@ namespace StrikeOut.BossFight {
 					shakeDirection.x *= -1;
 				targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				ParticleEffect effect = Instantiate(hitBallEffect, new Vector3(targetBall.transform.position.x, targetBall.transform.position.y, 0f), Quaternion.identity);
-				effect.Play();
+				hitBallEffectPool.Withdraw(new Vector3(targetBall.transform.position.x, targetBall.transform.position.y, 0f));
 			}
 			targetBall = null;
 		}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Pool;
 
 namespace StrikeOut.BossFight {
 	public class BossFightScene : SceneManager<BossFightScene> {
@@ -18,7 +19,7 @@ namespace StrikeOut.BossFight {
 		[SerializeField] private BossFightUpdateLoop _updateLoop;
 
 		[Header("Prefabs")]
-		[SerializeField] private Ball ballPrefab;
+		[SerializeField] private PrefabPool<Ball> ballPool;
 
 		[Header("Data")]
 		[SerializeField] private PitchDataObject _pitchData;
@@ -63,7 +64,12 @@ namespace StrikeOut.BossFight {
 				updateLoop.Advance();
 		}
 
-		public Ball SpawnBall (Vector3 position) => updateLoop.entityManager.SpawnEntityFromPrefab(ballPrefab, position);
+		protected override void OnDestroy () {
+			ballPool.Dispose();
+			base.OnDestroy();
+		}
+
+		public Ball SpawnBall (Vector3 position) => updateLoop.entityManager.SpawnEntityFromPool(ballPool, position);
 
 		public void DespawnEntity (Entity entity) => updateLoop.entityManager.DespawnEntity(entity);
 

@@ -1630,6 +1630,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1882073504}
     - target: {fileID: 5750975628210434710, guid: c4444988eab8c67488b1fde580bb1173, type: 3}
+      propertyPath: bipple.tibs
+      value: 
+      objectReference: {fileID: 1216380686149261798, guid: 370472b68b3054919af9d596e0cb8c96, type: 3}
+    - target: {fileID: 5750975628210434710, guid: c4444988eab8c67488b1fde580bb1173, type: 3}
       propertyPath: _batterRight
       value: 
       objectReference: {fileID: 2045851505}

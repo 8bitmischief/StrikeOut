@@ -2,11 +2,12 @@ using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Effects;
 using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Pool;
 
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
-		[SerializeField] private ParticleEffectPool hitBallEffectPool;
+		[SerializeField] private PrefabPool<ParticleEffect> hitBallEffectPool;
 		[SerializeField] private BounceShake.Params hitBallShakeParams;
 
 		public bool isOnRightSide { get; private set; } = false;

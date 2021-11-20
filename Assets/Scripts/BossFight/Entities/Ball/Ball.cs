@@ -4,8 +4,6 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
-		public override bool appendSpawnIndexToName => true;
-
 		public StrikeZone strikeZone { get; private set; } = StrikeZone.None;
 		public bool isHittable {
 			get {
@@ -41,7 +39,7 @@ namespace StrikeOut.BossFight {
 				}
 			}
 		}
-		public bool hasPassedBattingLine = false;
+		public bool hasPassedBattingLine { get; private set; } = false;
 		public bool willPassBattingLine => state == State.Pitched;
 		public int framesUntilPassBattingLine {
 			get {
@@ -53,7 +51,7 @@ namespace StrikeOut.BossFight {
 				}
 			}
 		}
-		public int framesSincePassedBattingLine = -1;
+		public int framesSincePassedBattingLine { get; private set; } = -1;
 
 		private PitchDataObject.PitchData pitchData = null;
 		private Vector3 prevPosition;
@@ -61,12 +59,19 @@ namespace StrikeOut.BossFight {
 		private Vector3 accelerationPerFrame = Vector3.zero;
 		private bool justPassedBattingLine = false;
 
-		protected override void Awake () {
-			base.Awake();
-			prevPosition = transform.position;
+		public override void Reset () {
+			strikeZone = StrikeZone.None;
+			hasPassedBattingLine = false;
+			framesSincePassedBattingLine = -1;
+			pitchData = null;
+			prevPosition = Vector3.zero;
+			velocity = Vector3.zero;
+			accelerationPerFrame = Vector3.zero;
+			justPassedBattingLine = false;
 		}
 
 		public override void OnSpawn () {
+			prevPosition = transform.position;
 			BossFightScene.I.balls.Add(this);
 		}
 

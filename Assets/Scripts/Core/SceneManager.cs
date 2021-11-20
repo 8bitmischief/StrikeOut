@@ -16,8 +16,10 @@ namespace StrikeOut {
 			Game.I.RegisterSceneManager(this);
 		}
 
-		protected virtual void Destroy () {
-			Game.I.UnregisterSceneManager(this);
+		protected override void OnDestroy () {
+			if (Game.hasInstance)
+				Game.I.UnregisterSceneManager(this);
+			base.OnDestroy();
 		}
 
 		public virtual void UpdateState () {}

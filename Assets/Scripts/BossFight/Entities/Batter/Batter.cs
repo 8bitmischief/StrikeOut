@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 using CameraShake;
 using SharedUnityMischief.Effects;
 using SharedUnityMischief.Lifecycle;
@@ -15,6 +16,10 @@ namespace StrikeOut.BossFight {
 		private StrikeZone strikeZone = StrikeZone.None;
 		private Ball targetBall = null;
 		private bool canCancelAnimation = false;
+
+		private void Start () {
+			hitBallEffectPool.Prewarm();
+		}
 
 		protected override void OnEnable () {
 			base.OnEnable();
@@ -259,7 +264,7 @@ namespace StrikeOut.BossFight {
 					shakeDirection.x *= -1;
 				targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				hitBallEffectPool.Withdraw(new Vector3(targetBall.transform.position.x, targetBall.transform.position.y, 0f));
+				hitBallEffectPool.Withdraw(new Vector3(targetBall.transform.position.x, targetBall.transform.position.y, 0f)).Play();
 			}
 			targetBall = null;
 		}

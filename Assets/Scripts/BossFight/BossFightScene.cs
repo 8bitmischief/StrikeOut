@@ -55,10 +55,8 @@ namespace StrikeOut.BossFight {
 					updateLoop.AdvanceOneFrame(true);
 			}
 			// Slow down time
-			if (Game.I.input.slowTime.justReleased)
-				Time.timeScale = 1.00f;
-			else if (Game.I.input.slowTime.justPressed)
-				Time.timeScale = 0.20f;
+			if (Game.I.input.slowTime.justReleased || Game.I.input.slowTime.justPressed)
+				Time.timeScale = Game.I.input.slowTime.isHeld ? 0.10f : 1.00f;
 			// Update the game
 			if (!updateLoop.updateAutomatically)
 				updateLoop.Advance();

@@ -70,5 +70,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Blend version files
+*.blend[0-9]*
+*.blend[0-9]*.meta
+
 # Mac OS generated files
 .DS_Store*

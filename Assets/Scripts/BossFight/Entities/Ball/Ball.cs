@@ -140,6 +140,7 @@ namespace StrikeOut.BossFight {
 		}
 
 		public void Hit (Vector3 target) {
+			transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
 			animator.Hit(target);
 		}
 

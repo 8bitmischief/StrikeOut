@@ -244,17 +244,29 @@ namespace StrikeOut.BossFight {
 					break;
 				case State.Swing:
 					switch (strikeZone) {
+						case StrikeZone.North:
+							if (isOnRightSide)
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
+							else
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
+							break;
 						case StrikeZone.East:
 							if (isOnRightSide)
-								animator.SetRootMotion(BossFightScene.I.batterRightPosition);
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 0f, 0f));
 							else
 								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(2f, 0f, 0f));
+							break;
+						case StrikeZone.South:
+							if (isOnRightSide)
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
+							else
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
 							break;
 						case StrikeZone.West:
 							if (isOnRightSide)
 								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-2f, 0f, 0f));
 							else
-								animator.SetRootMotion(BossFightScene.I.batterLeftPosition);
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 0f, 0f));
 							break;
 					}
 					break;

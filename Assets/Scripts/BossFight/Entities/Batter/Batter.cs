@@ -38,6 +38,7 @@ namespace StrikeOut.BossFight {
 				case State.Swing:
 				case State.SideStepEnd:
 				case State.SwitchSides:
+				case State.Settle:
 					return canCancelAnimation;
 				case State.Idle:
 					return true;
@@ -65,6 +66,7 @@ namespace StrikeOut.BossFight {
 				case State.Swing:
 				case State.SideStepEnd:
 				case State.SwitchSides:
+				case State.Settle:
 					return canCancelAnimation;
 				case State.Idle:
 					return true;
@@ -78,6 +80,7 @@ namespace StrikeOut.BossFight {
 				case State.Swing:
 				case State.SideStepEnd:
 				case State.SwitchSides:
+				case State.Settle:
 					return canCancelAnimation;
 				case State.Idle:
 					return true;
@@ -227,7 +230,7 @@ namespace StrikeOut.BossFight {
 		protected override void OnEnterState (State state) {
 			// Calculate root motion
 			switch (state) {
-				case State.Swing:
+				case State.Settle:
 				case State.SwitchSides:
 				case State.SideStepEnd:
 					animator.SetRootMotion(isOnRightSide ?
@@ -238,6 +241,22 @@ namespace StrikeOut.BossFight {
 					animator.SetRootMotion(isOnRightSide ?
 						BossFightScene.I.batterDodgeRightPosition :
 						BossFightScene.I.batterDodgeLeftPosition);
+					break;
+				case State.Swing:
+					switch (strikeZone) {
+						case StrikeZone.East:
+							if (isOnRightSide)
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition);
+							else
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(2f, 0f, 0f));
+							break;
+						case StrikeZone.West:
+							if (isOnRightSide)
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-2f, 0f, 0f));
+							else
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition);
+							break;
+					}
 					break;
 			}
 		}
@@ -282,7 +301,8 @@ namespace StrikeOut.BossFight {
 			SwitchSides = 2,
 			SideStepStart = 3,
 			SideStepEnd = 4,
-			Swing = 5
+			Swing = 5,
+			Settle = 6
 		}
 	}
 }

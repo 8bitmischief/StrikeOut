@@ -4,6 +4,8 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(Pitcher))]
 	public class PitcherAIController : EntityComponent<Pitcher> {
+		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;
+
 		public override void UpdateState () {
 			if (entity.IsIdle()) {
 				// float r = Random.Range(0f, 1f);
@@ -12,7 +14,8 @@ namespace StrikeOut.BossFight {
 				// else if (r < 0.2f)
 				// 	entity.LungeRight();
 				// else
-				entity.Pitch();
+				//entity.Pitch();
+				entity.ThrowBoomerang();
 			}
 		}
 	}

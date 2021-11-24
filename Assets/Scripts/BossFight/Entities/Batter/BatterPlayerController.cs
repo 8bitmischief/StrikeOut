@@ -4,6 +4,8 @@ using SharedUnityMischief.Lifecycle;
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter> {
+		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;
+
 		private int maxBufferedInputFrames = 8;
 
 		private BatterInput bufferedInput = BatterInput.None;

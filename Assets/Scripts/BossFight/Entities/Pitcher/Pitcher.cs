@@ -1,17 +1,34 @@
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Pool;
 
 namespace StrikeOut.BossFight {
 	[RequireComponent(typeof(PitcherAnimator))]
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
+		[Header("Prefab Pools")]
+		[SerializeField] private PrefabPool<Ball> ballPool;
+		[SerializeField] private PrefabPool<Boomerang> boomerangPool;
+
+		private void Start () {
+			ballPool.Prewarm();
+			boomerangPool.Prewarm();
+		}
+
 		protected override void OnEnable () {
 			base.OnEnable();
-			animator.onPitchBall += PitchBall;
+			animator.onSpawnBall += SpawnBall;
+			animator.onSpawnBoomerang += SpawnBoomerang;
 		}
 
 		protected override void OnDisable () {
 			base.OnDisable();
-			animator.onPitchBall -= PitchBall;
+			animator.onSpawnBall -= SpawnBall;
+			animator.onSpawnBoomerang -= SpawnBoomerang;
+		}
+
+		private void OnDestroy () {
+			ballPool.Dispose();
+			boomerangPool.Dispose();
 		}
 
 		public bool IsIdle () {
@@ -32,6 +49,10 @@ namespace StrikeOut.BossFight {
 			animator.Lunge(new Vector3(2.6f, 0f, 3f));
 		}
 
+		public void ThrowBoomerang () {
+			animator.ThrowBoomerang();
+		}
+
 		protected override void OnEnterState (State state) {
 			switch (state) {
 				case State.BackOff:
@@ -41,8 +62,8 @@ namespace StrikeOut.BossFight {
 			}
 		}
 
-		private void PitchBall (Vector3 spawnPosition) {
-			Ball ball = BossFightScene.I.SpawnBall(spawnPosition);
+		private void SpawnBall (Vector3 spawnPosition) {
+			Ball ball = BossFightScene.I.entityManager.SpawnEntityFromPool(ballPool, spawnPosition);
 			switch (Random.Range(1, 5)) { // 6)) {
 				case 1:
 					ball.Pitch(PitchType.Curveball, StrikeZone.North);
@@ -62,12 +83,18 @@ namespace StrikeOut.BossFight {
 			}
 		}
 
+		private void SpawnBoomerang (Vector3 spawnPosition) {
+			Boomerang boomerang = BossFightScene.I.entityManager.SpawnEntityFromPool(boomerangPool, spawnPosition);
+			boomerang.Throw();
+		}
+
 		public enum State {
 			None = 0,
 			Idle = 1,
 			Pitch = 2,
 			Lunge = 3,
-			BackOff = 4
+			BackOff = 4,
+			ThrowBoomerang = 5
 		}
 	}
 }

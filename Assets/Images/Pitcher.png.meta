@@ -1,31 +1,64 @@
 fileFormatVersion: 2
-guid: ecd8683dac5444b03a67c3fa8c3428c1
+guid: ff41fac91022f4eecbf59ead977c01e2
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -8968746144957900785
-    second: Pitcher_0
+    second: Idle 1
   - first:
       213: 1471524999982271406
-    second: Pitcher_1
+    second: Move 1
   - first:
       213: -4737325895891296039
-    second: Pitcher_2
+    second: Move Weapon 1
   - first:
       213: 6222132977930122763
-    second: Pitcher_3
+    second: Pitch 1
   - first:
       213: -6582441953914316396
-    second: Pitcher_4
+    second: Chop 1
   - first:
       213: -4786014347711230962
-    second: Pitcher_5
+    second: Move Weapon 1
   - first:
       213: 7278214439134550890
-    second: Pitcher_6
+    second: Chop 2
   - first:
       213: 7299497092255564097
-    second: Pitcher_7
+    second: Chop 3
+  - first:
+      213: 5876534404722944277
+    second: Chop 4
+  - first:
+      213: 2358765860796727385
+    second: Boomerang 1
+  - first:
+      213: 3118345619275648119
+    second: Boomerang 2
+  - first:
+      213: -616056218266748448
+    second: Boomerang 3
+  - first:
+      213: -2893016655705205863
+    second: Boomerang 4
+  - first:
+      213: -3348074879001041725
+    second: Taunt 1
+  - first:
+      213: -5639185795832584134
+    second: Taunt 2
+  - first:
+      213: 6682567868247495796
+    second: Slash 1
+  - first:
+      213: -1171790841774489103
+    second: Slash 2
+  - first:
+      213: 1693957455605715198
+    second: Slash 3
+  - first:
+      213: 3586841602217733911
+    second: Slash 4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -92,7 +125,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,7 +137,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,11 +148,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pitcher_0
+      name: Idle 1
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 320
         width: 64
         height: 64
       alignment: 7
@@ -136,11 +169,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_1
+      name: Move 1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 7
@@ -157,11 +190,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_2
+      name: Move Weapon 1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 7
@@ -178,11 +211,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_3
+      name: Pitch 1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 0
+        y: 255
         width: 64
         height: 64
       alignment: 7
@@ -199,11 +232,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_4
+      name: Pitch 2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 65
+        y: 256
         width: 64
         height: 64
       alignment: 7
@@ -220,11 +253,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_5
+      name: Chop 1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 0
+        y: 192
         width: 64
         height: 64
       alignment: 7
@@ -241,11 +274,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_6
+      name: Chop 2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 64
+        y: 192
         width: 64
         height: 64
       alignment: 7
@@ -262,11 +295,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitcher_7
+      name: Chop 3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 126
+        y: 192
         width: 64
         height: 64
       alignment: 7
@@ -282,10 +315,241 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Chop 4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5196fd7e7e4ad8150800000000000000
+      internalID: 5876534404722944277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boomerang 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9508b199d050cb020800000000000000
+      internalID: 2358765860796727385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boomerang 2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c02dba1d6964b20800000000000000
+      internalID: 3118345619275648119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boomerang 3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e93a8c22245377f0800000000000000
+      internalID: -616056218266748448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boomerang 4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9931763fda0f9d7d0800000000000000
+      internalID: -2893016655705205863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taunt 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 63
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c4ebbbe2af3981d0800000000000000
+      internalID: -3348074879001041725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taunt 2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3868f875669db1b0800000000000000
+      internalID: -5639185795832584134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slash 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474d45602104dbc50800000000000000
+      internalID: 6682567868247495796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slash 2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1c9f41076fcbfe0800000000000000
+      internalID: -1171790841774489103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slash 3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef0d006b455228710800000000000000
+      internalID: 1693957455605715198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slash 4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71fe7cdee6507c130800000000000000
+      internalID: 3586841602217733911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: dffde5a25e1534058bf61146b83914b5
     internalID: 0
     vertices: []
     indices: 

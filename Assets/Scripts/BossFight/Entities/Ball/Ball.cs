@@ -59,7 +59,7 @@ namespace StrikeOut.BossFight {
 		private Vector3 accelerationPerFrame = Vector3.zero;
 		private bool justPassedBattingLine = false;
 
-		public override void Reset () {
+		public override void ResetComponent () {
 			strikeZone = StrikeZone.None;
 			hasPassedBattingLine = false;
 			framesSincePassedBattingLine = -1;
@@ -100,17 +100,17 @@ namespace StrikeOut.BossFight {
 						transform.position += velocity * BossFightScene.I.updateLoop.deltaTime;
 						// Despawn the ball once it's behind the camera
 						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || framesInState > 20))
-							BossFightScene.I.DespawnEntity(this);
+							BossFightScene.I.entityManager.DespawnEntity(this);
 					}
 					else {
 						// Despawn the ball if the player doesn't hit it in time
 						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable)
-							BossFightScene.I.DespawnEntity(this);
+							BossFightScene.I.entityManager.DespawnEntity(this);
 					}
 					break;
 				case State.Hit:
 					if (!BossFightScene.I.updateLoop.isInterpolating && animator.hasAnimationCompleted)
-						BossFightScene.I.DespawnEntity(this);
+						BossFightScene.I.entityManager.DespawnEntity(this);
 					break;
 			}
 		}

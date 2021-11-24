@@ -1,7 +1,7 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(Pitcher))]
 	public class PitcherAIController : EntityComponent<Pitcher> {
 		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;

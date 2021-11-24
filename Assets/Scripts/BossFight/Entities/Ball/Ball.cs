@@ -1,7 +1,9 @@
 using UnityEngine;
 using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator> {
 		public StrikeZone strikeZone { get; private set; } = StrikeZone.None;

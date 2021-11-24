@@ -1,7 +1,8 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter> {
 		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;

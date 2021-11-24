@@ -1,8 +1,9 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 using SharedUnityMischief.Pool;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(PitcherAnimator))]
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator> {
 		[Header("Prefab Pools")]

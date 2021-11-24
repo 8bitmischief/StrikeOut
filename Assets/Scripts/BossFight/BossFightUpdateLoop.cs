@@ -1,4 +1,5 @@
 using UnityEngine;
+using SharedUnityMischief.Entities;
 using SharedUnityMischief.Lifecycle;
 using SharedUnityMischief.Input.Control;
 

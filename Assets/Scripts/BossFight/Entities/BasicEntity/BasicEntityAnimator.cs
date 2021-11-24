@@ -1,7 +1,7 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(Animator))]
 	public class BasicEntityAnimator : EntityAnimator<BasicEntity, BasicEntityState> {
 		private static readonly int triggerHash = Animator.StringToHash("Trigger");

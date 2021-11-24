@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using SharedUnityMischief;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[CustomEditor(typeof(Batter), true)]
 	public class BatterEditor : BaseEditor {
 		public override bool RequiresConstantRepaint () => Application.isPlaying;

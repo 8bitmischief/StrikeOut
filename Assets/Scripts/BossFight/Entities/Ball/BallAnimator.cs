@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(Animator))]
 	public class BallAnimator : EntityAnimator<Ball, Ball.State> {
 		private static readonly int pitchTypeHash = Animator.StringToHash("Pitch Type");

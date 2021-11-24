@@ -1,6 +1,6 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	public class BatterAnimation : EntityAnimation<Batter.State> {}
 }

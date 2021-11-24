@@ -1,7 +1,7 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(BasicEntityAnimator))]
 	public abstract class BasicEntity : AnimatedEntity<BasicEntityState, BasicEntityAnimator> {}
 }

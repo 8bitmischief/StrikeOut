@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	public class Boomerang : BasicEntity {
 		public void Throw () {
 			animator.Trigger();

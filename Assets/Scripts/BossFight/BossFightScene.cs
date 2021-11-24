@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities;
+using StrikeOut.BossFight.Data;
+using StrikeOut.BossFight.Entities;
 
 namespace StrikeOut.BossFight {
 	public class BossFightScene : SceneManager<BossFightScene> {

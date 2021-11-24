@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(Animator))]
 	public class BatterAnimator : EntityAnimator<Batter, Batter.State> {
 		private static readonly int swingHash = Animator.StringToHash("Swing");

@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.VFX;
 using CameraShake;
 using SharedUnityMischief.Effects;
-using SharedUnityMischief.Lifecycle;
+using SharedUnityMischief.Entities.Animated;
 using SharedUnityMischief.Pool;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight {
+namespace StrikeOut.BossFight.Entities {
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<Batter.State, BatterAnimator> {
 		[SerializeField] private PrefabPool<ParticleEffect> hitBallEffectPool;

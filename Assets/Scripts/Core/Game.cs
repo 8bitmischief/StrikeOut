@@ -6,7 +6,7 @@ namespace StrikeOut
 	public class Game : SingletonMonoBehaviour<Game>
 	{
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		protected static void Reset () => ResetInstance();
+		protected static void ResetSingletonClass() => instance = null;
 
 		[Header("Game Config")]
 		public bool debugMode = true;
@@ -14,9 +14,8 @@ namespace StrikeOut
 		[Header("Game Managers")]
 		public InputManager input;
 
+		private ISceneManager sceneManager = null;
 		public Scene scene => sceneManager?.scene ?? Scene.None;
-
-		private ISceneManager sceneManager;
 
 		private void Update()
 		{

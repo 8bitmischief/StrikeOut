@@ -24,6 +24,8 @@ namespace StrikeOut.BossFight
 		[Header("Data")]
 		public PitchDataObject pitchData;
 
+		public List<Ball> balls { get; private set; } = new List<Ball>();
+		public EntityManager entityManager => updateLoop.entityManager;
 		public Vector3 batterLeftPosition => batterLeft.position;
 		public Vector3 batterDodgeLeftPosition => batterDodgeLeft.position;
 		public Vector3 batterRightPosition => batterRight.position;
@@ -32,9 +34,6 @@ namespace StrikeOut.BossFight
 		public Vector3 eastStrikeZonePosition => eastStrikeZone.position;
 		public Vector3 southStrikeZonePosition => southStrikeZone.position;
 		public Vector3 westStrikeZonePosition => westStrikeZone.position;
-		public EntityManager entityManager => updateLoop.entityManager;
-
-		public List<Ball> balls { get; private set; } = new List<Ball>();
 
 		private void Update()
 		{

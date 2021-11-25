@@ -7,34 +7,34 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class BatterAnimator : EntityAnimator<Batter, Batter.State>
 	{
-		private static readonly int swingHash = Animator.StringToHash("Swing");
-		private static readonly int swingDirectionHash = Animator.StringToHash("Swing Direction");
-		private static readonly int swingStartupFramesHash = Animator.StringToHash("Swing Startup Frames");
-		private static readonly int switchSidesHash = Animator.StringToHash("Switch Sides");
-		private static readonly int sideStepHash = Animator.StringToHash("Side Step");
-		private static readonly int endSideStepHash = Animator.StringToHash("End Side Step");
+		private static readonly int SwingHash = Animator.StringToHash("Swing");
+		private static readonly int SwingDirectionHash = Animator.StringToHash("Swing Direction");
+		private static readonly int SwingStartupFramesHash = Animator.StringToHash("Swing Startup Frames");
+		private static readonly int SwitchSidesHash = Animator.StringToHash("Switch Sides");
+		private static readonly int SideStepHash = Animator.StringToHash("Side Step");
+		private static readonly int EndSideStepHash = Animator.StringToHash("End Side Step");
 
 		[SerializeField] public int fastestSwingStartupFrames = 2;
 		[SerializeField] public int defaultSwingStartupFrames = 4;
 		[SerializeField] public int slowestSwingStartupFrames = 8;
 
-		public Action onAllowAnimationCancels;
-		public Action onTryHitBall;
+		private int swingStartupFrames { get => animator.GetInteger(SwingStartupFramesHash); set => animator.SetInteger(SwingStartupFramesHash, value); }
 
-		private int swingStartupFrames { get => animator.GetInteger(swingStartupFramesHash); set => animator.SetInteger(swingStartupFramesHash, value); }
+		public event Action onAllowAnimationCancels;
+		public event Action onTryHitBall;
 
 		public void Swing(SwingDirection direction, int startupFrames)
 		{
-			animator.SetInteger(swingDirectionHash, (int) direction);
+			animator.SetInteger(SwingDirectionHash, (int) direction);
 			swingStartupFrames = startupFrames;
-			Trigger(swingHash);
+			Trigger(SwingHash);
 		}
 
-		public void SwitchSides() => Trigger(switchSidesHash);
+		public void SwitchSides() => Trigger(SwitchSidesHash);
 
-		public void SideStep() => Trigger(sideStepHash);
+		public void SideStep() => Trigger(SideStepHash);
 
-		public void EndSideStep() => Trigger(endSideStepHash);
+		public void EndSideStep() => Trigger(EndSideStepHash);
 
 		protected override void OnEnterState(Batter.State state)
 		{

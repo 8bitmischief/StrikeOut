@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d2865790197405cba60602776c5466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 1
-  _authoredRootMotion: {x: 0, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _xRootMotion: 1
-  _yRootMotion: 1
-  _zRootMotion: 1
+  state: 1
+  authoredRootMotion: {x: 0, y: 0, z: 0}
+  undoAuthoredRootMotion: 0
+  xRootMotion: 1
+  yRootMotion: 1
+  zRootMotion: 1
 --- !u!1102 &-7092188999947690138
 AnimatorState:
   serializedVersion: 6
@@ -104,12 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d2865790197405cba60602776c5466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 2
-  _authoredRootMotion: {x: 0, y: 0, z: -10}
-  _undoAuthoredRootMotion: 0
-  _xRootMotion: 1
-  _yRootMotion: 1
-  _zRootMotion: 2
+  state: 2
+  authoredRootMotion: {x: 0, y: 0, z: -10}
+  undoAuthoredRootMotion: 0
+  xRootMotion: 1
+  yRootMotion: 1
+  zRootMotion: 2
 --- !u!114 &-369026216491981459
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,12 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d2865790197405cba60602776c5466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 3
-  _authoredRootMotion: {x: 0, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _xRootMotion: 1
-  _yRootMotion: 1
-  _zRootMotion: 1
+  state: 3
+  authoredRootMotion: {x: 0, y: 0, z: 0}
+  undoAuthoredRootMotion: 0
+  xRootMotion: 1
+  yRootMotion: 1
+  zRootMotion: 1
 --- !u!1102 &-288533863959562325
 AnimatorState:
   serializedVersion: 6

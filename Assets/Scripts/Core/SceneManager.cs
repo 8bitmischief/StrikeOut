@@ -23,7 +23,9 @@ namespace StrikeOut
 		protected override void OnDestroy()
 		{
 			if (Game.hasInstance)
+			{
 				Game.I.UnregisterSceneManager(this);
+			}
 			base.OnDestroy();
 		}
 

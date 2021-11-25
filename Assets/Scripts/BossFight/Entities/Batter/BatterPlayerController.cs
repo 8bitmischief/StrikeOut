@@ -7,12 +7,10 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter>
 	{
-		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;
-
-		private int maxBufferedInputFrames = 8;
-
 		private BatterInput bufferedInput = BatterInput.None;
 		private int bufferedInputFrames = 0;
+		private int maxBufferedInputFrames = 8;
+		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
 		public override void LateUpdateState()
 		{

@@ -7,21 +7,21 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class BallAnimator : EntityAnimator<Ball, Ball.State>
 	{
-		private static readonly int pitchTypeHash = Animator.StringToHash("Pitch Type");
-		private static readonly int pitchHash = Animator.StringToHash("Pitch");
-		private static readonly int hitHash = Animator.StringToHash("Hit");
-		private static readonly int passesThroughStrikeZoneHash = Animator.StringToHash("Passes Through Strike Zone");
+		private static readonly int PitchTypeHash = Animator.StringToHash("Pitch Type");
+		private static readonly int PitchHash = Animator.StringToHash("Pitch");
+		private static readonly int HitHash = Animator.StringToHash("Hit");
+		private static readonly int PassesThroughStrikeZoneHash = Animator.StringToHash("Passes Through Strike Zone");
 
 		public void Pitch(PitchType pitch, Vector3 target, bool passesThroughStrikeZone)
 		{
-			animator.SetInteger(pitchTypeHash, (int) pitch);
-			animator.SetBool(passesThroughStrikeZoneHash, passesThroughStrikeZone);
-			Trigger(pitchHash, target);
+			animator.SetInteger(PitchTypeHash, (int) pitch);
+			animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
+			Trigger(PitchHash, target);
 		}
 
 		public void Hit(Vector3 target)
 		{
-			Trigger(hitHash, target);
+			Trigger(HitHash, target);
 		}
 	}
 }

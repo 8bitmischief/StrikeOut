@@ -8,9 +8,7 @@ namespace StrikeOut.BossFight
 	public class BossFightUpdateLoop : UpdateLoop
 	{
 		[Header("Managers")]
-		[SerializeField] private EntityManager _entityManager;
-
-		public EntityManager entityManager => _entityManager;
+		[SerializeField] public EntityManager entityManager;
 
 		protected override void UpdateState()
 		{

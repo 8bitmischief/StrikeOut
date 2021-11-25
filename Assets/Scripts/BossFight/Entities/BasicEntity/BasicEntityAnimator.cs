@@ -6,8 +6,8 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class BasicEntityAnimator : EntityAnimator<BasicEntity, BasicEntityState>
 	{
-		private static readonly int triggerHash = Animator.StringToHash("Trigger");
+		private static readonly int TriggerHash = Animator.StringToHash("Trigger");
 
-		public void Trigger () => base.Trigger(triggerHash);
+		public void Trigger() => base.Trigger(TriggerHash);
 	}
 }

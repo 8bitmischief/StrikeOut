@@ -6,9 +6,10 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Pitcher))]
 	public class PitcherAIController : EntityComponent<Pitcher>
 	{
-		public override int componentUpdateOrder => EntityComponent.controllerUpdateOrder;
+		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
-		public override void UpdateState() {
+		public override void UpdateState()
+		{
 			if (entity.IsIdle())
 			{
 				entity.ThrowBoomerang();

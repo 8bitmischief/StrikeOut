@@ -13,11 +13,10 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private PrefabPool<ParticleEffect> hitBallEffectPool;
 		[SerializeField] private BounceShake.Params hitBallShakeParams;
 
-		public bool isOnRightSide { get; private set; } = false;
-
 		private StrikeZone strikeZone = StrikeZone.None;
 		private Ball targetBall = null;
 		private bool canCancelAnimation = false;
+		public bool isOnRightSide { get; private set; } = false;
 
 		private void Start()
 		{
@@ -38,7 +37,7 @@ namespace StrikeOut.BossFight.Entities
 			animator.onTryHitBall -= OnTryHitBall;
 		}
 
-		public bool CanSwing (StrikeZone strikeZone)
+		public bool CanSwing(StrikeZone strikeZone)
 		{
 			switch (state)
 			{

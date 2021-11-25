@@ -21,6 +21,8 @@ namespace StrikeOut
 		public ButtonControl slowTime;
 		public ButtonControl alternateMode;
 
+		private List<SimulatedButtonControl> gameplayControls;
+		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
 		public SimulatedControlMode mode
 		{
 			get => _mode;
@@ -33,9 +35,6 @@ namespace StrikeOut
 				}
 			}
 		}
-
-		private List<SimulatedButtonControl> gameplayControls;
-		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
 
 		private void Awake()
 		{

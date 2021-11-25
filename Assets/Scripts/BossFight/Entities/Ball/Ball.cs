@@ -88,7 +88,7 @@ namespace StrikeOut.BossFight.Entities {
 				case State.Pitched:
 					// Keep track of the ball's velocity and acceleration (determined by animation and root motion)
 					if (!BossFightScene.I.updateLoop.isInterpolating) {
-						Vector3 newVelocity = (transform.position - prevPosition) / UpdateLoop.timePerUpdate;
+						Vector3 newVelocity = (transform.position - prevPosition) / UpdateLoop.TimePerUpdate;
 						accelerationPerFrame = newVelocity - velocity;
 						velocity = newVelocity;
 						prevPosition = transform.position;

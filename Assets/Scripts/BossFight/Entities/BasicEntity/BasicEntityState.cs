@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace StrikeOut.BossFight.Entities {
-	public enum BasicEntityState {
+namespace StrikeOut.BossFight.Entities
+{
+	public enum BasicEntityState
+	{
 		None = 0,
 		Idle = 1,
 		Active = 2,

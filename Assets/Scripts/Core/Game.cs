@@ -1,8 +1,10 @@
 using UnityEngine;
 using SharedUnityMischief;
 
-namespace StrikeOut {
-	public class Game : SingletonMonoBehaviour<Game> {
+namespace StrikeOut
+{
+	public class Game : SingletonMonoBehaviour<Game>
+	{
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
 		protected static void Reset () => ResetInstance();
 
@@ -16,18 +18,25 @@ namespace StrikeOut {
 
 		private ISceneManager sceneManager;
 
-		private void Update () {
+		private void Update()
+		{
 			if (input.start.justPressed)
+			{
 				Application.Quit();
+			}
 		}
 
-		public void RegisterSceneManager (ISceneManager sceneManager) {
+		public void RegisterSceneManager(ISceneManager sceneManager)
+		{
 			this.sceneManager = sceneManager;
 		}
 
-		public void UnregisterSceneManager (ISceneManager sceneManager) {
+		public void UnregisterSceneManager(ISceneManager sceneManager)
+		{
 			if (this.sceneManager == sceneManager)
-				sceneManager = null;
+			{
+				this.sceneManager = null;
+			}
 		}
 	}
 }

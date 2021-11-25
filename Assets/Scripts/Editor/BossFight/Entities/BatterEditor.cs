@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEditor;
 using SharedUnityMischief;
 
-namespace StrikeOut.BossFight.Entities {
+namespace StrikeOut.BossFight.Entities
+{
 	[CustomEditor(typeof(Batter), true)]
-	public class BatterEditor : BaseEditor {
-		public override bool RequiresConstantRepaint () => Application.isPlaying;
+	public class BatterEditor : BaseEditor
+	{
+		public override bool RequiresConstantRepaint() => Application.isPlaying;
 
-		protected override void DrawState () {
+		protected override void DrawState()
+		{
 			Batter batter = (Batter) target;
-
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Batter State", EditorStyles.boldLabel);
 			EditorGUILayout.Toggle("Is On Right Side", batter.isOnRightSide);

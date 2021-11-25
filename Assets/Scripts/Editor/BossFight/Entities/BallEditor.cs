@@ -2,14 +2,16 @@ using UnityEngine;
 using UnityEditor;
 using SharedUnityMischief;
 
-namespace StrikeOut.BossFight.Entities {
+namespace StrikeOut.BossFight.Entities
+{
 	[CustomEditor(typeof(Ball), true)]
-	public class BallEditor : BaseEditor {
-		public override bool RequiresConstantRepaint () => Application.isPlaying;
+	public class BallEditor : BaseEditor
+	{
+		public override bool RequiresConstantRepaint() => Application.isPlaying;
 
-		protected override void DrawState () {
+		protected override void DrawState()
+		{
 			Ball ball = (Ball) target;
-
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Ball State", EditorStyles.boldLabel);
 			EditorGUILayout.Toggle("Is Hittable", ball.isHittable);

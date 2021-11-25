@@ -2,9 +2,11 @@ using System;
 using UnityEngine;
 using SharedUnityMischief.Entities.Animated;
 
-namespace StrikeOut.BossFight.Entities {
+namespace StrikeOut.BossFight.Entities
+{
 	[RequireComponent(typeof(Animator))]
-	public class BatterAnimator : EntityAnimator<Batter, Batter.State> {
+	public class BatterAnimator : EntityAnimator<Batter, Batter.State>
+	{
 		private static readonly int swingHash = Animator.StringToHash("Swing");
 		private static readonly int swingDirectionHash = Animator.StringToHash("Swing Direction");
 		private static readonly int swingStartupFramesHash = Animator.StringToHash("Swing Startup Frames");
@@ -21,39 +23,50 @@ namespace StrikeOut.BossFight.Entities {
 
 		private int swingStartupFrames { get => animator.GetInteger(swingStartupFramesHash); set => animator.SetInteger(swingStartupFramesHash, value); }
 
-		public void Swing (SwingDirection direction, int startupFrames) {
+		public void Swing(SwingDirection direction, int startupFrames)
+		{
 			animator.SetInteger(swingDirectionHash, (int) direction);
 			swingStartupFrames = startupFrames;
 			Trigger(swingHash);
 		}
 
-		public void SwitchSides () => Trigger(switchSidesHash);
+		public void SwitchSides() => Trigger(switchSidesHash);
 
-		public void SideStep () => Trigger(sideStepHash);
+		public void SideStep() => Trigger(sideStepHash);
 
-		public void EndSideStep () => Trigger(endSideStepHash);
+		public void EndSideStep() => Trigger(endSideStepHash);
 
-		protected override void OnEnterState (Batter.State state) {
-			switch (state) {
+		protected override void OnEnterState(Batter.State state)
+		{
+			switch (state)
+			{
 				case Batter.State.Swing:
 					if (swingStartupFrames == defaultSwingStartupFrames)
+					{
 						animationSpeed = 1.00f;
+					}
 					else
+					{
 						animationSpeed = 0.01f + ((float) defaultSwingStartupFrames) / ((float) swingStartupFrames);
+					}
 					break;
 			}
 		}
 
-		protected override void OnLeaveState (Batter.State state) {
-			switch (state) {
+		protected override void OnLeaveState(Batter.State state)
+		{
+			switch (state)
+			{
 				case Batter.State.Swing:
 					animationSpeed = 1.00f;
 					break;
 			}
 		}
 		
-		protected override void OnAnimationEvent (AnimationEvent evt) {
-			switch (evt.stringParameter) {
+		protected override void OnAnimationEvent(AnimationEvent evt)
+		{
+			switch (evt.stringParameter)
+			{
 				case "Allow Animation Cancels":
 					onAllowAnimationCancels?.Invoke();
 					break;
@@ -64,7 +77,8 @@ namespace StrikeOut.BossFight.Entities {
 			}
 		}
 
-		public enum SwingDirection {
+		public enum SwingDirection
+		{
 			None = 0,
 			North = 1,
 			Inside = 2,

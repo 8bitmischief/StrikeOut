@@ -4,27 +4,24 @@ namespace StrikeOut
 {
 	public class Billboard : MonoBehaviour
 	{
-		[SerializeField] private bool xRotation = true;
-		[SerializeField] private bool yRotation = false;
-		[SerializeField] private bool zRotation = false;
-
-#pragma warning disable CS0109 // Ignore "does not hide an accessible" warning during builds
-		private new Camera camera;
-#pragma warning restore CS0109
+		[SerializeField] private bool _xRotation = true;
+		[SerializeField] private bool _yRotation = false;
+		[SerializeField] private bool _zRotation = false;
+		private Camera _camera;
 
 		private void Awake()
 		{
-			camera = Camera.main;
+			_camera = Camera.main;
 		}
 
 		private void LateUpdate()
 		{
 			Vector3 rotation = transform.eulerAngles;
-			Vector3 cameraRotation = camera.transform.eulerAngles;
+			Vector3 cameraRotation = _camera.transform.eulerAngles;
 			transform.eulerAngles = new Vector3(
-				xRotation ? cameraRotation.x : rotation.x,
-				yRotation ? cameraRotation.y : rotation.y,
-				zRotation ? cameraRotation.z : rotation.z);
+				_xRotation ? cameraRotation.x : rotation.x,
+				_yRotation ? cameraRotation.y : rotation.y,
+				_zRotation ? cameraRotation.z : rotation.z);
 		}
 	}
 }

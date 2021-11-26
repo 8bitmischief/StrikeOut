@@ -8,13 +8,15 @@ namespace StrikeOut.BossFight
 	public class BossFightUpdateLoop : UpdateLoop
 	{
 		[Header("Managers")]
-		[SerializeField] public EntityManager entityManager;
+		[SerializeField] private EntityManager _entityManager;
+
+		public EntityManager entityManager => _entityManager;
 
 		protected override void UpdateState()
 		{
 			if (Game.I.input.mode == SimulatedControlMode.Simulate)
 				Game.I.input.SimulateUpdate();
-			entityManager.UpdateState();
+			_entityManager.UpdateState();
 			Game.I.input.ConsumeInstantaneousInputs();
 		}
 

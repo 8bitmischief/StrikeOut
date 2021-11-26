@@ -4,14 +4,15 @@ namespace StrikeOut.BossFight.Entities
 {
 	public class Boomerang : BasicEntity
 	{
-		public void Throw() => animator.Trigger();
+		public void Throw() => _animator.Trigger();
 
 		protected override void OnEnterState(BasicEntityState state)
 		{
 			switch (state)
 			{
 				case BasicEntityState.Active:
-					animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
+					Debug.Log(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
+					_animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
 					break;
 				case BasicEntityState.Done:
 					BossFightScene.I.entityManager.DespawnEntity(this);

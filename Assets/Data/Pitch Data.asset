@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pitch Data
   m_EditorClassIdentifier: 
   pitches:
-    list:
+    _list:
     - Key: 1
       Value:
         earlyHitFrames: 5
@@ -22,4 +22,4 @@ MonoBehaviour:
       Value:
         earlyHitFrames: 5
         lateHitFrames: 7
-    keyCollision: 0
+    _keyCollision: 0

@@ -7,9 +7,10 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter>
 	{
-		private BatterInput bufferedInput = BatterInput.None;
-		private int bufferedInputFrames = 0;
-		private int maxBufferedInputFrames = 8;
+		private BatterInput _bufferedInput = BatterInput.None;
+		private int _bufferedInputFrames = 0;
+		private int _maxBufferedInputFrames = 8;
+
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
 		public override void LateUpdateState()
@@ -41,21 +42,21 @@ namespace StrikeOut.BossFight.Entities
 			}
 
 			// Try using buffered input
-			if (bufferedInput != BatterInput.None)
+			if (_bufferedInput != BatterInput.None)
 			{
-				if (TryUsingInput(bufferedInput))
+				if (TryUsingInput(_bufferedInput))
 				{
-					bufferedInput = BatterInput.None;
+					_bufferedInput = BatterInput.None;
 				}
 			}
 
 			// Only buffer inputs for so long
-			if (bufferedInput != BatterInput.None && !BossFightScene.I.updateLoop.isInterpolating)
+			if (_bufferedInput != BatterInput.None && !BossFightScene.I.updateLoop.isInterpolating)
 			{
-				bufferedInputFrames++;
-				if (bufferedInputFrames > maxBufferedInputFrames)
+				_bufferedInputFrames++;
+				if (_bufferedInputFrames > _maxBufferedInputFrames)
 				{
-					bufferedInput = BatterInput.None;
+					_bufferedInput = BatterInput.None;
 				}
 			}
 		}
@@ -64,8 +65,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			if (!TryUsingInput(input))
 			{
-				bufferedInput = input;
-				bufferedInputFrames = 0;
+				_bufferedInput = input;
+				_bufferedInputFrames = 0;
 			}
 		}
 

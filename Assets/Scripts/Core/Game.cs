@@ -6,20 +6,21 @@ namespace StrikeOut
 	public class Game : SingletonMonoBehaviour<Game>
 	{
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		protected static void ResetSingletonClass() => instance = null;
+		protected static void ResetStaticFields() => _instance = null;
 
 		[Header("Game Config")]
-		public bool debugMode = true;
-
+		[SerializeField] private bool _debugMode = true;
 		[Header("Game Managers")]
-		public InputManager input;
+		[SerializeField] private InputManager _input;
+		[SerializeField] private ISceneManager _sceneManager;
 
-		private ISceneManager sceneManager = null;
-		public Scene scene => sceneManager?.scene ?? Scene.None;
+		public bool debugMode => _debugMode;
+		public InputManager input => _input;
+		public Scene scene => _sceneManager?.scene ?? Scene.None;
 
 		private void Update()
 		{
-			if (input.start.justPressed)
+			if (_input.start.justPressed)
 			{
 				Application.Quit();
 			}
@@ -27,14 +28,14 @@ namespace StrikeOut
 
 		public void RegisterSceneManager(ISceneManager sceneManager)
 		{
-			this.sceneManager = sceneManager;
+			_sceneManager = sceneManager;
 		}
 
 		public void UnregisterSceneManager(ISceneManager sceneManager)
 		{
-			if (this.sceneManager == sceneManager)
+			if (_sceneManager == sceneManager)
 			{
-				this.sceneManager = null;
+				_sceneManager = null;
 			}
 		}
 	}

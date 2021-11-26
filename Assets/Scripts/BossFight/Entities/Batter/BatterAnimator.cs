@@ -14,19 +14,22 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int SideStepHash = Animator.StringToHash("Side Step");
 		private static readonly int EndSideStepHash = Animator.StringToHash("End Side Step");
 
-		[SerializeField] public int fastestSwingStartupFrames = 2;
-		[SerializeField] public int defaultSwingStartupFrames = 4;
-		[SerializeField] public int slowestSwingStartupFrames = 8;
+		[SerializeField] private int _fastestSwingStartupFrames = 2;
+		[SerializeField] private int _defaultSwingStartupFrames = 4;
+		[SerializeField] private int _slowestSwingStartupFrames = 8;
+		private int _swingStartupFrames { get => _animator.GetInteger(SwingStartupFramesHash); set => _animator.SetInteger(SwingStartupFramesHash, value); }
 
-		private int swingStartupFrames { get => animator.GetInteger(SwingStartupFramesHash); set => animator.SetInteger(SwingStartupFramesHash, value); }
+		public int fastestSwingStartupFrames => _fastestSwingStartupFrames;
+		public int defaultSwingStartupFrames => _defaultSwingStartupFrames;
+		public int slowestSwingStartupFrames => _slowestSwingStartupFrames;
 
 		public event Action onAllowAnimationCancels;
 		public event Action onTryHitBall;
 
 		public void Swing(SwingDirection direction, int startupFrames)
 		{
-			animator.SetInteger(SwingDirectionHash, (int) direction);
-			swingStartupFrames = startupFrames;
+			_animator.SetInteger(SwingDirectionHash, (int) direction);
+			_swingStartupFrames = startupFrames;
 			Trigger(SwingHash);
 		}
 
@@ -41,13 +44,13 @@ namespace StrikeOut.BossFight.Entities
 			switch (state)
 			{
 				case Batter.State.Swing:
-					if (swingStartupFrames == defaultSwingStartupFrames)
+					if (_swingStartupFrames == _defaultSwingStartupFrames)
 					{
 						animationSpeed = 1.00f;
 					}
 					else
 					{
-						animationSpeed = 0.01f + ((float) defaultSwingStartupFrames) / ((float) swingStartupFrames);
+						animationSpeed = 0.01f + ((float) _defaultSwingStartupFrames) / ((float) _swingStartupFrames);
 					}
 					break;
 			}

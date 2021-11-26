@@ -7,29 +7,39 @@ namespace StrikeOut
 	public class InputManager : SharedUnityMischief.Input.InputManager
 	{
 		[Header("Controls")]
-		public SimulatedButtonControl swingNorth;
-		public SimulatedButtonControl swingEast;
-		public SimulatedButtonControl swingSouth;
-		public SimulatedButtonControl swingWest;
-		public SimulatedButtonControl dodgeLeft;
-		public SimulatedButtonControl dodgeRight;
-		public SimulatedButtonControl start;
-
+		[SerializeField] private SimulatedButtonControl _swingNorth;
+		[SerializeField] private SimulatedButtonControl _swingEast;
+		[SerializeField] private SimulatedButtonControl _swingSouth;
+		[SerializeField] private SimulatedButtonControl _swingWest;
+		[SerializeField] private SimulatedButtonControl _dodgeLeft;
+		[SerializeField] private SimulatedButtonControl _dodgeRight;
+		[SerializeField] private SimulatedButtonControl _start;
 		[Header("Debug Controls")]
-		public ButtonControl togglePause;
-		public ButtonControl nextFrame;
-		public ButtonControl slowTime;
-		public ButtonControl alternateMode;
-
-		private List<SimulatedButtonControl> gameplayControls;
+		[SerializeField] private ButtonControl _togglePause;
+		[SerializeField] private ButtonControl _nextFrame;
+		[SerializeField] private ButtonControl _slowTime;
+		[SerializeField] private ButtonControl _alternateMode;
 		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
+		private List<SimulatedButtonControl> _gameplayControls;
+
+		public SimulatedButtonControl swingNorth => _swingNorth;
+		public SimulatedButtonControl swingEast => _swingEast;
+		public SimulatedButtonControl swingSouth => _swingSouth;
+		public SimulatedButtonControl swingWest => _swingWest;
+		public SimulatedButtonControl dodgeLeft => _dodgeLeft;
+		public SimulatedButtonControl dodgeRight => _dodgeRight;
+		public SimulatedButtonControl start => _start;
+		public ButtonControl togglePause => _togglePause;
+		public ButtonControl nextFrame => _nextFrame;
+		public ButtonControl slowTime => _slowTime;
+		public ButtonControl alternateMode => _alternateMode;
 		public SimulatedControlMode mode
 		{
 			get => _mode;
 			set
 			{
 				_mode = value;
-				foreach (SimulatedButtonControl control in gameplayControls)
+				foreach (SimulatedButtonControl control in _gameplayControls)
 				{
 					control.mode = _mode;
 				}
@@ -38,7 +48,7 @@ namespace StrikeOut
 
 		private void Awake()
 		{
-			gameplayControls = new List<SimulatedButtonControl>()
+			_gameplayControls = new List<SimulatedButtonControl>()
 			{
 				swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight, start
 			};
@@ -46,7 +56,7 @@ namespace StrikeOut
 
 		public void ConsumeInstantaneousInputs()
 		{
-			foreach (SimulatedButtonControl control in gameplayControls)
+			foreach (SimulatedButtonControl control in _gameplayControls)
 			{
 				control.ConsumeInstantaneousInputs();
 			}
@@ -56,7 +66,7 @@ namespace StrikeOut
 
 		public void SimulateUpdate(float deltaTime)
 		{
-			foreach (SimulatedButtonControl control in gameplayControls)
+			foreach (SimulatedButtonControl control in _gameplayControls)
 			{
 				control.SimulateUpdate(deltaTime);
 			}

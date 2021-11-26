@@ -57,7 +57,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.x
+    attribute: _rootMotionProgress.x
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
@@ -85,7 +85,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.y
+    attribute: _rootMotionProgress.y
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
@@ -113,7 +113,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.z
+    attribute: _rootMotionProgress.z
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
@@ -286,7 +286,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.x
+    attribute: _rootMotionProgress.x
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
@@ -314,7 +314,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.y
+    attribute: _rootMotionProgress.y
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
@@ -342,7 +342,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: rootMotionProgress.z
+    attribute: _rootMotionProgress.z
     path: 
     classID: 114
     script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}

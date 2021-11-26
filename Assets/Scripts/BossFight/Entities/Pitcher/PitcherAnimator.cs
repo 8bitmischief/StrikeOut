@@ -12,7 +12,7 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int ThrowBoomerangHash = Animator.StringToHash("Throw Boomerang");
 
 		[Header("Children")]
-		[SerializeField] private Transform spawnLocation;
+		[SerializeField] private Transform _spawnLocation;
 
 		public event Action<Vector3> onSpawnBall;
 		public event Action<Vector3> onSpawnBoomerang;
@@ -28,10 +28,10 @@ namespace StrikeOut.BossFight.Entities
 			switch (evt.stringParameter)
 			{
 				case "Pitch Ball":
-					onSpawnBall?.Invoke(spawnLocation.transform.position);
+					onSpawnBall?.Invoke(_spawnLocation.transform.position);
 					break;
 				case "Throw Boomerang":
-					onSpawnBoomerang?.Invoke(spawnLocation.transform.position);
+					onSpawnBoomerang?.Invoke(_spawnLocation.transform.position);
 					break;
 			}
 		}

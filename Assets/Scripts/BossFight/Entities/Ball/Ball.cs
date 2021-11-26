@@ -8,24 +8,28 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(BallAnimator))]
 	public class Ball : AnimatedEntity<Ball.State, BallAnimator>
 	{
-		private PitchDataObject.PitchData pitchData = null;
-		private Vector3 prevPosition = Vector3.zero;
-		private Vector3 velocity = Vector3.zero;
-		private Vector3 accelerationPerFrame = Vector3.zero;
-		private bool justPassedBattingLine = false;
-		public StrikeZone strikeZone { get; private set; } = StrikeZone.None;
+		private StrikeZone _strikeZone = StrikeZone.None;
+		private PitchDataObject.PitchData _pitchData;
+		private Vector3 _prevPosition = Vector3.zero;
+		private Vector3 _velocity = Vector3.zero;
+		private Vector3 _accelerationPerFrame = Vector3.zero;
+		private bool _hasPassedBattingLine = false;
+		private bool _justPassedBattingLine = false;
+		private int _framesSincePassedBattingLine = -1;
+
+		public StrikeZone strikeZone => _strikeZone;
 		public bool isHittable
 		{
 			get
 			{
-				if (animator == null)
+				if (_animator == null)
 				{
 					return false;
 				}
 				switch (state)
 				{
-					case State.Pitched: return animator.animationFrameDuration - animator.animationFrame <= pitchData.earlyHitFrames;
-					case State.Missed: return animator.animationFrame < pitchData.lateHitFrames;
+					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame <= _pitchData.earlyHitFrames;
+					case State.Missed: return _animator.animationFrame < _pitchData.lateHitFrames;
 					default: return false;
 				}
 			}
@@ -35,14 +39,14 @@ namespace StrikeOut.BossFight.Entities
 		{
 			get
 			{
-				if (animator == null)
+				if (_animator == null)
 				{
 					return -1;
 				}
 				switch (state)
 				{
-					case State.Pitched: return Mathf.Max(0, animator.animationFrameDuration - animator.animationFrame - pitchData.earlyHitFrames);
-					case State.Missed: return animator.animationFrame < pitchData.lateHitFrames ? 0 : -1;
+					case State.Pitched: return Mathf.Max(0, _animator.animationFrameDuration - _animator.animationFrame - _pitchData.earlyHitFrames);
+					case State.Missed: return _animator.animationFrame < _pitchData.lateHitFrames ? 0 : -1;
 					default: return -1;
 				}
 			}
@@ -51,66 +55,66 @@ namespace StrikeOut.BossFight.Entities
 		{
 			get
 			{
-				if (animator == null)
+				if (_animator == null)
 				{
 					return -1;
 				}
 				switch (state)
 				{
-					case State.Pitched: return animator.animationFrameDuration - animator.animationFrame + pitchData.lateHitFrames;
-					case State.Missed: return pitchData.lateHitFrames > animator.animationFrame ? pitchData.lateHitFrames - animator.animationFrame : -1;
+					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame + _pitchData.lateHitFrames;
+					case State.Missed: return _pitchData.lateHitFrames > _animator.animationFrame ? _pitchData.lateHitFrames - _animator.animationFrame : -1;
 					default: return -1;
 				}
 			}
 		}
-		public bool hasPassedBattingLine { get; private set; } = false;
+		public bool hasPassedBattingLine => _hasPassedBattingLine;
 		public bool willPassBattingLine => state == State.Pitched;
 		public int framesUntilPassBattingLine
 		{
 			get
 			{
-				if (animator == null)
+				if (_animator == null)
 				{
 					return -1;
 				}
 				switch (state)
 				{
-					case State.Pitched: return animator.animationFrameDuration - animator.animationFrame;
+					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame;
 					default: return -1;
 				}
 			}
 		}
-		public int framesSincePassedBattingLine { get; private set; } = -1;
+		public int framesSincePassedBattingLine => _framesSincePassedBattingLine;
 
 		public override void ResetComponent()
 		{
-			strikeZone = StrikeZone.None;
-			hasPassedBattingLine = false;
-			framesSincePassedBattingLine = -1;
-			pitchData = null;
-			prevPosition = Vector3.zero;
-			velocity = Vector3.zero;
-			accelerationPerFrame = Vector3.zero;
-			justPassedBattingLine = false;
+			_strikeZone = StrikeZone.None;
+			_hasPassedBattingLine = false;
+			_framesSincePassedBattingLine = -1;
+			_pitchData = null;
+			_prevPosition = Vector3.zero;
+			_velocity = Vector3.zero;
+			_accelerationPerFrame = Vector3.zero;
+			_justPassedBattingLine = false;
 		}
 
 		public override void OnSpawn()
 		{
-			prevPosition = transform.position;
+			_prevPosition = transform.position;
 			BossFightScene.I.balls.Add(this);
 		}
 
 		public override void UpdateState()
 		{
-			if (!BossFightScene.I.updateLoop.isInterpolating && hasPassedBattingLine)
+			if (!BossFightScene.I.updateLoop.isInterpolating && _hasPassedBattingLine)
 			{
-				if (justPassedBattingLine)
+				if (_justPassedBattingLine)
 				{
-					justPassedBattingLine = false;
+					_justPassedBattingLine = false;
 				}
 				else
 				{
-					framesSincePassedBattingLine++;
+					_framesSincePassedBattingLine++;
 				}
 			}
 			switch (state)
@@ -119,21 +123,21 @@ namespace StrikeOut.BossFight.Entities
 					// Keep track of the ball's velocity and acceleration (determined by animation and root motion)
 					if (!BossFightScene.I.updateLoop.isInterpolating)
 					{
-						Vector3 newVelocity = (transform.position - prevPosition) / UpdateLoop.TimePerUpdate;
-						accelerationPerFrame = newVelocity - velocity;
-						velocity = newVelocity;
-						prevPosition = transform.position;
+						Vector3 newVelocity = (transform.position - _prevPosition) / UpdateLoop.TimePerUpdate;
+						_accelerationPerFrame = newVelocity - _velocity;
+						_velocity = newVelocity;
+						_prevPosition = transform.position;
 					}
 					break;
 				case State.Missed:
-					if (strikeZone == StrikeZone.None)
+					if (_strikeZone == StrikeZone.None)
 					{
 						// Follow through from where the arc of the pitch left off
 						if (!BossFightScene.I.updateLoop.isInterpolating)
 						{
-							velocity += accelerationPerFrame;
+							_velocity += _accelerationPerFrame;
 						}
-						transform.position += velocity * BossFightScene.I.updateLoop.deltaTime;
+						transform.position += _velocity * BossFightScene.I.updateLoop.deltaTime;
 						// Despawn the ball once it's behind the camera
 						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || framesInState > 20))
 						{
@@ -150,7 +154,7 @@ namespace StrikeOut.BossFight.Entities
 					}
 					break;
 				case State.Hit:
-					if (!BossFightScene.I.updateLoop.isInterpolating && animator.hasAnimationCompleted)
+					if (!BossFightScene.I.updateLoop.isInterpolating && _animator.hasAnimationCompleted)
 					{
 						BossFightScene.I.entityManager.DespawnEntity(this);
 					}
@@ -172,24 +176,24 @@ namespace StrikeOut.BossFight.Entities
 			switch (state)
 			{
 				case State.Missed:
-					hasPassedBattingLine = true;
-					justPassedBattingLine = true;
-					framesSincePassedBattingLine = 0;
+					_hasPassedBattingLine = true;
+					_justPassedBattingLine = true;
+					_framesSincePassedBattingLine = 0;
 					break;
 			}
 		}
 
 		private void Pitch(PitchType pitchType, StrikeZone strikeZone, Vector3 target)
 		{
-			this.strikeZone = strikeZone;
-			pitchData = BossFightScene.I.pitchData.pitches[pitchType];
-			animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
+			_strikeZone = strikeZone;
+			_pitchData = BossFightScene.I.pitchData.pitches[pitchType];
+			_animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
 		}
 
 		public void Hit(Vector3 target)
 		{
 			transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
-			animator.Hit(target);
+			_animator.Hit(target);
 		}
 
 		public enum State

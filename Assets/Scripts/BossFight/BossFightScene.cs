@@ -9,69 +9,70 @@ namespace StrikeOut.BossFight
 	public class BossFightScene : SceneManager<BossFightScene>
 	{
 		[Header("Locations")]
-		[SerializeField] private Transform batterLeft;
-		[SerializeField] private Transform batterDodgeLeft;
-		[SerializeField] private Transform batterRight;
-		[SerializeField] private Transform batterDodgeRight;
-		[SerializeField] private Transform northStrikeZone;
-		[SerializeField] private Transform eastStrikeZone;
-		[SerializeField] private Transform southStrikeZone;
-		[SerializeField] private Transform westStrikeZone;
-
+		[SerializeField] private Transform _batterLeft;
+		[SerializeField] private Transform _batterDodgeLeft;
+		[SerializeField] private Transform _batterRight;
+		[SerializeField] private Transform _batterDodgeRight;
+		[SerializeField] private Transform _northStrikeZone;
+		[SerializeField] private Transform _eastStrikeZone;
+		[SerializeField] private Transform _southStrikeZone;
+		[SerializeField] private Transform _westStrikeZone;
 		[Header("Children")]
-		public BossFightUpdateLoop updateLoop;
-
+		[SerializeField] private BossFightUpdateLoop _updateLoop;
 		[Header("Data")]
-		public PitchDataObject pitchData;
+		[SerializeField] private PitchDataObject _pitchData;
+		private List<Ball> _balls = new List<Ball>();
 
-		public List<Ball> balls { get; private set; } = new List<Ball>();
-		public EntityManager entityManager => updateLoop.entityManager;
-		public Vector3 batterLeftPosition => batterLeft.position;
-		public Vector3 batterDodgeLeftPosition => batterDodgeLeft.position;
-		public Vector3 batterRightPosition => batterRight.position;
-		public Vector3 batterDodgeRightPosition => batterDodgeRight.position;
-		public Vector3 northStrikeZonePosition => northStrikeZone.position;
-		public Vector3 eastStrikeZonePosition => eastStrikeZone.position;
-		public Vector3 southStrikeZonePosition => southStrikeZone.position;
-		public Vector3 westStrikeZonePosition => westStrikeZone.position;
+		public BossFightUpdateLoop updateLoop => _updateLoop;
+		public EntityManager entityManager => _updateLoop.entityManager;
+		public PitchDataObject pitchData => _pitchData;
+		public List<Ball> balls => _balls;
+		public Vector3 batterLeftPosition => _batterLeft.position;
+		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;
+		public Vector3 batterRightPosition => _batterRight.position;
+		public Vector3 batterDodgeRightPosition => _batterDodgeRight.position;
+		public Vector3 northStrikeZonePosition => _northStrikeZone.position;
+		public Vector3 eastStrikeZonePosition => _eastStrikeZone.position;
+		public Vector3 southStrikeZonePosition => _southStrikeZone.position;
+		public Vector3 westStrikeZonePosition => _westStrikeZone.position;
 
 		private void Update()
 		{
 			// Pause the game
 			if (Game.I.input.togglePause.justPressed)
 			{
-				if (updateLoop.isPaused)
+				if (_updateLoop.isPaused)
 				{
-					updateLoop.Resume();
+					_updateLoop.Resume();
 				}
 				else if (Game.I.debugMode)
 				{
-					updateLoop.Pause();
+					_updateLoop.Pause();
 				}
 			}
 			// Step through individual frames
 			if (Game.I.input.nextFrame.justPressed && Game.I.debugMode)
 			{
-				if (!updateLoop.isPaused)
+				if (!_updateLoop.isPaused)
 				{
-					updateLoop.Pause();
+					_updateLoop.Pause();
 				}
 				if (Game.I.input.alternateMode.isHeld)
 				{
-					updateLoop.Advance(0.018f, true);
+					_updateLoop.Advance(0.018f, true);
 				}
 				else
 				{
-					updateLoop.AdvanceOneFrame(true);
+					_updateLoop.AdvanceOneFrame(true);
 				}
 			}
 			// Slow down time
 			if (Game.I.input.slowTime.justReleased || Game.I.input.slowTime.justPressed)
 				Time.timeScale = Game.I.input.slowTime.isHeld ? 0.10f : 1.00f;
 			// Update the game
-			if (!updateLoop.updateAutomatically)
+			if (!_updateLoop.updateAutomatically)
 			{
-				updateLoop.Advance();
+				_updateLoop.Advance();
 			}
 		}
 
@@ -79,10 +80,10 @@ namespace StrikeOut.BossFight
 		{
 			switch (strikeZone)
 			{
-				case StrikeZone.North: return northStrikeZone.position;
-				case StrikeZone.East: return eastStrikeZone.position;
-				case StrikeZone.South: return southStrikeZone.position;
-				case StrikeZone.West: return westStrikeZone.position;
+				case StrikeZone.North: return _northStrikeZone.position;
+				case StrikeZone.East: return _eastStrikeZone.position;
+				case StrikeZone.South: return _southStrikeZone.position;
+				case StrikeZone.West: return _westStrikeZone.position;
 				default: return Vector3.zero;
 			}
 		}

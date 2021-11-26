@@ -9,57 +9,57 @@ namespace StrikeOut.BossFight.Entities
 	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator>
 	{
 		[Header("Prefab Pools")]
-		[SerializeField] private PrefabPool<Ball> ballPool;
-		[SerializeField] private PrefabPool<Boomerang> boomerangPool;
+		[SerializeField] private PrefabPool<Ball> _ballPool;
+		[SerializeField] private PrefabPool<Boomerang> _boomerangPool;
 
 		private void Start()
 		{
-			ballPool.Prewarm();
-			boomerangPool.Prewarm();
+			_ballPool.Prewarm();
+			_boomerangPool.Prewarm();
 		}
 
 		protected override void OnEnable()
 		{
 			base.OnEnable();
-			animator.onSpawnBall += SpawnBall;
-			animator.onSpawnBoomerang += SpawnBoomerang;
+			_animator.onSpawnBall += SpawnBall;
+			_animator.onSpawnBoomerang += SpawnBoomerang;
 		}
 
 		protected override void OnDisable()
 		{
 			base.OnDisable();
-			animator.onSpawnBall -= SpawnBall;
-			animator.onSpawnBoomerang -= SpawnBoomerang;
+			_animator.onSpawnBall -= SpawnBall;
+			_animator.onSpawnBoomerang -= SpawnBoomerang;
 		}
 
 		private void OnDestroy()
 		{
-			ballPool.Dispose();
-			boomerangPool.Dispose();
+			_ballPool.Dispose();
+			_boomerangPool.Dispose();
 		}
 
-		public bool IsIdle() => animator.state == State.Idle;
+		public bool IsIdle() => _animator.state == State.Idle;
 
 		public void Pitch()
 		{
-			animator.Pitch();
+			_animator.Pitch();
 		}
 
 		public void LungeLeft()
 		{
 			transform.localScale = new Vector3(1f, 1f, 1f);
-			animator.Lunge(new Vector3(-2.6f, 0f, 3f));
+			_animator.Lunge(new Vector3(-2.6f, 0f, 3f));
 		}
 
 		public void LungeRight()
 		{
 			transform.localScale = new Vector3(-1f, 1f, 1f);
-			animator.Lunge(new Vector3(2.6f, 0f, 3f));
+			_animator.Lunge(new Vector3(2.6f, 0f, 3f));
 		}
 
 		public void ThrowBoomerang()
 		{
-			animator.ThrowBoomerang();
+			_animator.ThrowBoomerang();
 		}
 
 		protected override void OnEnterState(State state)
@@ -68,14 +68,14 @@ namespace StrikeOut.BossFight.Entities
 			{
 				case State.BackOff:
 					transform.localScale = new Vector3(1f, 1f, 1f);
-					animator.SetRootMotion(new Vector3(0f, 0f, 25f));
+					_animator.SetRootMotion(new Vector3(0f, 0f, 25f));
 					break;
 			}
 		}
 
 		private void SpawnBall(Vector3 spawnPosition)
 		{
-			Ball ball = BossFightScene.I.entityManager.SpawnEntityFromPool(ballPool, spawnPosition);
+			Ball ball = BossFightScene.I.entityManager.SpawnEntityFromPool(_ballPool, spawnPosition);
 			switch (Random.Range(1, 5))
 			{
 				case 1:
@@ -95,7 +95,7 @@ namespace StrikeOut.BossFight.Entities
 
 		private void SpawnBoomerang(Vector3 spawnPosition)
 		{
-			Boomerang boomerang = BossFightScene.I.entityManager.SpawnEntityFromPool(boomerangPool, spawnPosition);
+			Boomerang boomerang = BossFightScene.I.entityManager.SpawnEntityFromPool(_boomerangPool, spawnPosition);
 			boomerang.Throw();
 		}
 

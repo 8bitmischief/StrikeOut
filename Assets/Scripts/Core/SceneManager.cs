@@ -11,7 +11,7 @@ namespace StrikeOut
 	public abstract class SceneManager<T> : SingletonMonoBehaviour<T>, ISceneManager where T : MonoBehaviour
 	{
 		[Header("Scene Config")]
-		[SerializeField] private Scene _scene;
+		[SerializeField] private Scene _scene = Scene.None;
 
 		public Scene scene => _scene;
 

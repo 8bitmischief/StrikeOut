@@ -14,8 +14,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Pitch(PitchType pitch, Vector3 target, bool passesThroughStrikeZone)
 		{
-			animator.SetInteger(PitchTypeHash, (int) pitch);
-			animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
+			_animator.SetInteger(PitchTypeHash, (int) pitch);
+			_animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
 			Trigger(PitchHash, target);
 		}
 

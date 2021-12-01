@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 4
+  _animation: 4
   _authoredRootMotion: {x: 3, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 5
+  _animation: 5
   _authoredRootMotion: {x: 0.5, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 1
+  _animation: 1
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 5
+  _animation: 5
   _authoredRootMotion: {x: 2, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 3
+  _animation: 3
   _authoredRootMotion: {x: -3, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 2
+  _animation: 2
   _authoredRootMotion: {x: -5, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 5
+  _animation: 5
   _authoredRootMotion: {x: 0.9, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 5
+  _animation: 5
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 1
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 6
+  _animation: 6
   _authoredRootMotion: {x: -2, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _xRootMotion: 2

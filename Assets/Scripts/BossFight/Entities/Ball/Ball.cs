@@ -6,7 +6,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BallAnimator))]
-	public class Ball : AnimatedEntity<Ball.State, BallAnimator>
+	public class Ball : AnimatedEntity<BallAnimator, Ball.Animation>
 	{
 		private StrikeZone _strikeZone = StrikeZone.None;
 		private PitchDataObject.PitchData _pitchData;
@@ -22,14 +22,10 @@ namespace StrikeOut.BossFight.Entities
 		{
 			get
 			{
-				if (_animator == null)
+				switch (animation)
 				{
-					return false;
-				}
-				switch (state)
-				{
-					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame <= _pitchData.earlyHitFrames;
-					case State.Missed: return _animator.animationFrame < _pitchData.lateHitFrames;
+					case Animation.Pitched: return animationFrameDuration - animationFrame <= _pitchData.earlyHitFrames;
+					case Animation.Missed: return animationFrame < _pitchData.lateHitFrames;
 					default: return false;
 				}
 			}
@@ -39,14 +35,10 @@ namespace StrikeOut.BossFight.Entities
 		{
 			get
 			{
-				if (_animator == null)
+				switch (animation)
 				{
-					return -1;
-				}
-				switch (state)
-				{
-					case State.Pitched: return Mathf.Max(0, _animator.animationFrameDuration - _animator.animationFrame - _pitchData.earlyHitFrames);
-					case State.Missed: return _animator.animationFrame < _pitchData.lateHitFrames ? 0 : -1;
+					case Animation.Pitched: return Mathf.Max(0, animationFrameDuration - animationFrame - _pitchData.earlyHitFrames);
+					case Animation.Missed: return animationFrame < _pitchData.lateHitFrames ? 0 : -1;
 					default: return -1;
 				}
 			}
@@ -55,31 +47,27 @@ namespace StrikeOut.BossFight.Entities
 		{
 			get
 			{
-				if (_animator == null)
+				switch (animation)
 				{
-					return -1;
-				}
-				switch (state)
-				{
-					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame + _pitchData.lateHitFrames;
-					case State.Missed: return _pitchData.lateHitFrames > _animator.animationFrame ? _pitchData.lateHitFrames - _animator.animationFrame : -1;
+					case Animation.Pitched: return animationFrameDuration - animationFrame + _pitchData.lateHitFrames;
+					case Animation.Missed: return _pitchData.lateHitFrames > animationFrame ? _pitchData.lateHitFrames - animationFrame : -1;
 					default: return -1;
 				}
 			}
 		}
 		public bool hasPassedBattingLine => _hasPassedBattingLine;
-		public bool willPassBattingLine => state == State.Pitched;
+		public bool willPassBattingLine => animation == Animation.Pitched;
 		public int framesUntilPassBattingLine
 		{
 			get
 			{
-				if (_animator == null)
+				if (animator == null)
 				{
 					return -1;
 				}
-				switch (state)
+				switch (animation)
 				{
-					case State.Pitched: return _animator.animationFrameDuration - _animator.animationFrame;
+					case Animation.Pitched: return animationFrameDuration - animationFrame;
 					default: return -1;
 				}
 			}
@@ -117,9 +105,9 @@ namespace StrikeOut.BossFight.Entities
 					_framesSincePassedBattingLine++;
 				}
 			}
-			switch (state)
+			switch (animation)
 			{
-				case State.Pitched:
+				case Animation.Pitched:
 					// Keep track of the ball's velocity and acceleration (determined by animation and root motion)
 					if (!BossFightScene.I.updateLoop.isInterpolating)
 					{
@@ -129,7 +117,7 @@ namespace StrikeOut.BossFight.Entities
 						_prevPosition = transform.position;
 					}
 					break;
-				case State.Missed:
+				case Animation.Missed:
 					if (_strikeZone == StrikeZone.None)
 					{
 						// Follow through from where the arc of the pitch left off
@@ -139,7 +127,7 @@ namespace StrikeOut.BossFight.Entities
 						}
 						transform.position += _velocity * BossFightScene.I.updateLoop.deltaTime;
 						// Despawn the ball once it's behind the camera
-						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || framesInState > 20))
+						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || totalAnimationFrames > 20))
 						{
 							BossFightScene.I.entityManager.DespawnEntity(this);
 						}
@@ -153,8 +141,8 @@ namespace StrikeOut.BossFight.Entities
 						}
 					}
 					break;
-				case State.Hit:
-					if (!BossFightScene.I.updateLoop.isInterpolating && _animator.hasAnimationCompleted)
+				case Animation.Hit:
+					if (!BossFightScene.I.updateLoop.isInterpolating && hasAnimationCompleted)
 					{
 						BossFightScene.I.entityManager.DespawnEntity(this);
 					}
@@ -171,11 +159,11 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Pitch(PitchType pitchType, Vector3 target) => Pitch(pitchType, StrikeZone.None, target);
 
-		protected override void OnEnterState(State state)
+		protected override void OnStartAnimation(Animation animation)
 		{
-			switch (state)
+			switch (animation)
 			{
-				case State.Missed:
+				case Animation.Missed:
 					_hasPassedBattingLine = true;
 					_justPassedBattingLine = true;
 					_framesSincePassedBattingLine = 0;
@@ -187,16 +175,16 @@ namespace StrikeOut.BossFight.Entities
 		{
 			_strikeZone = strikeZone;
 			_pitchData = BossFightScene.I.pitchData.pitches[pitchType];
-			_animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
+			animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
 		}
 
 		public void Hit(Vector3 target)
 		{
 			transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
-			_animator.Hit(target);
+			animator.Hit(target);
 		}
 
-		public enum State
+		public enum Animation
 		{
 			None = 0,
 			Idle = 1,

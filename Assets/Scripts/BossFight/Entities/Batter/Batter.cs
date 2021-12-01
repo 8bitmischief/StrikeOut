@@ -8,7 +8,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<Batter.State, BatterAnimator>
+	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>
 	{
 		[SerializeField] private PrefabPool<ParticleEffect> _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
@@ -27,27 +27,27 @@ namespace StrikeOut.BossFight.Entities
 		protected override void OnEnable()
 		{
 			base.OnEnable();
-			_animator.onAllowAnimationCancels += OnAllowAnimationCancels;
-			_animator.onTryHitBall += OnTryHitBall;
+			animator.onAllowAnimationCancels += OnAllowAnimationCancels;
+			animator.onTryHitBall += OnTryHitBall;
 		}
 
 		protected override void OnDisable()
 		{
 			base.OnDisable();
-			_animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
-			_animator.onTryHitBall -= OnTryHitBall;
+			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
+			animator.onTryHitBall -= OnTryHitBall;
 		}
 
 		public bool CanSwing(StrikeZone strikeZone)
 		{
-			switch (state)
+			switch (animation)
 			{
-				case State.Swing:
-				case State.SideStepEnd:
-				case State.SwitchSides:
-				case State.Settle:
+				case Animation.Swing:
+				case Animation.SideStepEnd:
+				case Animation.SwitchSides:
+				case Animation.Settle:
 					return _canCancelAnimation;
-				case State.Idle:
+				case Animation.Idle:
 					return true;
 				default:
 					return false;
@@ -80,14 +80,14 @@ namespace StrikeOut.BossFight.Entities
 
 		public bool CanSwitchSides()
 		{
-			switch (state)
+			switch (animation)
 			{
-				case State.Swing:
-				case State.SideStepEnd:
-				case State.SwitchSides:
-				case State.Settle:
+				case Animation.Swing:
+				case Animation.SideStepEnd:
+				case Animation.SwitchSides:
+				case Animation.Settle:
 					return _canCancelAnimation;
-				case State.Idle:
+				case Animation.Idle:
 					return true;
 				default:
 					return false;
@@ -96,14 +96,14 @@ namespace StrikeOut.BossFight.Entities
 
 		public bool CanSideStep()
 		{
-			switch (state)
+			switch (animation)
 			{
-				case State.Swing:
-				case State.SideStepEnd:
-				case State.SwitchSides:
-				case State.Settle:
+				case Animation.Swing:
+				case Animation.SideStepEnd:
+				case Animation.SwitchSides:
+				case Animation.Settle:
 					return _canCancelAnimation;
-				case State.Idle:
+				case Animation.Idle:
 					return true;
 				default:
 					return false;
@@ -112,7 +112,7 @@ namespace StrikeOut.BossFight.Entities
 		
 		public bool CanEndSideStep()
 		{
-			return state == State.SideStepStart && _canCancelAnimation;
+			return animation == Animation.SideStepStart && _canCancelAnimation;
 		}
 
 		public void Swing(StrikeZone strikeZone)
@@ -169,7 +169,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 			// Figure out if the ball can be swung at
 			string swingResultsMessage = "";
-			int swingStartupFrames = _animator.defaultSwingStartupFrames;
+			int swingStartupFrames = animator.defaultSwingStartupFrames;
 			bool tryingToHitBall = false;
 			_targetBall = null;
 			if (bestCandidateBall != null)
@@ -178,11 +178,11 @@ namespace StrikeOut.BossFight.Entities
 				int framesEarlyOrLate;
 				if (bestCandidateBall.willPassBattingLine)
 				{
-					framesEarlyOrLate = _animator.defaultSwingStartupFrames - bestCandidateBall.framesUntilPassBattingLine;
+					framesEarlyOrLate = animator.defaultSwingStartupFrames - bestCandidateBall.framesUntilPassBattingLine;
 				}
 				else
 				{
-					framesEarlyOrLate = _animator.defaultSwingStartupFrames + bestCandidateBall.framesSincePassedBattingLine;
+					framesEarlyOrLate = animator.defaultSwingStartupFrames + bestCandidateBall.framesSincePassedBattingLine;
 				}
 				if (CouldSwingInTimeToHitBall(bestCandidateBall))
 				{
@@ -202,8 +202,8 @@ namespace StrikeOut.BossFight.Entities
 						swingStartupFrames += Mathf.FloorToInt((-framesEarlyOrLate) / 2);
 					}
 					// Keep the swing startup within actual limits
-					int slowestPossibleSwingStartupFrames = Mathf.Min(_animator.slowestSwingStartupFrames, bestCandidateBall.framesUntilUnhittable - 1);
-					int fastestPossibleSwingStartupFrames = Mathf.Max(_animator.fastestSwingStartupFrames, bestCandidateBall.isHittable ? 0 : bestCandidateBall.framesUntilHittable);
+					int slowestPossibleSwingStartupFrames = Mathf.Min(animator.slowestSwingStartupFrames, bestCandidateBall.framesUntilUnhittable - 1);
+					int fastestPossibleSwingStartupFrames = Mathf.Max(animator.fastestSwingStartupFrames, bestCandidateBall.isHittable ? 0 : bestCandidateBall.framesUntilHittable);
 					swingStartupFrames = Mathf.Clamp(swingStartupFrames, fastestPossibleSwingStartupFrames, slowestPossibleSwingStartupFrames);
 				}
 				else if (CouldAlmostSwingInTimeToHitBall(bestCandidateBall))
@@ -239,17 +239,17 @@ namespace StrikeOut.BossFight.Entities
 			switch (strikeZone)
 			{
 				case StrikeZone.North:
-					_animator.Swing(BatterAnimator.SwingDirection.North, swingStartupFrames);
+					animator.Swing(BatterAnimator.SwingDirection.North, swingStartupFrames);
 					break;
 				case StrikeZone.South:
-					_animator.Swing(BatterAnimator.SwingDirection.South, swingStartupFrames);
+					animator.Swing(BatterAnimator.SwingDirection.South, swingStartupFrames);
 					break;
 				case StrikeZone.East:
 				case StrikeZone.West:
 					if (_isOnRightSide == (strikeZone == StrikeZone.East))
-						_animator.Swing(BatterAnimator.SwingDirection.Inside, swingStartupFrames);
+						animator.Swing(BatterAnimator.SwingDirection.Inside, swingStartupFrames);
 					else
-						_animator.Swing(BatterAnimator.SwingDirection.Outside, swingStartupFrames);
+						animator.Swing(BatterAnimator.SwingDirection.Outside, swingStartupFrames);
 					break;
 			}
 		}
@@ -258,7 +258,7 @@ namespace StrikeOut.BossFight.Entities
 		{
 			if (_isOnRightSide)
 			{
-				if (state == State.SideStepStart)
+				if (animation == Animation.SideStepStart)
 				{
 					EndSideStep();
 				}
@@ -281,7 +281,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 			else
 			{
-				if (state == State.SideStepStart)
+				if (animation == Animation.SideStepStart)
 				{
 					EndSideStep();
 				}
@@ -296,77 +296,77 @@ namespace StrikeOut.BossFight.Entities
 		{
 			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 			_isOnRightSide = !_isOnRightSide;
-			_animator.SwitchSides();
+			animator.SwitchSides();
 		}
 
 		public void SideStep()
 		{
-			_animator.SideStep();
+			animator.SideStep();
 		}
 
 		public void EndSideStep()
 		{
-			_animator.EndSideStep();
+			animator.EndSideStep();
 		}
 
-		protected override void OnEnterState(State state)
+		protected override void OnStartAnimation(Animation animation)
 		{
 			// Calculate root motion
-			switch (state)
+			switch (animation)
 			{
-				case State.Settle:
-				case State.SwitchSides:
-				case State.SideStepEnd:
-					_animator.SetRootMotion(_isOnRightSide ?
+				case Animation.Settle:
+				case Animation.SwitchSides:
+				case Animation.SideStepEnd:
+					animator.SetRootMotion(_isOnRightSide ?
 						BossFightScene.I.batterRightPosition :
 						BossFightScene.I.batterLeftPosition);
 					break;
-				case State.SideStepStart:
-					_animator.SetRootMotion(_isOnRightSide ?
+				case Animation.SideStepStart:
+					animator.SetRootMotion(_isOnRightSide ?
 						BossFightScene.I.batterDodgeRightPosition :
 						BossFightScene.I.batterDodgeLeftPosition);
 					break;
-				case State.Swing:
+				case Animation.Swing:
 					switch (_strikeZone)
 					{
 						case StrikeZone.North:
 							if (_isOnRightSide)
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
 							}
 							else
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.East:
 							if (_isOnRightSide)
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 0f, 0f));
 							}
 							else
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(2f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(2f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.South:
 							if (_isOnRightSide)
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
 							}
 							else
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.West:
 							if (_isOnRightSide)
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-2f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-2f, 0f, 0f));
 							}
 							else
 							{
-								_animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 0f, 0f));
 							}
 							break;
 					}
@@ -374,7 +374,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		protected override void OnLeaveState(State state)
+		protected override void OnEndAnimation(Animation animation)
 		{
 			_canCancelAnimation = false;
 		}
@@ -417,11 +417,11 @@ namespace StrikeOut.BossFight.Entities
 
 		private bool CouldAlmostSwingInTimeToHitBall(Ball ball, int framesOfEarlyLeeway = 8, int framesOfLateLeeway = 6)
 		{
-			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= _animator.slowestSwingStartupFrames)) &&
-				ball.framesUntilUnhittable + framesOfLateLeeway > _animator.fastestSwingStartupFrames;
+			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= animator.slowestSwingStartupFrames)) &&
+				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
 		}
 
-		public enum State
+		public enum Animation
 		{
 			None = 0,
 			Idle = 1,

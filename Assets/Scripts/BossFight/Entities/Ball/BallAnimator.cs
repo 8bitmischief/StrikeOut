@@ -5,7 +5,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class BallAnimator : EntityAnimator<Ball, Ball.State>
+	public class BallAnimator : EntityAnimator<Ball, Ball.Animation>
 	{
 		private static readonly int PitchTypeHash = Animator.StringToHash("Pitch Type");
 		private static readonly int PitchHash = Animator.StringToHash("Pitch");
@@ -14,8 +14,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Pitch(PitchType pitch, Vector3 target, bool passesThroughStrikeZone)
 		{
-			_animator.SetInteger(PitchTypeHash, (int) pitch);
-			_animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
+			animator.SetInteger(PitchTypeHash, (int) pitch);
+			animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
 			Trigger(PitchHash, target);
 		}
 

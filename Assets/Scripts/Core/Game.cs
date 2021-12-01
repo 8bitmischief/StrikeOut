@@ -6,7 +6,7 @@ namespace StrikeOut
 	public class Game : SingletonMonoBehaviour<Game>
 	{
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		protected static void ResetStaticFields() => _instance = null;
+		protected static void ResetStaticFields() => ClearInstance();
 
 		[Header("Game Config")]
 		[SerializeField] private bool _debugMode = true;

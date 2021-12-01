@@ -6,11 +6,18 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : AnimatedEntity<Pitcher.State, PitcherAnimator>
+	public class Pitcher : AnimatedEntity<PitcherAnimator, Pitcher.Animation>
 	{
 		[Header("Prefab Pools")]
 		[SerializeField] private PrefabPool<Ball> _ballPool;
 		[SerializeField] private PrefabPool<Boomerang> _boomerangPool;
+
+		public bool isIdle => animation == Animation.Idle;
+
+		public void TravelTo(Vector3 targetPosition)
+		{
+			animator.TravelTo(targetPosition);
+		}
 
 		private void Start()
 		{
@@ -21,15 +28,15 @@ namespace StrikeOut.BossFight.Entities
 		protected override void OnEnable()
 		{
 			base.OnEnable();
-			_animator.onSpawnBall += SpawnBall;
-			_animator.onSpawnBoomerang += SpawnBoomerang;
+			animator.onSpawnBall += SpawnBall;
+			animator.onSpawnBoomerang += SpawnBoomerang;
 		}
 
 		protected override void OnDisable()
 		{
 			base.OnDisable();
-			_animator.onSpawnBall -= SpawnBall;
-			_animator.onSpawnBoomerang -= SpawnBoomerang;
+			animator.onSpawnBall -= SpawnBall;
+			animator.onSpawnBoomerang -= SpawnBoomerang;
 		}
 
 		private void OnDestroy()
@@ -38,37 +45,35 @@ namespace StrikeOut.BossFight.Entities
 			_boomerangPool.Dispose();
 		}
 
-		public bool IsIdle() => _animator.state == State.Idle;
-
 		public void Pitch()
 		{
-			_animator.Pitch();
+			animator.Pitch();
 		}
 
 		public void LungeLeft()
 		{
 			transform.localScale = new Vector3(1f, 1f, 1f);
-			_animator.Lunge(new Vector3(-2.6f, 0f, 3f));
+			animator.Lunge(new Vector3(-2.6f, 0f, 3f));
 		}
 
 		public void LungeRight()
 		{
 			transform.localScale = new Vector3(-1f, 1f, 1f);
-			_animator.Lunge(new Vector3(2.6f, 0f, 3f));
+			animator.Lunge(new Vector3(2.6f, 0f, 3f));
 		}
 
 		public void ThrowBoomerang()
 		{
-			_animator.ThrowBoomerang();
+			animator.ThrowBoomerang();
 		}
 
-		protected override void OnEnterState(State state)
+		protected override void OnStartAnimation(Animation animation)
 		{
-			switch (state)
+			switch (animation)
 			{
-				case State.BackOff:
+				case Animation.BackOff:
 					transform.localScale = new Vector3(1f, 1f, 1f);
-					_animator.SetRootMotion(new Vector3(0f, 0f, 25f));
+					animator.SetRootMotion(new Vector3(0f, 0f, 25f));
 					break;
 			}
 		}
@@ -99,14 +104,15 @@ namespace StrikeOut.BossFight.Entities
 			boomerang.Throw();
 		}
 
-		public enum State
+		public enum Animation
 		{
 			None = 0,
 			Idle = 1,
 			Pitch = 2,
 			Lunge = 3,
 			BackOff = 4,
-			ThrowBoomerang = 5
+			ThrowBoomerang = 5,
+			Travel = 6
 		}
 	}
 }

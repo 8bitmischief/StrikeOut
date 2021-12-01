@@ -10,9 +10,10 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void UpdateState()
 		{
-			if (entity.IsIdle())
+			if (entity.isIdle)
 			{
 				entity.ThrowBoomerang();
+				//entity.TravelTo(new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(0f, 50f)));
 			}
 		}
 	}

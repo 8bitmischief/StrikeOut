@@ -5,7 +5,7 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class BatterAnimator : EntityAnimator<Batter, Batter.State>
+	public class BatterAnimator : EntityAnimator<Batter, Batter.Animation>
 	{
 		private static readonly int SwingHash = Animator.StringToHash("Swing");
 		private static readonly int SwingDirectionHash = Animator.StringToHash("Swing Direction");
@@ -17,7 +17,7 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private int _fastestSwingStartupFrames = 2;
 		[SerializeField] private int _defaultSwingStartupFrames = 4;
 		[SerializeField] private int _slowestSwingStartupFrames = 8;
-		private int _swingStartupFrames { get => _animator.GetInteger(SwingStartupFramesHash); set => _animator.SetInteger(SwingStartupFramesHash, value); }
+		private int _swingStartupFrames { get => animator.GetInteger(SwingStartupFramesHash); set => animator.SetInteger(SwingStartupFramesHash, value); }
 
 		public int fastestSwingStartupFrames => _fastestSwingStartupFrames;
 		public int defaultSwingStartupFrames => _defaultSwingStartupFrames;
@@ -28,7 +28,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Swing(SwingDirection direction, int startupFrames)
 		{
-			_animator.SetInteger(SwingDirectionHash, (int) direction);
+			animator.SetInteger(SwingDirectionHash, (int) direction);
 			_swingStartupFrames = startupFrames;
 			Trigger(SwingHash);
 		}
@@ -39,11 +39,11 @@ namespace StrikeOut.BossFight.Entities
 
 		public void EndSideStep() => Trigger(EndSideStepHash);
 
-		protected override void OnEnterState(Batter.State state)
+		protected override void OnStartAnimation(Batter.Animation animation)
 		{
-			switch (state)
+			switch (animation)
 			{
-				case Batter.State.Swing:
+				case Batter.Animation.Swing:
 					if (_swingStartupFrames == _defaultSwingStartupFrames)
 					{
 						animationSpeed = 1.00f;
@@ -56,11 +56,11 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		protected override void OnLeaveState(Batter.State state)
+		protected override void OnEndAnimation(Batter.Animation animation)
 		{
-			switch (state)
+			switch (animation)
 			{
-				case Batter.State.Swing:
+				case Batter.Animation.Swing:
 					animationSpeed = 1.00f;
 					break;
 			}

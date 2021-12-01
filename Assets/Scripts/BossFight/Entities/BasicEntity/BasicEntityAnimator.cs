@@ -4,7 +4,7 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class BasicEntityAnimator : EntityAnimator<BasicEntity, BasicEntityState>
+	public class BasicEntityAnimator : EntityAnimator<BasicEntity, BasicEntity.Animation>
 	{
 		private static readonly int TriggerHash = Animator.StringToHash("Trigger");
 

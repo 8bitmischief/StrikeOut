@@ -2426,25 +2426,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 409876124333773496, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 409876124333773496, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 409876124333773496, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5211356092236539860, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
       propertyPath: m_Name
       value: Pitcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211356092236539860, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234147146378744426, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
       propertyPath: m_RootOrder

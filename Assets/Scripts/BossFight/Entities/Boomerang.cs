@@ -11,7 +11,6 @@ namespace StrikeOut.BossFight.Entities
 			switch (animation)
 			{
 				case BasicEntity.Animation.Active:
-					Debug.Log(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
 					animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
 					break;
 				case BasicEntity.Animation.Done:

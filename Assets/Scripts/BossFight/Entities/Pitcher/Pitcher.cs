@@ -16,7 +16,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void TravelTo(Vector3 targetPosition)
 		{
-			animator.TravelTo(targetPosition);
+			animator.TravelTo(targetPosition, 10f);
 		}
 
 		private void Start()
@@ -112,7 +112,10 @@ namespace StrikeOut.BossFight.Entities
 			Lunge = 3,
 			BackOff = 4,
 			ThrowBoomerang = 5,
-			Travel = 6
+			TravelStart = 6,
+			Travel = 7,
+			TravelBrake = 8,
+			TravelEnd = 9
 		}
 	}
 }

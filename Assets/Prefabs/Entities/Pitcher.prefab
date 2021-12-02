@@ -184,6 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootMotionProgress: {x: 0, y: 0, z: 0}
   _spawnLocation: {fileID: 4139026796801773336}
+  _maxTravelSpeed: 25
+  _travelAcceleration: 1
+  _travelDeceleration: 0.5
 --- !u!95 &3556943970642921837
 Animator:
   serializedVersion: 3

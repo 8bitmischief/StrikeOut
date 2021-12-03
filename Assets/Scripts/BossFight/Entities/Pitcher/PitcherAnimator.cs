@@ -12,11 +12,9 @@ namespace StrikeOut.BossFight.Entities
 		[Header("Children")]
 		[SerializeField] private Transform _spawnLocation;
 
-		public event Action<Vector3> onSpawnBoomerang;
-
 		public void ThrowBoomerang(Vector3 targetPosition, bool leanRight)
 		{
-			SetFlipped(!leanRight);
+			Flip(!leanRight);
 			Trigger(ThrowBoomerangHash, targetPosition);
 		}
 
@@ -25,12 +23,12 @@ namespace StrikeOut.BossFight.Entities
 			switch (evt.stringParameter)
 			{
 				case "Throw Boomerang":
-					onSpawnBoomerang?.Invoke(_spawnLocation.transform.position);
+					entity.SpawnBoomerang(_spawnLocation.transform.position);
 					break;
 			}
 		}
 
-		private void SetFlipped(bool flipped)
+		private void Flip(bool flipped)
 		{
 			transform.localScale = new Vector3(
 				(flipped ? -1f : 1f) * Mathf.Abs(transform.localScale.x),

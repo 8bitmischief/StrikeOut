@@ -8,9 +8,6 @@ namespace StrikeOut.BossFight.Entities
 	{
 		private static readonly int ThrowHash = Animator.StringToHash("Throw");
 
-		public void Throw(Vector3 targetPosition)
-		{
-			Trigger(ThrowHash, targetPosition);
-		}
+		public void Throw() => Trigger(ThrowHash);
 	}
 }

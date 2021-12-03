@@ -24,6 +24,11 @@ namespace StrikeOut.BossFight.Entities
 			_hitBallEffectPool.Prewarm();
 		}
 
+		public override void OnSpawn()
+		{
+			BossFightScene.I.batter = this;
+		}
+
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -36,6 +41,14 @@ namespace StrikeOut.BossFight.Entities
 			base.OnDisable();
 			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
 			animator.onTryHitBall -= OnTryHitBall;
+		}
+
+		public override void OnDespawn()
+		{
+			if (BossFightScene.I.batter == this)
+			{
+				BossFightScene.I.batter = null;
+			}
 		}
 
 		public bool CanSwing(StrikeZone strikeZone)

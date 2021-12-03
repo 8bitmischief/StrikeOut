@@ -22,11 +22,15 @@ namespace StrikeOut.BossFight
 		[SerializeField] private BossFightUpdateLoop _updateLoop;
 		[Header("Data")]
 		[SerializeField] private PitchDataObject _pitchData;
+		private Batter _batter = null;
+		private Pitcher _pitcher = null;
 		private List<Ball> _balls = new List<Ball>();
 
 		public BossFightUpdateLoop updateLoop => _updateLoop;
 		public EntityManager entityManager => _updateLoop.entityManager;
 		public PitchDataObject pitchData => _pitchData;
+		public Batter batter { get => _batter; set => _batter = value; }
+		public Pitcher pitcher { get => _pitcher; set => _pitcher = value; }
 		public List<Ball> balls => _balls;
 		public Vector3 batterLeftPosition => _batterLeft.position;
 		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;

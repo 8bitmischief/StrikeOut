@@ -14,7 +14,7 @@ namespace StrikeOut
 			Game game = (Game) target;
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Game State", EditorStyles.boldLabel);
-			EditorGUILayout.TextField("Scene", game.scene.ToString());
+			EditorGUILayout.TextField("Scene", game.sceneId.ToString());
 			base.DrawState();
 		}
 	}

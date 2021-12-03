@@ -26,7 +26,7 @@ namespace StrikeOut
 		public bool isPaused => _isPaused;
 		public bool isAdvancingFrameByFrame => _isAdvancingFrameByFrame;
 		public InputManager input => _input;
-		public Scene scene => _sceneManager?.scene ?? Scene.None;
+		public SceneId sceneId => _sceneManager?.sceneId ?? SceneId.None;
 
 		private void Update()
 		{

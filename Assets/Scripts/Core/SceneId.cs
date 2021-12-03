@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace StrikeOut
 {
-	public enum Scene
+	public enum SceneId
 	{
 		None = 0,
 		BossFight = 1

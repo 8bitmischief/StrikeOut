@@ -1,5 +1,4 @@
 using UnityEngine;
-using SharedUnityMischief.Lifecycle;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;
 
@@ -89,12 +88,12 @@ namespace StrikeOut.BossFight.Entities
 		public override void OnSpawn()
 		{
 			_prevPosition = transform.position;
-			BossFightScene.I.balls.Add(this);
+			Scene.I.balls.Add(this);
 		}
 
 		public override void UpdateState()
 		{
-			if (!UpdateLoop.I.isInterpolating && _hasPassedBattingLine)
+			if (!Scene.I.updateLoop.isInterpolating && _hasPassedBattingLine)
 			{
 				if (_justPassedBattingLine)
 				{
@@ -109,7 +108,7 @@ namespace StrikeOut.BossFight.Entities
 			{
 				case Animation.Pitched:
 					// Keep track of the ball's velocity and acceleration (determined by animation and root motion)
-					if (!UpdateLoop.I.isInterpolating)
+					if (!Scene.I.updateLoop.isInterpolating)
 					{
 						Vector3 newVelocity = (transform.position - _prevPosition) / UpdateLoop.TimePerUpdate;
 						_accelerationPerFrame = newVelocity - _velocity;
@@ -121,13 +120,13 @@ namespace StrikeOut.BossFight.Entities
 					if (_strikeZone == StrikeZone.None)
 					{
 						// Follow through from where the arc of the pitch left off
-						if (!UpdateLoop.I.isInterpolating)
+						if (!Scene.I.updateLoop.isInterpolating)
 						{
 							_velocity += _accelerationPerFrame;
 						}
-						transform.position += _velocity * UpdateLoop.I.deltaTime;
+						transform.position += _velocity * Scene.I.updateLoop.deltaTime;
 						// Despawn the ball once it's behind the camera
-						if (!UpdateLoop.I.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || totalAnimationFrames > 20))
+						if (!Scene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || totalAnimationFrames > 20))
 						{
 							DespawnEntity(this);
 						}
@@ -135,14 +134,14 @@ namespace StrikeOut.BossFight.Entities
 					else
 					{
 						// Despawn the ball if the player doesn't hit it in time
-						if (!UpdateLoop.I.isInterpolating && !isHittable && !willBeHittable)
+						if (!Scene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable)
 						{
 							DespawnEntity(this);
 						}
 					}
 					break;
 				case Animation.Hit:
-					if (!UpdateLoop.I.isInterpolating && hasAnimationCompleted)
+					if (!Scene.I.updateLoop.isInterpolating && hasAnimationCompleted)
 					{
 						DespawnEntity(this);
 					}
@@ -152,10 +151,10 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnDespawn()
 		{
-			BossFightScene.I.balls.Remove(this);
+			Scene.I.balls.Remove(this);
 		}
 
-		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, BossFightScene.I.GetStrikeZonePosition(strikeZone));
+		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, Scene.I.locations.strikeZones[strikeZone]);
 
 		public void Pitch(PitchType pitchType, Vector3 target) => Pitch(pitchType, StrikeZone.None, target);
 
@@ -174,7 +173,7 @@ namespace StrikeOut.BossFight.Entities
 		private void Pitch(PitchType pitchType, StrikeZone strikeZone, Vector3 target)
 		{
 			_strikeZone = strikeZone;
-			_pitchData = BossFightScene.I.pitchData.pitches[pitchType];
+			_pitchData = Scene.I.pitchData.pitches[pitchType];
 			animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
 		}
 

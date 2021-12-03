@@ -21,25 +21,25 @@ namespace StrikeOut.BossFight.Entities
 				case Animation.Throw:
 					if (_thrownToTheRight)
 					{
-						animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 1.5f, 0f));
 					}
 					else
 					{
-						animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
 					}
 					break;
 				case Animation.Rebound:
 					if (_thrownToTheRight)
 					{
-						animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
 					}
 					else
 					{
-						animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 1.5f, 0f));
 					}
 					break;
 				case Animation.Return:
-					animator.SetRootMotion(BossFightScene.I.pitcher.transform.position + new Vector3(0f, 1.5f, 0f));
+					animator.SetRootMotion(Scene.I.pitcher.transform.position + new Vector3(0f, 1.5f, 0f));
 					break;
 				case Animation.Done:
 					DespawnEntity(this);

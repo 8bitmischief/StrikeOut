@@ -52,7 +52,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 
 			// Only buffer inputs for so long
-			if (_bufferedInput != BatterInput.None && !UpdateLoop.I.isInterpolating)
+			if (_bufferedInput != BatterInput.None && !Scene.I.updateLoop.isInterpolating)
 			{
 				_bufferedInputFrames++;
 				if (_bufferedInputFrames > _maxBufferedInputFrames)

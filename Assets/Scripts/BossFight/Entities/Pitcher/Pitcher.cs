@@ -13,20 +13,20 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnSpawn()
 		{
-			BossFightScene.I.pitcher = this;
+			Scene.I.pitcher = this;
 		}
 
 		public override void OnDespawn()
 		{
-			if (BossFightScene.I.pitcher == this)
+			if (Scene.I.pitcher == this)
 			{
-				BossFightScene.I.pitcher = null;
+				Scene.I.pitcher = null;
 			}
 		}
 
 		public void ThrowBoomerang(bool toTheRight)
 		{
-			animator.ThrowBoomerang(BossFightScene.I.pitcherMoundPosition + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
+			animator.ThrowBoomerang(Scene.I.locations.pitcherMoundPosition + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 		}
 
 		public void SpawnBoomerang(Vector3 spawnPosition)

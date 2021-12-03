@@ -26,7 +26,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnSpawn()
 		{
-			BossFightScene.I.batter = this;
+			Scene.I.batter = this;
 		}
 
 		protected override void OnEnable()
@@ -45,9 +45,9 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnDespawn()
 		{
-			if (BossFightScene.I.batter == this)
+			if (Scene.I.batter == this)
 			{
-				BossFightScene.I.batter = null;
+				Scene.I.batter = null;
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace StrikeOut.BossFight.Entities
 			this._strikeZone = strikeZone;
 			// Find the ball that's most worth considering for this swing
 			Ball bestCandidateBall = null;
-			foreach (Ball ball in BossFightScene.I.balls)
+			foreach (Ball ball in Scene.I.balls)
 			{
 				bool chooseClosestToBattingLine = false;
 				if (bestCandidateBall == null)
@@ -331,13 +331,13 @@ namespace StrikeOut.BossFight.Entities
 				case Animation.SwitchSides:
 				case Animation.SideStepEnd:
 					animator.SetRootMotion(_isOnRightSide ?
-						BossFightScene.I.batterRightPosition :
-						BossFightScene.I.batterLeftPosition);
+						Scene.I.locations.batterRightPosition :
+						Scene.I.locations.batterLeftPosition);
 					break;
 				case Animation.SideStepStart:
 					animator.SetRootMotion(_isOnRightSide ?
-						BossFightScene.I.batterDodgeRightPosition :
-						BossFightScene.I.batterDodgeLeftPosition);
+						Scene.I.locations.batterDodgeRightPosition :
+						Scene.I.locations.batterDodgeLeftPosition);
 					break;
 				case Animation.Swing:
 					switch (_strikeZone)
@@ -345,41 +345,41 @@ namespace StrikeOut.BossFight.Entities
 						case StrikeZone.North:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.East:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(2f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.South:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.West:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(BossFightScene.I.batterRightPosition + new Vector3(-2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-2f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 0f, 0f));
 							}
 							break;
 					}
@@ -423,7 +423,6 @@ namespace StrikeOut.BossFight.Entities
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
 				_hitBallEffectPool.Withdraw(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f)).Play();
 			}
-				_hitBallEffectPool.Withdraw(new Vector3(0f, 2f, 0f)).Play();
 			_targetBall = null;
 		}
 

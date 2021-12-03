@@ -5,15 +5,15 @@ namespace StrikeOut
 {
 	public interface ISceneManager
 	{
-		Scene scene { get; }
+		SceneId sceneId { get; }
 	}
 
 	public abstract class SceneManager<T> : SingletonMonoBehaviour<T>, ISceneManager where T : MonoBehaviour
 	{
 		[Header("Scene Config")]
-		[SerializeField] private Scene _scene = Scene.None;
+		[SerializeField] private SceneId _sceneId = SceneId.None;
 
-		public Scene scene => _scene;
+		public SceneId sceneId => _sceneId;
 
 		protected virtual void Start()
 		{

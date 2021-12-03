@@ -92,7 +92,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 5.3333335, y: 5.3333335}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -148,11 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _appendSpawnIndexToName: 0
-  _ballPool:
-    _prefab: {fileID: 1216380686149261798, guid: 370472b68b3054919af9d596e0cb8c96, type: 3}
-    _collectionCheck: 0
-    _defaultCapacity: 0
-    _maxSize: -1
   _boomerangPool:
     _prefab: {fileID: 4223761075681623544, guid: 3d966ed91887140cd9d236aa30bad53f, type: 3}
     _collectionCheck: 0
@@ -184,9 +179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootMotionProgress: {x: 0, y: 0, z: 0}
   _spawnLocation: {fileID: 4139026796801773336}
-  _maxTravelSpeed: 25
-  _travelAcceleration: 1
-  _travelDeceleration: 0.5
 --- !u!95 &3556943970642921837
 Animator:
   serializedVersion: 3
@@ -231,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727692111027204194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 6234147146378744426}

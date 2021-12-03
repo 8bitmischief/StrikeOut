@@ -1,5 +1,6 @@
 using UnityEngine;
 using SharedUnityMischief.Entities;
+using SharedUnityMischief.Lifecycle;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
@@ -51,7 +52,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 
 			// Only buffer inputs for so long
-			if (_bufferedInput != BatterInput.None && !BossFightScene.I.updateLoop.isInterpolating)
+			if (_bufferedInput != BatterInput.None && !UpdateLoop.I.isInterpolating)
 			{
 				_bufferedInputFrames++;
 				if (_bufferedInputFrames > _maxBufferedInputFrames)

@@ -4,73 +4,73 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -8968746144957900785
-    second: Idle 1
+    second: Pitcher_0
   - first:
       213: 1471524999982271406
-    second: Move 1
+    second: Pitcher_1
   - first:
       213: -4737325895891296039
-    second: Move Weapon 1
+    second: Pitcher_2
   - first:
       213: 6222132977930122763
-    second: Pitch 1
+    second: Pitcher_3
   - first:
       213: -6582441953914316396
-    second: Chop 1
+    second: Pitcher_4
   - first:
       213: -4786014347711230962
-    second: Move Weapon 1
+    second: Pitcher_2
   - first:
       213: 7278214439134550890
-    second: Chop 2
+    second: Pitcher_6
   - first:
       213: 7299497092255564097
-    second: Chop 3
+    second: Pitcher_7
   - first:
       213: 5876534404722944277
-    second: Chop 4
+    second: Pitcher_8
   - first:
       213: 2358765860796727385
-    second: Boomerang 1
+    second: Pitcher_9
   - first:
       213: 3118345619275648119
-    second: Boomerang 2
+    second: Pitcher_10
   - first:
       213: -616056218266748448
-    second: Boomerang 3
+    second: Pitcher_11
   - first:
       213: -2893016655705205863
-    second: Boomerang 4
+    second: Pitcher_12
   - first:
       213: -3348074879001041725
-    second: Taunt 1
+    second: Pitcher_13
   - first:
       213: -5639185795832584134
-    second: Taunt 2
+    second: Pitcher_14
   - first:
       213: 6682567868247495796
-    second: Slash 1
+    second: Pitcher_15
   - first:
       213: -1171790841774489103
-    second: Slash 2
+    second: Pitcher_16
   - first:
       213: 1693957455605715198
-    second: Slash 3
+    second: Pitcher_17
   - first:
       213: 3586841602217733911
-    second: Slash 4
+    second: Pitcher_18
   - first:
       213: 2932148647844239051
-    second: Pitch South 1
+    second: Pitcher_19
   - first:
       213: 2221657160613456476
-    second: Pitch South 2
+    second: Pitcher_20
   - first:
       213: -1991297838502829857
-    second: Pitch North 1
+    second: Pitcher_21
   - first:
       213: -5524251602580138158
-    second: Pitch North 2
+    second: Pitcher_22
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -160,11 +160,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle 1
+      name: Pitcher_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -181,11 +181,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move 1
+      name: Pitcher_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 448
+        x: 64
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -202,11 +202,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Move Weapon 1
+      name: Pitcher_2
       rect:
         serializedVersion: 2
         x: 128
-        y: 448
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -223,11 +223,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch 1
+      name: Pitcher_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -244,11 +244,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch 2
+      name: Pitcher_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 384
+        x: 256
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -265,11 +265,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chop 1
+      name: Pitcher_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 320
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -286,11 +286,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chop 2
+      name: Pitcher_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 384
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -307,11 +307,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chop 3
+      name: Pitcher_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 448
+        y: 128
         width: 64
         height: 64
       alignment: 7
@@ -328,11 +328,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chop 4
+      name: Pitcher_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 0
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -349,11 +349,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boomerang 1
+      name: Pitcher_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -370,11 +370,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boomerang 2
+      name: Pitcher_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -391,11 +391,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boomerang 3
+      name: Pitcher_11
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 192
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -412,11 +412,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boomerang 4
+      name: Pitcher_12
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 256
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -433,10 +433,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Taunt 1
+      name: Pitcher_13
       rect:
         serializedVersion: 2
-        x: 0
+        x: 320
         y: 64
         width: 64
         height: 64
@@ -454,10 +454,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Taunt 2
+      name: Pitcher_14
       rect:
         serializedVersion: 2
-        x: 64
+        x: 384
         y: 64
         width: 64
         height: 64
@@ -475,11 +475,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash 1
+      name: Pitcher_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 448
+        y: 64
         width: 64
         height: 64
       alignment: 7
@@ -496,10 +496,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash 2
+      name: Pitcher_16
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 0
         width: 64
         height: 64
@@ -517,10 +517,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash 3
+      name: Pitcher_17
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 0
         width: 64
         height: 64
@@ -538,10 +538,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slash 4
+      name: Pitcher_18
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 0
         width: 64
         height: 64
@@ -559,11 +559,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch South 1
+      name: Pitcher_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 192
+        y: 0
         width: 64
         height: 64
       alignment: 7
@@ -580,11 +580,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch South 2
+      name: Pitcher_20
       rect:
         serializedVersion: 2
-        x: 64
-        y: 319
+        x: 256
+        y: 0
         width: 64
         height: 64
       alignment: 7
@@ -601,11 +601,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch North 1
+      name: Pitcher_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 0
         width: 64
         height: 64
       alignment: 7
@@ -622,11 +622,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pitch North 2
+      name: Pitcher_22
       rect:
         serializedVersion: 2
-        x: 65
-        y: 256
+        x: 384
+        y: 0
         width: 64
         height: 64
       alignment: 7

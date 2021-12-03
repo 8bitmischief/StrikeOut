@@ -14,7 +14,7 @@ namespace StrikeOut.BossFight.Entities
 					animator.SetRootMotion(BossFightScene.I.batterLeftPosition + new Vector3(0f, 2f, 0f));
 					break;
 				case BasicEntity.Animation.Done:
-					BossFightScene.I.entityManager.DespawnEntity(this);
+					DespawnEntity(this);
 					break;
 			}
 		}

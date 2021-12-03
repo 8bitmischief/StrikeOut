@@ -94,7 +94,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void UpdateState()
 		{
-			if (!BossFightScene.I.updateLoop.isInterpolating && _hasPassedBattingLine)
+			if (!UpdateLoop.I.isInterpolating && _hasPassedBattingLine)
 			{
 				if (_justPassedBattingLine)
 				{
@@ -109,7 +109,7 @@ namespace StrikeOut.BossFight.Entities
 			{
 				case Animation.Pitched:
 					// Keep track of the ball's velocity and acceleration (determined by animation and root motion)
-					if (!BossFightScene.I.updateLoop.isInterpolating)
+					if (!UpdateLoop.I.isInterpolating)
 					{
 						Vector3 newVelocity = (transform.position - _prevPosition) / UpdateLoop.TimePerUpdate;
 						_accelerationPerFrame = newVelocity - _velocity;
@@ -121,30 +121,30 @@ namespace StrikeOut.BossFight.Entities
 					if (_strikeZone == StrikeZone.None)
 					{
 						// Follow through from where the arc of the pitch left off
-						if (!BossFightScene.I.updateLoop.isInterpolating)
+						if (!UpdateLoop.I.isInterpolating)
 						{
 							_velocity += _accelerationPerFrame;
 						}
-						transform.position += _velocity * BossFightScene.I.updateLoop.deltaTime;
+						transform.position += _velocity * UpdateLoop.I.deltaTime;
 						// Despawn the ball once it's behind the camera
-						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || totalAnimationFrames > 20))
+						if (!UpdateLoop.I.isInterpolating && !isHittable && !willBeHittable && (transform.position.z < -15f || totalAnimationFrames > 20))
 						{
-							BossFightScene.I.entityManager.DespawnEntity(this);
+							DespawnEntity(this);
 						}
 					}
 					else
 					{
 						// Despawn the ball if the player doesn't hit it in time
-						if (!BossFightScene.I.updateLoop.isInterpolating && !isHittable && !willBeHittable)
+						if (!UpdateLoop.I.isInterpolating && !isHittable && !willBeHittable)
 						{
-							BossFightScene.I.entityManager.DespawnEntity(this);
+							DespawnEntity(this);
 						}
 					}
 					break;
 				case Animation.Hit:
-					if (!BossFightScene.I.updateLoop.isInterpolating && hasAnimationCompleted)
+					if (!UpdateLoop.I.isInterpolating && hasAnimationCompleted)
 					{
-						BossFightScene.I.entityManager.DespawnEntity(this);
+						DespawnEntity(this);
 					}
 					break;
 			}

@@ -17,6 +17,7 @@ namespace StrikeOut.BossFight
 		[SerializeField] private Transform _eastStrikeZone;
 		[SerializeField] private Transform _southStrikeZone;
 		[SerializeField] private Transform _westStrikeZone;
+		[SerializeField] private Transform _pitcherMound;
 		[Header("Children")]
 		[SerializeField] private BossFightUpdateLoop _updateLoop;
 		[Header("Data")]
@@ -35,6 +36,7 @@ namespace StrikeOut.BossFight
 		public Vector3 eastStrikeZonePosition => _eastStrikeZone.position;
 		public Vector3 southStrikeZonePosition => _southStrikeZone.position;
 		public Vector3 westStrikeZonePosition => _westStrikeZone.position;
+		public Vector3 pitcherMoundPosition => _pitcherMound.position;
 
 		private void Update()
 		{

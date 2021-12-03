@@ -43,6 +43,7 @@ MonoBehaviour:
   _animation: 1
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -140,6 +141,7 @@ MonoBehaviour:
   _animation: 8
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -202,6 +204,7 @@ MonoBehaviour:
   _animation: 9
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -295,6 +298,7 @@ MonoBehaviour:
   _animation: 7
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -365,6 +369,7 @@ MonoBehaviour:
   _animation: 3
   _authoredRootMotion: {x: 0, y: 0, z: -22.5}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 2
@@ -382,43 +387,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pitch Direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Chop
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Travel Start
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Travel Brake
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Travel End
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Throw Boomerang
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -618,6 +623,7 @@ MonoBehaviour:
   _animation: 4
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -661,9 +667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 5
+  _animation: 2
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -724,6 +731,7 @@ MonoBehaviour:
   _animation: 2
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
@@ -839,6 +847,7 @@ MonoBehaviour:
   _animation: 6
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
+  _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1

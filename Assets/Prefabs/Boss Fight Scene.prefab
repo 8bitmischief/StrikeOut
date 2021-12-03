@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indestructible: 0
   _sceneId: 1
+  _syncFrameAdvancesWithGame: 0
   _updateLoop: {fileID: 1506891888895512520}
   _entityManager: {fileID: 2630103688282189807}
   _locations: {fileID: 881021150926206555}

@@ -10,6 +10,8 @@ namespace StrikeOut.BossFight
 	[DefaultExecutionOrder(-20)]
 	public class Scene : SceneManager<Scene>
 	{
+		[Header("Scene Config")]
+		[SerializeField] private bool _syncFrameAdvancesWithGame = false;
 		[Header("Children")]
 		[SerializeField] private UpdateLoop _updateLoop;
 		[SerializeField] private EntityManager _entityManager;
@@ -38,7 +40,7 @@ namespace StrikeOut.BossFight
 		{
 			if (!Game.I.isPaused)
 			{
-				if (Game.I.isAdvancingFrameByFrame)
+				if (Game.I.isAdvancingFrameByFrame && !_syncFrameAdvancesWithGame)
 					_updateLoop.AdvanceOneFrame();
 				else
 					_updateLoop.Advance();

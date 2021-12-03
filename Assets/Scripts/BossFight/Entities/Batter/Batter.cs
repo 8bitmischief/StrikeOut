@@ -423,6 +423,7 @@ namespace StrikeOut.BossFight.Entities
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
 				_hitBallEffectPool.Withdraw(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f)).Play();
 			}
+				_hitBallEffectPool.Withdraw(new Vector3(0f, 2f, 0f)).Play();
 			_targetBall = null;
 		}
 

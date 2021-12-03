@@ -7,6 +7,7 @@ using StrikeOut.BossFight.Entities;
 
 namespace StrikeOut.BossFight
 {
+	[DefaultExecutionOrder(-20)]
 	public class BossFightScene : SceneManager<BossFightScene>
 	{
 		[Header("Children")]
@@ -26,9 +27,6 @@ namespace StrikeOut.BossFight
 		private Batter _batter = null;
 		private Pitcher _pitcher = null;
 		private List<Ball> _balls = new List<Ball>();
-		private float _timeScale = 1f;
-		private bool _isPaused = false;
-		private bool _pauseNextFrame = false;
 
 		public BossFightUpdateLoop updateLoop => _updateLoop;
 		public EntityManager entityManager => _updateLoop.entityManager;
@@ -54,43 +52,13 @@ namespace StrikeOut.BossFight
 
 		private void Update()
 		{
-			if (Game.I.debugMode)
+			if (!Game.I.isPaused)
 			{
-				if (_pauseNextFrame)
-				{
-					_pauseNextFrame = false;
-					Pause();
-				}
-				// Pause and unpause the game
-				if (Game.I.input.togglePause.justPressed)
-				{
-					if (_isPaused)
-						Resume();
-					else
-						Pause();
-				}
-				// Step through individual frames
-				if (Game.I.input.nextFrame.justPressed)
-				{
-					if (!_isPaused)
-					{
-						Pause();
-					}
-					else
-					{
-						Time.timeScale = 1f;
-						_updateLoop.AdvanceOneFrame(true);
-						_pauseNextFrame = true;
-					}
-				}
-				// Slow down time
-				_timeScale = Game.I.input.slowTime.isHeld ? 0.10f : 1.00f;
-				if (!_isPaused)
-					Time.timeScale = _timeScale;
+				if (Game.I.isAdvancingFrameByFrame)
+					_updateLoop.AdvanceOneFrame();
+				else
+					_updateLoop.Advance();
 			}
-			// Update the game
-			if (!_updateLoop.updateAutomatically)
-				_updateLoop.Advance();
 		}
 
 		private void OnDisable()
@@ -109,22 +77,6 @@ namespace StrikeOut.BossFight
 				case StrikeZone.West: return _westStrikeZone.position;
 				default: return Vector3.zero;
 			}
-		}
-
-		private void Pause()
-		{
-			_isPaused = true;
-			Time.timeScale = 0f;
-			_updateLoop.Pause();
-			Game.I.input.mode = SimulatedControlMode.Simulate;
-		}
-
-		private void Resume()
-		{
-			_isPaused = false;
-			Time.timeScale = _timeScale;
-			_updateLoop.Resume();
-			Game.I.input.mode = SimulatedControlMode.PassThrough;
 		}
 
 		private void OnPreUpdateState()

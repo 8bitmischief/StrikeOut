@@ -90,6 +90,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indestructible: 0
   _scene: 1
+  _updateLoop: {fileID: 4622534951850074372}
+  _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
   _batterLeft: {fileID: 0}
   _batterDodgeLeft: {fileID: 0}
   _batterRight: {fileID: 0}
@@ -98,8 +100,7 @@ MonoBehaviour:
   _eastStrikeZone: {fileID: 0}
   _southStrikeZone: {fileID: 0}
   _westStrikeZone: {fileID: 0}
-  _updateLoop: {fileID: 4622534951850074372}
-  _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
+  _pitcherMound: {fileID: 0}
 --- !u!1 &6437344979311547239
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _indestructible: 0
-  _updateAutomatically: 1
+  _updateAutomatically: 0
   _timeScale: 1
   _entityManager: {fileID: 2630103688282189807}

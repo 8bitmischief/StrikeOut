@@ -191,7 +191,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3324486473918119384
 MonoBehaviour:
@@ -394,7 +394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8135656706598780440
 MonoBehaviour:
@@ -547,11 +547,11 @@ Transform:
   - {fileID: 5140040282539410418}
   - {fileID: 4042972575219024848}
   - {fileID: 6031679751819102125}
-  - {fileID: 7081980646280632919}
   - {fileID: 727310613012483513}
   - {fileID: 5095488831018289583}
   - {fileID: 578442509637941378}
   - {fileID: 6509359517158279689}
+  - {fileID: 7081980646280632919}
   m_Father: {fileID: 2294984877185404653}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -573,11 +573,10 @@ MonoBehaviour:
   _swingWest: {fileID: 3075194680646453428}
   _dodgeLeft: {fileID: 7382822750267630704}
   _dodgeRight: {fileID: 3276500627964740869}
-  _start: {fileID: 7666441317417402010}
   _togglePause: {fileID: 2028544461531113601}
   _nextFrame: {fileID: 3324486473918119384}
   _slowTime: {fileID: 8135656706598780440}
-  _alternateMode: {fileID: 3205255532414983478}
+  _forceQuit: {fileID: 2912863734866875087}
 --- !u!1 &5573840882891817385
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,10 +586,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081980646280632919}
-  - component: {fileID: 7666441317417402010}
   - component: {fileID: 2912863734866875087}
   m_Layer: 0
-  m_Name: Start
+  m_Name: Force Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,21 +606,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7666441317417402010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5573840882891817385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1007ec2f05a785349ade7649f87151bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _control: {fileID: 2912863734866875087}
 --- !u!114 &2912863734866875087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3205255532414983478
 MonoBehaviour:
@@ -755,7 +740,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028544461531113601
 MonoBehaviour:

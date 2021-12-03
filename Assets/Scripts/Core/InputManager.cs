@@ -13,12 +13,11 @@ namespace StrikeOut
 		[SerializeField] private SimulatedButtonControl _swingWest;
 		[SerializeField] private SimulatedButtonControl _dodgeLeft;
 		[SerializeField] private SimulatedButtonControl _dodgeRight;
-		[SerializeField] private SimulatedButtonControl _start;
 		[Header("Debug Controls")]
 		[SerializeField] private ButtonControl _togglePause;
 		[SerializeField] private ButtonControl _nextFrame;
 		[SerializeField] private ButtonControl _slowTime;
-		[SerializeField] private ButtonControl _alternateMode;
+		[SerializeField] private ButtonControl _forceQuit;
 		private SimulatedControlMode _mode = SimulatedControlMode.PassThrough;
 		private List<SimulatedButtonControl> _gameplayControls;
 
@@ -28,11 +27,10 @@ namespace StrikeOut
 		public SimulatedButtonControl swingWest => _swingWest;
 		public SimulatedButtonControl dodgeLeft => _dodgeLeft;
 		public SimulatedButtonControl dodgeRight => _dodgeRight;
-		public SimulatedButtonControl start => _start;
 		public ButtonControl togglePause => _togglePause;
 		public ButtonControl nextFrame => _nextFrame;
 		public ButtonControl slowTime => _slowTime;
-		public ButtonControl alternateMode => _alternateMode;
+		public ButtonControl forceQuit => _forceQuit;
 		public SimulatedControlMode mode
 		{
 			get => _mode;
@@ -50,7 +48,7 @@ namespace StrikeOut
 		{
 			_gameplayControls = new List<SimulatedButtonControl>()
 			{
-				swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight, start
+				swingNorth, swingEast, swingSouth, swingWest, dodgeLeft, dodgeRight
 			};
 		}
 

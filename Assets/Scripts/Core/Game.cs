@@ -30,7 +30,6 @@ namespace StrikeOut
 
 		private void Update()
 		{
-			_input.mode = SimulatedControlMode.Simulate;
 			if (_debugMode)
 			{
 				// Advance one frame
@@ -41,12 +40,14 @@ namespace StrikeOut
 					_willPauseNextFrame = true;
 					Time.timeScale = 0f;
 					_isAdvancingFrameByFrame = true;
+					_input.mode = SimulatedControlMode.Simulate;
 				}
 				// Resume the game
 				else if (_willResumeNextFrame)
 				{
 					_willResumeNextFrame = false;
 					_isPaused = false;
+					_input.mode = SimulatedControlMode.PassThrough;
 				}
 				// Pause the game
 				else if (_willPauseNextFrame)
@@ -54,6 +55,7 @@ namespace StrikeOut
 					_willPauseNextFrame = false;
 					_isPaused = true;
 					_isAdvancingFrameByFrame = false;
+					_input.mode = SimulatedControlMode.Simulate;
 				}
 				// Queue pausing for next frame (when timeScale will take effect)
 				if ((_input.togglePause.justPressed || (_input.nextFrame.justPressed && !_isPaused)) && !_willPauseNextFrame && !_willResumeNextFrame)
@@ -74,6 +76,7 @@ namespace StrikeOut
 				{
 					_willAdvanceOneFrame = true;
 					Time.timeScale = 1f;
+					_input.mode = SimulatedControlMode.Simulate;
 				}
 				// Slow down time
 				_isSlowMotion = _input.slowTime.isHeld;
@@ -82,9 +85,14 @@ namespace StrikeOut
 					Time.timeScale = _isSlowMotion ? 0.1f : 1f;
 				}
 				// Quit the game
-				if (_input.start.justPressed)
+				if (_input.forceQuit.justPressed)
 				{
-					Application.Quit();
+					#if UNITY_EDITOR
+						UnityEditor.EditorApplication.isPlaying = false;
+					#else
+						Application.Quit();
+					#endif
+					return;
 				}
 			}
 		}

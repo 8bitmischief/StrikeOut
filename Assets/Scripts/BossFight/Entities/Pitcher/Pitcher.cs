@@ -13,10 +13,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void ThrowBoomerang(bool toTheRight)
 		{
-			if (toTheRight)
-				animator.ThrowBoomerang(BossFightScene.I.pitcherMoundPosition + new Vector3(1f, 0f, 0f), true);
-			else
-				animator.ThrowBoomerang(BossFightScene.I.pitcherMoundPosition - new Vector3(1f, 0f, 0f), false);
+			animator.ThrowBoomerang(BossFightScene.I.pitcherMoundPosition + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 		}
 
 		public void SpawnBoomerang(Vector3 spawnPosition)

@@ -74,26 +74,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -103,7 +94,7 @@ AnimationClip:
     attribute: _rootMotionProgress.x
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -111,26 +102,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -140,7 +122,7 @@ AnimationClip:
     attribute: _rootMotionProgress.y
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -148,26 +130,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -177,7 +150,7 @@ AnimationClip:
     attribute: _rootMotionProgress.z
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -202,22 +175,22 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 2059829236
-      script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+      attribute: 3339186625
+      script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 230772578
-      script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+      attribute: 2952839511
+      script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 0
-      attribute: 2496143064
-      script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+      attribute: 688492781
+      script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
@@ -227,7 +200,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1833333
+    m_StopTime: 1.1666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -418,26 +391,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -447,7 +411,7 @@ AnimationClip:
     attribute: _rootMotionProgress.x
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -455,26 +419,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -484,7 +439,7 @@ AnimationClip:
     attribute: _rootMotionProgress.y
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -492,26 +447,17 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        outSlope: 0.85714287
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.1666666
         value: 1
-        inSlope: 0
+        inSlope: 0.85714287
         outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1.1833333
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
@@ -521,7 +467,7 @@ AnimationClip:
     attribute: _rootMotionProgress.z
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 6461b60c58a1042cdac1d9ef4e2ba149, type: 3}
+    script: {fileID: 11500000, guid: 33095115e99864a56b0e2bc1ddddf7a3, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2

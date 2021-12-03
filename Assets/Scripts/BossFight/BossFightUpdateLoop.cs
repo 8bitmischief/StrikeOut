@@ -1,7 +1,6 @@
 using UnityEngine;
 using SharedUnityMischief.Entities;
 using SharedUnityMischief.Lifecycle;
-using SharedUnityMischief.Input.Control;
 
 namespace StrikeOut.BossFight
 {
@@ -14,22 +13,7 @@ namespace StrikeOut.BossFight
 
 		protected override void UpdateState()
 		{
-			if (Game.I.input.mode == SimulatedControlMode.Simulate)
-				Game.I.input.SimulateUpdate();
 			_entityManager.UpdateState();
-			Game.I.input.ConsumeInstantaneousInputs();
-		}
-
-		public override void Pause()
-		{
-			Game.I.input.mode = SimulatedControlMode.Simulate;
-			base.Pause();
-		}
-
-		public override void Resume()
-		{
-			Game.I.input.mode = SimulatedControlMode.PassThrough;
-			base.Resume();
 		}
 	}
 }

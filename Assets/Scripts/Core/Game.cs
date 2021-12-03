@@ -15,6 +15,8 @@ namespace StrikeOut
 		[Header("Game Managers")]
 		[SerializeField] private InputManager _input;
 		[SerializeField] private ISceneManager _sceneManager;
+		private float _time = 0f;
+		private int _frame = 0;
 		private bool _isPaused = false;
 		private bool _willPauseNextFrame = false;
 		private bool _willResumeNextFrame = false;
@@ -22,6 +24,8 @@ namespace StrikeOut
 		private bool _isAdvancingFrameByFrame = false;
 		private bool _isSlowMotion = false;
 
+		public float time => _time;
+		public int frame => _frame;
 		public bool debugMode => _debugMode;
 		public bool isPaused => _isPaused;
 		public bool isAdvancingFrameByFrame => _isAdvancingFrameByFrame;
@@ -30,6 +34,8 @@ namespace StrikeOut
 
 		private void Update()
 		{
+			_time += Time.unscaledTime;
+			_frame++;
 			if (_debugMode)
 			{
 				// Advance one frame

@@ -14,6 +14,8 @@ namespace StrikeOut.BossFight.Entities
 			Batter batter = (Batter) target;
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Batter State", EditorStyles.boldLabel);
+			EditorGUILayout.TextField("Area", batter.area.ToString());
+			EditorGUILayout.TextField("Destination", batter.destinationArea.ToString());
 			EditorGUILayout.Toggle("Is On Right Side", batter.isOnRightSide);
 			base.DrawState();
 		}

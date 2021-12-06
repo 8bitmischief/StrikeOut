@@ -21,6 +21,7 @@ namespace StrikeOut.BossFight
 		private Batter _batter = null;
 		private Pitcher _pitcher = null;
 		private List<Ball> _balls = new List<Ball>();
+		private List<Attack> _attacks = new List<Attack>();
 
 		public UpdateLoop updateLoop => _updateLoop;
 		public EntityManager entityManager => _entityManager;
@@ -29,6 +30,7 @@ namespace StrikeOut.BossFight
 		public Batter batter { get => _batter; set => _batter = value; }
 		public Pitcher pitcher { get => _pitcher; set => _pitcher = value; }
 		public List<Ball> balls => _balls;
+		public List<Attack> attacks => _attacks;
 
 		private void OnEnable()
 		{

@@ -13,6 +13,7 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int SwitchSidesHash = Animator.StringToHash("Switch Sides");
 		private static readonly int SideStepHash = Animator.StringToHash("Side Step");
 		private static readonly int EndSideStepHash = Animator.StringToHash("End Side Step");
+		private static readonly int DamageHash = Animator.StringToHash("Damage");
 
 		[SerializeField] private int _fastestSwingStartupFrames = 2;
 		[SerializeField] private int _defaultSwingStartupFrames = 4;
@@ -38,6 +39,8 @@ namespace StrikeOut.BossFight.Entities
 		public void SideStep() => Trigger(SideStepHash);
 
 		public void EndSideStep() => Trigger(EndSideStepHash);
+
+		public void Damage() => Trigger(DamageHash);
 
 		protected override void OnStartAnimation(Batter.Animation animation)
 		{

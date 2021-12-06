@@ -154,7 +154,7 @@ namespace StrikeOut.BossFight.Entities
 			Scene.I.balls.Remove(this);
 		}
 
-		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, Scene.I.locations.strikeZones[strikeZone]);
+		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, Scene.I.locations.strikeZone[strikeZone]);
 
 		public void Pitch(PitchType pitchType, Vector3 target) => Pitch(pitchType, StrikeZone.None, target);
 

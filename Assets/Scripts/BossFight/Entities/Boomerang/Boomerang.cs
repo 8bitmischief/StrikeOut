@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using SharedUnityMischief.Entities.Animated;
+using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -21,21 +23,21 @@ namespace StrikeOut.BossFight.Entities
 				case Animation.Throw:
 					if (_thrownToTheRight)
 					{
-						animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 1.5f, 0f));
 					}
 					else
 					{
-						animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 1.5f, 0f));
 					}
 					break;
 				case Animation.Rebound:
 					if (_thrownToTheRight)
 					{
-						animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 1.5f, 0f));
 					}
 					else
 					{
-						animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 1.5f, 0f));
+						animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 1.5f, 0f));
 					}
 					break;
 				case Animation.Return:
@@ -45,6 +47,12 @@ namespace StrikeOut.BossFight.Entities
 					DespawnEntity(this);
 					break;
 			}
+		}
+
+		private void ANIMATION_Attack(AnimationEvent evt)
+		{
+			AttackData attackData = evt.objectReferenceParameter as AttackData;
+			Scene.I.attacks.Add(new Attack(attackData, this));
 		}
 
 		public enum Animation

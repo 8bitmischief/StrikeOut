@@ -7,29 +7,59 @@ namespace StrikeOut.BossFight
 	public class Locations : MonoBehaviour
 	{
 		[Header("Location Targets")]
+		[SerializeField] private Transform _batterFarLeft;
 		[SerializeField] private Transform _batterLeft;
-		[SerializeField] private Transform _batterDodgeLeft;
+		[SerializeField] private Transform _batterCenter;
 		[SerializeField] private Transform _batterRight;
-		[SerializeField] private Transform _batterDodgeRight;
+		[SerializeField] private Transform _batterFarRight;
 		[SerializeField] private Transform _pitcherMound;
 		[SerializeField] private Transform _northStrikeZone;
 		[SerializeField] private Transform _eastStrikeZone;
 		[SerializeField] private Transform _southStrikeZone;
 		[SerializeField] private Transform _westStrikeZone;
+		private BatterAreaLocations _batterAreas;
 		private StrikeZoneLocations _strikeZones;
 
-		public Vector3 batterLeftPosition => _batterLeft.position;
-		public Vector3 batterDodgeLeftPosition => _batterDodgeLeft.position;
-		public Vector3 batterRightPosition => _batterRight.position;
-		public Vector3 batterDodgeRightPosition => _batterDodgeRight.position;
 		public Vector3 pitcherMoundPosition => _pitcherMound.position;
-		public StrikeZoneLocations strikeZones
+		public BatterAreaLocations batter
+		{
+			get
+			{
+				if (_batterAreas == null)
+					_batterAreas = new BatterAreaLocations(_batterFarLeft, _batterLeft, _batterCenter, _batterRight, _batterFarRight);
+				return _batterAreas;
+			}
+		}
+		public StrikeZoneLocations strikeZone
 		{
 			get
 			{
 				if (_strikeZones == null)
 					_strikeZones = new StrikeZoneLocations(_northStrikeZone, _eastStrikeZone, _southStrikeZone, _westStrikeZone);
 				return _strikeZones;
+			}
+		}
+
+		public class BatterAreaLocations
+		{
+			private Dictionary<BatterArea, Transform> _areas;
+
+			public Vector3 farLeft => _areas[BatterArea.FarLeft].position;
+			public Vector3 left => _areas[BatterArea.Left].position;
+			public Vector3 center => _areas[BatterArea.Center].position;
+			public Vector3 right => _areas[BatterArea.Right].position;
+			public Vector3 farRight => _areas[BatterArea.FarRight].position;
+			public Vector3 this[BatterArea area] => _areas[area].position;
+
+			public BatterAreaLocations(Transform farLeft, Transform left, Transform center, Transform right, Transform farRight)
+			{
+				_areas = new Dictionary<BatterArea, Transform> {
+					{ BatterArea.FarLeft, farLeft },
+					{ BatterArea.Left, left },
+					{ BatterArea.Center, center },
+					{ BatterArea.Right, right },
+					{ BatterArea.FarRight, farRight }
+				};
 			}
 		}
 

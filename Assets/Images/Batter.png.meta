@@ -86,6 +86,12 @@ TextureImporter:
   - first:
       213: -956825942199802659
     second: Batter_27
+  - first:
+      213: -5597233206055998539
+    second: Batter_28
+  - first:
+      213: 6759132317330585015
+    second: Batter_29
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -758,6 +764,48 @@ TextureImporter:
       bones: []
       spriteID: dd46d4300eba8b2f0800000000000000
       internalID: -956825942199802659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batter_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.4375, y: 0.1875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbe204fd02a252b0800000000000000
+      internalID: -5597233206055998539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batter_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.4375, y: 0.1875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b53a5cf7034dcd50800000000000000
+      internalID: 6759132317330585015
       vertices: []
       indices: 
       edges: []

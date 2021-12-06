@@ -10,13 +10,18 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(BatterAnimator))]
 	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>
 	{
+		[Header("Batter Config")]
 		[SerializeField] private PrefabPool<ParticleEffect> _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
+		private BatterArea _area = BatterArea.Left;
+		private BatterArea _destinationArea = BatterArea.None;
 		private StrikeZone _strikeZone = StrikeZone.None;
 		private Ball _targetBall = null;
 		private bool _canCancelAnimation = false;
 		private bool _isOnRightSide = false;
 
+		public BatterArea area => _area;
+		public BatterArea destinationArea => _destinationArea;
 		public bool isOnRightSide => _isOnRightSide;
 
 		private void Start()
@@ -322,22 +327,26 @@ namespace StrikeOut.BossFight.Entities
 			animator.EndSideStep();
 		}
 
+		public void Damage()
+		{
+			animator.Damage();
+		}
+
 		protected override void OnStartAnimation(Animation animation)
 		{
-			// Calculate root motion
 			switch (animation)
 			{
 				case Animation.Settle:
 				case Animation.SwitchSides:
 				case Animation.SideStepEnd:
 					animator.SetRootMotion(_isOnRightSide ?
-						Scene.I.locations.batterRightPosition :
-						Scene.I.locations.batterLeftPosition);
+						Scene.I.locations.batter.right :
+						Scene.I.locations.batter.left);
 					break;
 				case Animation.SideStepStart:
 					animator.SetRootMotion(_isOnRightSide ?
-						Scene.I.locations.batterDodgeRightPosition :
-						Scene.I.locations.batterDodgeLeftPosition);
+						Scene.I.locations.batter.farRight :
+						Scene.I.locations.batter.farLeft);
 					break;
 				case Animation.Swing:
 					switch (_strikeZone)
@@ -345,41 +354,41 @@ namespace StrikeOut.BossFight.Entities
 						case StrikeZone.North:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.9f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.9f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.East:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(2f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.South:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.5f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.5f, 0f, 0f));
 							}
 							break;
 						case StrikeZone.West:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batterRightPosition + new Vector3(-2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-2f, 0f, 0f));
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batterLeftPosition + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 0f, 0f));
 							}
 							break;
 					}
@@ -434,6 +443,39 @@ namespace StrikeOut.BossFight.Entities
 				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
 		}
 
+		private void ANIMATION_StartMovingToCenter()
+		{
+			_destinationArea = BatterArea.Center;
+		}
+
+		private void ANIMATION_FinishMovingToCenter()
+		{
+			_area = BatterArea.Center;
+			_destinationArea = BatterArea.None;
+		}
+
+		private void ANIMATION_StartMovingToSide()
+		{
+			_destinationArea = _isOnRightSide ? BatterArea.Right : BatterArea.Left;
+		}
+
+		private void ANIMATION_FinishMovingToSide()
+		{
+			_area = _isOnRightSide ? BatterArea.Right : BatterArea.Left;
+			_destinationArea = BatterArea.None;
+		}
+
+		private void ANIMATION_StartMovingToFarSide()
+		{
+			_destinationArea = _isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft;
+		}
+
+		private void ANIMATION_FinishMovingToFarSide()
+		{
+			_area = _isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft;
+			_destinationArea = BatterArea.None;
+		}
+
 		public enum Animation
 		{
 			None = 0,
@@ -442,7 +484,8 @@ namespace StrikeOut.BossFight.Entities
 			SideStepStart = 3,
 			SideStepEnd = 4,
 			Swing = 5,
-			Settle = 6
+			Settle = 6,
+			Hitstun = 7
 		}
 	}
 }

@@ -11,8 +11,9 @@ namespace StrikeOut.BossFight
 		private Entity _entity;
 		private int _activeFramesLeft;
 		private List<BatterArea> _areas;
+		private bool _hasDealtDamage = false;
 
-		public bool isDone => _activeFramesLeft == 0;
+		public bool isDone => _activeFramesLeft == 0 || !_entity.isSpawned || _hasDealtDamage;
 
 		public Attack(AttackData definition, Entity entity)
 		{
@@ -57,10 +58,13 @@ namespace StrikeOut.BossFight
 			if (!UpdateLoop.I.isInterpolating)
 			{
 				_activeFramesLeft = Mathf.Max(0, _activeFramesLeft - 1);
-				if (_areas.Contains(Scene.I.batter.area))
+				if (!_hasDealtDamage && _areas.Contains(Scene.I.batter.area))
 				{
 					if (Scene.I.batter.destinationArea == BatterArea.None || _areas.Contains(Scene.I.batter.destinationArea))
+					{
 						Scene.I.batter.Damage();
+						_hasDealtDamage = true;
+					}
 				}
 			}
 		}

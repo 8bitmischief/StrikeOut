@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Effects;
@@ -13,6 +14,8 @@ namespace StrikeOut.BossFight.Entities
 		[Header("Batter Config")]
 		[SerializeField] private PrefabPool<ParticleEffect> _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
+		private int _health = 3;
+		private int _lives = 3;
 		private BatterArea _area = BatterArea.Left;
 		private BatterArea _destinationArea = BatterArea.None;
 		private StrikeZone _strikeZone = StrikeZone.None;
@@ -20,6 +23,8 @@ namespace StrikeOut.BossFight.Entities
 		private bool _canCancelAnimation = false;
 		private bool _isOnRightSide = false;
 
+		public int health => _health;
+		public int lives => _lives;
 		public BatterArea area => _area;
 		public BatterArea destinationArea => _destinationArea;
 		public bool isOnRightSide => _isOnRightSide;
@@ -330,6 +335,12 @@ namespace StrikeOut.BossFight.Entities
 		public void Damage()
 		{
 			animator.Damage();
+			_health = Mathf.Max(0, _health - 1);
+			if (_health == 0 && _lives > 0)
+			{
+				_health = 3;
+				_lives--;
+			}
 		}
 
 		protected override void OnStartAnimation(Animation animation)

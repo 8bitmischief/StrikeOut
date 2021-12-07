@@ -1,6 +1,5 @@
 using UnityEngine;
 using SharedUnityMischief.Entities;
-using SharedUnityMischief.Lifecycle;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
@@ -18,29 +17,17 @@ namespace StrikeOut.BossFight.Entities
 		{
 			// Listen to inputs
 			if (Game.I.input.swingNorth.justPressed)
-			{
 				UseOrBufferInput(BatterInput.SwingNorth);
-			}
 			if (Game.I.input.swingEast.justPressed)
-			{
 				UseOrBufferInput(BatterInput.SwingEast);
-			}
 			if (Game.I.input.swingSouth.justPressed)
-			{
 				UseOrBufferInput(BatterInput.SwingSouth);
-			}
 			if (Game.I.input.swingWest.justPressed)
-			{
 				UseOrBufferInput(BatterInput.SwingWest);
-			}
 			if (Game.I.input.dodgeLeft.justPressed)
-			{
 				UseOrBufferInput(BatterInput.DodgeLeft);
-			}
 			if (Game.I.input.dodgeRight.justPressed)
-			{
 				UseOrBufferInput(BatterInput.DodgeRight);
-			}
 
 			// Try using buffered input
 			if (_bufferedInput != BatterInput.None)

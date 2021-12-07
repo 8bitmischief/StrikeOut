@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Entities;
@@ -15,11 +16,17 @@ namespace StrikeOut.BossFight
 
 		public bool isDone => _activeFramesLeft == 0 || !_entity.isSpawned || _hasDealtDamage;
 
-		public Attack(AttackData definition, Entity entity)
+		public event Action onDamage;
+
+		public Attack(AttackData definition, Entity entity, Action callback = null)
 		{
 			_definition = definition;
 			_entity = entity;
 			_activeFramesLeft = definition.activeFrames;
+			if (callback != null)
+			{
+				onDamage += callback;
+			}
 			switch (definition.target)
 			{
 				case AttackData.TargetType.BatterAreas:
@@ -58,12 +65,13 @@ namespace StrikeOut.BossFight
 			if (!UpdateLoop.I.isInterpolating)
 			{
 				_activeFramesLeft = Mathf.Max(0, _activeFramesLeft - 1);
-				if (!_hasDealtDamage && _areas.Contains(Scene.I.batter.area))
+				if (!_hasDealtDamage && _entity.isSpawned)
 				{
-					if (Scene.I.batter.destinationArea == BatterArea.None || _areas.Contains(Scene.I.batter.destinationArea))
+					if (_areas.Contains(Scene.I.batter.area) && (Scene.I.batter.destinationArea == BatterArea.None || _areas.Contains(Scene.I.batter.destinationArea)))
 					{
 						Scene.I.batter.Damage();
 						_hasDealtDamage = true;
+						onDamage?.Invoke();
 					}
 				}
 			}

@@ -52,7 +52,7 @@ namespace StrikeOut.BossFight.Entities
 		private void ANIMATION_Attack(AnimationEvent evt)
 		{
 			AttackData attackData = evt.objectReferenceParameter as AttackData;
-			Scene.I.attacks.Add(new Attack(attackData, this));
+			Scene.I.attacks.Add(new Attack(attackData, this, () => animator.Hit()));
 		}
 
 		public enum Animation
@@ -62,7 +62,8 @@ namespace StrikeOut.BossFight.Entities
 			Throw = 2,
 			Rebound = 3,
 			Return = 4,
-			Done = 5
+			Hit = 5,
+			Done = 6
 		}
 	}
 }

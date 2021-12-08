@@ -4,19 +4,22 @@ namespace StrikeOut.BossFight
 {
 	public class UpdateLoop : SharedUnityMischief.Lifecycle.UpdateLoop
 	{
+		private void Start()
+		{
+			Physics.autoSimulation = false;
+		}
+
 		protected override void UpdateState()
 		{
-			// Update entities
-			Scene.I.entityManager.UpdateState();
-			// Update attacks
-			foreach (Attack attack in Scene.I.attacks)
-				attack.UpdateState();
-			for (int i = Scene.I.attacks.Count - 1; i >= 0; i--)
-				if (Scene.I.attacks[i].isDone)
-					Scene.I.attacks.RemoveAt(i);
-			// Render
+			Scene.I.entityManager.EarlyUpdateEntities();
+			Scene.I.entityManager.UpdateEntities();
+			if (!isInterpolating)
+				Physics.Simulate(UpdateLoop.TimePerUpdate);
+			Scene.I.entityManager.CheckEntityInteractions();
+			Scene.I.entityManager.LateUpdateEntities();
+			Scene.I.entityManager.SpawnAndDespawnEntities();
 			if (isFinalUpdateThisFrame)
-				Scene.I.entityManager.Render();
+				Scene.I.entityManager.RenderEntities();
 		}
 	}
 }

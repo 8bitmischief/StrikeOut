@@ -1,11 +1,11 @@
 using UnityEngine;
+using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
-using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BoomerangAnimator))]
-	public class Boomerang : AnimatedEntity<BoomerangAnimator, Boomerang.Animation>
+	public class Boomerang : AnimatedEntity<BoomerangAnimator, Boomerang.Animation>, IHittable
 	{
 		private bool _thrownToTheRight = false;
 
@@ -48,10 +48,9 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		private void ANIMATION_Attack(AnimationEvent evt)
+		public void OnHit(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
 		{
-			AttackData attackData = evt.objectReferenceParameter as AttackData;
-			Scene.I.attacks.Add(new Attack(attackData, this, () => animator.Hit()));
+			animator.Hit();
 		}
 
 		public enum Animation

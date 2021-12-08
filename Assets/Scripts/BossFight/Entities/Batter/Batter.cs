@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Effects;
+using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using SharedUnityMischief.Pool;
 using StrikeOut.BossFight.Data;
@@ -9,7 +10,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>
+	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IHurtable
 	{
 		[Header("Batter Config")]
 		[SerializeField] private PrefabPool<ParticleEffect> _hitBallEffectPool;
@@ -332,7 +333,7 @@ namespace StrikeOut.BossFight.Entities
 			animator.EndSideStep();
 		}
 
-		public void Damage()
+		public void OnHurt(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
 		{
 			animator.Damage();
 			_health = Mathf.Max(0, _health - 1);
@@ -341,6 +342,7 @@ namespace StrikeOut.BossFight.Entities
 				_health = 3;
 				_lives--;
 			}
+			Debug.Log($"Batter hurt! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
 		}
 
 		protected override void OnStartAnimation(Animation animation)

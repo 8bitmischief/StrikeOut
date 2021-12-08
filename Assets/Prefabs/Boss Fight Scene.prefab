@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2425129171581443048}
-  - component: {fileID: 2630103688282189807}
+  - component: {fileID: 5306958674808183039}
   m_Layer: 0
   m_Name: Entity Manager
   m_TagString: Untagged
@@ -195,7 +195,7 @@ Transform:
   m_Father: {fileID: 3762758647755469558}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2630103688282189807
+--- !u!114 &5306958674808183039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -467,7 +467,7 @@ MonoBehaviour:
   _sceneId: 1
   _syncFrameAdvancesWithGame: 0
   _updateLoop: {fileID: 1506891888895512520}
-  _entityManager: {fileID: 2630103688282189807}
+  _entityManager: {fileID: 5306958674808183039}
   _locations: {fileID: 881021150926206555}
   _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
 --- !u!1 &5329464846669873313

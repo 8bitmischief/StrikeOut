@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;

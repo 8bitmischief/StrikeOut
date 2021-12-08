@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969706754808729934}
-  - component: {fileID: 5352531211420161498}
-  - component: {fileID: 4568753777565017483}
+  - component: {fileID: 2228348411084213664}
+  - component: {fileID: 74252212822373720}
   - component: {fileID: 1512876805111164681}
   m_Layer: 6
   m_Name: Hitbox
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5352531211420161498
+--- !u!114 &2228348411084213664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8caf8db1b861b4e5c92d0531255d64e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &4568753777565017483
+--- !u!65 &74252212822373720
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

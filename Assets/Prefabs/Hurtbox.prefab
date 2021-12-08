@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969706754808729934}
-  - component: {fileID: 591025697499309388}
-  - component: {fileID: 692394528929256384}
+  - component: {fileID: 8139174546984824444}
+  - component: {fileID: 3113350549534800274}
   - component: {fileID: 6478449125219576858}
   m_Layer: 7
   m_Name: Hurtbox
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &591025697499309388
+--- !u!114 &8139174546984824444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7319fb8b15644d6b8f01ac8012cb664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &692394528929256384
+  _collider: {fileID: 3113350549534800274}
+--- !u!65 &3113350549534800274
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -342,7 +342,7 @@ namespace StrikeOut.BossFight.Entities
 				_health = 3;
 				_lives--;
 			}
-			Debug.Log($"Batter hurt! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
+			Debug.Log($"Batter hurt by {entity.name}! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
 		}
 
 		protected override void OnStartAnimation(Animation animation)

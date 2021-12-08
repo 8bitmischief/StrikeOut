@@ -14,6 +14,9 @@ namespace StrikeOut.BossFight
 			for (int i = Scene.I.attacks.Count - 1; i >= 0; i--)
 				if (Scene.I.attacks[i].isDone)
 					Scene.I.attacks.RemoveAt(i);
+			// Render
+			if (isFinalUpdateThisFrame)
+				Scene.I.entityManager.Render();
 		}
 	}
 }

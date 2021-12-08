@@ -13,7 +13,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
-		public override void LateUpdateState()
+		public override void UpdateState()
 		{
 			// Listen to inputs
 			if (Game.I.input.swingNorth.justPressed)

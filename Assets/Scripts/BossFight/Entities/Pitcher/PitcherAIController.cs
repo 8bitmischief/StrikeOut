@@ -8,7 +8,7 @@ namespace StrikeOut.BossFight.Entities
 	{
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
-		public override void LateUpdateState()
+		public override void UpdateState()
 		{
 			if (!UpdateLoop.I.isInterpolating)
 			{

@@ -7,12 +7,12 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Pitcher))]
 	public partial class PitcherAIController : EntityCommandController<Pitcher>
 	{
-		private readonly Command idleForOneSecond = new IdleCommand(1f);
-		private readonly Command idleForTwoSeconds = new IdleCommand(2f);
-		private readonly Command moveToPitchersMound = new MoveCommand(Location.PitchersMound);
-		private readonly Command moveToBatter = new MoveToBatterCommand();
-		private readonly Command throwBoomerangLeft = new ThrowBoomerangCommand(false);
-		private readonly Command throwBoomerangRight = new ThrowBoomerangCommand(true);
+		private readonly Command IdleForOneSecond = new IdleCommand(1f);
+		private readonly Command IdleForTwoSeconds = new IdleCommand(2f);
+		private readonly Command MoveToPitchersMound = new MoveCommand(Location.PitchersMound);
+		private readonly Command MoveToBatter = new MoveToBatterCommand();
+		private readonly Command ThrowBoomerangLeft = new ThrowBoomerangCommand(false);
+		private readonly Command ThrowBoomerangRight = new ThrowBoomerangCommand(true);
 
 		private class IdleCommand : Command<Pitcher>
 		{

@@ -7,68 +7,42 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Pitcher))]
 	public partial class PitcherAIController : EntityCommandController<Pitcher>
 	{
-		private readonly Command IdleForOneSecond = new IdleCommand(1f);
-		private readonly Command IdleForTwoSeconds = new IdleCommand(2f);
-		private readonly Command MoveToPitchersMound = new MoveCommand(Location.PitchersMound);
+		private readonly Command IdleForOneSecond = new IdleCommand { duration = 1f };
+		private readonly Command IdleForTwoSeconds = new IdleCommand { duration = 2f };
+		private readonly Command MoveToPitchersMound = new MoveCommand { location = Location.PitchersMound };
 		private readonly Command MoveToBatter = new MoveToBatterCommand();
-		private readonly Command ThrowBoomerangLeft = new ThrowBoomerangCommand(false);
-		private readonly Command ThrowBoomerangRight = new ThrowBoomerangCommand(true);
+		private readonly Command ThrowBoomerangLeft = new ThrowBoomerangCommand { toTheRight = false };
+		private readonly Command ThrowBoomerangRight = new ThrowBoomerangCommand { toTheRight = true };
 
-		private class IdleCommand : Command<Pitcher>
+		public abstract class PitcherCommand : Command<Pitcher>
 		{
-			private float _duration;
-
-			public IdleCommand(float duration)
-			{
-				_duration = duration;
-			}
-
-			public override bool IsDone() => entity.isIdle && entity.idleTime >= _duration;
-		}
-
-		private class MoveCommand : Command<Pitcher>
-		{
-			private Location _location;
-
-			public MoveCommand(Location location)
-			{
-				_location = location;
-			}
-
-			public override void Start() => entity.Move(_location);
-
 			public override bool IsDone() => entity.isIdle;
 		}
 
-		private class MoveToBatterCommand : Command<Pitcher>
+		private class IdleCommand : PitcherCommand
 		{
-			public override void Start()
-			{
-				switch (Scene.I.batter.area)
-				{
-					case BatterArea.FarLeft: entity.Move(Location.InFrontOfBatterFarLeft); break;
-					case BatterArea.Left: entity.Move(Location.InFrontOfBatterLeft); break;
-					case BatterArea.Center: entity.Move(Location.InFrontOfBatterCenter); break;
-					case BatterArea.Right: entity.Move(Location.InFrontOfBatterRight); break;
-					case BatterArea.FarRight: entity.Move(Location.InFrontOfBatterFarRight); break;
-				}
-			}
+			public float duration;
 
-			public override bool IsDone() => entity.isIdle;
+			public override bool IsDone() => entity.isIdle && entity.idleTime >= duration;
 		}
 
-		private class ThrowBoomerangCommand : Command<Pitcher>
+		private class MoveCommand : PitcherCommand
 		{
-			private bool _throwToRight;
+			public Location location;
 
-			public ThrowBoomerangCommand(bool throwToRight)
-			{
-				_throwToRight = throwToRight;
-			}
+			public override void Start() => entity.Move(location);
+		}
 
-			public override void Start() => entity.ThrowBoomerang(_throwToRight);
+		private class MoveToBatterCommand : PitcherCommand
+		{
+			public override void Start() => entity.Move(Scene.I.batter.isOnRightSide ? Location.InFrontOfBatterRight : Location.InFrontOfBatterLeft);
+		}
 
-			public override bool IsDone() => entity.isIdle;
+		private class ThrowBoomerangCommand : PitcherCommand
+		{
+			public bool toTheRight;
+
+			public override void Start() => entity.ThrowBoomerang(toTheRight);
 		}
 	}
 }

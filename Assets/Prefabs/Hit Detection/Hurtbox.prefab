@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5459756217027631411}
   - component: {fileID: 8509524138642167589}
   - component: {fileID: 1140156384915642104}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39e61ba24723b4c73b128db74645d640, type: 2}
+  - {fileID: 2100000, guid: adca60d1bf13044bba2f1e0d56caf7f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,11 +90,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969706754808729934}
-  - component: {fileID: 2228348411084213664}
-  - component: {fileID: 74252212822373720}
-  - component: {fileID: 1512876805111164681}
-  m_Layer: 6
-  m_Name: Hitbox
+  - component: {fileID: 8139174546984824444}
+  - component: {fileID: 3113350549534800274}
+  - component: {fileID: 6478449125219576858}
+  m_Layer: 7
+  m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2228348411084213664
+--- !u!114 &8139174546984824444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,11 +125,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8310891680744543312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8caf8db1b861b4e5c92d0531255d64e3, type: 3}
+  m_Script: {fileID: 11500000, guid: a7319fb8b15644d6b8f01ac8012cb664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitBehaviour: 2
---- !u!65 &74252212822373720
+  _collider: {fileID: 3113350549534800274}
+--- !u!65 &3113350549534800274
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1512876805111164681
+--- !u!54 &6478449125219576858
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3822671737026550020}
   - component: {fileID: 6615731844680990149}
   - component: {fileID: 8138474335254585578}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f2bbbf5e3954458ba21aecf23d81c4a, type: 2}
+  - {fileID: 2100000, guid: bef4a58e3b5a445a7ab89235e7eb3d55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -18,6 +18,7 @@ namespace StrikeOut.BossFight.Entities
 
 				MoveToBatter,
 				Chop,
+				Chop,
 				IdleForOneSecond,
 
 				MoveToPitchersMound,

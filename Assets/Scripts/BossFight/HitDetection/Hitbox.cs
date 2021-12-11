@@ -8,8 +8,10 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(BoxCollider))]
 	public class Hitbox : EntityComponent
 	{
+		[SerializeField] private BoxCollider _collider;
+
+		[Header("Hitbox Config")]
 		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity; 
-		private BoxCollider _collider;
 		private IHittable _hittableEntity = null;
 		private HashSet<Entity> _hitEntities = new HashSet<Entity>();
 		private List<Hurtbox> _touchedHurtboxes = new List<Hurtbox>();
@@ -17,11 +19,6 @@ namespace StrikeOut.BossFight.Entities
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
 
 		public event Action<Entity, Hitbox, Hurtbox> onHit;
-
-		private void Awake()
-		{
-			_collider = GetComponent<BoxCollider>();
-		}
 
 		private void Start()
 		{
@@ -47,7 +44,7 @@ namespace StrikeOut.BossFight.Entities
 		{
 			foreach (Hurtbox hurtbox in _touchedHurtboxes)
 			{
-				if (_hitBehaviour != HitBehaviour.OneHitPerEntity || !_hitEntities.Contains(hurtbox.entity))
+				if (CanHit(hurtbox))
 				{
 					if (!_hitEntities.Contains(hurtbox.entity))
 						_hitEntities.Add(hurtbox.entity);
@@ -63,6 +60,11 @@ namespace StrikeOut.BossFight.Entities
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hurtbox.entity, this, hurtbox);
 			onHit?.Invoke(hurtbox.entity, this, hurtbox);
+		}
+
+		protected virtual bool CanHit(Hurtbox hurtbox)
+		{
+			return _hitBehaviour != HitBehaviour.OneHitPerEntity || !_hitEntities.Contains(hurtbox.entity);
 		}
 
 		private void OnTriggerStay(Collider other)

@@ -7,17 +7,12 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(BoxCollider))]
 	public class Hurtbox : EntityComponent
 	{
-		private BoxCollider _collider;
+		[SerializeField] private BoxCollider _collider;
 		private IHurtable _hurtableEntity = null;
 
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
 
 		public event Action<Entity, Hitbox, Hurtbox> onHurt;
-
-		private void Awake()
-		{
-			_collider = GetComponent<BoxCollider>();
-		}
 
 		private void Start()
 		{

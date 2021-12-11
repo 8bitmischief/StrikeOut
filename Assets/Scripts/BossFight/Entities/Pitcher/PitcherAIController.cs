@@ -1,4 +1,6 @@
 using UnityEngine;
+using SharedUnityMischief.Entities;
+using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -15,7 +17,13 @@ namespace StrikeOut.BossFight.Entities
 			QueueCommands(
 				new IdleCommand(1f),
 				new ThrowBoomerangCommand(true),
+				new MoveToBatterCommand(),
+				new IdleCommand(2f),
+				new MoveCommand(Location.PitchersMound),
 				new ThrowBoomerangCommand(true),
+				new MoveCommand(Location.InFrontOfBatterFarLeft),
+				new IdleCommand(1f),
+				new MoveCommand(Location.PitchersMound),
 				new ThrowBoomerangCommand(false)
 			);
 		}

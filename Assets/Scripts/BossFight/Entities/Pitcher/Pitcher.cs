@@ -1,5 +1,6 @@
 using UnityEngine;
 using SharedUnityMischief.Entities.Animated;
+using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -25,9 +26,14 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
+		public void Move(Location location)
+		{
+			animator.Move(Scene.I.locations[location]);
+		}
+
 		public void ThrowBoomerang(bool toTheRight)
 		{
-			animator.ThrowBoomerang(Scene.I.locations.pitcherMoundPosition + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
+			animator.ThrowBoomerang(Scene.I.locations.pitchersMound + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 		}
 
 		public void SpawnBoomerang(Vector3 spawnPosition)
@@ -40,7 +46,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			None = 0,
 			Idle = 1,
-			ThrowBoomerang = 2
+			Move = 2,
+			ThrowBoomerang = 3
 		}
 	}
 }

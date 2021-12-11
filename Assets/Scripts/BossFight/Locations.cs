@@ -12,15 +12,17 @@ namespace StrikeOut.BossFight
 		[SerializeField] private Transform _batterCenter;
 		[SerializeField] private Transform _batterRight;
 		[SerializeField] private Transform _batterFarRight;
-		[SerializeField] private Transform _pitcherMound;
+		[SerializeField] private Transform _pitchersMound;
 		[SerializeField] private Transform _northStrikeZone;
 		[SerializeField] private Transform _eastStrikeZone;
 		[SerializeField] private Transform _southStrikeZone;
 		[SerializeField] private Transform _westStrikeZone;
+		[SerializeField] private Vector3 _inFrontOfBatterOffset;
 		private BatterAreaLocations _batterAreas;
+		private BatterAreaLocations _inFrontOfBatterAreas;
 		private StrikeZoneLocations _strikeZones;
 
-		public Vector3 pitcherMoundPosition => _pitcherMound.position;
+		public Vector3 pitchersMound => _pitchersMound.position;
 		public BatterAreaLocations batter
 		{
 			get
@@ -28,6 +30,15 @@ namespace StrikeOut.BossFight
 				if (_batterAreas == null)
 					_batterAreas = new BatterAreaLocations(_batterFarLeft, _batterLeft, _batterCenter, _batterRight, _batterFarRight);
 				return _batterAreas;
+			}
+		}
+		public BatterAreaLocations inFrontOfBatter
+		{
+			get
+			{
+				if (_inFrontOfBatterAreas == null)
+					_inFrontOfBatterAreas = new BatterAreaLocations(_batterFarLeft, _batterLeft, _batterCenter, _batterRight, _batterFarRight, _inFrontOfBatterOffset);
+				return _inFrontOfBatterAreas;
 			}
 		}
 		public StrikeZoneLocations strikeZone
@@ -39,19 +50,47 @@ namespace StrikeOut.BossFight
 				return _strikeZones;
 			}
 		}
+		public Vector3 this[Location location]
+		{
+			get
+			{
+				switch (location)
+				{
+					case Location.BatterFarLeft: return batter.farLeft;
+					case Location.BatterLeft: return batter.left;
+					case Location.BatterCenter: return batter.center;
+					case Location.BatterRight: return batter.right;
+					case Location.BatterFarRight: return batter.farRight;
+					case Location.InFrontOfBatterFarLeft: return inFrontOfBatter.farLeft;
+					case Location.InFrontOfBatterLeft: return inFrontOfBatter.left;
+					case Location.InFrontOfBatterCenter: return inFrontOfBatter.center;
+					case Location.InFrontOfBatterRight: return inFrontOfBatter.right;
+					case Location.InFrontOfBatterFarRight: return inFrontOfBatter.farRight;
+					case Location.NorthStrikeZone: return strikeZone.north;
+					case Location.EastStrikeZone: return strikeZone.east;
+					case Location.SouthStrikeZone: return strikeZone.south;
+					case Location.WestStrikeZone: return strikeZone.west;
+					case Location.PitchersMound: return pitchersMound;
+					default: return Vector3.zero;
+				}
+			}
+		}
 
 		public class BatterAreaLocations
 		{
 			private Dictionary<BatterArea, Transform> _areas;
+			private Vector3 _offset;
 
-			public Vector3 farLeft => _areas[BatterArea.FarLeft].position;
-			public Vector3 left => _areas[BatterArea.Left].position;
-			public Vector3 center => _areas[BatterArea.Center].position;
-			public Vector3 right => _areas[BatterArea.Right].position;
-			public Vector3 farRight => _areas[BatterArea.FarRight].position;
-			public Vector3 this[BatterArea area] => _areas[area].position;
+			public Vector3 farLeft => _areas[BatterArea.FarLeft].position + _offset;
+			public Vector3 left => _areas[BatterArea.Left].position + _offset;
+			public Vector3 center => _areas[BatterArea.Center].position + _offset;
+			public Vector3 right => _areas[BatterArea.Right].position + _offset;
+			public Vector3 farRight => _areas[BatterArea.FarRight].position + _offset;
+			public Vector3 this[BatterArea area] => _areas[area].position + _offset;
 
-			public BatterAreaLocations(Transform farLeft, Transform left, Transform center, Transform right, Transform farRight)
+			public BatterAreaLocations(Transform farLeft, Transform left, Transform center, Transform right, Transform farRight) : this(farLeft, left, center, right, farRight, Vector3.zero) {}
+
+			public BatterAreaLocations(Transform farLeft, Transform left, Transform center, Transform right, Transform farRight, Vector3 offset)
 			{
 				_areas = new Dictionary<BatterArea, Transform> {
 					{ BatterArea.FarLeft, farLeft },
@@ -60,6 +99,7 @@ namespace StrikeOut.BossFight
 					{ BatterArea.Right, right },
 					{ BatterArea.FarRight, farRight }
 				};
+				_offset = offset;
 			}
 		}
 

@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 1448158107348083963}
   - component: {fileID: 6134597399639243470}
   m_Layer: 3
-  m_Name: Pitcher Mound
+  m_Name: Pitchers Mound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -774,11 +774,12 @@ MonoBehaviour:
   _batterCenter: {fileID: 1823023056317656886}
   _batterRight: {fileID: 4687895176595517196}
   _batterFarRight: {fileID: 4859474918416290433}
-  _pitcherMound: {fileID: 1448158107348083963}
+  _pitchersMound: {fileID: 1448158107348083963}
   _northStrikeZone: {fileID: 5941177704693704870}
   _eastStrikeZone: {fileID: 7328265425996458503}
   _southStrikeZone: {fileID: 3082296014295270838}
   _westStrikeZone: {fileID: 508034976951586730}
+  _inFrontOfBatterOffset: {x: 0, y: 0, z: 2.5}
 --- !u!1 &7365538456057570694
 GameObject:
   m_ObjectHideFlags: 0

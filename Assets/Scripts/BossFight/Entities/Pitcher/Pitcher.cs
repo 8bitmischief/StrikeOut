@@ -21,20 +21,14 @@ namespace StrikeOut.BossFight.Entities
 		public override void OnDespawn()
 		{
 			if (Scene.I.pitcher == this)
-			{
 				Scene.I.pitcher = null;
-			}
 		}
 
-		public void Move(Location location)
-		{
-			animator.Move(Scene.I.locations[location]);
-		}
+		public void Move(Location location) => animator.Move(Scene.I.locations[location]);
 
-		public void ThrowBoomerang(bool toTheRight)
-		{
-			animator.ThrowBoomerang(Scene.I.locations.pitchersMound + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
-		}
+		public void Chop() => animator.Chop();
+
+		public void ThrowBoomerang(bool toTheRight) => animator.ThrowBoomerang(Scene.I.locations.pitchersMound + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 
 		public void SpawnBoomerang(Vector3 spawnPosition)
 		{
@@ -47,7 +41,8 @@ namespace StrikeOut.BossFight.Entities
 			None = 0,
 			Idle = 1,
 			Move = 2,
-			ThrowBoomerang = 3
+			ThrowBoomerang = 3,
+			Chop = 4
 		}
 	}
 }

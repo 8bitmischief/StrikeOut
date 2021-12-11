@@ -1,22 +1,23 @@
 using UnityEngine;
-using SharedUnityMischief.Entities;
 
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Pitcher))]
-	public class PitcherAIController : EntityComponent<Pitcher>
+	public partial class PitcherAIController : EntityCommandController<Pitcher>
 	{
-		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
-
 		public override void UpdateState()
 		{
-			if (!UpdateLoop.I.isInterpolating)
-			{
-				if (entity.isIdle)
-				{
-					entity.ThrowBoomerang(true);
-				}
-			}
+			base.UpdateState();
+		}
+
+		protected override void DecideNextAction()
+		{
+			QueueCommands(
+				new IdleCommand(1f),
+				new ThrowBoomerangCommand(true),
+				new ThrowBoomerangCommand(true),
+				new ThrowBoomerangCommand(false)
+			);
 		}
 	}
 }

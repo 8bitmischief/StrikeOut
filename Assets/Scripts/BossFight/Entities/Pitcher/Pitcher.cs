@@ -10,6 +10,7 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private BoomerangPool _boomerangPool;
 
 		public bool isIdle => animation == Animation.Idle;
+		public float idleTime => animation == Animation.Idle ? totalAnimationTime : 0f;
 
 		public override void OnSpawn()
 		{

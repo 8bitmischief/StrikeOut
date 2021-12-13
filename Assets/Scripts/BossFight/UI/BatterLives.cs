@@ -12,7 +12,7 @@ namespace StrikeOut.BossFight.UI
 
 		private void Update()
 		{
-			SetLives(Scene.I.batter.lives);
+			SetLives(Scene.I.entityManager.batter.lives);
 		}
 
 		public void SetLives(int lives)

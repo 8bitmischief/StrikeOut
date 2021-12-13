@@ -36,7 +36,7 @@ namespace StrikeOut.BossFight.Entities
 
 		private class MoveToBatterCommand : PitcherCommand
 		{
-			public override void Start() => entity.Move(Scene.I.batter.isOnRightSide ? Location.InFrontOfBatterRight : Location.InFrontOfBatterLeft);
+			public override void Start() => entity.Move(Scene.I.entityManager.batter.isOnRightSide ? Location.InFrontOfBatterRight : Location.InFrontOfBatterLeft);
 		}
 
 		private class ChopCommand : PitcherCommand

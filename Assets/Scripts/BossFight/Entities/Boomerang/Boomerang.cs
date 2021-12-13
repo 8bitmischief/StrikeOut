@@ -40,7 +40,7 @@ namespace StrikeOut.BossFight.Entities
 					}
 					break;
 				case Animation.Return:
-					animator.SetRootMotion(Scene.I.pitcher.transform.position + new Vector3(0f, 1.5f, 0f));
+					animator.SetRootMotion(Scene.I.entityManager.pitcher.transform.position + new Vector3(0f, 1.5f, 0f));
 					break;
 				case Animation.Done:
 					DespawnEntity(this);

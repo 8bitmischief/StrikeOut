@@ -373,7 +373,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1403,6 +1403,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 327675101165031240, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5211356092236539860, guid: f0c0100aeb9c44b2a9a366e0feea5aa8, type: 3}
       propertyPath: m_Name
       value: Pitcher
@@ -2000,7 +2004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2425129170255810288}
-  - component: {fileID: 5306958675596479975}
+  - component: {fileID: 849828746234401849}
   m_Layer: 0
   m_Name: Entity Manager
   m_TagString: Untagged
@@ -2008,6 +2012,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &849828746234401849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849828746234401848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4e6861e29d74f559f18ce938c082bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &881021152284795715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3038,18 +3054,6 @@ Transform:
   m_Father: {fileID: 1462210461763452705}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &5306958675596479975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849828746234401848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfbc807212f1c234d8dfcfa569db4295, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5312262812532645864
 Transform:
   m_ObjectHideFlags: 0
@@ -3114,7 +3118,7 @@ MonoBehaviour:
   _sceneId: 1
   _syncFrameAdvancesWithGame: 0
   _updateLoop: {fileID: 1506891888107281104}
-  _entityManager: {fileID: 5306958675596479975}
+  _entityManager: {fileID: 849828746234401849}
   _locations: {fileID: 881021152284795715}
   _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
 --- !u!212 &5862799750840436141

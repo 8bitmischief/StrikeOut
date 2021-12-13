@@ -15,13 +15,13 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnSpawn()
 		{
-			Scene.I.pitcher = this;
+			Scene.I.entityManager.pitcher = this;
 		}
 
 		public override void OnDespawn()
 		{
-			if (Scene.I.pitcher == this)
-				Scene.I.pitcher = null;
+			if (Scene.I.entityManager.pitcher == this)
+				Scene.I.entityManager.pitcher = null;
 		}
 
 		public void Move(Location location) => animator.Move(Scene.I.locations[location]);

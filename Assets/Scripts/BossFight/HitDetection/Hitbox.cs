@@ -2,20 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Entities;
+using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight.Entities
+namespace StrikeOut.BossFight
 {
-	[RequireComponent(typeof(BoxCollider))]
 	public class Hitbox : EntityComponent
 	{
 		[SerializeField] private BoxCollider _collider;
 
 		[Header("Hitbox Config")]
-		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity; 
+		[SerializeField] private bool _requireOverlap;
+		[SerializeField] private List<HitChannel> _channels;
+		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity;
 		private IHittable _hittableEntity = null;
 		private HashSet<Entity> _hitEntities = new HashSet<Entity>();
-		private List<Hurtbox> _touchedHurtboxes = new List<Hurtbox>();
+		private HashSet<Hurtbox> _overlappingHurtboxes = new HashSet<Hurtbox>();
 
+		public List<HitChannel> channels => _channels;
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
 
 		public event Action<Entity, Hitbox, Hurtbox> onHit;
@@ -26,10 +29,17 @@ namespace StrikeOut.BossFight.Entities
 				_hittableEntity = entity as IHittable;
 		}
 
-		private void OnEnable()
+		protected virtual void OnEnable()
 		{
 			_hitEntities.Clear();
-			_touchedHurtboxes.Clear();
+			_overlappingHurtboxes.Clear();
+			Scene.I.updateLoop.RegisterHitbox(this);
+		}
+
+		private void OnDisable()
+		{
+			if (Scene.hasInstance)
+				Scene.I.updateLoop.UnregisterHitbox(this);
 		}
 
 		public override void UpdateState()
@@ -38,41 +48,32 @@ namespace StrikeOut.BossFight.Entities
 				Mathf.Sign(transform.lossyScale.x),
 				Mathf.Sign(transform.lossyScale.y),
 				Mathf.Sign(transform.lossyScale.z));
+			_overlappingHurtboxes.Clear();
 		}
 
-		public override void CheckInteractions()
+		public virtual bool CanHit(Hurtbox hurtbox)
 		{
-			foreach (Hurtbox hurtbox in _touchedHurtboxes)
-			{
-				if (CanHit(hurtbox))
-				{
-					if (!_hitEntities.Contains(hurtbox.entity))
-						_hitEntities.Add(hurtbox.entity);
-					OnHit(hurtbox);
-					hurtbox.OnHurt(this);
-				}
-			}
-			_touchedHurtboxes.Clear();
+			if (_requireOverlap && !_overlappingHurtboxes.Contains(hurtbox))
+				return false;
+			else if (_hitBehaviour == HitBehaviour.OneHitPerEntity && _hitEntities.Contains(hurtbox.entity))
+				return false;
+			else
+				return hurtbox.channel == HitChannel.None || _channels.Contains(hurtbox.channel);
 		}
 
 		public void OnHit(Hurtbox hurtbox)
 		{
+			if (!_hitEntities.Contains(hurtbox.entity))
+				_hitEntities.Add(hurtbox.entity);
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hurtbox.entity, this, hurtbox);
 			onHit?.Invoke(hurtbox.entity, this, hurtbox);
 		}
 
-		protected virtual bool CanHit(Hurtbox hurtbox)
-		{
-			return _hitBehaviour != HitBehaviour.OneHitPerEntity || !_hitEntities.Contains(hurtbox.entity);
-		}
-
 		private void OnTriggerStay(Collider other)
 		{
 			if (other.TryGetComponent(out Hurtbox hurtbox))
-			{
-				_touchedHurtboxes.Add(hurtbox);
-			}
+				_overlappingHurtboxes.Add(hurtbox);
 		}
 
 		private enum HitBehaviour

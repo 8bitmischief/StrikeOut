@@ -37,7 +37,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnSpawn()
 		{
-			Scene.I.batter = this;
+			Scene.I.entityManager.batter = this;
 		}
 
 		protected override void OnEnable()
@@ -56,10 +56,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnDespawn()
 		{
-			if (Scene.I.batter == this)
-			{
-				Scene.I.batter = null;
-			}
+			if (Scene.I.entityManager.batter == this)
+				Scene.I.entityManager.batter = null;
 		}
 
 		public bool CanSwing(StrikeZone strikeZone)
@@ -144,7 +142,7 @@ namespace StrikeOut.BossFight.Entities
 			this._strikeZone = strikeZone;
 			// Find the ball that's most worth considering for this swing
 			Ball bestCandidateBall = null;
-			foreach (Ball ball in Scene.I.balls)
+			foreach (Ball ball in Scene.I.entityManager.balls)
 			{
 				bool chooseClosestToBattingLine = false;
 				if (bestCandidateBall == null)

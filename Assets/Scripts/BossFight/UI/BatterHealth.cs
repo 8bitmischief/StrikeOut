@@ -12,7 +12,7 @@ namespace StrikeOut.BossFight.UI
 
 		private void Update()
 		{
-			SetHealth(Scene.I.batter.health);
+			SetHealth(Scene.I.entityManager.batter.health);
 		}
 
 		public void SetHealth(int health)

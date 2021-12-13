@@ -88,7 +88,7 @@ namespace StrikeOut.BossFight.Entities
 		public override void OnSpawn()
 		{
 			_prevPosition = transform.position;
-			Scene.I.balls.Add(this);
+			Scene.I.entityManager.balls.Add(this);
 		}
 
 		public override void UpdateState()
@@ -151,7 +151,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void OnDespawn()
 		{
-			Scene.I.balls.Remove(this);
+			Scene.I.entityManager.balls.Remove(this);
 		}
 
 		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, Scene.I.locations.strikeZone[strikeZone]);

@@ -1,31 +1,31 @@
 using UnityEngine;
 using StrikeOut.BossFight.Data;
 
-namespace StrikeOut.BossFight.Entities
+namespace StrikeOut.BossFight
 {
-	[RequireComponent(typeof(BoxCollider))]
 	public class EnemyHitbox : Hitbox
 	{
+		[SerializeField] private bool _hitsFarSameSide = false;
+		[SerializeField] private bool _hitsSameSide = true;
 		[SerializeField] private bool _hitsCenter = false;
-		[SerializeField] private bool _hitsSides = true;
-		[SerializeField] private bool _hitsFarSides = false;
+		[SerializeField] private bool _hitsOppositeSide = false;
+		[SerializeField] private bool _hitsFarOppositeSide = false;
+		private bool _isOnRightSide;
 
-		protected override bool CanHit(Hurtbox hurtbox)
+		protected override void OnEnable()
+		{
+			base.OnEnable();
+			_isOnRightSide = entity.transform.position.x >= Scene.I.locations.batter.center.x;
+		}
+
+		public override bool CanHit(Hurtbox hurtbox)
 		{
 			if (base.CanHit(hurtbox))
 			{
-				if (hurtbox.entity == Scene.I.batter)
+				if (hurtbox.entity == Scene.I.entityManager.batter)
 				{
-					BatterArea area = Scene.I.batter.area;
-					BatterArea destinationArea = Scene.I.batter.destinationArea;
-					if (!_hitsSides && (area == BatterArea.Left || area == BatterArea.Right || destinationArea == BatterArea.Left || destinationArea == BatterArea.Right))
-						return false;
-					else if (!_hitsFarSides && (area == BatterArea.FarLeft || area == BatterArea.FarRight || destinationArea == BatterArea.FarLeft || destinationArea == BatterArea.FarRight))
-						return false;
-					else if (!_hitsCenter && (area == BatterArea.Center || destinationArea == BatterArea.Center))
-						return false;
-					else
-						return true;
+					return DoesHitArea(Scene.I.entityManager.batter.area) &&
+						(Scene.I.entityManager.batter.destinationArea == BatterArea.None || DoesHitArea(Scene.I.entityManager.batter.destinationArea));
 				}
 				else
 				{
@@ -35,6 +35,19 @@ namespace StrikeOut.BossFight.Entities
 			else
 			{
 				return false;
+			}
+		}
+
+		private bool DoesHitArea(BatterArea area)
+		{
+			switch (area)
+			{
+				case BatterArea.FarLeft: return (_isOnRightSide && _hitsFarOppositeSide) || (!_isOnRightSide && _hitsFarSameSide);
+				case BatterArea.FarRight: return (!_isOnRightSide && _hitsFarOppositeSide) || (_isOnRightSide && _hitsFarSameSide);
+				case BatterArea.Left: return (_isOnRightSide && _hitsOppositeSide) || (!_isOnRightSide && _hitsSameSide);
+				case BatterArea.Right: return (!_isOnRightSide && _hitsOppositeSide) || (_isOnRightSide && _hitsSameSide);
+				case BatterArea.Center: return _hitsCenter;
+				default: return false;
 			}
 		}
 	}

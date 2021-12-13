@@ -90,9 +90,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969706754808729934}
-  - component: {fileID: 1460537014209207751}
-  - component: {fileID: 74252212822373720}
-  - component: {fileID: 1512876805111164681}
+  - component: {fileID: 6011141462479633392}
+  - component: {fileID: 6873600026809666568}
+  - component: {fileID: 6499807459872201833}
   m_Layer: 6
   m_Name: Enemy Hitbox
   m_TagString: Untagged
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1460537014209207751
+--- !u!114 &6011141462479633392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,12 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de18c644a287c4b23984bb39a7e7fbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 6873600026809666568}
+  _requireTouch: 0
+  _channels: 01000000
   _hitBehaviour: 2
-  _collider: {fileID: 74252212822373720}
+  _hitsFarSameSide: 0
+  _hitsSameSide: 1
   _hitsCenter: 0
-  _hitsSides: 1
-  _hitsFarSides: 0
---- !u!65 &74252212822373720
+  _hitsOppositeSide: 0
+  _hitsFarOppositeSide: 0
+--- !u!65 &6873600026809666568
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +150,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1512876805111164681
+--- !u!54 &6499807459872201833
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

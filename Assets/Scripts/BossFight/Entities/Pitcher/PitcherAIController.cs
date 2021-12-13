@@ -15,6 +15,8 @@ namespace StrikeOut.BossFight.Entities
 			QueueCommands(
 				ThrowBoomerangRight,
 				IdleForTwoSeconds,
+				Pitch,
+				IdleForTwoSeconds,
 
 				MoveToBatter,
 				Chop,

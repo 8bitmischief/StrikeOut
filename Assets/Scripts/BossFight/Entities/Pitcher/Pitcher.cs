@@ -8,6 +8,7 @@ namespace StrikeOut.BossFight.Entities
 	public class Pitcher : AnimatedEntity<PitcherAnimator, Pitcher.Animation>
 	{
 		[Header("Prefab Pools")]
+		[SerializeField] private BallPool _ballPool;
 		[SerializeField] private BoomerangPool _boomerangPool;
 
 		public bool isIdle => animation == Animation.Idle;
@@ -30,6 +31,14 @@ namespace StrikeOut.BossFight.Entities
 
 		public void ThrowBoomerang(bool toTheRight) => animator.ThrowBoomerang(Scene.I.locations.pitchersMound + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 
+		public void Pitch() => animator.Pitch();
+
+		public void SpawnBall(Vector3 spawnPosition)
+		{
+			Ball ball = SpawnEntityFromPool(_ballPool, spawnPosition);
+			ball.Pitch(PitchType.Curveball, StrikeZone.North);
+		}
+
 		public void SpawnBoomerang(Vector3 spawnPosition)
 		{
 			Boomerang boomerang = SpawnEntityFromPool(_boomerangPool, spawnPosition);
@@ -41,8 +50,9 @@ namespace StrikeOut.BossFight.Entities
 			None = 0,
 			Idle = 1,
 			Move = 2,
-			ThrowBoomerang = 3,
-			Chop = 4
+			Pitch = 3,
+			Chop = 4,
+			ThrowBoomerang = 5,
 		}
 	}
 }

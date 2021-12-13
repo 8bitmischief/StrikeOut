@@ -7,6 +7,7 @@ namespace StrikeOut.BossFight.Entities
 	public class PitcherAnimator : EntityAnimator<Pitcher, Pitcher.Animation>
 	{
 		private static readonly int MoveHash = Animator.StringToHash("Move");
+		private static readonly int PitchHash = Animator.StringToHash("Pitch");
 		private static readonly int ChopHash = Animator.StringToHash("Chop");
 		private static readonly int ThrowBoomerangHash = Animator.StringToHash("Throw Boomerang");
 
@@ -14,6 +15,8 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private Transform _spawnLocation;
 
 		public void Move(Vector3 targetPosition) => Trigger(MoveHash, targetPosition);
+
+		public void Pitch() => Trigger(PitchHash);
 
 		public void Chop() => Trigger(ChopHash);
 
@@ -27,7 +30,10 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (evt.stringParameter)
 			{
-				case "Throw Boomerang":
+				case "Spawn Ball":
+					entity.SpawnBall(_spawnLocation.transform.position);
+					break;
+				case "Spawn Boomerang":
 					entity.SpawnBoomerang(_spawnLocation.transform.position);
 					break;
 			}

@@ -531,7 +531,7 @@ AnimationClip:
   m_Events:
   - time: 0.8
     functionName: ANIMATION_TriggerAnimationEvent
-    data: Throw Boomerang
+    data: Spawn Boomerang
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

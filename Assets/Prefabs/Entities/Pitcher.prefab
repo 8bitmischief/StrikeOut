@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1651131383796506915}
   - component: {fileID: 8108885384939771603}
   - component: {fileID: 3556943970642921837}
+  - component: {fileID: 7563711982102986411}
   - component: {fileID: 3842467176659385849}
   m_Layer: 0
   m_Name: Pitcher
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _appendSpawnIndexToName: 0
+  _ballPool: {fileID: 7563711982102986411}
   _boomerangPool: {fileID: 3842467176659385849}
 --- !u!114 &1651131383796506915
 MonoBehaviour:
@@ -196,6 +198,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7563711982102986411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211356092236539860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45aec7860084e69448860171b0a82e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool:
+    _prefab: {fileID: 1216380686149261798, guid: 370472b68b3054919af9d596e0cb8c96, type: 3}
+    _collectionCheck: 0
+    _defaultCapacity: 0
+    _maxSize: -1
 --- !u!114 &3842467176659385849
 MonoBehaviour:
   m_ObjectHideFlags: 0

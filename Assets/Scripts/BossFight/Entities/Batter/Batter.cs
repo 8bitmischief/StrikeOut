@@ -13,7 +13,7 @@ namespace StrikeOut.BossFight.Entities
 	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IHurtable
 	{
 		[Header("Batter Config")]
-		[SerializeField] private PrefabPool<ParticleEffect> _hitBallEffectPool;
+		[SerializeField] private PrefabPool _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
 		private int _lives = 3;
@@ -441,7 +441,7 @@ namespace StrikeOut.BossFight.Entities
 				}
 				_targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				_hitBallEffectPool.Withdraw(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f)).Play();
+				_hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f)).Play();
 			}
 			_targetBall = null;
 		}

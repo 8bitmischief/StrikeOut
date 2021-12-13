@@ -26,19 +26,6 @@ namespace StrikeOut.BossFight.Entities
 			Trigger(ThrowBoomerangHash, targetPosition);
 		}
 
-		protected override void OnAnimationEvent(AnimationEvent evt)
-		{
-			switch (evt.stringParameter)
-			{
-				case "Spawn Ball":
-					entity.SpawnBall(_spawnLocation.transform.position);
-					break;
-				case "Spawn Boomerang":
-					entity.SpawnBoomerang(_spawnLocation.transform.position);
-					break;
-			}
-		}
-
 		private void Flip(bool flipped)
 		{
 			transform.localScale = new Vector3(

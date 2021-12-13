@@ -13,18 +13,13 @@ namespace StrikeOut.BossFight.Entities
 		protected override void DecideNextAction()
 		{
 			QueueCommands(
-				ThrowBoomerangRight,
-				IdleForTwoSeconds,
-				Pitch,
-				IdleForTwoSeconds,
-
+				MoveInFrontOfBatterCenter,
+				SlashLeft,
+				MoveInFrontOfBatterCenter,
+				SlashRight,
 				MoveToBatter,
 				Chop,
-				Chop,
-				IdleForOneSecond,
-
-				MoveToPitchersMound,
-				IdleForOneSecond
+				Chop
 			);
 		}
 	}

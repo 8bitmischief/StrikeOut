@@ -13,12 +13,11 @@ namespace StrikeOut.BossFight.Entities
 	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IHurtable
 	{
 		[Header("Batter Config")]
+		[SerializeField] private BatterAreaHurtbox _hurtbox;
 		[SerializeField] private PrefabPool _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
 		private int _lives = 3;
-		private BatterArea _area = BatterArea.Left;
-		private BatterArea _destinationArea = BatterArea.None;
 		private StrikeZone _strikeZone = StrikeZone.None;
 		private Ball _targetBall = null;
 		private bool _canCancelAnimation = false;
@@ -26,8 +25,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public int health => _health;
 		public int lives => _lives;
-		public BatterArea area => _area;
-		public BatterArea destinationArea => _destinationArea;
+		public BatterArea area => _hurtbox.area;
+		public BatterArea destinationArea => _hurtbox.destinationArea;
 		public bool isOnRightSide => _isOnRightSide;
 
 		private void Start()
@@ -452,39 +451,6 @@ namespace StrikeOut.BossFight.Entities
 		{
 			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= animator.slowestSwingStartupFrames)) &&
 				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
-		}
-
-		private void ANIMATION_StartMovingToCenter()
-		{
-			_destinationArea = BatterArea.Center;
-		}
-
-		private void ANIMATION_FinishMovingToCenter()
-		{
-			_area = BatterArea.Center;
-			_destinationArea = BatterArea.None;
-		}
-
-		private void ANIMATION_StartMovingToSide()
-		{
-			_destinationArea = _isOnRightSide ? BatterArea.Right : BatterArea.Left;
-		}
-
-		private void ANIMATION_FinishMovingToSide()
-		{
-			_area = _isOnRightSide ? BatterArea.Right : BatterArea.Left;
-			_destinationArea = BatterArea.None;
-		}
-
-		private void ANIMATION_StartMovingToFarSide()
-		{
-			_destinationArea = _isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft;
-		}
-
-		private void ANIMATION_FinishMovingToFarSide()
-		{
-			_area = _isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft;
-			_destinationArea = BatterArea.None;
 		}
 
 		public enum Animation

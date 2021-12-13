@@ -11,9 +11,9 @@ namespace StrikeOut.BossFight
 		[SerializeField] private BoxCollider _collider;
 
 		[Header("Hitbox Config")]
-		[SerializeField] private bool _requireOverlap;
-		[SerializeField] private List<HitChannel> _channels;
+		[SerializeField] private bool _requireOverlap = false;
 		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity;
+		[SerializeField] private List<HitChannel> _channels;
 		private IHittable _hittableEntity = null;
 		private HashSet<Entity> _hitEntities = new HashSet<Entity>();
 		private HashSet<Hurtbox> _overlappingHurtboxes = new HashSet<Hurtbox>();
@@ -51,11 +51,11 @@ namespace StrikeOut.BossFight
 			_overlappingHurtboxes.Clear();
 		}
 
-		public virtual bool CanHit(Hurtbox hurtbox)
+		public virtual bool IsHitting(Hurtbox hurtbox)
 		{
-			if (_requireOverlap && !_overlappingHurtboxes.Contains(hurtbox))
+			if (_requireOverlap && !IsOverlapping(hurtbox))
 				return false;
-			else if (_hitBehaviour == HitBehaviour.OneHitPerEntity && _hitEntities.Contains(hurtbox.entity))
+			else if (_hitBehaviour == HitBehaviour.OneHitPerEntity && HasAlreadyHit(hurtbox.entity))
 				return false;
 			else
 				return hurtbox.channel == HitChannel.None || _channels.Contains(hurtbox.channel);
@@ -68,6 +68,16 @@ namespace StrikeOut.BossFight
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hurtbox.entity, this, hurtbox);
 			onHit?.Invoke(hurtbox.entity, this, hurtbox);
+		}
+
+		private bool IsOverlapping(Hurtbox hurtbox)
+		{
+			return _overlappingHurtboxes.Contains(hurtbox);
+		}
+
+		private bool HasAlreadyHit(Entity entity)
+		{
+			return _hitEntities.Contains(entity);
 		}
 
 		private void OnTriggerStay(Collider other)

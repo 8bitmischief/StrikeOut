@@ -29,6 +29,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Pitch() => animator.Pitch();
 
+		public void Slash(bool toTheRight) => animator.Slash(toTheRight);
+
 		public enum Animation
 		{
 			None = 0,
@@ -37,6 +39,7 @@ namespace StrikeOut.BossFight.Entities
 			Pitch = 3,
 			Chop = 4,
 			ThrowBoomerang = 5,
+			Slash = 6
 		}
 	}
 }

@@ -43,7 +43,7 @@ namespace StrikeOut.BossFight
 				{
 					foreach (Hurtbox hurtbox in _hurtboxes)
 					{
-						if (hurtbox.isActiveAndEnabled && hitbox.CanHit(hurtbox))
+						if (hurtbox.isActiveAndEnabled && hitbox.IsHitting(hurtbox))
 						{
 							hitbox.OnHit(hurtbox);
 							hurtbox.OnHurt(hitbox);

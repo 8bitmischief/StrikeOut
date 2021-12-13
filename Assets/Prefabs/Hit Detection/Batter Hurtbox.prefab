@@ -90,11 +90,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7969706754808729934}
-  - component: {fileID: 8139174546984824444}
+  - component: {fileID: 3108762162860194938}
   - component: {fileID: 5111666123651168298}
   - component: {fileID: 8238780782882129777}
   m_Layer: 7
-  m_Name: Hurtbox
+  m_Name: Batter Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8139174546984824444
+--- !u!114 &3108762162860194938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,11 +125,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8310891680744543312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7319fb8b15644d6b8f01ac8012cb664, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c99cc927d4e93942a266a25895369b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 5111666123651168298}
   _channel: 1
+  _area: 0
+  _destinationArea: 0
 --- !u!65 &5111666123651168298
 BoxCollider:
   m_ObjectHideFlags: 0

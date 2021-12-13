@@ -9,12 +9,15 @@ namespace StrikeOut.BossFight.Entities
 	{
 		private readonly Command IdleForOneSecond = new IdleCommand { duration = 1f };
 		private readonly Command IdleForTwoSeconds = new IdleCommand { duration = 2f };
+		private readonly Command MoveInFrontOfBatterCenter = new MoveCommand { location = Location.InFrontOfBatterCenter };
 		private readonly Command MoveToPitchersMound = new MoveCommand { location = Location.PitchersMound };
 		private readonly Command MoveToBatter = new MoveToBatterCommand();
 		private readonly Command Pitch = new PitchCommand();
 		private readonly Command Chop = new ChopCommand();
 		private readonly Command ThrowBoomerangLeft = new ThrowBoomerangCommand { toTheRight = false };
 		private readonly Command ThrowBoomerangRight = new ThrowBoomerangCommand { toTheRight = true };
+		private readonly Command SlashLeft = new SlashCommand { toTheRight = false };
+		private readonly Command SlashRight = new SlashCommand { toTheRight = true };
 
 		public abstract class PitcherCommand : Command<Pitcher>
 		{
@@ -55,6 +58,13 @@ namespace StrikeOut.BossFight.Entities
 			public bool toTheRight;
 
 			public override void Start() => entity.ThrowBoomerang(toTheRight);
+		}
+
+		private class SlashCommand : PitcherCommand
+		{
+			public bool toTheRight;
+
+			public override void Start() => entity.Slash(toTheRight);
 		}
 	}
 }

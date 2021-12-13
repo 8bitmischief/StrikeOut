@@ -129,12 +129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 6873600026809666568}
-  _requireTouch: 0
-  _channels: 01000000
+  _requireOverlap: 0
   _hitBehaviour: 2
-  _hitsFarSameSide: 0
-  _hitsSameSide: 1
+  _channels: 01000000
+  _hitsFarLeft: 0
+  _hitsLeft: 0
   _hitsCenter: 0
+  _hitsRight: 0
+  _hitsFarRight: 0
+  _hitsFarSameSide: 0
+  _hitsSameSide: 0
   _hitsOppositeSide: 0
   _hitsFarOppositeSide: 0
 --- !u!65 &6873600026809666568

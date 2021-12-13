@@ -9,6 +9,7 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int MoveHash = Animator.StringToHash("Move");
 		private static readonly int PitchHash = Animator.StringToHash("Pitch");
 		private static readonly int ChopHash = Animator.StringToHash("Chop");
+		private static readonly int SlashHash = Animator.StringToHash("Slash");
 		private static readonly int ThrowBoomerangHash = Animator.StringToHash("Throw Boomerang");
 
 		[Header("Children")]
@@ -24,6 +25,12 @@ namespace StrikeOut.BossFight.Entities
 		{
 			Flip(!leanRight);
 			Trigger(ThrowBoomerangHash, targetPosition);
+		}
+
+		public void Slash(bool toTheRight)
+		{
+			Flip(!toTheRight);
+			Trigger(SlashHash);
 		}
 
 		private void Flip(bool flipped)

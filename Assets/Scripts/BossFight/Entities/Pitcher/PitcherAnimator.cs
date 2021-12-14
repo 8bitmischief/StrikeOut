@@ -11,6 +11,7 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int ChopHash = Animator.StringToHash("Chop");
 		private static readonly int SlashHash = Animator.StringToHash("Slash");
 		private static readonly int ThrowBoomerangHash = Animator.StringToHash("Throw Boomerang");
+		private static readonly int ParryHash = Animator.StringToHash("Parry");
 
 		[Header("Children")]
 		[SerializeField] private Transform _spawnLocation;
@@ -32,6 +33,8 @@ namespace StrikeOut.BossFight.Entities
 			Flip(!toTheRight);
 			Trigger(SlashHash);
 		}
+
+		public void Parry() => Trigger(ParryHash);
 
 		private void Flip(bool flipped)
 		{

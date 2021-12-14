@@ -11,9 +11,9 @@ namespace StrikeOut.BossFight
 		[SerializeField] private bool _hitsWest;
 
 		public bool hitsNorth => _hitsNorth;
-		public bool hitsEast => transform.localScale.x >= 0f ? _hitsEast : _hitsWest;
+		public bool hitsEast => entity.transform.localScale.x >= 0f ? _hitsEast : _hitsWest;
 		public bool hitsSouth => _hitsSouth;
-		public bool hitsWest => transform.localScale.x >= 0f ? _hitsWest : _hitsEast;
+		public bool hitsWest => entity.transform.localScale.x >= 0f ? _hitsWest : _hitsEast;
 
 		public override bool IsHitting(Hurtbox hurtbox)
 		{

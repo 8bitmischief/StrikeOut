@@ -5,6 +5,16 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Pitcher))]
 	public partial class PitcherAIController : EntityCommandController<Pitcher>
 	{
+		private void OnEnable()
+		{
+			entity.onParry += OnParry;
+		}
+
+		private void OnDisable()
+		{
+			entity.onParry += OnParry;
+		}
+
 		public override void UpdateState()
 		{
 			base.UpdateState();
@@ -21,6 +31,12 @@ namespace StrikeOut.BossFight.Entities
 				Chop,
 				Chop
 			);
+		}
+
+		private void OnParry()
+		{
+			ClearCommands();
+			QueueCommand(IdleForOneSecond);
 		}
 	}
 }

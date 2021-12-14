@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
+using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : AnimatedEntity<PitcherAnimator, Pitcher.Animation>
+	public class Pitcher : AnimatedEntity<PitcherAnimator, Pitcher.Animation>, IHurtable
 	{
 		public bool isIdle => animation == Animation.Idle;
 		public float idleTime => animation == Animation.Idle ? totalAnimationTime : 0f;
+
+		public event Action onParry;
 
 		public override void OnSpawn()
 		{
@@ -31,6 +35,12 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Slash(bool toTheRight) => animator.Slash(toTheRight);
 
+		public void OnHurt(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
+		{
+			animator.Parry();
+			onParry?.Invoke();
+		}
+
 		public enum Animation
 		{
 			None = 0,
@@ -39,7 +49,8 @@ namespace StrikeOut.BossFight.Entities
 			Pitch = 3,
 			Chop = 4,
 			ThrowBoomerang = 5,
-			Slash = 6
+			Slash = 6,
+			Parry = 7
 		}
 	}
 }

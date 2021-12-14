@@ -3,5 +3,5 @@ using SharedUnityMischief.Entities.Animated;
 
 namespace StrikeOut.BossFight.Entities
 {
-	public class PitcherAnimation : EntityAnimation<Pitcher.Animation> {}
+	public class EntityAnimation : EntityAnimation<string> {}
 }

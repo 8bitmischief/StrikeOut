@@ -7,10 +7,10 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : AnimatedEntity<PitcherAnimator, Pitcher.Animation>, IHurtable
+	public class Pitcher : AnimatedEntity<PitcherAnimator, string>, IHurtable
 	{
-		public bool isIdle => animation == Animation.Idle;
-		public float idleTime => animation == Animation.Idle ? totalAnimationTime : 0f;
+		public bool isIdle => animation == "Idle";
+		public float idleTime => animation == "Idle" ? totalAnimationTime : 0f;
 
 		public event Action onParry;
 
@@ -39,18 +39,6 @@ namespace StrikeOut.BossFight.Entities
 		{
 			animator.Parry();
 			onParry?.Invoke();
-		}
-
-		public enum Animation
-		{
-			None = 0,
-			Idle = 1,
-			Move = 2,
-			Pitch = 3,
-			Chop = 4,
-			ThrowBoomerang = 5,
-			Slash = 6,
-			Parry = 7
 		}
 	}
 }

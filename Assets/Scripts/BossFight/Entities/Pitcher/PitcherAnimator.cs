@@ -4,37 +4,27 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class PitcherAnimator : EntityAnimator<Pitcher, Pitcher.Animation>
+	public class PitcherAnimator : EntityAnimator<Pitcher, string>
 	{
-		private static readonly int MoveHash = Animator.StringToHash("Move");
-		private static readonly int PitchHash = Animator.StringToHash("Pitch");
-		private static readonly int ChopHash = Animator.StringToHash("Chop");
-		private static readonly int SlashHash = Animator.StringToHash("Slash");
-		private static readonly int ThrowBoomerangHash = Animator.StringToHash("Throw Boomerang");
-		private static readonly int ParryHash = Animator.StringToHash("Parry");
+		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition);
 
-		[Header("Children")]
-		[SerializeField] private Transform _spawnLocation;
+		public void Pitch() => Trigger("Pitch");
 
-		public void Move(Vector3 targetPosition) => Trigger(MoveHash, targetPosition);
-
-		public void Pitch() => Trigger(PitchHash);
-
-		public void Chop() => Trigger(ChopHash);
+		public void Chop() => Trigger("Chop");
 
 		public void ThrowBoomerang(Vector3 targetPosition, bool leanRight)
 		{
 			Flip(!leanRight);
-			Trigger(ThrowBoomerangHash, targetPosition);
+			Trigger("Throw Boomerang", targetPosition);
 		}
 
 		public void Slash(bool toTheRight)
 		{
 			Flip(!toTheRight);
-			Trigger(SlashHash);
+			Trigger("Slash");
 		}
 
-		public void Parry() => Trigger(ParryHash);
+		public void Parry() => Trigger("Parry");
 
 		private void Flip(bool flipped)
 		{

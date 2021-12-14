@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 1
+  _animation: Idle
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 3
+  _animation: Pitch
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 2
+  _animation: Move
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 4
+  _animation: Chop
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 6
+  _animation: Slash
   _authoredRootMotion: {x: 6, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 5
+  _animation: Throw Boomerang
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 7
+  _animation: Parry
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
@@ -770,22 +770,22 @@ AnimatorStateMachine:
     m_Position: {x: 670, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4712667052586528769}
-    m_Position: {x: 450, y: 170, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 4515889519551192010}
-    m_Position: {x: 450, y: -10, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1477000761015834025}
     m_Position: {x: 450, y: 110, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 4739323578412583485}
+    m_State: {fileID: 4515889519551192010}
+    m_Position: {x: 450, y: -70, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1477000761015834025}
     m_Position: {x: 450, y: 50, z: 0}
   - serializedVersion: 1
+    m_State: {fileID: 4739323578412583485}
+    m_Position: {x: 450, y: -10, z: 0}
+  - serializedVersion: 1
     m_State: {fileID: 1286762083858873634}
-    m_Position: {x: 450, y: 230, z: 0}
+    m_Position: {x: 450, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1530475576653248473}
-    m_Position: {x: 450, y: 290, z: 0}
+    m_Position: {x: 450, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 5322885630344442664}

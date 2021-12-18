@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 8108885384939771603}
   - component: {fileID: 3556943970642921837}
   m_Layer: 0
-  m_Name: Pitcher
+  m_Name: Gale Pitcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

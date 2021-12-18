@@ -6,8 +6,8 @@ using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
-	[RequireComponent(typeof(PitcherAnimator))]
-	public class Pitcher : AnimatedEntity<PitcherAnimator, string>, IHurtable
+	[RequireComponent(typeof(GalePitcherAnimator))]
+	public class GalePitcher : AnimatedEntity<GalePitcherAnimator, string>, IHurtable
 	{
 		public bool isIdle => animation == "Idle";
 		public float idleTime => animation == "Idle" ? totalAnimationTime : 0f;

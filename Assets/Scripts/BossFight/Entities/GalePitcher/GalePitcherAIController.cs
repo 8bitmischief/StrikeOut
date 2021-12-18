@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace StrikeOut.BossFight.Entities
 {
-	[RequireComponent(typeof(Pitcher))]
-	public partial class PitcherAIController : EntityCommandController<Pitcher>
+	[RequireComponent(typeof(GalePitcher))]
+	public partial class GalePitcherAIController : EntityCommandController<GalePitcher>
 	{
 		private void OnEnable()
 		{

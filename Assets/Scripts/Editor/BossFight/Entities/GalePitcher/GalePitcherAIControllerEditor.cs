@@ -5,14 +5,14 @@ using SharedUnityMischief;
 
 namespace StrikeOut.BossFight.Entities
 {
-	[CustomEditor(typeof(PitcherAIController), true)]
-	public class PitcherAIControllerEditor : BaseEditor
+	[CustomEditor(typeof(GalePitcherAIController), true)]
+	public class GalePitcherAIControllerEditor : BaseEditor
 	{
 		public override bool RequiresConstantRepaint() => Application.isPlaying;
 
 		protected override void DrawState()
 		{
-			PitcherAIController pitcher = (PitcherAIController) target;
+			GalePitcherAIController pitcher = (GalePitcherAIController) target;
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Pitcher AI State", EditorStyles.boldLabel);
 			EditorGUILayout.TextField("Commands", String.Join("\n", pitcher.commands), GUILayout.Height(60f));

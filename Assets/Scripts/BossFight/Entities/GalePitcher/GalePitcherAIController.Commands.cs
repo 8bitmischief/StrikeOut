@@ -4,8 +4,8 @@ using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
-	[RequireComponent(typeof(Pitcher))]
-	public partial class PitcherAIController : EntityCommandController<Pitcher>
+	[RequireComponent(typeof(GalePitcher))]
+	public partial class GalePitcherAIController : EntityCommandController<GalePitcher>
 	{
 		private readonly Command IdleForOneSecond = new IdleCommand { duration = 1f };
 		private readonly Command IdleForTwoSeconds = new IdleCommand { duration = 2f };
@@ -19,7 +19,7 @@ namespace StrikeOut.BossFight.Entities
 		private readonly Command SlashLeft = new SlashCommand { toTheRight = false };
 		private readonly Command SlashRight = new SlashCommand { toTheRight = true };
 
-		public abstract class PitcherCommand : Command<Pitcher>
+		public abstract class PitcherCommand : Command<GalePitcher>
 		{
 			public override bool IsDone() => entity.isIdle;
 		}

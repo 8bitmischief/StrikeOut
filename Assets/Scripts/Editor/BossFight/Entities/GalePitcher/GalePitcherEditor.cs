@@ -4,14 +4,14 @@ using SharedUnityMischief;
 
 namespace StrikeOut.BossFight.Entities
 {
-	[CustomEditor(typeof(Pitcher), true)]
-	public class PitcherEditor : BaseEditor
+	[CustomEditor(typeof(GalePitcher), true)]
+	public class GalePitcherEditor : BaseEditor
 	{
 		public override bool RequiresConstantRepaint() => Application.isPlaying;
 
 		protected override void DrawState()
 		{
-			Pitcher pitcher = (Pitcher) target;
+			GalePitcher pitcher = (GalePitcher) target;
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("Pitcher State", EditorStyles.boldLabel);
 			EditorGUILayout.Toggle("Is Idle", pitcher.isIdle);

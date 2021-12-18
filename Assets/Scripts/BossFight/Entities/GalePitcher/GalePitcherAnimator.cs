@@ -4,7 +4,7 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class PitcherAnimator : EntityAnimator<Pitcher, string>
+	public class GalePitcherAnimator : EntityAnimator<GalePitcher, string>
 	{
 		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition);
 

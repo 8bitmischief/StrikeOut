@@ -53,18 +53,20 @@ namespace StrikeOut.BossFight
 
 		public virtual bool IsHitting(Hurtbox hurtbox)
 		{
+			// Check if the hitbox is overlapping the hurtbox
 			if (_requireOverlap && !IsOverlapping(hurtbox))
 				return false;
+			// Check if the entity has already been hit by this hitbox
 			else if (_hitBehaviour == HitBehaviour.OneHitPerEntity && HasAlreadyHit(hurtbox.entity))
 				return false;
+			// Check if this hitbox's channel matches the hurtbox's channel
 			else
 				return hurtbox.channel == HitChannel.None || _channels.Contains(hurtbox.channel);
 		}
 
 		public void OnHit(Hurtbox hurtbox)
 		{
-			if (!_hitEntities.Contains(hurtbox.entity))
-				_hitEntities.Add(hurtbox.entity);
+			_hitEntities.Add(hurtbox.entity);
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hurtbox.entity, this, hurtbox);
 			onHit?.Invoke(hurtbox.entity, this, hurtbox);

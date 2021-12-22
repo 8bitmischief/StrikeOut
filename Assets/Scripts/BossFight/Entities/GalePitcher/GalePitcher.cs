@@ -31,7 +31,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void ThrowBoomerang(bool toTheRight) => animator.ThrowBoomerang(Scene.I.locations.pitchersMound + new Vector3(toTheRight ? 3f : -3f, 0f, 0f), toTheRight);
 
-		public void Pitch() => animator.Pitch();
+		public void Pitch(StrikeZone strikeZone, PitchType pitchType) => animator.Pitch();
 
 		public void Slash(bool toTheRight) => animator.Slash(toTheRight);
 

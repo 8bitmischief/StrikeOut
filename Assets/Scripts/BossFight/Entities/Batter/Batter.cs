@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using CameraShake;
+using SharedUnityMischief;
 using SharedUnityMischief.Effects;
 using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
@@ -14,12 +14,12 @@ namespace StrikeOut.BossFight.Entities
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterAreaHurtbox _hurtbox;
-		[SerializeField] private PrefabPool _hitBallEffectPool;
+		[SerializeField] private PrefabPoolMonoBehaviour _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
 		private int _lives = 3;
 		private StrikeZone _strikeZone = StrikeZone.None;
-		private Ball _targetBall = null;
+		private Ball _targetBall;
 		private bool _canCancelAnimation = false;
 		private bool _isOnRightSide = false;
 
@@ -29,28 +29,9 @@ namespace StrikeOut.BossFight.Entities
 		public BatterArea destinationArea => _hurtbox.destinationArea;
 		public bool isOnRightSide => _isOnRightSide;
 
-		private void Start()
-		{
-			_hitBallEffectPool.Prewarm();
-		}
-
 		public override void OnSpawn()
 		{
 			Scene.I.entityManager.batter = this;
-		}
-
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			animator.onAllowAnimationCancels += OnAllowAnimationCancels;
-			animator.onTryHitBall += OnTryHitBall;
-		}
-
-		protected override void OnDisable()
-		{
-			base.OnDisable();
-			animator.onAllowAnimationCancels -= OnAllowAnimationCancels;
-			animator.onTryHitBall -= OnTryHitBall;
 		}
 
 		public override void OnDespawn()
@@ -75,27 +56,22 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		public bool CanDodgeLeft()
+		public bool CanDodge(Direction direction)
 		{
-			if (_isOnRightSide)
+			switch (direction)
 			{
-				return CanSwitchSides() || CanEndSideStep();
-			}
-			else
-			{
-				return CanSideStep();
-			}
-		}
-
-		public bool CanDodgeRight()
-		{
-			if (_isOnRightSide)
-			{
-				return CanSideStep();
-			}
-			else
-			{
-				return CanSwitchSides() || CanEndSideStep();
+				case Direction.Left:
+					if (_isOnRightSide)
+						return CanSwitchSides() || CanEndSideStep();
+					else
+						return CanSideStep();
+				case Direction.Right:
+					if (_isOnRightSide)
+						return CanSideStep();
+					else
+						return CanSwitchSides() || CanEndSideStep();
+				default:
+					return false;
 			}
 		}
 
@@ -275,41 +251,20 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		public void DodgeLeft()
+		public void Dodge(Direction direction)
 		{
-			if (_isOnRightSide)
-			{
-				if (animation == Animation.SideStepStart)
-				{
-					EndSideStep();
-				}
-				else
-				{
-					SwitchSides();
-				}
-			}
-			else
+			// Dodge outwards (side step)
+			if (_isOnRightSide == (direction == Direction.Right))
 			{
 				SideStep();
 			}
-		}
-
-		public void DodgeRight()
-		{
-			if (_isOnRightSide)
-			{
-				SideStep();
-			}
+			// Dodge inwards (switch sides)
 			else
 			{
 				if (animation == Animation.SideStepStart)
-				{
 					EndSideStep();
-				}
 				else
-				{
 					SwitchSides();
-				}
 			}
 		}
 
@@ -411,12 +366,20 @@ namespace StrikeOut.BossFight.Entities
 			_canCancelAnimation = false;
 		}
 
-		private void OnAllowAnimationCancels()
+		private bool CouldSwingInTimeToHitBall(Ball ball) => CouldAlmostSwingInTimeToHitBall(ball, 0, 0);
+
+		private bool CouldAlmostSwingInTimeToHitBall(Ball ball, int framesOfEarlyLeeway = 8, int framesOfLateLeeway = 6)
+		{
+			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= animator.slowestSwingStartupFrames)) &&
+				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
+		}
+
+		private void ANIMATION_AllowAnimationCancels()
 		{
 			_canCancelAnimation = true;
 		}
 
-		private void OnTryHitBall()
+		private void ANIMATION_TryHitBall()
 		{
 			if (_targetBall != null)
 			{
@@ -440,17 +403,10 @@ namespace StrikeOut.BossFight.Entities
 				}
 				_targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				_hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f)).Play();
+				ParticleEffect effect = _hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f));
+				effect.Play();
 			}
 			_targetBall = null;
-		}
-
-		private bool CouldSwingInTimeToHitBall(Ball ball) => CouldAlmostSwingInTimeToHitBall(ball, 0, 0);
-
-		private bool CouldAlmostSwingInTimeToHitBall(Ball ball, int framesOfEarlyLeeway = 8, int framesOfLateLeeway = 6)
-		{
-			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= animator.slowestSwingStartupFrames)) &&
-				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
 		}
 
 		public enum Animation

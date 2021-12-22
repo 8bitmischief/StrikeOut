@@ -1,4 +1,5 @@
 using UnityEngine;
+using SharedUnityMischief;
 using SharedUnityMischief.Entities;
 using StrikeOut.BossFight.Data;
 
@@ -7,15 +8,15 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Batter))]
 	public class BatterPlayerController : EntityComponent<Batter>
 	{
+		[SerializeField] private int _maxBufferedInputFrames = 8;
 		private BatterInput _bufferedInput = BatterInput.None;
 		private int _bufferedInputFrames = 0;
-		private int _maxBufferedInputFrames = 8;
 
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder;
 
 		public override void UpdateState()
 		{
-			// Listen to inputs
+			// Check for swing inputs
 			if (Game.I.input.swingNorth.justPressed)
 				UseOrBufferInput(BatterInput.SwingNorth);
 			if (Game.I.input.swingEast.justPressed)
@@ -24,34 +25,33 @@ namespace StrikeOut.BossFight.Entities
 				UseOrBufferInput(BatterInput.SwingSouth);
 			if (Game.I.input.swingWest.justPressed)
 				UseOrBufferInput(BatterInput.SwingWest);
+
+			// Check for dodge inputs
 			if (Game.I.input.dodgeLeft.justPressed)
 				UseOrBufferInput(BatterInput.DodgeLeft);
 			if (Game.I.input.dodgeRight.justPressed)
 				UseOrBufferInput(BatterInput.DodgeRight);
 
-			// Try using buffered input
-			if (_bufferedInput != BatterInput.None)
-			{
-				if (TryUsingInput(_bufferedInput))
-				{
-					_bufferedInput = BatterInput.None;
-				}
-			}
+			// Try using the buffered input
+			if (_bufferedInput != BatterInput.None && TryUsingInput(_bufferedInput))
+				_bufferedInput = BatterInput.None;
 
-			// Only buffer inputs for so long
+			// Clear the buffered input that's been buffered for too long
 			if (_bufferedInput != BatterInput.None && !Scene.I.updateLoop.isInterpolating)
 			{
 				_bufferedInputFrames++;
 				if (_bufferedInputFrames > _maxBufferedInputFrames)
-				{
 					_bufferedInput = BatterInput.None;
-				}
 			}
 		}
 
 		private void UseOrBufferInput(BatterInput input)
 		{
-			if (!TryUsingInput(input))
+			if (TryUsingInput(input))
+			{
+				_bufferedInput = BatterInput.None;
+			}
+			else
 			{
 				_bufferedInput = input;
 				_bufferedInputFrames = 0;
@@ -71,11 +71,12 @@ namespace StrikeOut.BossFight.Entities
 				case BatterInput.SwingWest:
 					return TrySwinging(StrikeZone.West);
 				case BatterInput.DodgeLeft:
-					return TryDodgingLeft();
+					return TryDodging(Direction.Left);
 				case BatterInput.DodgeRight:
-					return TryDodgingRight();
+					return TryDodging(Direction.Right);
+				default:
+					return false;
 			}
-			return false;
 		}
 
 		private bool TrySwinging(StrikeZone strikeZone)
@@ -88,21 +89,11 @@ namespace StrikeOut.BossFight.Entities
 			return false;
 		}
 
-		private bool TryDodgingLeft()
+		private bool TryDodging(Direction direction)
 		{
-			if (entity.CanDodgeLeft())
+			if (entity.CanDodge(direction))
 			{
-				entity.DodgeLeft();
-				return true;
-			}
-			return false;
-		}
-
-		private bool TryDodgingRight()
-		{
-			if (entity.CanDodgeRight())
-			{
-				entity.DodgeRight();
+				entity.Dodge(direction);
 				return true;
 			}
 			return false;

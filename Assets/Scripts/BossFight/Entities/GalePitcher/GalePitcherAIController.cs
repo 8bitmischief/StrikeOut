@@ -40,7 +40,11 @@ namespace StrikeOut.BossFight.Entities
 		private void OnParry()
 		{
 			ClearCommands();
-			QueueCommand(IdleForOneSecond);
+			QueueCommands(
+				IdleForOneSecond,
+				MoveToPitchersMound,
+				IdleForOneSecond
+			);
 		}
 	}
 }

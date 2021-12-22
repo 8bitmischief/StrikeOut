@@ -16,12 +16,12 @@ namespace StrikeOut.BossFight.Entities
 		{
 			animator.SetInteger(PitchTypeHash, (int) pitch);
 			animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
-			Trigger(PitchHash, target);
+			Trigger(PitchHash, target, false);
 		}
 
 		public void Hit(Vector3 target)
 		{
-			Trigger(HitHash, target);
+			Trigger(HitHash, target, false);
 		}
 	}
 }

@@ -6,7 +6,7 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class GalePitcherAnimator : EntityAnimator<GalePitcher, string>
 	{
-		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition);
+		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition, false);
 
 		public void Pitch() => Trigger("Pitch");
 
@@ -15,7 +15,7 @@ namespace StrikeOut.BossFight.Entities
 		public void ThrowBoomerang(Vector3 targetPosition, bool leanRight)
 		{
 			Flip(!leanRight);
-			Trigger("Throw Boomerang", targetPosition);
+			Trigger("Throw Boomerang", targetPosition, false);
 		}
 
 		public void Slash(bool toTheRight)

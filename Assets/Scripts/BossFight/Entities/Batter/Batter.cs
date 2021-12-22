@@ -306,12 +306,12 @@ namespace StrikeOut.BossFight.Entities
 				case Animation.SideStepEnd:
 					animator.SetRootMotion(_isOnRightSide ?
 						Scene.I.locations.batter.right :
-						Scene.I.locations.batter.left);
+						Scene.I.locations.batter.left, false);
 					break;
 				case Animation.SideStepStart:
 					animator.SetRootMotion(_isOnRightSide ?
 						Scene.I.locations.batter.farRight :
-						Scene.I.locations.batter.farLeft);
+						Scene.I.locations.batter.farLeft, false);
 					break;
 				case Animation.Swing:
 					switch (_strikeZone)
@@ -319,41 +319,41 @@ namespace StrikeOut.BossFight.Entities
 						case StrikeZone.North:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.9f, 0f, 0f), false);
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.9f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.9f, 0f, 0f), false);
 							}
 							break;
 						case StrikeZone.East:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 0f, 0f), false);
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(2f, 0f, 0f), false);
 							}
 							break;
 						case StrikeZone.South:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.5f, 0f, 0f), false);
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.5f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.5f, 0f, 0f), false);
 							}
 							break;
 						case StrikeZone.West:
 							if (_isOnRightSide)
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-2f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-2f, 0f, 0f), false);
 							}
 							else
 							{
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 0f, 0f));
+								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 0f, 0f), false);
 							}
 							break;
 					}

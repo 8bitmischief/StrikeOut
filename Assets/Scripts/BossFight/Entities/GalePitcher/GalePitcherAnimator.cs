@@ -8,7 +8,12 @@ namespace StrikeOut.BossFight.Entities
 	{
 		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition, false);
 
-		public void Pitch() => Trigger("Pitch");
+		public void Pitch(bool includeWindup, bool pitchToTheRight)
+		{
+			animator.SetBool("Include Windup", includeWindup);
+			Flip(pitchToTheRight);
+			Trigger("Pitch");
+		}
 
 		public void Chop() => Trigger("Chop");
 

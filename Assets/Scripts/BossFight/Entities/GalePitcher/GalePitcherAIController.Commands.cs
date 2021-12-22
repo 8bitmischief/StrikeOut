@@ -12,8 +12,6 @@ namespace StrikeOut.BossFight.Entities
 		private readonly Command MoveInFrontOfBatterCenter = new MoveCommand { location = Location.InFrontOfBatterCenter };
 		private readonly Command MoveToPitchersMound = new MoveCommand { location = Location.PitchersMound };
 		private readonly Command MoveToBatter = new MoveToBatterCommand();
-		private readonly Command PitchNorth = new PitchCommand { strikeZone = StrikeZone.North, pitchType = PitchType.Curveball };
-		private readonly Command PitchEast = new PitchCommand { strikeZone = StrikeZone.North, pitchType = PitchType.Curveball };
 		private readonly Command Chop = new ChopCommand();
 		private readonly Command ThrowBoomerangLeft = new ThrowBoomerangCommand { toTheRight = false };
 		private readonly Command ThrowBoomerangRight = new ThrowBoomerangCommand { toTheRight = true };
@@ -46,10 +44,10 @@ namespace StrikeOut.BossFight.Entities
 
 		private class PitchCommand : PitcherCommand
 		{
-			public StrikeZone strikeZone;
 			public PitchType pitchType;
+			public StrikeZone strikeZone;
 
-			public override void Start() => entity.Pitch(strikeZone, pitchType);
+			public override void Start() => entity.Pitch(pitchType, strikeZone);
 		}
 
 		private class ChopCommand : PitcherCommand

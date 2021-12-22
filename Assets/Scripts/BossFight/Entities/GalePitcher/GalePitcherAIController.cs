@@ -1,4 +1,5 @@
 using UnityEngine;
+using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -15,16 +16,14 @@ namespace StrikeOut.BossFight.Entities
 			entity.onParry += OnParry;
 		}
 
-		public override void UpdateState()
-		{
-			base.UpdateState();
-		}
-
 		protected override void DecideNextAction()
 		{
 			QueueCommands(
-				PitchNorth,
-				PitchEast,
+				new PitchCommand { pitchType = PitchType.Straight, strikeZone = StrikeZone.East },
+				new PitchCommand { pitchType = PitchType.Straight, strikeZone = StrikeZone.West },
+				IdleForOneSecond,
+				new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.North },
+				IdleForOneSecond,
 				MoveInFrontOfBatterCenter,
 				SlashLeft,
 				MoveInFrontOfBatterCenter,
@@ -33,7 +32,7 @@ namespace StrikeOut.BossFight.Entities
 				Chop,
 				Chop,
 				MoveToPitchersMound,
-				IdleForTwoSeconds
+				IdleForOneSecond
 			);
 		}
 

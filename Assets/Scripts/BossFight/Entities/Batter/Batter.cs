@@ -135,14 +135,10 @@ namespace StrikeOut.BossFight.Entities
 					else if (ball.strikeZone == strikeZone)
 					{
 						if (bestCandidateBall.strikeZone != strikeZone)
-						{
 							bestCandidateBall = ball;
-						}
 						// Among hittable balls in the right strike zone, the best candidate is the one that will soonest become unhittable
 						else if (ball.framesUntilUnhittable < bestCandidateBall.framesUntilUnhittable)
-						{
 							bestCandidateBall = ball;
-						}
 					}
 					else if (bestCandidateBall.strikeZone != strikeZone)
 					{
@@ -159,9 +155,7 @@ namespace StrikeOut.BossFight.Entities
 					int framesFromBattingLine = ball.willPassBattingLine ? ball.framesUntilPassBattingLine : ball.framesSincePassedBattingLine;
 					int bestCandidateFramesFromBattingLine = bestCandidateBall.willPassBattingLine ? bestCandidateBall.framesUntilPassBattingLine : bestCandidateBall.framesSincePassedBattingLine;
 					if (framesFromBattingLine != -1 && (bestCandidateFramesFromBattingLine == -1 || framesFromBattingLine < bestCandidateFramesFromBattingLine))
-					{
 						bestCandidateBall = ball;
-					}
 				}
 			}
 			// Figure out if the ball can be swung at
@@ -174,30 +168,20 @@ namespace StrikeOut.BossFight.Entities
 				// Figure out if the swing was early or late (- is early, + is late)
 				int framesEarlyOrLate;
 				if (bestCandidateBall.willPassBattingLine)
-				{
 					framesEarlyOrLate = animator.defaultSwingStartupFrames - bestCandidateBall.framesUntilPassBattingLine;
-				}
 				else
-				{
 					framesEarlyOrLate = animator.defaultSwingStartupFrames + bestCandidateBall.framesSincePassedBattingLine;
-				}
 				if (CouldSwingInTimeToHitBall(bestCandidateBall))
 				{
 					tryingToHitBall = true;
 					if (bestCandidateBall.strikeZone == strikeZone)
-					{
 						_targetBall = bestCandidateBall;
-					}
 					// The swing was late, speed up the animation
 					if (framesEarlyOrLate > 0)
-					{
 						swingStartupFrames -= Mathf.FloorToInt((framesEarlyOrLate) / 2);
-					}
 					// The swing was early, slow down the animation
 					else if (framesEarlyOrLate < 0)
-					{
 						swingStartupFrames += Mathf.FloorToInt((-framesEarlyOrLate) / 2);
-					}
 					// Keep the swing startup within actual limits
 					int slowestPossibleSwingStartupFrames = Mathf.Min(animator.slowestSwingStartupFrames, bestCandidateBall.framesUntilUnhittable - 1);
 					int fastestPossibleSwingStartupFrames = Mathf.Max(animator.fastestSwingStartupFrames, bestCandidateBall.isHittable ? 0 : bestCandidateBall.framesUntilHittable);
@@ -211,25 +195,17 @@ namespace StrikeOut.BossFight.Entities
 				{
 					swingResultsMessage = $"Swung at \"{bestCandidateBall.name}\"";
 					if (framesEarlyOrLate > 0)
-					{
 						swingResultsMessage += $" {framesEarlyOrLate} {(framesEarlyOrLate == 1 ? "frame" : "frames")} late";
-					}
 					else if (framesEarlyOrLate < 0)
-					{
 						swingResultsMessage += $" {-framesEarlyOrLate} {(framesEarlyOrLate == -1 ? "frame" : "frames")} early";
-					}
 					else
-					{
 						swingResultsMessage += $" on the exact right frame";
-					}
 					swingResultsMessage += $"; {(CouldSwingInTimeToHitBall(bestCandidateBall) ? "HITTABLE" : "not hittable")}";
 					swingResultsMessage += $"; {(bestCandidateBall.strikeZone == strikeZone ? "CORRECT strike zone" : "wrong strike zone")}";
 				}
 			}
 			if (!tryingToHitBall)
-			{
 				swingResultsMessage = $"Swung at no ball in particular";
-			}
 			swingResultsMessage += $"; {swingStartupFrames} swing startup {(swingStartupFrames == 1 ? "frame" : "frames")}";
 			Debug.Log(swingResultsMessage);
 			// Perform the swing animation
@@ -318,43 +294,27 @@ namespace StrikeOut.BossFight.Entities
 					{
 						case StrikeZone.North:
 							if (_isOnRightSide)
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.9f, 0f, 0f), false);
-							}
 							else
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.9f, 0f, 0f), false);
-							}
 							break;
 						case StrikeZone.East:
 							if (_isOnRightSide)
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 0f, 0f), false);
-							}
 							else
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(2f, 0f, 0f), false);
-							}
 							break;
 						case StrikeZone.South:
 							if (_isOnRightSide)
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.5f, 0f, 0f), false);
-							}
 							else
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.5f, 0f, 0f), false);
-							}
 							break;
 						case StrikeZone.West:
 							if (_isOnRightSide)
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-2f, 0f, 0f), false);
-							}
 							else
-							{
 								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 0f, 0f), false);
-							}
 							break;
 					}
 					break;
@@ -386,21 +346,13 @@ namespace StrikeOut.BossFight.Entities
 				Vector3 targetPosition = new Vector3(15f, 5f, 50f);
 				Vector3 shakeDirection;
 				if (_targetBall.strikeZone == StrikeZone.North)
-				{
 					shakeDirection = new Vector3(1f, 0.3f, 0f);
-				}
 				else if (_targetBall.strikeZone == StrikeZone.South)
-				{
 					shakeDirection = new Vector3(1f, -0.3f, 0f);
-				}
 				else
-				{
 					shakeDirection = new Vector3(1f, 0f, 0f);
-				}
 				if (_isOnRightSide)
-				{
 					shakeDirection.x *= -1;
-				}
 				_targetBall.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
 				ParticleEffect effect = _hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f));

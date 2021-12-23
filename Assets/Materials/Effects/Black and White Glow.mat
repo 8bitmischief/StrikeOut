@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Light Ball
-  m_Shader: {fileID: -6465566751694194690, guid: 09ad721dfe484461e8d31ad72cab1779, type: 3}
+  m_Name: Black and White Glow
+  m_Shader: {fileID: -6465566751694194690, guid: b8e994a8df7e84cb3a8c00a0a37a841d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7d82c545b1c9d4bd59bc81d379a811ca, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0c30550af46e241ddace20253e92771d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -108,9 +108,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighColor: {r: 0.89636934, g: 1, b: 0.8632076, a: 1}
-    - _LowColor: {r: 0.23113209, g: 1, b: 0.26136854, a: 1}
-    - _MidColor: {r: 0.785461, g: 1, b: 0.75, a: 1}
+    - _HighColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HighMidColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
+    - _LowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LowMidColor: {r: 0.25098038, g: 0.25098038, b: 0.25098038, a: 1}
+    - _MidColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}

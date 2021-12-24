@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using SharedUnityMischief.Effects;
 using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;
@@ -9,6 +10,8 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(SwordsmanPitcherAnimator))]
 	public class SwordsmanPitcher : AnimatedEntity<SwordsmanPitcherAnimator, string>
 	{
+		[SerializeField] private ParticleEffectSpawner _slashEffectSpawner;
+
 		public bool isIdle => animation == "Idle";
 		public float idleTime => animation == "Idle" ? totalAnimationTime : 0f;
 
@@ -24,5 +27,10 @@ namespace StrikeOut.BossFight.Entities
 		}
 
 		public void Slash() => animator.Slash();
+
+		private void ANIMATION_SpawnSlashEffect()
+		{
+			_slashEffectSpawner.SpawnParticleEffect(Scene.I.locations.inFrontOfBatter.center + new Vector3(0f, 2f, 8f));
+		}
 	}
 }

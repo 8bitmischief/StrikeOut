@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gunflare
+  m_Name: Test Gunflare
   m_Shader: {fileID: -6465566751694194690, guid: b8e994a8df7e84cb3a8c00a0a37a841d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

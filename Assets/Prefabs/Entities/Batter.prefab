@@ -283,7 +283,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5794539240007385238}
-  - component: {fileID: 5113606790958713138}
   - component: {fileID: 4166589132352258018}
   m_Layer: 0
   m_Name: Sprite
@@ -306,21 +305,6 @@ Transform:
   m_Father: {fileID: 5321439430112355915}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5113606790958713138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702510162403009545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98972c7949e754af3aa426802b834e3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _xRotation: 1
-  _yRotation: 0
-  _zRotation: 0
 --- !u!212 &4166589132352258018
 SpriteRenderer:
   m_ObjectHideFlags: 0

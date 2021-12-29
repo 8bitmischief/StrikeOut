@@ -30,7 +30,7 @@ namespace StrikeOut.BossFight.Entities
 
 		private void ANIMATION_SpawnSlashEffect()
 		{
-			_slashEffectSpawner.SpawnParticleEffect(Scene.I.locations.inFrontOfBatter.center + new Vector3(0f, 2f, 8f));
+			_slashEffectSpawner.SpawnParticleEffect(Scene.I.locations.inFrontOfBatter.center + new Vector3(0f, 1.5f, 10f));
 		}
 	}
 }

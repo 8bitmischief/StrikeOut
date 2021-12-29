@@ -6,7 +6,21 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class SwordsmanPitcherAnimator : EntityAnimator<SwordsmanPitcher, string>
 	{
+		[Header("Pitcher Config")]
+		[SerializeField] private int _cancelAnimationLevel = 0;
+
+		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition, false);
+
 		public void Slash() => Trigger("Slash");
+
+		public void EnterRaisedSwordStance() => Trigger("Raised Sword Stance");
+
+		public void MeleeDownwardSlash() => Trigger("Melee Downward Slash");
+
+		public bool CanCancelAnimation(int cancelLevel = 1)
+		{
+			return animation == "Idle" || _cancelAnimationLevel >= cancelLevel;
+		}
 
 		private void Flip(bool flipped)
 		{

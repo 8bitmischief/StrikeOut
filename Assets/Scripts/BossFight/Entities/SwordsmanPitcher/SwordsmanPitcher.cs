@@ -26,7 +26,15 @@ namespace StrikeOut.BossFight.Entities
 				Scene.I.entityManager.pitcher = null;
 		}
 
+		public void Move(Location location) => animator.Move(Scene.I.locations[location]);
+
 		public void Slash() => animator.Slash();
+
+		public void EnterRaisedSwordStance() => animator.EnterRaisedSwordStance();
+
+		public void MeleeDownwardSlash() => animator.MeleeDownwardSlash();
+
+		public bool CanCancelAnimation(int cancelLevel) => animator.CanCancelAnimation(cancelLevel);
 
 		private void ANIMATION_SpawnSlashEffect()
 		{

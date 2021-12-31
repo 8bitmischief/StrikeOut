@@ -16,7 +16,10 @@ namespace StrikeOut.BossFight.Entities
 				QueueCommand(new MoveCommand { location = Location.InFrontOfBatterCenter });
 			}
 			QueueCommands(
+				new MoveCommand { location = Location.InFrontOfBatterCenter },
 				new MeleeDownwardSlash(),
+				IdleForOneSecond,
+				new MoveCommand { location = Location.PitchersMound },
 				IdleForOneSecond
 			);
 		}

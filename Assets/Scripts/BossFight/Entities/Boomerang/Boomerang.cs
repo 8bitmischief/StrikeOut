@@ -5,7 +5,7 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BoomerangAnimator))]
-	public class Boomerang : AnimatedEntity<BoomerangAnimator, Boomerang.Animation>, IHittable
+	public class Boomerang : AnimatedEntity<BoomerangAnimator, Boomerang.Animation>, IEnemyHittable
 	{
 		private bool _thrownToTheRight = false;
 
@@ -48,7 +48,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		public void OnHit(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
+		public void OnHit(Entity entity, EnemyHitbox hitbox, BatterHurtbox hurtbox)
 		{
 			animator.Hit();
 		}

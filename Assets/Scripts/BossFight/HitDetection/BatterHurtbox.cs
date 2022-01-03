@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
+using SharedUnityMischief.Entities;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight
 {
-	public class BatterAreaHurtbox : Hurtbox
+	public class BatterHurtbox : Hurtbox
 	{
 		[Header("Areas")]
 		[SerializeField] private RelativeBatterArea _area;
 		[SerializeField] private RelativeBatterArea _destinationArea;
+		private IBatterHurtable _hurtableEntity = null;
 
 		public BatterArea area
 		{
@@ -40,6 +43,32 @@ namespace StrikeOut.BossFight
 					default: return BatterArea.None;
 				}
 			}
+		}
+
+		public event Action<Entity, EnemyHitbox, BatterHurtbox> onHurt;
+
+		private void Awake()
+		{
+			if (entity is IBatterHurtable)
+				_hurtableEntity = entity as IBatterHurtable;
+		}
+
+		private void OnEnable()
+		{
+			Scene.I.hitDetectionManager.RegisterHurtbox(this);
+		}
+
+		private void OnDisable()
+		{
+			if (Scene.hasInstance)
+				Scene.I.hitDetectionManager.UnregisterHurtbox(this);
+		}
+
+		public void OnHurt(EnemyHitbox hitbox)
+		{
+			if (_hurtableEntity != null)
+				_hurtableEntity.OnHurt(hitbox.entity, hitbox, this);
+			onHurt?.Invoke(hitbox.entity, hitbox, this);
 		}
 	}
 }

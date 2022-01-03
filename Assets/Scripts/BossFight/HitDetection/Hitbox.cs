@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief.Entities;
@@ -6,7 +5,7 @@ using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight
 {
-	public class Hitbox : EntityComponent
+	public abstract class Hitbox : EntityComponent
 	{
 		[SerializeField] private BoxCollider _collider;
 
@@ -14,32 +13,16 @@ namespace StrikeOut.BossFight
 		[SerializeField] private bool _requireOverlap = false;
 		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity;
 		[SerializeField] private List<HitChannel> _channels;
-		private IHittable _hittableEntity = null;
 		private HashSet<Entity> _hitEntities = new HashSet<Entity>();
 		private HashSet<Hurtbox> _overlappingHurtboxes = new HashSet<Hurtbox>();
 
 		public List<HitChannel> channels => _channels;
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
 
-		public event Action<Entity, Hitbox, Hurtbox> onHit;
-
-		private void Start()
-		{
-			if (entity is IHittable)
-				_hittableEntity = entity as IHittable;
-		}
-
 		protected virtual void OnEnable()
 		{
 			_hitEntities.Clear();
 			_overlappingHurtboxes.Clear();
-			Scene.I.updateLoop.RegisterHitbox(this);
-		}
-
-		private void OnDisable()
-		{
-			if (Scene.hasInstance)
-				Scene.I.updateLoop.UnregisterHitbox(this);
 		}
 
 		public override void UpdateState()
@@ -61,15 +44,12 @@ namespace StrikeOut.BossFight
 				return false;
 			// Check if this hitbox's channel matches the hurtbox's channel
 			else
-				return hurtbox.channel == HitChannel.None || _channels.Contains(hurtbox.channel);
+				return hurtbox.channel == HitChannel.None || _channels.Count == 0 || _channels.Contains(hurtbox.channel);
 		}
 
-		public void OnHit(Hurtbox hurtbox)
+		protected void OnHit(Hurtbox hurtbox)
 		{
 			_hitEntities.Add(hurtbox.entity);
-			if (_hittableEntity != null)
-				_hittableEntity.OnHit(hurtbox.entity, this, hurtbox);
-			onHit?.Invoke(hurtbox.entity, this, hurtbox);
 		}
 
 		private bool IsOverlapping(Hurtbox hurtbox)

@@ -2512,6 +2512,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2746921330884964601, guid: f193bdf4c50ac42a1a50c65186e95c57, type: 3}
   m_PrefabInstance: {fileID: 1803520348}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1846862615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1846862616}
+  - component: {fileID: 1846862617}
+  m_Layer: 0
+  m_Name: Hit Detection Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1846862616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846862615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3762758646429902830}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1846862617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846862615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19028a8ae3a98e146974e2b6c251b8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1859236491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,7 +3324,7 @@ Transform:
   - {fileID: 3082296012969709742}
   - {fileID: 508034978310380210}
   m_Father: {fileID: 3762758646429902830}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1506891888107281104
 MonoBehaviour:
@@ -3647,6 +3690,7 @@ Transform:
   m_Children:
   - {fileID: 5312262812532645864}
   - {fileID: 2425129170255810288}
+  - {fileID: 1846862616}
   - {fileID: 1462210461763452705}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3836,7 +3880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3171893592916788900, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 51.599995
+      value: 85.283325
       objectReference: {fileID: 0}
     - target: {fileID: 3171893592916788900, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4072,7 +4116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5308280925396360350, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 51.599995
+      value: 85.283325
       objectReference: {fileID: 0}
     - target: {fileID: 5308280925396360350, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4307,6 +4351,7 @@ MonoBehaviour:
   _syncFrameAdvancesWithGame: 0
   _updateLoop: {fileID: 1506891888107281104}
   _entityManager: {fileID: 849828746234401849}
+  _hitDetectionManager: {fileID: 1846862617}
   _locations: {fileID: 881021152284795715}
   _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
 --- !u!212 &5862799750840436141

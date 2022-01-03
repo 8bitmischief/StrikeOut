@@ -10,10 +10,10 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IHurtable
+	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IBatterHurtable
 	{
 		[Header("Batter Config")]
-		[SerializeField] private BatterAreaHurtbox _hurtbox;
+		[SerializeField] private BatterHurtbox _hurtbox;
 		[SerializeField] private PrefabPoolMonoBehaviour _hitBallEffectPool;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
@@ -261,7 +261,7 @@ namespace StrikeOut.BossFight.Entities
 			animator.EndSideStep();
 		}
 
-		public void OnHurt(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
+		public void OnHurt(Entity entity, EnemyHitbox hitbox, BatterHurtbox hurtbox)
 		{
 			animator.Damage();
 			_health = Mathf.Max(0, _health - 1);

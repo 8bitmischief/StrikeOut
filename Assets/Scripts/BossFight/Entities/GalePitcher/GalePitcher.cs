@@ -7,7 +7,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(GalePitcherAnimator))]
-	public class GalePitcher : AnimatedEntity<GalePitcherAnimator, string>, IHurtable, ISpawner
+	public class GalePitcher : AnimatedEntity<GalePitcherAnimator, string>, IEnemyHurtable, ISpawner
 	{
 		private PitchType _pitchedBallPitchType;
 		private StrikeZone _pitchedBallStrikeZone;
@@ -45,7 +45,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Slash(bool toTheRight) => animator.Slash(toTheRight);
 
-		public void OnHurt(Entity entity, Hitbox hitbox, Hurtbox hurtbox)
+		public void OnHurt(Entity entity, BatterHitbox hitbox, EnemyHurtbox hurtbox)
 		{
 			animator.Parry();
 			onParry?.Invoke();

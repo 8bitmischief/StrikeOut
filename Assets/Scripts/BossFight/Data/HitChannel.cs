@@ -6,6 +6,6 @@ namespace StrikeOut.BossFight.Data
 	{
 		None = 0,
 		Batter = 1,
-		Pitcher = 2
+		Enemy = 2
 	}
 }

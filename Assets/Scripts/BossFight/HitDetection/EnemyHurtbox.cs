@@ -36,9 +36,9 @@ namespace StrikeOut.BossFight
 			return result == BatterHitResult.Damage || result == BatterHitResult.Ball || result == BatterHitResult.Parry;
 		}
 
-		public bool WillBeHurtBy(StrikeZone strikeZone, int frames)
+		public bool WillBeHurtBy(StrikeZone strikeZone, int startFrame, int endFrame = -1)
 		{
-			return IsHurtBy(strikeZone) && WillBeActive(frames);
+			return IsHurtBy(strikeZone) && WillBeActive(startFrame, endFrame);
 		}
 
 		public BatterHitResult GetHitResult(StrikeZone strikeZone)

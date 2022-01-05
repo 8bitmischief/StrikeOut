@@ -61,9 +61,9 @@ namespace StrikeOut.BossFight
 			return this.area == area;
 		}
 
-		public bool WillBeHurtBy(BatterArea area, int frames)
+		public bool WillBeHurtBy(BatterArea area, int startFrame, int endFrame = -1)
 		{
-			return IsHurtBy(area) && WillBeActive(frames);
+			return IsHurtBy(area) && WillBeActive(startFrame, endFrame);
 		}
 
 		public void OnHurt(EnemyHitRecord hit)

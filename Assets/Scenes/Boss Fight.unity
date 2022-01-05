@@ -3880,7 +3880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3171893592916788900, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 51.666668
+      value: 70.083305
       objectReference: {fileID: 0}
     - target: {fileID: 3171893592916788900, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4116,7 +4116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5308280925396360350, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 51.666668
+      value: 70.083305
       objectReference: {fileID: 0}
     - target: {fileID: 5308280925396360350, guid: 9455f12514c61453194d222fd424ba70, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4353,7 +4353,6 @@ MonoBehaviour:
   _entityManager: {fileID: 849828746234401849}
   _hitDetectionManager: {fileID: 1846862617}
   _locations: {fileID: 881021152284795715}
-  _pitchData: {fileID: 11400000, guid: db85b9687c43841b699ee421c0636579, type: 2}
 --- !u!212 &5862799750840436141
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -69,10 +69,12 @@ namespace StrikeOut.BossFight
 			}
 		}
 
-		public bool WillBeActive(int frames)
+		public bool WillBeActive(int startFrame, int endFrame = -1)
 		{
-			return (isActive || (_estimatedFramesUntilActive != -1 && _estimatedFramesUntilActive <= frames)) &&
-				(_estimatedFramesUntilInactive == -1 || _estimatedFramesUntilInactive > frames);
+			if (endFrame == -1)
+				endFrame = startFrame;
+			return (isActive || (_estimatedFramesUntilActive != -1 && _estimatedFramesUntilActive <= endFrame)) &&
+				(_estimatedFramesUntilInactive == -1 || _estimatedFramesUntilInactive > startFrame);
 		}
 
 		protected abstract void Register();

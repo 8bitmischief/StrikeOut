@@ -100,38 +100,74 @@ namespace StrikeOut.BossFight
 		public void UnregisterHurtbox(BatterHurtbox hurtbox) => _batterHurtboxes.Remove(hurtbox);
 		public void UnregisterHurtbox(EnemyHurtbox hurtbox) => _enemyHurtboxes.Remove(hurtbox);
 
-		public ICollection<EnemyHitbox> GetHitboxesThatHit(BatterArea area, int frames = 0)
+		public bool DoAnyHitboxesHit(BatterArea area, int startFrame = 0, int endFrame = -1)
 		{
 			HashSet<EnemyHitbox> hitters = new HashSet<EnemyHitbox>();
 			foreach (EnemyHitbox hitbox in _enemyHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, frames))
-					hitters.Add(hitbox);
-			return hitters;
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, startFrame, endFrame))
+					return true;
+			return false;
 		}
 
-		public ICollection<BatterHitbox> GetHitboxesThatHit(StrikeZone strikeZone, int frames = 0)
+		public bool DoAnyHitboxesHit(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
 		{
 			HashSet<BatterHitbox> hitters = new HashSet<BatterHitbox>();
 			foreach (BatterHitbox hitbox in _batterHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, frames))
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, startFrame, endFrame))
+					return true;
+			return false;
+		}
+
+		public bool DoAnyHurtboxesGetHurtBy(BatterArea area, int startFrame = 0, int endFrame = -1)
+		{
+			HashSet<BatterHurtbox> hurtees = new HashSet<BatterHurtbox>();
+			foreach (BatterHurtbox hurtbox in _batterHurtboxes)
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, startFrame, endFrame))
+					return true;
+			return false;
+		}
+
+		public bool DoAnyHurtboxesGetHurtBy(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		{
+			HashSet<EnemyHurtbox> hurtees = new HashSet<EnemyHurtbox>();
+			foreach (EnemyHurtbox hurtbox in _enemyHurtboxes)
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, startFrame, endFrame))
+					return true;
+			return false;
+		}
+
+		public ICollection<EnemyHitbox> GetHitboxesThatHit(BatterArea area, int startFrame = 0, int endFrame = -1)
+		{
+			HashSet<EnemyHitbox> hitters = new HashSet<EnemyHitbox>();
+			foreach (EnemyHitbox hitbox in _enemyHitboxes)
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, startFrame, endFrame))
 					hitters.Add(hitbox);
 			return hitters;
 		}
 
-		public ICollection<BatterHurtbox> GetHurtboxesHurtBy(BatterArea area, int frames = 0)
+		public ICollection<BatterHitbox> GetHitboxesThatHit(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		{
+			HashSet<BatterHitbox> hitters = new HashSet<BatterHitbox>();
+			foreach (BatterHitbox hitbox in _batterHitboxes)
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, startFrame, endFrame))
+					hitters.Add(hitbox);
+			return hitters;
+		}
+
+		public ICollection<BatterHurtbox> GetHurtboxesHurtBy(BatterArea area, int startFrame = 0, int endFrame = -1)
 		{
 			HashSet<BatterHurtbox> hurtees = new HashSet<BatterHurtbox>();
 			foreach (BatterHurtbox hurtbox in _batterHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, frames))
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, startFrame, endFrame))
 					hurtees.Add(hurtbox);
 			return hurtees;
 		}
 
-		public ICollection<EnemyHurtbox> GetHurtboxesHurtBy(StrikeZone strikeZone, int frames = 0)
+		public ICollection<EnemyHurtbox> GetHurtboxesHurtBy(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
 		{
 			HashSet<EnemyHurtbox> hurtees = new HashSet<EnemyHurtbox>();
 			foreach (EnemyHurtbox hurtbox in _enemyHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, frames))
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, startFrame, endFrame))
 					hurtees.Add(hurtbox);
 			return hurtees;
 		}

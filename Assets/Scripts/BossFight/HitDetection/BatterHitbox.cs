@@ -28,9 +28,9 @@ namespace StrikeOut.BossFight
 			return strikeZone == GetHitStrikeZone();
 		}
 
-		public bool WillHit(StrikeZone strikeZone, int frames)
+		public bool WillHit(StrikeZone strikeZone, int startFrame, int endFrame = -1)
 		{
-			return DoesHit(strikeZone) && WillBeActive(frames);
+			return DoesHit(strikeZone) && WillBeActive(startFrame, endFrame);
 		}
 
 		public BatterHitRecord CheckForHit(EnemyHurtbox hurtbox)

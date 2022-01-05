@@ -53,9 +53,9 @@ namespace StrikeOut.BossFight
 			}
 		}
 
-		public bool WillHit(BatterArea area, int frames)
+		public bool WillHit(BatterArea area, int startFrame, int endFrame = -1)
 		{
-			return DoesHit(area) && WillBeActive(frames);
+			return DoesHit(area) && WillBeActive(startFrame, endFrame);
 		}
 
 		public EnemyHitRecord CheckForHit(BatterHurtbox hurtbox)

@@ -22,7 +22,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void EndSideStep() => Trigger("End Side Step");
 
-		public void Damage() => Trigger("Damage");
+		public void Hurt() => Trigger("Hurt");
 
 		public bool CanCancelAnimation(int cancelLevel = 1)
 		{

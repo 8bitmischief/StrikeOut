@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using CameraShake;
 using SharedUnityMischief;
 using SharedUnityMischief.Effects;
-using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;
 
@@ -69,6 +67,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
+				case "Wince":
+					return Scene.I.hitDetectionManager.GetHitboxesThatHit(BatterArea.Center).Count == 0;
 				default:
 					return animator.CanCancelAnimation(4);
 			}
@@ -78,6 +78,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
+				case "Wince":
+					return Scene.I.hitDetectionManager.GetHitboxesThatHit(_isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft).Count == 0;
 				default:
 					return animator.CanCancelAnimation(4);
 			}
@@ -164,14 +166,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void OnHurt(EnemyHitRecord hit)
 		{
-			animator.Damage();
-			_health = Mathf.Max(0, _health - 1);
-			if (_health == 0 && _lives > 0)
-			{
-				_health = 3;
-				_lives--;
-			}
-			Debug.Log($"Batter hurt by {hit.hitter.name}! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
+			animator.Hurt();
 		}
 
 		public void OnPredictedHurt(EnemyHitRecord hit, int frames)
@@ -183,6 +178,14 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
+				case "Hitstun":
+					_health = Mathf.Max(0, _health - 1);
+					if (_health == 0 && _lives > 0)
+					{
+						_health = 3;
+						_lives--;
+					}
+					break;
 				case "Settle":
 				case "Switch Sides":
 				case "Side Step End":

@@ -348,7 +348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _appendSpawnIndexToName: 0
   _ballSpawner: {fileID: 2998688726599854879}
-  _slashEffectSpawner: {fileID: 975722683205096519}
 --- !u!114 &8821291876735497930
 MonoBehaviour:
   m_ObjectHideFlags: 0

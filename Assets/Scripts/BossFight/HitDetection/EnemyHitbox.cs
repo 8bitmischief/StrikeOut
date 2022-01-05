@@ -40,12 +40,30 @@ namespace StrikeOut.BossFight
 				_predictedHittableEntity = entity as IEnemyPredictedHittable;
 		}
 
+		public bool DoesHit(BatterArea area)
+		{
+			switch (area)
+			{
+				case BatterArea.FarLeft: return hitsFarLeft;
+				case BatterArea.Left: return hitsLeft;
+				case BatterArea.Center: return hitsCenter;
+				case BatterArea.Right: return hitsRight;
+				case BatterArea.FarRight: return hitsFarRight;
+				default: return false;
+			}
+		}
+
+		public bool WillHit(BatterArea area, int frames)
+		{
+			return DoesHit(area) && WillBeActive(frames);
+		}
+
 		public EnemyHitRecord CheckForHit(BatterHurtbox hurtbox)
 		{
 			if (base.IsHitting(hurtbox))
 			{
-				if (DoesHitArea(hurtbox.area) &&
-					(hurtbox.destinationArea == BatterArea.None || DoesHitArea(hurtbox.destinationArea)))
+				if (DoesHit(hurtbox.area) &&
+					(hurtbox.destinationArea == BatterArea.None || DoesHit(hurtbox.destinationArea)))
 				{
 					ReusedHitRecord.hitter = entity;
 					ReusedHitRecord.hurtee = hurtbox.entity;
@@ -91,19 +109,6 @@ namespace StrikeOut.BossFight
 		{
 			if (Scene.hasInstance)
 				Scene.I.hitDetectionManager.UnregisterHitbox(this);
-		}
-
-		private bool DoesHitArea(BatterArea area)
-		{
-			switch (area)
-			{
-				case BatterArea.FarLeft: return hitsFarLeft;
-				case BatterArea.Left: return hitsLeft;
-				case BatterArea.Center: return hitsCenter;
-				case BatterArea.Right: return hitsRight;
-				case BatterArea.FarRight: return hitsFarRight;
-				default: return false;
-			}
 		}
 	}
 }

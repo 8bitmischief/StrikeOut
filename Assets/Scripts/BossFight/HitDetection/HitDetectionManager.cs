@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using StrikeOut.BossFight.Data;
+using SharedUnityMischief.Entities;
 
 namespace StrikeOut.BossFight
 {
@@ -97,6 +99,42 @@ namespace StrikeOut.BossFight
 
 		public void UnregisterHurtbox(BatterHurtbox hurtbox) => _batterHurtboxes.Remove(hurtbox);
 		public void UnregisterHurtbox(EnemyHurtbox hurtbox) => _enemyHurtboxes.Remove(hurtbox);
+
+		public ICollection<EnemyHitbox> GetHitboxesThatHit(BatterArea area, int frames = 0)
+		{
+			HashSet<EnemyHitbox> hitters = new HashSet<EnemyHitbox>();
+			foreach (EnemyHitbox hitbox in _enemyHitboxes)
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, frames))
+					hitters.Add(hitbox);
+			return hitters;
+		}
+
+		public ICollection<BatterHitbox> GetHitboxesThatHit(StrikeZone strikeZone, int frames = 0)
+		{
+			HashSet<BatterHitbox> hitters = new HashSet<BatterHitbox>();
+			foreach (BatterHitbox hitbox in _batterHitboxes)
+				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, frames))
+					hitters.Add(hitbox);
+			return hitters;
+		}
+
+		public ICollection<BatterHurtbox> GetHurtboxesHurtBy(BatterArea area, int frames = 0)
+		{
+			HashSet<BatterHurtbox> hurtees = new HashSet<BatterHurtbox>();
+			foreach (BatterHurtbox hurtbox in _batterHurtboxes)
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, frames))
+					hurtees.Add(hurtbox);
+			return hurtees;
+		}
+
+		public ICollection<EnemyHurtbox> GetHurtboxesHurtBy(StrikeZone strikeZone, int frames = 0)
+		{
+			HashSet<EnemyHurtbox> hurtees = new HashSet<EnemyHurtbox>();
+			foreach (EnemyHurtbox hurtbox in _enemyHurtboxes)
+				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, frames))
+					hurtees.Add(hurtbox);
+			return hurtees;
+		}
 
 		private int CheckForFutureHit(HitRecord hit, Hitbox hitbox, Hurtbox hurtbox)
 		{

@@ -23,25 +23,29 @@ namespace StrikeOut.BossFight
 				_predictedHittableEntity = entity as IBatterPredictedHittable;
 		}
 
+		public bool DoesHit(StrikeZone strikeZone)
+		{
+			return strikeZone == GetHitStrikeZone();
+		}
+
+		public bool WillHit(StrikeZone strikeZone, int frames)
+		{
+			return DoesHit(strikeZone) && WillBeActive(frames);
+		}
+
 		public BatterHitRecord CheckForHit(EnemyHurtbox hurtbox)
 		{
 			if (base.IsHitting(hurtbox))
 			{
-				StrikeZone strikeZone;
-				if (_strikeZone == StrikeZone.West && entity.transform.localScale.x < 0f)
-					strikeZone = StrikeZone.East;
-				else if (_strikeZone == StrikeZone.East && entity.transform.localScale.x < 0f)
-					strikeZone = StrikeZone.West;
-				else
-					strikeZone = _strikeZone;
-				BatterHitResult result = hurtbox.GetHitResult(strikeZone);
+				StrikeZone hitStrikeZone = GetHitStrikeZone();
+				BatterHitResult result = hurtbox.GetHitResult(hitStrikeZone);
 				if (result != BatterHitResult.None && result != BatterHitResult.Miss)
 				{
 					ReusedHitRecord.hitter = entity;
 					ReusedHitRecord.hurtee = hurtbox.entity;
 					ReusedHitRecord.hitbox = this;
 					ReusedHitRecord.hurtbox = hurtbox;
-					ReusedHitRecord.strikeZone = strikeZone;
+					ReusedHitRecord.strikeZone = hitStrikeZone;
 					ReusedHitRecord.result = result;
 					return ReusedHitRecord;
 				}
@@ -81,6 +85,16 @@ namespace StrikeOut.BossFight
 		{
 			if (Scene.hasInstance)
 				Scene.I.hitDetectionManager.UnregisterHitbox(this);
+		}
+
+		private StrikeZone GetHitStrikeZone()
+		{
+			if (_strikeZone == StrikeZone.West && entity.transform.localScale.x < 0f)
+				return StrikeZone.East;
+			else if (_strikeZone == StrikeZone.East && entity.transform.localScale.x < 0f)
+				return StrikeZone.West;
+			else
+				return _strikeZone;
 		}
 	}
 }

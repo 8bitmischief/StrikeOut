@@ -56,6 +56,16 @@ namespace StrikeOut.BossFight
 				_predictedHurtableEntity = entity as IBatterPredictedHurtable;
 		}
 
+		public bool IsHurtBy(BatterArea area)
+		{
+			return this.area == area;
+		}
+
+		public bool WillBeHurtBy(BatterArea area, int frames)
+		{
+			return IsHurtBy(area) && WillBeActive(frames);
+		}
+
 		public void OnHurt(EnemyHitRecord hit)
 		{
 			if (_hurtableEntity != null)

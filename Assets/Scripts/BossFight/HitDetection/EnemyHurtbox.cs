@@ -30,6 +30,17 @@ namespace StrikeOut.BossFight
 				_predictedHurtableEntity = entity as IEnemyPredictedHurtable;
 		}
 
+		public bool IsHurtBy(StrikeZone strikeZone)
+		{
+			BatterHitResult result = GetHitResult(strikeZone);
+			return result == BatterHitResult.Damage || result == BatterHitResult.Ball || result == BatterHitResult.Parry;
+		}
+
+		public bool WillBeHurtBy(StrikeZone strikeZone, int frames)
+		{
+			return IsHurtBy(strikeZone) && WillBeActive(frames);
+		}
+
 		public BatterHitResult GetHitResult(StrikeZone strikeZone)
 		{
 			StrikeZone singleStrikeZone;

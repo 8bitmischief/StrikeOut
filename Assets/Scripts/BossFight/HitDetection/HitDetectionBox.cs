@@ -69,6 +69,12 @@ namespace StrikeOut.BossFight
 			}
 		}
 
+		public bool WillBeActive(int frames)
+		{
+			return (isActive || (_estimatedFramesUntilActive != -1 && _estimatedFramesUntilActive <= frames)) &&
+				(_estimatedFramesUntilInactive == -1 || _estimatedFramesUntilInactive > frames);
+		}
+
 		protected abstract void Register();
 
 		protected abstract void Unregister();

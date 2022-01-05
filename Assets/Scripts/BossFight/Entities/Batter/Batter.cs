@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using CameraShake;
 using SharedUnityMischief;
 using SharedUnityMischief.Effects;
+using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
-using SharedUnityMischief.Pool;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
@@ -111,110 +112,19 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Swing(StrikeZone strikeZone)
 		{
-			// Find the ball that's most worth considering for this swing
-			Ball bestCandidateBall = null;
-			foreach (Ball ball in Scene.I.entityManager.balls)
-			{
-				bool chooseClosestToBattingLine = false;
-				if (bestCandidateBall == null)
-				{
-					bestCandidateBall = ball;
-				}
-				// Above all else, the best candidate is hittable
-				else if (CouldSwingInTimeToHitBall(ball))
-				{
-					if (!CouldSwingInTimeToHitBall(bestCandidateBall))
-					{
-						bestCandidateBall = ball;
-					}
-					// Among hittable balls, the best candidate is in the right strike zone
-					else if (ball.strikeZone == strikeZone)
-					{
-						if (bestCandidateBall.strikeZone != strikeZone)
-							bestCandidateBall = ball;
-						// Among hittable balls in the right strike zone, the best candidate is the one that will soonest become unhittable
-						else if (ball.framesUntilUnhittable < bestCandidateBall.framesUntilUnhittable)
-							bestCandidateBall = ball;
-					}
-					else if (bestCandidateBall.strikeZone != strikeZone)
-					{
-						// Among hittable balls in the wrong strike zone, the best candidate is closest to the batting line
-						chooseClosestToBattingLine = true;
-					}
-				}
-				else if (!CouldSwingInTimeToHitBall(bestCandidateBall))
-					// Among unhittable balls, the best candidate is closest to the batting line
-					chooseClosestToBattingLine = true;
-				// Can't decide any other way--just choose the closest tothe batting line
-				if (chooseClosestToBattingLine)
-				{
-					int framesFromBattingLine = ball.willPassBattingLine ? ball.framesUntilPassBattingLine : ball.framesSincePassedBattingLine;
-					int bestCandidateFramesFromBattingLine = bestCandidateBall.willPassBattingLine ? bestCandidateBall.framesUntilPassBattingLine : bestCandidateBall.framesSincePassedBattingLine;
-					if (framesFromBattingLine != -1 && (bestCandidateFramesFromBattingLine == -1 || framesFromBattingLine < bestCandidateFramesFromBattingLine))
-						bestCandidateBall = ball;
-				}
-			}
-			// Figure out if the ball can be swung at
-			string swingResultsMessage = "";
-			int swingStartupFrames = animator.defaultSwingStartupFrames;
-			bool tryingToHitBall = false;
-			if (bestCandidateBall != null)
-			{
-				// Figure out if the swing was early or late (- is early, + is late)
-				int framesEarlyOrLate;
-				if (bestCandidateBall.willPassBattingLine)
-					framesEarlyOrLate = animator.defaultSwingStartupFrames - bestCandidateBall.framesUntilPassBattingLine;
-				else
-					framesEarlyOrLate = animator.defaultSwingStartupFrames + bestCandidateBall.framesSincePassedBattingLine;
-				if (CouldSwingInTimeToHitBall(bestCandidateBall))
-				{
-					tryingToHitBall = true;
-					// The swing was late, speed up the animation
-					if (framesEarlyOrLate > 0)
-						swingStartupFrames -= Mathf.FloorToInt((framesEarlyOrLate) / 2);
-					// The swing was early, slow down the animation
-					else if (framesEarlyOrLate < 0)
-						swingStartupFrames += Mathf.FloorToInt((-framesEarlyOrLate) / 2);
-					// Keep the swing startup within actual limits
-					int slowestPossibleSwingStartupFrames = Mathf.Min(animator.slowestSwingStartupFrames, bestCandidateBall.framesUntilUnhittable - 1);
-					int fastestPossibleSwingStartupFrames = Mathf.Max(animator.fastestSwingStartupFrames, bestCandidateBall.isHittable ? 0 : bestCandidateBall.framesUntilHittable);
-					swingStartupFrames = Mathf.Clamp(swingStartupFrames, fastestPossibleSwingStartupFrames, slowestPossibleSwingStartupFrames);
-				}
-				else if (CouldAlmostSwingInTimeToHitBall(bestCandidateBall))
-				{
-					tryingToHitBall = true;
-				}
-				if (tryingToHitBall)
-				{
-					swingResultsMessage = $"Swung at \"{bestCandidateBall.name}\"";
-					if (framesEarlyOrLate > 0)
-						swingResultsMessage += $" {framesEarlyOrLate} {(framesEarlyOrLate == 1 ? "frame" : "frames")} late";
-					else if (framesEarlyOrLate < 0)
-						swingResultsMessage += $" {-framesEarlyOrLate} {(framesEarlyOrLate == -1 ? "frame" : "frames")} early";
-					else
-						swingResultsMessage += $" on the exact right frame";
-					swingResultsMessage += $"; {(CouldSwingInTimeToHitBall(bestCandidateBall) ? "HITTABLE" : "not hittable")}";
-					swingResultsMessage += $"; {(bestCandidateBall.strikeZone == strikeZone ? "CORRECT strike zone" : "wrong strike zone")}";
-				}
-			}
-			if (!tryingToHitBall)
-				swingResultsMessage = $"Swung at no ball in particular";
-			swingResultsMessage += $"; {swingStartupFrames} swing startup {(swingStartupFrames == 1 ? "frame" : "frames")}";
-			Debug.Log(swingResultsMessage);
-			// Perform the swing animation
 			switch (strikeZone)
 			{
 				case StrikeZone.North:
-					animator.Swing(BatterAnimator.SwingDirection.North, swingStartupFrames);
+					animator.Swing(BatterAnimator.SwingDirection.North);
 					break;
 				case StrikeZone.South:
-					animator.Swing(BatterAnimator.SwingDirection.South, swingStartupFrames);
+					animator.Swing(BatterAnimator.SwingDirection.South);
 					break;
 				case StrikeZone.East:
-					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Inside : BatterAnimator.SwingDirection.Outside, swingStartupFrames);
+					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Inside : BatterAnimator.SwingDirection.Outside);
 					break;
 				case StrikeZone.West:
-					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Outside : BatterAnimator.SwingDirection.Inside, swingStartupFrames);
+					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Outside : BatterAnimator.SwingDirection.Inside);
 					break;
 			}
 		}
@@ -313,14 +223,6 @@ namespace StrikeOut.BossFight.Entities
 		protected override void OnEndAnimation(string animation)
 		{
 			_canCancelAnimation = false;
-		}
-
-		private bool CouldSwingInTimeToHitBall(Ball ball) => CouldAlmostSwingInTimeToHitBall(ball, 0, 0);
-
-		private bool CouldAlmostSwingInTimeToHitBall(Ball ball, int framesOfEarlyLeeway = 8, int framesOfLateLeeway = 6)
-		{
-			return (ball.isHittable || (ball.willBeHittable && ball.framesUntilHittable - framesOfEarlyLeeway <= animator.slowestSwingStartupFrames)) &&
-				ball.framesUntilUnhittable + framesOfLateLeeway > animator.fastestSwingStartupFrames;
 		}
 
 		private void ANIMATION_AllowAnimationCancels()

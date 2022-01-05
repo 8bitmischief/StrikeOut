@@ -10,6 +10,7 @@ namespace StrikeOut.BossFight
 		[SerializeField] private RelativeBatterArea _area;
 		[SerializeField] private RelativeBatterArea _destinationArea;
 		private IBatterHurtable _hurtableEntity;
+		private IBatterPredictedHurtable _predictedHurtableEntity;
 
 		public BatterArea area
 		{
@@ -45,11 +46,14 @@ namespace StrikeOut.BossFight
 		}
 
 		public event Action<EnemyHitRecord> onHurt;
+		public event Action<EnemyHitRecord, int> onPredictedHurt;
 
 		private void Awake()
 		{
 			if (entity is IBatterHurtable)
 				_hurtableEntity = entity as IBatterHurtable;
+			if (entity is IBatterPredictedHurtable)
+				_predictedHurtableEntity = entity as IBatterPredictedHurtable;
 		}
 
 		public void OnHurt(EnemyHitRecord hit)
@@ -59,12 +63,19 @@ namespace StrikeOut.BossFight
 			onHurt?.Invoke(hit);
 		}
 
-		protected override void OnActivated()
+		public void OnPredictedHurt(EnemyHitRecord hit, int frames)
+		{
+			if (_predictedHurtableEntity != null)
+				_predictedHurtableEntity.OnPredictedHurt(hit, frames);
+			onPredictedHurt?.Invoke(hit, frames);
+		}
+
+		protected override void Register()
 		{
 			Scene.I.hitDetectionManager.RegisterHurtbox(this);
 		}
 
-		protected override void OnDeactivated()
+		protected override void Unregister()
 		{
 			if (Scene.hasInstance)
 				Scene.I.hitDetectionManager.UnregisterHurtbox(this);

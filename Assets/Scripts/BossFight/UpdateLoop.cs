@@ -14,8 +14,10 @@ namespace StrikeOut.BossFight
 			Scene.I.entityManager.EarlyUpdateEntities();
 			Scene.I.entityManager.UpdateEntities();
 			if (!isInterpolating)
+			{
 				Physics.Simulate(UpdateLoop.TimePerUpdate);
-			Scene.I.hitDetectionManager.CheckForHits();
+				Scene.I.hitDetectionManager.CheckForHits();
+			}
 			Scene.I.entityManager.CheckEntityInteractions();
 			Scene.I.entityManager.LateUpdateEntities();
 			Scene.I.entityManager.SpawnAndDespawnEntities();

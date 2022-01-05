@@ -11,7 +11,8 @@ namespace StrikeOut.BossFight
 		[SerializeField] private bool _isActive = false;
 		[SerializeField, Range(0f, 1f)] private float _activeAmount;
 		[SerializeField, Range(0f, 1f)] private float _inactiveAmount;
-		private bool _wasActive;
+		private bool _prevIsActive;
+		private bool _prevWillBeActive;
 		private float _prevActiveAmount;
 		private float _prevInactiveAmount;
 		private int _estimatedFramesUntilActive = -1;
@@ -26,17 +27,19 @@ namespace StrikeOut.BossFight
 
 		protected virtual void OnEnable()
 		{
-			_wasActive = isActive;
+			_prevIsActive = isActive;
+			_prevWillBeActive = willBeActive;
 			_prevActiveAmount = _activeAmount;
 			_prevInactiveAmount = _inactiveAmount;
-			if (isActive)
-				OnActivated();
+			if (isActive || willBeActive)
+				Register();
 		}
 
 		protected virtual void OnDisable()
 		{
-			_wasActive = isActive;
-			OnDeactivated();
+			_prevIsActive = isActive;
+			_prevWillBeActive = willBeActive;
+			Unregister();
 		}
 
 		public override void UpdateState()
@@ -55,19 +58,20 @@ namespace StrikeOut.BossFight
 					_estimatedFramesUntilInactive = Mathf.RoundToInt((1f - _inactiveAmount) / (_inactiveAmount - _prevInactiveAmount));
 				else
 					_estimatedFramesUntilInactive = -1;
-				if (isActive && !_wasActive)
-					OnActivated();
-				else if (!isActive && _wasActive)
-					OnDeactivated();
-				_wasActive = isActive;
+				if ((isActive || willBeActive) && !(_prevIsActive || _prevWillBeActive))
+					Register();
+				else if (!(isActive || willBeActive) && (_prevIsActive || _prevWillBeActive))
+					Unregister();
+				_prevIsActive = isActive;
+				_prevWillBeActive = willBeActive;
 				_prevActiveAmount = _activeAmount;
 				_prevInactiveAmount = _inactiveAmount;
 			}
 		}
 
-		protected abstract void OnActivated();
+		protected abstract void Register();
 
-		protected abstract void OnDeactivated();
+		protected abstract void Unregister();
 
 		private void OnDrawGizmos()
 		{

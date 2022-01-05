@@ -30,7 +30,7 @@ namespace StrikeOut.BossFight
 				return true;
 		}
 
-		protected override void OnActivated()
+		protected override void Register()
 		{
 			_hitEntities.Clear();
 			_overlappingHurtboxes.Clear();

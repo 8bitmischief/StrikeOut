@@ -1,13 +1,10 @@
 using UnityEngine;
-using SharedUnityMischief.Entities;
 using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight
 {
-	public class BatterHitRecord
+	public class BatterHitRecord : HitRecord
 	{
-		public Entity hitter;
-		public Entity hurtee;
 		public BatterHitbox hitbox;
 		public EnemyHurtbox hurtbox;
 		public StrikeZone strikeZone;

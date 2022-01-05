@@ -15,13 +15,17 @@ namespace StrikeOut.BossFight
 		[SerializeField] private BatterHitResult _south;
 		[SerializeField] private BatterHitResult _west;
 		private IEnemyHurtable _hurtableEntity;
+		private IEnemyPredictedHurtable _predictedHurtableEntity;
 
 		public event Action<BatterHitRecord> onHurt;
+		public event Action<BatterHitRecord, int> onPredictedHurt;
 
 		private void Awake()
 		{
 			if (entity is IEnemyHurtable)
 				_hurtableEntity = entity as IEnemyHurtable;
+			if (entity is IEnemyPredictedHurtable)
+				_predictedHurtableEntity = entity as IEnemyPredictedHurtable;
 		}
 
 		public BatterHitResult GetHitResult(StrikeZone strikeZone)
@@ -57,12 +61,19 @@ namespace StrikeOut.BossFight
 			onHurt?.Invoke(hit);
 		}
 
-		protected override void OnActivated()
+		public void OnPredictedHurt(BatterHitRecord hit, int frames)
+		{
+			if (_predictedHurtableEntity != null)
+				_predictedHurtableEntity.OnPredictedHurt(hit, frames);
+			onPredictedHurt?.Invoke(hit, frames);
+		}
+
+		protected override void Register()
 		{
 			Scene.I.hitDetectionManager.RegisterHurtbox(this);
 		}
 
-		protected override void OnDeactivated()
+		protected override void Unregister()
 		{
 			if (Scene.hasInstance)
 				Scene.I.hitDetectionManager.UnregisterHurtbox(this);

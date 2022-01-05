@@ -9,7 +9,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHurtable
+	public class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHurtable, IBatterPredictedHurtable
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterHurtbox _hurtbox;
@@ -270,6 +270,11 @@ namespace StrikeOut.BossFight.Entities
 				_lives--;
 			}
 			Debug.Log($"Batter hurt by {hit.hitter.name}! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
+		}
+
+		public void OnPredictedHurt(EnemyHitRecord hit, int frames)
+		{
+			Debug.Log($"{hit.hurtee.name} is predicted to be hurt by {hit.hitter.name} in {frames} {(frames == 1 ? "frame" : "frames")}");
 		}
 
 		protected override void OnStartAnimation(string animation)

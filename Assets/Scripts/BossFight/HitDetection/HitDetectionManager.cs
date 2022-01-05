@@ -19,17 +19,29 @@ namespace StrikeOut.BossFight
 				HashSet<EnemyHurtbox> hurtboxes = new HashSet<EnemyHurtbox>(_enemyHurtboxes);
 				foreach (BatterHitbox hitbox in hitboxes)
 				{
-					if (hitbox.isActiveAndEnabled && hitbox.isActive)
+					if (hitbox.isActiveAndEnabled)
 					{
 						foreach (EnemyHurtbox hurtbox in hurtboxes)
 						{
-							if (hurtbox.isActiveAndEnabled && hurtbox.isActive)
+							if (hurtbox.isActiveAndEnabled)
 							{
 								BatterHitRecord hit = hitbox.CheckForHit(hurtbox);
 								if (hit != null)
 								{
-									hitbox.OnHit(hit);
-									hurtbox.OnHurt(hit);
+									if (hitbox.isActive && hurtbox.isActive)
+									{
+										hitbox.OnHit(hit);
+										hurtbox.OnHurt(hit);
+									}
+									else
+									{
+										int frames = CheckForFutureHit(hit, hitbox, hurtbox);
+										if (frames >= 0)
+										{
+											hitbox.OnPredictedHit(hit, frames);
+											hurtbox.OnPredictedHurt(hit, frames);
+										}
+									}
 								}
 							}
 						}
@@ -43,17 +55,29 @@ namespace StrikeOut.BossFight
 				HashSet<BatterHurtbox> hurtboxes = new HashSet<BatterHurtbox>(_batterHurtboxes);
 				foreach (EnemyHitbox hitbox in hitboxes)
 				{
-					if (hitbox.isActiveAndEnabled && hitbox.isActive)
+					if (hitbox.isActiveAndEnabled)
 					{
 						foreach (BatterHurtbox hurtbox in hurtboxes)
 						{
-							if (hurtbox.isActiveAndEnabled && hurtbox.isActive)
+							if (hurtbox.isActiveAndEnabled)
 							{
 								EnemyHitRecord hit = hitbox.CheckForHit(hurtbox);
 								if (hit != null)
 								{
-									hitbox.OnHit(hit);
-									hurtbox.OnHurt(hit);
+									if (hitbox.isActive && hurtbox.isActive)
+									{
+										hitbox.OnHit(hit);
+										hurtbox.OnHurt(hit);
+									}
+									else
+									{
+										int frames = CheckForFutureHit(hit, hitbox, hurtbox);
+										if (frames >= 0)
+										{
+											hitbox.OnPredictedHit(hit, frames);
+											hurtbox.OnPredictedHurt(hit, frames);
+										}
+									}
 								}
 							}
 						}
@@ -73,5 +97,44 @@ namespace StrikeOut.BossFight
 
 		public void UnregisterHurtbox(BatterHurtbox hurtbox) => _batterHurtboxes.Remove(hurtbox);
 		public void UnregisterHurtbox(EnemyHurtbox hurtbox) => _enemyHurtboxes.Remove(hurtbox);
+
+		private int CheckForFutureHit(HitRecord hit, Hitbox hitbox, Hurtbox hurtbox)
+		{
+			int framesUntilHitboxActive;
+			if (hitbox.isActive)
+				framesUntilHitboxActive = 0;
+			else if (hitbox.willBeActive)
+				framesUntilHitboxActive = hitbox.estimatedFramesUntilActive;
+			else
+				framesUntilHitboxActive = -1;
+
+			int framesUntilHitboxInactive;
+			if (hitbox.willBeInactive)
+				framesUntilHitboxInactive = hitbox.estimatedFramesUntilInactive;
+			else
+				framesUntilHitboxInactive = -1;
+
+			int framesUntilHurtboxActive;
+			if (hurtbox.isActive)
+				framesUntilHurtboxActive = 0;
+			else if (hurtbox.willBeActive)
+				framesUntilHurtboxActive = hurtbox.estimatedFramesUntilActive;
+			else
+				framesUntilHurtboxActive = -1;
+
+			int framesUntilHurtboxInactive;
+			if (hurtbox.willBeInactive)
+				framesUntilHurtboxInactive = hurtbox.estimatedFramesUntilInactive;
+			else
+				framesUntilHurtboxInactive = -1;
+
+			if (framesUntilHitboxActive != -1 &&
+				framesUntilHurtboxActive != -1 &&
+				(framesUntilHitboxInactive == -1 || framesUntilHitboxInactive > framesUntilHurtboxActive) &&
+				(framesUntilHurtboxInactive == -1 || framesUntilHurtboxInactive > framesUntilHitboxActive))
+				return Mathf.Max(framesUntilHitboxActive, framesUntilHurtboxActive);
+			else
+				return -1;
+		}
 	}
 }

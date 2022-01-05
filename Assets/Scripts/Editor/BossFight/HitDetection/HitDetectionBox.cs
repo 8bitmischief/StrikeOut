@@ -15,8 +15,8 @@ namespace StrikeOut.BossFight.Entities
 			EditorGUILayout.Space();
 			EditorGUILayout.LabelField("State", EditorStyles.boldLabel);
 			EditorGUILayout.Toggle("Is Active", box.isActive);
-			EditorGUILayout.IntField("Frames Until Active", box.estimatedFramesUntilActive);
-			EditorGUILayout.IntField("Frames Until Inactive", box.estimatedFramesUntilInactive);
+			EditorGUILayout.IntField("Frames Until Active", box.framesUntilActive);
+			EditorGUILayout.IntField("Frames Until Inactive", box.framesUntilInactive);
 			base.DrawState();
 		}
 	}

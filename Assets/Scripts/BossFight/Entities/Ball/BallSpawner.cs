@@ -8,6 +8,9 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private PitchType _pitchType = PitchType.None;
 		[SerializeField] private StrikeZone _strikeZone = StrikeZone.None;
 
+		public PitchType pitchType { get => _pitchType; set => _pitchType = value; }
+		public StrikeZone strikeZone { get => _strikeZone; set => _strikeZone = value; }
+
 		protected override void OnSpawnChild(Entity entity)
 		{
 			Ball ball = entity as Ball;

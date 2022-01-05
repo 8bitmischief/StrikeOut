@@ -104,13 +104,13 @@ namespace StrikeOut.BossFight
 			if (hitbox.isActive)
 				framesUntilHitboxActive = 0;
 			else if (hitbox.willBeActive)
-				framesUntilHitboxActive = hitbox.estimatedFramesUntilActive;
+				framesUntilHitboxActive = hitbox.framesUntilActive;
 			else
 				framesUntilHitboxActive = -1;
 
 			int framesUntilHitboxInactive;
 			if (hitbox.willBeInactive)
-				framesUntilHitboxInactive = hitbox.estimatedFramesUntilInactive;
+				framesUntilHitboxInactive = hitbox.framesUntilInactive;
 			else
 				framesUntilHitboxInactive = -1;
 
@@ -118,13 +118,13 @@ namespace StrikeOut.BossFight
 			if (hurtbox.isActive)
 				framesUntilHurtboxActive = 0;
 			else if (hurtbox.willBeActive)
-				framesUntilHurtboxActive = hurtbox.estimatedFramesUntilActive;
+				framesUntilHurtboxActive = hurtbox.framesUntilActive;
 			else
 				framesUntilHurtboxActive = -1;
 
 			int framesUntilHurtboxInactive;
 			if (hurtbox.willBeInactive)
-				framesUntilHurtboxInactive = hurtbox.estimatedFramesUntilInactive;
+				framesUntilHurtboxInactive = hurtbox.framesUntilInactive;
 			else
 				framesUntilHurtboxInactive = -1;
 

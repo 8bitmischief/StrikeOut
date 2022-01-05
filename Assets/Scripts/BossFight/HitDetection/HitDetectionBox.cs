@@ -21,8 +21,8 @@ namespace StrikeOut.BossFight
 		public bool isActive => _isActive || (_activeAmount >= 1f && _inactiveAmount < 1f);
 		public bool willBeActive => _estimatedFramesUntilActive >= 0;
 		public bool willBeInactive => _estimatedFramesUntilInactive >= 0;
-		public int estimatedFramesUntilActive => _estimatedFramesUntilActive;
-		public int estimatedFramesUntilInactive => _estimatedFramesUntilInactive;
+		public int framesUntilActive => _estimatedFramesUntilActive;
+		public int framesUntilInactive => _estimatedFramesUntilInactive;
 		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
 
 		protected virtual void OnEnable()

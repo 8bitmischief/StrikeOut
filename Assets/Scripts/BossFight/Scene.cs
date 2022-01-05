@@ -14,14 +14,11 @@ namespace StrikeOut.BossFight
 		[SerializeField] private EntityManager _entityManager;
 		[SerializeField] private HitDetectionManager _hitDetectionManager;
 		[SerializeField] private Locations _locations;
-		[Header("Data")]
-		[SerializeField] private PitchDataObject _pitchData;
 
 		public UpdateLoop updateLoop => _updateLoop;
 		public EntityManager entityManager => _entityManager;
 		public HitDetectionManager hitDetectionManager => _hitDetectionManager;
 		public Locations locations => _locations;
-		public PitchDataObject pitchData => _pitchData;
 
 		private void OnEnable()
 		{

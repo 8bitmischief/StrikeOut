@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: Swing
-  _authoredRootMotion: {x: 0.9, y: 0, z: 0}
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 2
+  _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!114 &-6550714389253110596
@@ -170,7 +170,7 @@ MonoBehaviour:
   _animation: Swing
   _authoredRootMotion: {x: 0, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 2
+  _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!1101 &-5861619888230144031
@@ -208,9 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: Swing
-  _authoredRootMotion: {x: 0.5, y: 0, z: 0}
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 2
+  _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!1101 &-5281386625376483403
@@ -939,9 +939,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animation: Swing
-  _authoredRootMotion: {x: 2, y: 0, z: 0}
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 2
+  _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!1101 &8729557137304466694

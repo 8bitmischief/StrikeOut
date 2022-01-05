@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using SharedUnityMischief.Effects;
-using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using StrikeOut.BossFight.Data;
 
@@ -10,7 +8,8 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(SwordsmanPitcherAnimator))]
 	public class SwordsmanPitcher : AnimatedEntity<SwordsmanPitcherAnimator, string>
 	{
-		[SerializeField] private ParticleEffectSpawner _slashEffectSpawner;
+		[Header("Pitcher Config")]
+		[SerializeField] private BallSpawner _ballSpawner;
 
 		public bool isIdle => animation == "Idle";
 		public float idleTime => animation == "Idle" ? totalAnimationTime : 0f;
@@ -34,11 +33,13 @@ namespace StrikeOut.BossFight.Entities
 
 		public void MeleeDownwardSlash() => animator.MeleeDownwardSlash();
 
-		public bool CanCancelAnimation(int cancelLevel) => animator.CanCancelAnimation(cancelLevel);
-
-		private void ANIMATION_SpawnSlashEffect()
+		public void Pitch(PitchType pitchType, StrikeZone strikeZone)
 		{
-			_slashEffectSpawner.SpawnParticleEffect(Scene.I.locations.inFrontOfBatter.center + new Vector3(0f, 1.5f, 10f));
+			_ballSpawner.pitchType = pitchType;
+			_ballSpawner.strikeZone = strikeZone;
+			animator.Pitch();
 		}
+
+		public bool CanCancelAnimation(int cancelLevel) => animator.CanCancelAnimation(cancelLevel);
 	}
 }

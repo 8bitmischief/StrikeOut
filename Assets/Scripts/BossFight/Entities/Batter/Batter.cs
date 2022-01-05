@@ -9,7 +9,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHurtable, IBatterPredictedHurtable
+	public class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHittable, IBatterHurtable, IBatterPredictedHurtable
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterHurtbox _hurtbox;
@@ -17,8 +17,6 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
 		private int _lives = 3;
-		private StrikeZone _strikeZone = StrikeZone.None;
-		private Ball _targetBall;
 		private bool _canCancelAnimation = false;
 		private bool _isOnRightSide = false;
 
@@ -113,7 +111,6 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Swing(StrikeZone strikeZone)
 		{
-			this._strikeZone = strikeZone;
 			// Find the ball that's most worth considering for this swing
 			Ball bestCandidateBall = null;
 			foreach (Ball ball in Scene.I.entityManager.balls)
@@ -161,7 +158,6 @@ namespace StrikeOut.BossFight.Entities
 			string swingResultsMessage = "";
 			int swingStartupFrames = animator.defaultSwingStartupFrames;
 			bool tryingToHitBall = false;
-			_targetBall = null;
 			if (bestCandidateBall != null)
 			{
 				// Figure out if the swing was early or late (- is early, + is late)
@@ -173,8 +169,6 @@ namespace StrikeOut.BossFight.Entities
 				if (CouldSwingInTimeToHitBall(bestCandidateBall))
 				{
 					tryingToHitBall = true;
-					if (bestCandidateBall.strikeZone == strikeZone)
-						_targetBall = bestCandidateBall;
 					// The swing was late, speed up the animation
 					if (framesEarlyOrLate > 0)
 						swingStartupFrames -= Mathf.FloorToInt((framesEarlyOrLate) / 2);
@@ -217,11 +211,10 @@ namespace StrikeOut.BossFight.Entities
 					animator.Swing(BatterAnimator.SwingDirection.South, swingStartupFrames);
 					break;
 				case StrikeZone.East:
+					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Inside : BatterAnimator.SwingDirection.Outside, swingStartupFrames);
+					break;
 				case StrikeZone.West:
-					if (_isOnRightSide == (strikeZone == StrikeZone.East))
-						animator.Swing(BatterAnimator.SwingDirection.Inside, swingStartupFrames);
-					else
-						animator.Swing(BatterAnimator.SwingDirection.Outside, swingStartupFrames);
+					animator.Swing(_isOnRightSide ? BatterAnimator.SwingDirection.Outside : BatterAnimator.SwingDirection.Inside, swingStartupFrames);
 					break;
 			}
 		}
@@ -260,6 +253,28 @@ namespace StrikeOut.BossFight.Entities
 			animator.EndSideStep();
 		}
 
+		public void OnHit(BatterHitRecord hit)
+		{
+			if (hit.hurtee is Ball)
+			{
+				Ball ball = hit.hurtee as Ball;
+				Vector3 targetPosition = new Vector3(15f, 5f, 50f);
+				Vector3 shakeDirection;
+				if (ball.strikeZone == StrikeZone.North)
+					shakeDirection = new Vector3(1f, 0.3f, 0f);
+				else if (ball.strikeZone == StrikeZone.South)
+					shakeDirection = new Vector3(1f, -0.3f, 0f);
+				else
+					shakeDirection = new Vector3(1f, 0f, 0f);
+				if (_isOnRightSide)
+					shakeDirection.x *= -1;
+				ball.Hit(targetPosition);
+				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
+				ParticleEffect effect = _hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(ball.transform.position.x, ball.transform.position.y, 0f));
+				effect.Play();
+			}
+		}
+
 		public void OnHurt(EnemyHitRecord hit)
 		{
 			animator.Damage();
@@ -293,35 +308,6 @@ namespace StrikeOut.BossFight.Entities
 						Scene.I.locations.batter.farRight :
 						Scene.I.locations.batter.farLeft, false);
 					break;
-				case "Swing":
-					switch (_strikeZone)
-					{
-						case StrikeZone.North:
-							if (_isOnRightSide)
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.9f, 0f, 0f), false);
-							else
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.9f, 0f, 0f), false);
-							break;
-						case StrikeZone.East:
-							if (_isOnRightSide)
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(0f, 0f, 0f), false);
-							else
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(2f, 0f, 0f), false);
-							break;
-						case StrikeZone.South:
-							if (_isOnRightSide)
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-0.5f, 0f, 0f), false);
-							else
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0.5f, 0f, 0f), false);
-							break;
-						case StrikeZone.West:
-							if (_isOnRightSide)
-								animator.SetRootMotion(Scene.I.locations.batter.right + new Vector3(-2f, 0f, 0f), false);
-							else
-								animator.SetRootMotion(Scene.I.locations.batter.left + new Vector3(0f, 0f, 0f), false);
-							break;
-					}
-					break;
 			}
 		}
 
@@ -341,28 +327,6 @@ namespace StrikeOut.BossFight.Entities
 		private void ANIMATION_AllowAnimationCancels()
 		{
 			_canCancelAnimation = true;
-		}
-
-		private void ANIMATION_TryHitBall()
-		{
-			if (_targetBall != null)
-			{
-				Vector3 targetPosition = new Vector3(15f, 5f, 50f);
-				Vector3 shakeDirection;
-				if (_targetBall.strikeZone == StrikeZone.North)
-					shakeDirection = new Vector3(1f, 0.3f, 0f);
-				else if (_targetBall.strikeZone == StrikeZone.South)
-					shakeDirection = new Vector3(1f, -0.3f, 0f);
-				else
-					shakeDirection = new Vector3(1f, 0f, 0f);
-				if (_isOnRightSide)
-					shakeDirection.x *= -1;
-				_targetBall.Hit(targetPosition);
-				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				ParticleEffect effect = _hitBallEffectPool.Withdraw<ParticleEffect>(new Vector3(_targetBall.transform.position.x, _targetBall.transform.position.y, 0f));
-				effect.Play();
-			}
-			_targetBall = null;
 		}
 	}
 }

@@ -17,6 +17,8 @@ namespace StrikeOut.BossFight
 		private IEnemyHurtable _hurtableEntity;
 		private IEnemyPredictedHurtable _predictedHurtableEntity;
 
+		public StrikeZone strikeZone { get => _strikeZone; set => _strikeZone = value; }
+
 		public event Action<BatterHitRecord> onHurt;
 		public event Action<BatterHitRecord, int> onPredictedHurt;
 

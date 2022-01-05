@@ -17,6 +17,8 @@ namespace StrikeOut.BossFight.Entities
 
 		public void MeleeDownwardSlash() => Trigger("Melee Downward Slash");
 
+		public void Pitch() => Trigger("Pitch");
+
 		public bool CanCancelAnimation(int cancelLevel = 1)
 		{
 			return animation == "Idle" || _cancelAnimationLevel >= cancelLevel;

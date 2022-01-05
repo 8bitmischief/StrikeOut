@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pool: {fileID: 6407436211579983968}
   _spawnOnEnable: 1
-  _pitchType: 1
-  _strikeZone: 2
+  _pitchType: 0
+  _strikeZone: 0
 --- !u!1 &3802641445590039427
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _appendSpawnIndexToName: 0
+  _ballSpawner: {fileID: 2998688726599854879}
   _slashEffectSpawner: {fileID: 975722683205096519}
 --- !u!114 &8821291876735497930
 MonoBehaviour:

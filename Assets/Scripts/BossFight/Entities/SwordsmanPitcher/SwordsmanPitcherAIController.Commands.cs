@@ -34,6 +34,14 @@ namespace StrikeOut.BossFight.Entities
 			public override void Start() => entity.Slash();
 		}
 
+		private class PitchCommand : PitcherCommand
+		{
+			public StrikeZone strikeZone;
+			public PitchType pitchType;
+
+			public override void Start() => entity.Pitch(pitchType, strikeZone);
+		}
+
 		private class MeleeDownwardSlash : PitcherCommand
 		{
 			private bool _hasSlashed = false;

@@ -18,7 +18,6 @@ namespace StrikeOut.BossFight.Entities
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		private int _health = 3;
 		private int _lives = 3;
-		private bool _canCancelAnimation = false;
 		private bool _isOnRightSide = false;
 
 		public int health => _health;
@@ -42,15 +41,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case "Swing":
-				case "Side Step End":
-				case "Switch Sides":
-				case "Settle":
-					return _canCancelAnimation;
-				case "Idle":
-					return true;
 				default:
-					return false;
+					return animator.CanCancelAnimation(4);
 			}
 		}
 
@@ -77,15 +69,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case "Swing":
-				case "Side Step End":
-				case "Switch Sides":
-				case "Settle":
-					return _canCancelAnimation;
-				case "Idle":
-					return true;
 				default:
-					return false;
+					return animator.CanCancelAnimation(4);
 			}
 		}
 
@@ -93,21 +78,14 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case "Swing":
-				case "Side Step End":
-				case "Switch Sides":
-				case "Settle":
-					return _canCancelAnimation;
-				case "Idle":
-					return true;
 				default:
-					return false;
+					return animator.CanCancelAnimation(4);
 			}
 		}
 		
 		public bool CanEndSideStep()
 		{
-			return animation == "Side Step Start" && _canCancelAnimation;
+			return animation == "Side Step Start" && animator.CanCancelAnimation(1);
 		}
 
 		public void Swing(StrikeZone strikeZone)
@@ -218,16 +196,6 @@ namespace StrikeOut.BossFight.Entities
 						Scene.I.locations.batter.farLeft, false);
 					break;
 			}
-		}
-
-		protected override void OnEndAnimation(string animation)
-		{
-			_canCancelAnimation = false;
-		}
-
-		private void ANIMATION_AllowAnimationCancels()
-		{
-			_canCancelAnimation = true;
 		}
 	}
 }

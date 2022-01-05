@@ -7,6 +7,9 @@ namespace StrikeOut.BossFight.Entities
 	[RequireComponent(typeof(Animator))]
 	public class BatterAnimator : EntityAnimator<Batter, string>
 	{
+		[Header("Batter Config")]
+		[SerializeField] private int _cancelAnimationLevel = 0;
+
 		public void Swing(SwingDirection direction)
 		{
 			animator.SetInteger("Swing Direction", (int) direction);
@@ -20,6 +23,11 @@ namespace StrikeOut.BossFight.Entities
 		public void EndSideStep() => Trigger("End Side Step");
 
 		public void Damage() => Trigger("Damage");
+
+		public bool CanCancelAnimation(int cancelLevel = 1)
+		{
+			return animation == "Idle" || _cancelAnimationLevel >= cancelLevel;
+		}
 
 		public enum SwingDirection
 		{

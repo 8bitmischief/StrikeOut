@@ -191,6 +191,34 @@ AnimationClip:
     path: Hurtbox
     classID: 114
     script: {fileID: 11500000, guid: 0c99cc927d4e93942a266a25895369b4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2
+        value: 4
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: _cancelAnimationLevel
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
   m_PPtrCurves:
   - curve:
     - time: 0
@@ -238,6 +266,13 @@ AnimationClip:
       path: 566259038
       attribute: 1520380194
       script: {fileID: 11500000, guid: 0c99cc927d4e93942a266a25895369b4, type: 3}
+      typeID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 2621609258
+      script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
@@ -493,14 +528,35 @@ AnimationClip:
     path: Hurtbox
     classID: 114
     script: {fileID: 11500000, guid: 0c99cc927d4e93942a266a25895369b4, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2
+        value: 4
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: _cancelAnimationLevel
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: ecf8958e325316f43be6a577f67f5883, type: 3}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.2
-    functionName: ANIMATION_AllowAnimationCancels
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

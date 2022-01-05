@@ -4,30 +4,17 @@ using SharedUnityMischief.Entities;
 
 namespace StrikeOut.BossFight
 {
-	public abstract class Hitbox : EntityComponent
+	public abstract class Hitbox : HitDetectionBox
 	{
-		[SerializeField] private BoxCollider _collider;
-
 		[Header("Hitbox Config")]
 		[SerializeField] private bool _requireOverlap = false;
 		[SerializeField] private HitBehaviour _hitBehaviour = HitBehaviour.OneHitPerEntity;
 		private HashSet<Entity> _hitEntities = new HashSet<Entity>();
 		private HashSet<Hurtbox> _overlappingHurtboxes = new HashSet<Hurtbox>();
 
-		public override int componentUpdateOrder => EntityComponent.ControllerUpdateOrder + 50;
-
-		protected virtual void OnEnable()
-		{
-			_hitEntities.Clear();
-			_overlappingHurtboxes.Clear();
-		}
-
 		public override void UpdateState()
 		{
-			_collider.size = new Vector3(
-				Mathf.Sign(transform.lossyScale.x),
-				Mathf.Sign(transform.lossyScale.y),
-				Mathf.Sign(transform.lossyScale.z));
+			base.UpdateState();
 			_overlappingHurtboxes.Clear();
 		}
 
@@ -41,6 +28,12 @@ namespace StrikeOut.BossFight
 				return false;
 			else
 				return true;
+		}
+
+		protected override void OnActivated()
+		{
+			_hitEntities.Clear();
+			_overlappingHurtboxes.Clear();
 		}
 
 		protected void OnHit(Hurtbox hurtbox)

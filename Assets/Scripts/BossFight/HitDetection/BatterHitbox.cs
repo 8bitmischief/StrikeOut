@@ -19,18 +19,6 @@ namespace StrikeOut.BossFight
 				_hittableEntity = entity as IBatterHittable;
 		}
 
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			Scene.I.hitDetectionManager.RegisterHitbox(this);
-		}
-
-		private void OnDisable()
-		{
-			if (Scene.hasInstance)
-				Scene.I.hitDetectionManager.UnregisterHitbox(this);
-		}
-
 		public BatterHitRecord CheckForHit(EnemyHurtbox hurtbox)
 		{
 			if (base.IsHitting(hurtbox))
@@ -70,6 +58,18 @@ namespace StrikeOut.BossFight
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hit);
 			onHit?.Invoke(hit);
+		}
+
+		protected override void OnActivated()
+		{
+			base.OnActivated();
+			Scene.I.hitDetectionManager.RegisterHitbox(this);
+		}
+
+		protected override void OnDeactivated()
+		{
+			if (Scene.hasInstance)
+				Scene.I.hitDetectionManager.UnregisterHitbox(this);
 		}
 	}
 }

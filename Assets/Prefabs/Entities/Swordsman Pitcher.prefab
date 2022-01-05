@@ -635,13 +635,17 @@ PrefabInstance:
       propertyPath: _hitsLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7923793428887650374, guid: 4898b9369026c3d44a6293dcbb5cf2ec, type: 3}
+      propertyPath: _isActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8837124207425280432, guid: 4898b9369026c3d44a6293dcbb5cf2ec, type: 3}
       propertyPath: m_Name
       value: Melee Downward Slash
       objectReference: {fileID: 0}
     - target: {fileID: 8837124207425280432, guid: 4898b9369026c3d44a6293dcbb5cf2ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4898b9369026c3d44a6293dcbb5cf2ec, type: 3}

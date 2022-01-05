@@ -36,19 +36,6 @@ namespace StrikeOut.BossFight
 				_hittableEntity = entity as IEnemyHittable;
 		}
 
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			_isOnRightSide = entity.transform.position.x >= Scene.I.locations.batter.center.x;
-			Scene.I.hitDetectionManager.RegisterHitbox(this);
-		}
-
-		private void OnDisable()
-		{
-			if (Scene.hasInstance)
-				Scene.I.hitDetectionManager.UnregisterHitbox(this);
-		}
-
 		public EnemyHitRecord CheckForHit(BatterHurtbox hurtbox)
 		{
 			if (base.IsHitting(hurtbox))
@@ -80,6 +67,19 @@ namespace StrikeOut.BossFight
 			if (_hittableEntity != null)
 				_hittableEntity.OnHit(hit);
 			onHit?.Invoke(hit);
+		}
+
+		protected override void OnActivated()
+		{
+			base.OnActivated();
+			_isOnRightSide = entity.transform.position.x >= Scene.I.locations.batter.center.x;
+			Scene.I.hitDetectionManager.RegisterHitbox(this);
+		}
+
+		protected override void OnDeactivated()
+		{
+			if (Scene.hasInstance)
+				Scene.I.hitDetectionManager.UnregisterHitbox(this);
 		}
 
 		private bool DoesHitArea(BatterArea area)

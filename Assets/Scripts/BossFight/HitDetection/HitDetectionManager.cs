@@ -19,11 +19,11 @@ namespace StrikeOut.BossFight
 				HashSet<EnemyHurtbox> hurtboxes = new HashSet<EnemyHurtbox>(_enemyHurtboxes);
 				foreach (BatterHitbox hitbox in hitboxes)
 				{
-					if (hitbox.isActiveAndEnabled)
+					if (hitbox.isActiveAndEnabled && hitbox.isActive)
 					{
 						foreach (EnemyHurtbox hurtbox in hurtboxes)
 						{
-							if (hurtbox.isActiveAndEnabled)
+							if (hurtbox.isActiveAndEnabled && hurtbox.isActive)
 							{
 								BatterHitRecord hit = hitbox.CheckForHit(hurtbox);
 								if (hit != null)
@@ -43,11 +43,11 @@ namespace StrikeOut.BossFight
 				HashSet<BatterHurtbox> hurtboxes = new HashSet<BatterHurtbox>(_batterHurtboxes);
 				foreach (EnemyHitbox hitbox in hitboxes)
 				{
-					if (hitbox.isActiveAndEnabled)
+					if (hitbox.isActiveAndEnabled && hitbox.isActive)
 					{
 						foreach (BatterHurtbox hurtbox in hurtboxes)
 						{
-							if (hurtbox.isActiveAndEnabled)
+							if (hurtbox.isActiveAndEnabled && hurtbox.isActive)
 							{
 								EnemyHitRecord hit = hitbox.CheckForHit(hurtbox);
 								if (hit != null)

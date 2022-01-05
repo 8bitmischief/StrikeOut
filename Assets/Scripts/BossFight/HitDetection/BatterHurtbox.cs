@@ -52,22 +52,22 @@ namespace StrikeOut.BossFight
 				_hurtableEntity = entity as IBatterHurtable;
 		}
 
-		private void OnEnable()
-		{
-			Scene.I.hitDetectionManager.RegisterHurtbox(this);
-		}
-
-		private void OnDisable()
-		{
-			if (Scene.hasInstance)
-				Scene.I.hitDetectionManager.UnregisterHurtbox(this);
-		}
-
 		public void OnHurt(EnemyHitRecord hit)
 		{
 			if (_hurtableEntity != null)
 				_hurtableEntity.OnHurt(hit);
 			onHurt?.Invoke(hit);
+		}
+
+		protected override void OnActivated()
+		{
+			Scene.I.hitDetectionManager.RegisterHurtbox(this);
+		}
+
+		protected override void OnDeactivated()
+		{
+			if (Scene.hasInstance)
+				Scene.I.hitDetectionManager.UnregisterHurtbox(this);
 		}
 	}
 }

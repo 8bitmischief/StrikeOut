@@ -5,7 +5,7 @@ using SharedUnityMischief.Entities.Animated;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(Animator))]
-	public class BatterAnimator : EntityAnimator<Batter, Batter.Animation>
+	public class BatterAnimator : EntityAnimator<Batter, string>
 	{
 		[Tooltip("The fastest a swing can possibly be performed, in frames")]
 		[SerializeField] private int _fastestSwingStartupFrames = 2;
@@ -35,11 +35,11 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Damage() => Trigger("Damage");
 
-		protected override void OnStartAnimation(Batter.Animation animation)
+		protected override void OnStartAnimation(string animation)
 		{
 			switch (animation)
 			{
-				case Batter.Animation.Swing:
+				case "Swing":
 					if (_swingStartupFrames == _defaultSwingStartupFrames)
 						animationSpeed = 1.00f;
 					else
@@ -48,11 +48,11 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		protected override void OnEndAnimation(Batter.Animation animation)
+		protected override void OnEndAnimation(string animation)
 		{
 			switch (animation)
 			{
-				case Batter.Animation.Swing:
+				case "Swing":
 					animationSpeed = 1.00f;
 					break;
 			}

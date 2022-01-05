@@ -2,7 +2,6 @@ using UnityEngine;
 using CameraShake;
 using SharedUnityMischief;
 using SharedUnityMischief.Effects;
-using SharedUnityMischief.Entities;
 using SharedUnityMischief.Entities.Animated;
 using SharedUnityMischief.Pool;
 using StrikeOut.BossFight.Data;
@@ -10,7 +9,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public class Batter : AnimatedEntity<BatterAnimator, Batter.Animation>, IBatterHurtable
+	public class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHurtable
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterHurtbox _hurtbox;
@@ -44,12 +43,12 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case Animation.Swing:
-				case Animation.SideStepEnd:
-				case Animation.SwitchSides:
-				case Animation.Settle:
+				case "Swing":
+				case "Side Step End":
+				case "Switch Sides":
+				case "Settle":
 					return _canCancelAnimation;
-				case Animation.Idle:
+				case "Idle":
 					return true;
 				default:
 					return false;
@@ -79,12 +78,12 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case Animation.Swing:
-				case Animation.SideStepEnd:
-				case Animation.SwitchSides:
-				case Animation.Settle:
+				case "Swing":
+				case "Side Step End":
+				case "Switch Sides":
+				case "Settle":
 					return _canCancelAnimation;
-				case Animation.Idle:
+				case "Idle":
 					return true;
 				default:
 					return false;
@@ -95,12 +94,12 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (animation)
 			{
-				case Animation.Swing:
-				case Animation.SideStepEnd:
-				case Animation.SwitchSides:
-				case Animation.Settle:
+				case "Swing":
+				case "Side Step End":
+				case "Switch Sides":
+				case "Settle":
 					return _canCancelAnimation;
-				case Animation.Idle:
+				case "Idle":
 					return true;
 				default:
 					return false;
@@ -109,7 +108,7 @@ namespace StrikeOut.BossFight.Entities
 		
 		public bool CanEndSideStep()
 		{
-			return animation == Animation.SideStepStart && _canCancelAnimation;
+			return animation == "Side Step Start" && _canCancelAnimation;
 		}
 
 		public void Swing(StrikeZone strikeZone)
@@ -237,7 +236,7 @@ namespace StrikeOut.BossFight.Entities
 			// Dodge inwards (switch sides)
 			else
 			{
-				if (animation == Animation.SideStepStart)
+				if (animation == "Side Step Start")
 					EndSideStep();
 				else
 					SwitchSides();
@@ -273,23 +272,23 @@ namespace StrikeOut.BossFight.Entities
 			Debug.Log($"Batter hurt by {hit.hitter.name}! {_health} health and {_lives} {(_lives == 1 ? "life" : "lives")} left");
 		}
 
-		protected override void OnStartAnimation(Animation animation)
+		protected override void OnStartAnimation(string animation)
 		{
 			switch (animation)
 			{
-				case Animation.Settle:
-				case Animation.SwitchSides:
-				case Animation.SideStepEnd:
+				case "Settle":
+				case "Switch Sides":
+				case "Side Step End":
 					animator.SetRootMotion(_isOnRightSide ?
 						Scene.I.locations.batter.right :
 						Scene.I.locations.batter.left, false);
 					break;
-				case Animation.SideStepStart:
+				case "Side Step Start":
 					animator.SetRootMotion(_isOnRightSide ?
 						Scene.I.locations.batter.farRight :
 						Scene.I.locations.batter.farLeft, false);
 					break;
-				case Animation.Swing:
+				case "Swing":
 					switch (_strikeZone)
 					{
 						case StrikeZone.North:
@@ -321,7 +320,7 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		protected override void OnEndAnimation(Animation animation)
+		protected override void OnEndAnimation(string animation)
 		{
 			_canCancelAnimation = false;
 		}
@@ -359,18 +358,6 @@ namespace StrikeOut.BossFight.Entities
 				effect.Play();
 			}
 			_targetBall = null;
-		}
-
-		public enum Animation
-		{
-			None = 0,
-			Idle = 1,
-			SwitchSides = 2,
-			SideStepStart = 3,
-			SideStepEnd = 4,
-			Swing = 5,
-			Settle = 6,
-			Hitstun = 7
 		}
 	}
 }

@@ -66,7 +66,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -5861619888230144031}
   m_StateMachineBehaviours:
-  - {fileID: -3813364125938251337}
+  - {fileID: -3318736662181203205}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -137,6 +137,42 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-7024895551451223058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: Swing
+  _authoredRootMotion: {x: 0.9, y: 0, z: 0}
+  _skipFirstFrame: 0
+  _xRootMotion: 2
+  _yRootMotion: 1
+  _zRootMotion: 1
+--- !u!114 &-6550714389253110596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: Swing
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
+  _skipFirstFrame: 0
+  _xRootMotion: 2
+  _yRootMotion: 1
+  _zRootMotion: 1
 --- !u!1101 &-5861619888230144031
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -159,7 +195,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &-5857077017891881765
+--- !u!114 &-5589071281893291334
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,14 +204,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 7
-  _authoredRootMotion: {x: 0, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
+  _animation: Swing
+  _authoredRootMotion: {x: 0.5, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 1
+  _xRootMotion: 2
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!1101 &-5281386625376483403
@@ -213,7 +248,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -5281386625376483403}
   m_StateMachineBehaviours:
-  - {fileID: 8728480577502590278}
+  - {fileID: 8932195591917624580}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -241,7 +276,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -989784504974641525}
   m_StateMachineBehaviours:
-  - {fileID: -1810139683683109113}
+  - {fileID: -5589071281893291334}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -268,7 +303,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours:
-  - {fileID: 882171537021970738}
+  - {fileID: -1505811253999153823}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -283,7 +318,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &-3813364125938251337
+--- !u!114 &-3318736662181203205
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,12 +327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 4
+  _animation: Side Step End
   _authoredRootMotion: {x: 3, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
   _skipFirstFrame: 1
   _xRootMotion: 2
   _yRootMotion: 1
@@ -315,7 +349,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 6226269394444881998}
   m_StateMachineBehaviours:
-  - {fileID: -5857077017891881765}
+  - {fileID: 6187937918180292714}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -368,7 +402,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 8865877067780429094}
   m_StateMachineBehaviours:
-  - {fileID: 5632829091067978655}
+  - {fileID: -6550714389253110596}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -383,7 +417,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &-1810139683683109113
+--- !u!114 &-1505811253999153823
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -392,14 +426,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 5
-  _authoredRootMotion: {x: 0.5, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
+  _animation: Idle
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
   _skipFirstFrame: 0
-  _xRootMotion: 2
+  _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
 --- !u!1101 &-989784504974641525
@@ -459,7 +492,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 3738665461704701044}
   m_StateMachineBehaviours:
-  - {fileID: 3254082829415754161}
+  - {fileID: 7177644055216209178}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -488,43 +521,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Swing Direction
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Swing Startup Frames
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Switch Sides
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Side Step
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: End Side Step
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Damage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -550,14 +583,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 1
+  _animation: 
   _authoredRootMotion: {x: 0, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
   _skipFirstFrame: 0
   _xRootMotion: 1
   _yRootMotion: 1
   _zRootMotion: 1
---- !u!114 &1336913120747877459
+  _animator: {fileID: 0}
+--- !u!114 &1146532349135273609
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,31 +599,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 5
-  _authoredRootMotion: {x: 2, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _skipFirstFrame: 0
-  _xRootMotion: 2
-  _yRootMotion: 1
-  _zRootMotion: 1
---- !u!114 &2317164588637782096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: 3
+  _animation: Side Step Start
   _authoredRootMotion: {x: -3, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
   _skipFirstFrame: 1
   _xRootMotion: 2
   _yRootMotion: 1
@@ -609,7 +622,7 @@ AnimatorState:
   - {fileID: -2492662602851923811}
   - {fileID: 6912402966113872517}
   m_StateMachineBehaviours:
-  - {fileID: 2317164588637782096}
+  - {fileID: 1146532349135273609}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -624,25 +637,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &3254082829415754161
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: 2
-  _authoredRootMotion: {x: -5, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _skipFirstFrame: 1
-  _xRootMotion: 2
-  _yRootMotion: 1
-  _zRootMotion: 1
 --- !u!1102 &3285645031924327834
 AnimatorState:
   serializedVersion: 6
@@ -656,7 +650,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -711486029726374530}
   m_StateMachineBehaviours:
-  - {fileID: 4657857576660310659}
+  - {fileID: -7024895551451223058}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -718,44 +712,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &4657857576660310659
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: 5
-  _authoredRootMotion: {x: 0.9, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _skipFirstFrame: 0
-  _xRootMotion: 2
-  _yRootMotion: 1
-  _zRootMotion: 1
---- !u!114 &5632829091067978655
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: 5
-  _authoredRootMotion: {x: 0, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
-  _skipFirstFrame: 0
-  _xRootMotion: 1
-  _yRootMotion: 1
-  _zRootMotion: 1
 --- !u!1101 &6003536965090340126
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -778,6 +734,24 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &6187937918180292714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: Hitstun
+  _authoredRootMotion: {x: 0, y: 0, z: 0}
+  _skipFirstFrame: 0
+  _xRootMotion: 1
+  _yRootMotion: 1
+  _zRootMotion: 1
 --- !u!1101 &6226269394444881998
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -835,7 +809,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 6003536965090340126}
   m_StateMachineBehaviours:
-  - {fileID: 1336913120747877459}
+  - {fileID: 8431731275178579229}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -850,6 +824,24 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &7177644055216209178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: Switch Sides
+  _authoredRootMotion: {x: -5, y: 0, z: 0}
+  _skipFirstFrame: 1
+  _xRootMotion: 2
+  _yRootMotion: 1
+  _zRootMotion: 1
 --- !u!1101 &7401914619162160709
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -934,7 +926,7 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 780, y: 140, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4297654497114293608}
---- !u!114 &8728480577502590278
+--- !u!114 &8431731275178579229
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -943,12 +935,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1a1de2ed0fd4fa4ae7b1d43a3e0c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: 6
-  _authoredRootMotion: {x: -2, y: 0, z: 0}
-  _undoAuthoredRootMotion: 0
+  _animation: Swing
+  _authoredRootMotion: {x: 2, y: 0, z: 0}
   _skipFirstFrame: 0
   _xRootMotion: 2
   _yRootMotion: 1
@@ -1000,3 +991,21 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &8932195591917624580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dffce1fec39477c9ee564c0a936140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animation: Settle
+  _authoredRootMotion: {x: -2, y: 0, z: 0}
+  _skipFirstFrame: 0
+  _xRootMotion: 2
+  _yRootMotion: 1
+  _zRootMotion: 1

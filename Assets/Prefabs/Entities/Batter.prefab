@@ -181,6 +181,10 @@ MonoBehaviour:
       falloffScale: 50
       falloffDegree: 1
       axesMultiplier: {x: 1, y: 1, z: 1}
+  _quickDodgeFrames: 3
+  _dodgeLateForgivenessFrames: 2
+  _wasAbleToSwitchSidesPriorToBeingHurt: 0
+  _wasAbleToSideStepPriorToBeingHurt: 0
 --- !u!114 &6311346316018653116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,9 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootMotionProgress: {x: 0, y: 0, z: 0}
-  _fastestSwingStartupFrames: 2
-  _defaultSwingStartupFrames: 4
-  _slowestSwingStartupFrames: 8
+  _fastestSwingFrameDuration: 2
+  _defaultSwingFrameDuration: 5
+  _slowestSwingFrameDuration: 7
+  _cancelAnimationLevel: 0
 --- !u!95 &527273590571610414
 Animator:
   serializedVersion: 3

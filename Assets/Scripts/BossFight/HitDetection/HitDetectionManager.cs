@@ -12,6 +12,11 @@ namespace StrikeOut.BossFight
 		private HashSet<EnemyHitbox> _enemyHitboxes = new HashSet<EnemyHitbox>();
 		private HashSet<EnemyHurtbox> _enemyHurtboxes = new HashSet<EnemyHurtbox>();
 
+		public ICollection<BatterHitbox> batterHitboxes => _batterHitboxes;
+		public ICollection<BatterHurtbox> batterHurtboxes => _batterHurtboxes;
+		public ICollection<EnemyHitbox> enemyHitboxes => _enemyHitboxes;
+		public ICollection<EnemyHurtbox> enemyHurtboxes => _enemyHurtboxes;
+
 		public void CheckForHits()
 		{
 			// Check for the batter hitting enemies

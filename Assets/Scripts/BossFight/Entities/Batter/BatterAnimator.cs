@@ -7,6 +7,9 @@ namespace StrikeOut.BossFight.Entities
 	public class BatterAnimator : EntityAnimator<Batter, string>
 	{
 		[Header("Batter Config")]
+		[SerializeField] private int _fastestSwingStartupFrames = 2;
+		[SerializeField] private int _defaultSwingStartupFrames = 5;
+		[SerializeField] private int _slowestSwingStartupFrames = 7;
 		[SerializeField] private int _cancelAnimationLevel = 0;
 		/*
 			Cancel Animation Level:
@@ -16,10 +19,18 @@ namespace StrikeOut.BossFight.Entities
 				5 = Can cancel into anything, the rest of the animation is just cosmetic
 		*/
 
-		public void Swing(SwingDirection direction)
+		public int fastestSwingStartupFrames => _fastestSwingStartupFrames;
+		public int defaultSwingStartupFrames => _defaultSwingStartupFrames;
+		public int slowestSwingStartupFrames => _slowestSwingStartupFrames;
+
+		public void Swing(SwingDirection direction, int swingStartupFrames = -1)
 		{
+			if (swingStartupFrames == -1)
+				swingStartupFrames = _defaultSwingStartupFrames;
 			animator.SetInteger("Swing Direction", (int) direction);
 			Trigger("Swing");
+			for (int i = 0; i < _slowestSwingStartupFrames - swingStartupFrames; i++)
+				SkipToNextFrame();
 		}
 
 		public void SwitchSides(bool quickly) => Trigger("Switch Sides");
@@ -31,7 +42,7 @@ namespace StrikeOut.BossFight.Entities
 		public void Hurt() => Trigger("Hurt");
 
 		public bool CanCancelAnimation(int cancelLevel = 4) => animation == "Idle" || _cancelAnimationLevel >= cancelLevel;
-
+	
 		public enum SwingDirection
 		{
 			None = 0,

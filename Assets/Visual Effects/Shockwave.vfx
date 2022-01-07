@@ -832,7 +832,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-7739640265173369258,"guid":"7d6be61e00ddc49cbb4e0222f9b9eeb7","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2390956948384485549,"guid":"7d6be61e00ddc49cbb4e0222f9b9eeb7","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -2986,8 +2986,6 @@ MonoBehaviour:
   m_Nodes:
   - m_Id: 0
     linkedSlots:
-    - outputSlot: {fileID: 8926484042661614754}
-      inputSlot: {fileID: 8926484042661614700}
     - outputSlot: {fileID: 8926484042661614754}
       inputSlot: {fileID: 8926484042661614700}
     position: {x: 700.8, y: 1351.6001}

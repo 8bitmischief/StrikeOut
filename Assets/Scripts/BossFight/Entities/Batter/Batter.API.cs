@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using SharedUnityMischief;
 using SharedUnityMischief.Entities.Animated;
@@ -77,65 +76,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Swing(StrikeZone strikeZone)
 		{
-			EnemyHurtbox targetHurtbox = null;
-			int fastestSwingStartupFrames = -1;
-			int slowestSwingStartupFrames = -1;
-			foreach (EnemyHurtbox hurtbox in Scene.I.hitDetectionManager.enemyHurtboxes)
-			{
-				if (hurtbox.WillBeHurtBy(strikeZone, animator.fastestSwingStartupFrames, animator.slowestSwingStartupFrames))
-				{
-					int fastestSwingStartupFramesThatStillHits = hurtbox.isActive ?
-						animator.fastestSwingStartupFrames :
-						Mathf.Max(hurtbox.framesUntilActive, animator.fastestSwingStartupFrames);
-					int slowestSwingStartupFramesThatStillHits = hurtbox.willBeInactive ?
-						Mathf.Min(hurtbox.framesUntilInactive - 1, animator.slowestSwingStartupFrames) :
-						animator.slowestSwingStartupFrames;
-					if (fastestSwingStartupFrames == -1 || fastestSwingStartupFramesThatStillHits < fastestSwingStartupFrames)
-					{
-						fastestSwingStartupFrames = fastestSwingStartupFramesThatStillHits;
-						targetHurtbox = hurtbox;
-					}
-					if (slowestSwingStartupFrames == -1 || slowestSwingStartupFramesThatStillHits < slowestSwingStartupFrames)
-					{
-						slowestSwingStartupFrames = slowestSwingStartupFramesThatStillHits;
-						if (targetHurtbox == null)
-							targetHurtbox = hurtbox;
-					}
-				}
-			}
-			BatterAnimator.SwingDirection swingDirection = CalculateSwingDirection(strikeZone);
-			int swingStartupFrames;
-			if (targetHurtbox != null && targetHurtbox.entity is Ball)
-			{
-				Ball ball = targetHurtbox.entity as Ball;
-				int battingLineOffset;
-				if (ball.hasPassedBattingLine)
-					battingLineOffset = -ball.framesSincePassedBattingLine;
-				else if (ball.willPassBattingLine)
-					battingLineOffset = ball.framesUntilPassBattingLine;
-				else
-					battingLineOffset = 0;
-				int swingOffset = battingLineOffset - animator.defaultSwingStartupFrames;
-				if (swingOffset > 0)
-					swingOffset = Mathf.FloorToInt(swingOffset / 2);
-				else
-					swingOffset = Mathf.CeilToInt(swingOffset / 2);
-				int idealSwingStartupFrames = animator.defaultSwingStartupFrames + swingOffset;
-				swingStartupFrames = Mathf.Clamp(idealSwingStartupFrames, fastestSwingStartupFrames, slowestSwingStartupFrames);
-			}
-			else
-			{
-				if (slowestSwingStartupFrames != -1 && slowestSwingStartupFrames < animator.defaultSwingStartupFrames)
-					swingStartupFrames = slowestSwingStartupFrames;
-				else if (fastestSwingStartupFrames != -1 && fastestSwingStartupFrames > animator.defaultSwingStartupFrames)
-					swingStartupFrames = fastestSwingStartupFrames;
-				else
-					swingStartupFrames = animator.defaultSwingStartupFrames;
-			}
-			_didSwingHit = false;
-			if (targetHurtbox != null)
-				Debug.Log($"Swing must start up between {fastestSwingStartupFrames} and {slowestSwingStartupFrames} frames to hit {targetHurtbox.entity.name}, choosing {swingStartupFrames}");
-			animator.Swing(swingDirection, swingStartupFrames);
+			animator.Swing(CalculateSwingDirection(strikeZone), CalculateSwingStartupFrames(strikeZone));
 		}
 
 		public void Dodge(Direction direction)

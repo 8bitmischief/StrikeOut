@@ -50,6 +50,7 @@ MonoBehaviour:
   _isActive: 1
   _activeAmount: 0
   _inactiveAmount: 0
+  _idealHitAmount: 0
   _requireOverlap: 0
   _hitBehaviour: 2
   _strikeZone: 0

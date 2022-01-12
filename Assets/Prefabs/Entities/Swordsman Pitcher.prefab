@@ -236,8 +236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6875442618557610139}
-  - component: {fileID: 1869953567055744996}
-  - component: {fileID: 1325969200651848385}
+  - component: {fileID: 7603862389554023975}
   m_Layer: 0
   m_Name: Melee Downward Slash
   m_TagString: Untagged
@@ -260,7 +259,7 @@ Transform:
   m_Father: {fileID: 821090156857477458}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -25, y: 0, z: 20}
---- !u!114 &1869953567055744996
+--- !u!114 &7603862389554023975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,31 +268,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5198058452941524307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6281ddbfb6c1740d6aa29ade1b2fb3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 21e4e060cc3ab46df82c92b0a8808163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool: {fileID: 1325969200651848385}
-  _spawn: 0
-  _spawnOnEnable: 0
-  _playInEditMode: 1
---- !u!114 &1325969200651848385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5198058452941524307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97dd691b553c644c0a88bbc95e7fee4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pool:
-    _prefab: {fileID: 8949138228328714520}
-    _isActualPrefab: 0
-    _collectionCheck: 0
-    _defaultCapacity: 0
-    _maxSize: -1
+  _particleEffect: {fileID: 8949138228328714520}
+  _trigger: 0
+  _triggerOnEnable: 0
+  _triggerInEditMode: 1
 --- !u!1 &5211356092236539860
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,8 +752,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[7].m_Value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
       propertyPath: m_PropertySheet.m_Bool.m_Array.Array.data[0].m_Overridden
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Value.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[4].m_Value.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[4].m_Value.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[3].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762488176052279718, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[4].m_Overridden
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7188384183597694472, guid: 7be34692b6a0848ae9b4874ee4dca79b, type: 3}
       propertyPath: m_Name

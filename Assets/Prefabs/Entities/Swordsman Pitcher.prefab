@@ -823,6 +823,10 @@ PrefabInstance:
       propertyPath: _south
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3404806505450652545, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}
+      propertyPath: _cubeTopMesh
+      value: 
+      objectReference: {fileID: 3196556262240165242, guid: 7d6be61e00ddc49cbb4e0222f9b9eeb7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}
 --- !u!4 &9067677958520056383 stripped

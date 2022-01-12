@@ -46,16 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 2514034743414743276}
-  _color: {r: 0, g: 0, b: 1, a: 1}
   _isActive: 1
   _activeAmount: 0
   _inactiveAmount: 0
+  _idealHitAmount: 0
+  _cubeQuadrant: {fileID: 4215365585304585398, guid: 7d6be61e00ddc49cbb4e0222f9b9eeb7, type: 3}
   _strikeZone: 0
   _result: 0
-  _north: 0
-  _east: 0
-  _south: 0
-  _west: 0
+  _north: 1
+  _east: 1
+  _south: 1
+  _west: 1
 --- !u!65 &2514034743414743276
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ namespace StrikeOut.BossFight
 	public abstract class HitDetectionBox : EntityComponent
 	{
 		[SerializeField] private BoxCollider _collider;
-		[SerializeField] private Color _color = Color.black;
 		[SerializeField] private bool _isActive = false;
 		[SerializeField, Range(0f, 1f)] private float _activeAmount;
 		[SerializeField, Range(0f, 1f)] private float _inactiveAmount;
@@ -98,27 +97,28 @@ namespace StrikeOut.BossFight
 
 		protected abstract void Unregister();
 
+		protected abstract void DrawGizmo();
+
 		private void OnDrawGizmos()
 		{
 			if (isActive)
-				DrawBox();
+			{
+				Matrix4x4 matrix = Gizmos.matrix;
+				Gizmos.matrix = transform.localToWorldMatrix;
+				DrawGizmo();
+			Gizmos.matrix = matrix;
+			}
 		}
 
 		private void OnDrawGizmosSelected()
 		{
 			if (!isActive && Selection.activeGameObject == gameObject)
-				DrawBox();
-		}
-
-		private void DrawBox()
-		{
-			Matrix4x4 matrix = Gizmos.matrix;
-			Gizmos.matrix = transform.localToWorldMatrix;
-			Gizmos.color = new Color(_color.r, _color.g, _color.b, _color.a * 0.35f);
-			Gizmos.DrawCube(Vector3.zero, Vector3.one);
-			Gizmos.color = _color;
-			Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+			{
+				Matrix4x4 matrix = Gizmos.matrix;
+				Gizmos.matrix = transform.localToWorldMatrix;
+				DrawGizmo();
 			Gizmos.matrix = matrix;
+			}
 		}
 	}
 }

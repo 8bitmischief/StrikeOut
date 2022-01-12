@@ -13,14 +13,16 @@ namespace StrikeOut.BossFight.Entities
 			 if (!_hasMovedIntoPosition)
 			 {
 			 	_hasMovedIntoPosition = true;
-			 	QueueCommand(new MoveCommand { location = Location.InFrontOfBatterCenter });
+			 	QueueCommands(
+					new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.North },
+					new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.East },
+					new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.South },
+					new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.West },
+					new MoveCommand { location = Location.InFrontOfBatterCenter }
+				);
 			 }
 			QueueCommands(
 				 new MeleeDownwardSlash(),
-				//new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.North },
-				//new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.East },
-				//new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.South },
-				//new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.West },
 				IdleForOneSecond
 			);
 		}

@@ -51,7 +51,7 @@ namespace StrikeOut.BossFight.Entities
 			onParry?.Invoke();
 		}
 
-		public void OnSpawnChild(Entity entity)
+		public void OnSpawnChildEntity(Entity entity)
 		{
 			if (entity is Ball)
 				(entity as Ball).Pitch(_pitchedBallPitchType, _pitchedBallStrikeZone);

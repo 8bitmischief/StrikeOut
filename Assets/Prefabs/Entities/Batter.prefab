@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9216174049903229564}
   m_Layer: 0
-  m_Name: Spawners
+  m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,58 +27,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2314919530387677188}
+  - {fileID: 3849180374500086244}
   m_Father: {fileID: 5321439430112355915}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &730487290641031305
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2314919530387677188}
-  - component: {fileID: 6295222467762549233}
-  m_Layer: 0
-  m_Name: Hit Ball Effect Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2314919530387677188
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730487290641031305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8473722065705009529}
-  m_Father: {fileID: 9216174049903229564}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6295222467762549233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730487290641031305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6281ddbfb6c1740d6aa29ade1b2fb3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pool: {fileID: 928681052264002161}
-  _spawn: 0
-  _spawnOnEnable: 0
-  _playInEditMode: 1
 --- !u!1 &925852280516647653
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _appendSpawnIndexToName: 0
   _hurtbox: {fileID: 2076885590707560330}
-  _hitBallEffectSpawner: {fileID: 6295222467762549233}
+  _hitBallEffect: {fileID: 5539636004906990958}
   _hitBallShakeParams:
     positionStrength: 0.07
     rotationStrength: 0
@@ -211,9 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootMotionProgress: {x: 0, y: 0, z: 0}
-  _fastestSwingFrameDuration: 2
-  _defaultSwingFrameDuration: 5
-  _slowestSwingFrameDuration: 7
+  _fastestSwingStartupFrames: 2
+  _defaultSwingStartupFrames: 5
+  _slowestSwingStartupFrames: 7
   _cancelAnimationLevel: 0
 --- !u!95 &527273590571610414
 Animator:
@@ -234,55 +186,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &5651491762695562169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8473722065705009529}
-  - component: {fileID: 928681052264002161}
-  m_Layer: 0
-  m_Name: Hit Ball Effect Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8473722065705009529
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5651491762695562169}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2314919530387677188}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &928681052264002161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5651491762695562169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97dd691b553c644c0a88bbc95e7fee4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pool:
-    _prefab: {fileID: 1588709153871034445, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
-    _isActualPrefab: 0
-    _collectionCheck: 0
-    _defaultCapacity: 0
-    _maxSize: -1
 --- !u!1 &5702510162403009545
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,3 +803,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
   m_PrefabInstance: {fileID: 6399485385777273821}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6551760088599954723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9216174049903229564}
+    m_Modifications:
+    - target: {fileID: 3927868543715377139, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5301104241633394970, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188384183597694472, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_Name
+      value: Hit Ball Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+--- !u!4 &3849180374500086244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8036548458564195527, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+  m_PrefabInstance: {fileID: 6551760088599954723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5539636004906990958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1588709153871034445, guid: 439d7f797007547b391bf6fe3d2a2863, type: 3}
+  m_PrefabInstance: {fileID: 6551760088599954723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab81e43e3a63744ce9cb12eae6667edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

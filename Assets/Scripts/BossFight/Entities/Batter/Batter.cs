@@ -12,7 +12,7 @@ namespace StrikeOut.BossFight.Entities
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterHurtbox _hurtbox;
-		[SerializeField] private ParticleEffectSpawner _hitBallEffectSpawner;
+		[SerializeField] private ParticleEffect _hitBallEffect;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
 		[SerializeField] private int _quickDodgeFrames = 3;
 		[SerializeField] private int _dodgeLateForgivenessFrames = 2;
@@ -79,7 +79,8 @@ namespace StrikeOut.BossFight.Entities
 					shakeDirection.x *= -1;
 				ball.Hit(targetPosition);
 				CameraShaker.Shake(new BounceShake(_hitBallShakeParams, new Displacement(shakeDirection, new Vector3(0f, 0f, 1f))));
-				_hitBallEffectSpawner.SpawnParticleEffect(new Vector3(ball.transform.position.x, ball.transform.position.y, 0f));
+				_hitBallEffect.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, 0f);
+				_hitBallEffect.Play();
 			}
 		}
 

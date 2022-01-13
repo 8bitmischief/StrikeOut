@@ -76,6 +76,7 @@ namespace StrikeOut.BossFight.Entities
 
 		public void Swing(StrikeZone strikeZone)
 		{
+			_didSwingHit = false;
 			animator.Swing(CalculateSwingDirection(strikeZone), CalculateSwingStartupFrames(strikeZone));
 		}
 

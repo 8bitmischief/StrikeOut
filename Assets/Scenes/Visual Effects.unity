@@ -706,11 +706,11 @@ PrefabInstance:
     - target: {fileID: 4762488176052279718, guid: c50d34774d331d146b10d39a93331422, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
-      objectReference: {fileID: 2800000, guid: 6754207654646492b976c2e78dbc9bfc, type: 3}
+      objectReference: {fileID: 2800000, guid: d718e7b90026340c29716d2737062db2, type: 3}
     - target: {fileID: 4762488176052279718, guid: c50d34774d331d146b10d39a93331422, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[1].m_Value
       value: 
-      objectReference: {fileID: 2800000, guid: 2b4e5dd65f7954cdd851ff3aa7f54537, type: 3}
+      objectReference: {fileID: 2800000, guid: d6270c00ee24f4aa1b297d2df8b1083b, type: 3}
     - target: {fileID: 4762488176052279718, guid: c50d34774d331d146b10d39a93331422, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[1].m_Name
       value: Tiling X Over Lifetime
@@ -805,7 +805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4762488176052279718, guid: c50d34774d331d146b10d39a93331422, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[1].m_Overridden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762488176052279718, guid: c50d34774d331d146b10d39a93331422, type: 3}
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[1].m_Overridden

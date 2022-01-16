@@ -49,7 +49,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1
+      - m_Value: 1.5
         m_Name: Lifetime
         m_Overridden: 1
       - m_Value: 4
@@ -76,10 +76,10 @@ VisualEffect:
       - m_Value: 0.1
         m_Name: Spread Change
         m_Overridden: 1
-      - m_Value: 1
+      - m_Value: 1.8
         m_Name: Spread
         m_Overridden: 1
-      - m_Value: 0.1
+      - m_Value: 3.5
         m_Name: Height
         m_Overridden: 1
     m_Vector2f:
@@ -99,7 +99,7 @@ VisualEffect:
       - m_Value: {x: 4, y: 2.5}
         m_Name: Tiling
         m_Overridden: 1
-      - m_Value: {x: 2, y: -4}
+      - m_Value: {x: 3.5, y: -5}
         m_Name: Offset Change
         m_Overridden: 1
       - m_Value: {x: 0, y: 0}
@@ -107,9 +107,9 @@ VisualEffect:
         m_Overridden: 0
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 1.5, y: 3.5, z: 1.5}
+      - m_Value: {x: 1, y: 1, z: 1}
         m_Name: Transform_scale
-        m_Overridden: 1
+        m_Overridden: 0
     m_Vector4f:
       m_Array:
       - m_Value: {x: 1, y: 1, z: 1, w: 0.9607843}
@@ -118,7 +118,10 @@ VisualEffect:
     m_Uint:
       m_Array: []
     m_Int:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: Number of Particles
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -328,18 +331,18 @@ VisualEffect:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0
-            inSlope: 4.0984173
-            outSlope: 4.0984173
+            value: 0.85
+            inSlope: 0.88781625
+            outSlope: 0.88781625
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.08825526
+            outWeight: 0.061099794
           - serializedVersion: 3
             time: 0.3
-            value: 0.8
-            inSlope: 0.58026016
-            outSlope: 0.58026016
+            value: 0.97
+            inSlope: 0.09514128
+            outSlope: 0.09514128
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.31432453
@@ -363,22 +366,22 @@ VisualEffect:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0
-            inSlope: 4.0984173
-            outSlope: 4.0984173
+            value: 0.25
+            inSlope: 11.1169815
+            outSlope: 11.1169815
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.08825526
+            outWeight: 0.067888655
           - serializedVersion: 3
-            time: 0.3
-            value: 0.8
-            inSlope: 0.58026016
-            outSlope: 0.58026016
+            time: 0.15
+            value: 0.9
+            inSlope: 0.27303886
+            outSlope: 0.27303886
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.31432453
-            outWeight: 0.12714574
+            outWeight: 0.11585
           - serializedVersion: 3
             time: 1
             value: 1
@@ -450,14 +453,14 @@ VisualEffect:
       - m_Value:
           serializedVersion: 2
           key0: {r: 1, g: 1, b: 1, a: 0}
-          key1: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 1, g: 0.6556604, b: 0.6556604, a: 1}
           key2: {r: 1, g: 1, b: 1, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
+          ctime0: 23708
           ctime1: 65535
           ctime2: 65535
           ctime3: 0
@@ -466,8 +469,8 @@ VisualEffect:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 2506
-          atime2: 35081
+          atime1: 1542
+          atime2: 23516
           atime3: 65535
           atime4: 65535
           atime5: 0
@@ -581,7 +584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab81e43e3a63744ce9cb12eae6667edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1
+  _duration: 1.6
   _delay: 0
-  _cooldown: 0.15
-  _playOnEnable: 0
+  _loops: 0

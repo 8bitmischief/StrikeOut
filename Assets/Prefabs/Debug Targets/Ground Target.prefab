@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4820848821925523904}
-  - component: {fileID: 2385231335753871976}
+  - component: {fileID: 5201940050089274083}
   m_Layer: 0
   m_Name: Ground Target
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2385231335753871976
+--- !u!114 &5201940050089274083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4820848821925523907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373ac277cc9cce647882ddb33126af9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a6d56888e750044185e3ed53a225a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _size: 1
   _outline: 0
   _fill: 1
-  _mesh: {fileID: 2061150301263699924, guid: 7d6be61e00ddc49cbb4e0222f9b9eeb7, type: 3}
+  _mesh: 3
+  _customMesh: {fileID: 2061150301263699924, guid: 643c363a6f7c7334da95d262843320fc, type: 3}

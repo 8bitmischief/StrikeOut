@@ -383,11 +383,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pool:
-    _prefab: {fileID: 1216380686149261798, guid: 370472b68b3054919af9d596e0cb8c96, type: 3}
+    _prefab: {fileID: 6509045217258402878, guid: 370472b68b3054919af9d596e0cb8c96, type: 3}
     _isActualPrefab: 1
     _collectionCheck: 0
     _defaultCapacity: 0
-    _maxSize: -1
+    _hasMaxCapacity: 0
+    _maxCapacity: 32
 --- !u!1 &6126584985619465582
 GameObject:
   m_ObjectHideFlags: 0

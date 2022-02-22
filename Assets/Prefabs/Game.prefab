@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fc81d2e5839d14d95320a99eaadee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateInputSystem: 1
   _swingNorth: {fileID: 60069353653710336}
   _swingEast: {fileID: 8101449540668279033}
   _swingSouth: {fileID: 5955339305237502387}

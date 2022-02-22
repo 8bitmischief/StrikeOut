@@ -1,6 +1,5 @@
 using UnityEngine;
 using SharedUnityMischief.Input.Control;
-using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight
 {

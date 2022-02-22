@@ -1,4 +1,3 @@
-using System.Reflection;
 using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Effects;
@@ -8,13 +7,12 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public partial class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHittable, IBatterHurtable, IBatterPredictedHurtable
+	public partial class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHittable, IBatterHurtable
 	{
 		[Header("Batter Config")]
 		[SerializeField] private BatterHurtbox _hurtbox;
 		[SerializeField] private ParticleEffect _hitBallEffect;
 		[SerializeField] private BounceShake.Params _hitBallShakeParams;
-		[SerializeField] private int _quickDodgeFrames = 3;
 		[SerializeField] private int _dodgeLateForgivenessFrames = 2;
 		[SerializeField] private bool _wasAbleToSwitchSidesPriorToBeingHurt;
 		[SerializeField] private bool _wasAbleToSideStepPriorToBeingHurt;
@@ -89,11 +87,6 @@ namespace StrikeOut.BossFight.Entities
 			animator.Hurt();
 		}
 
-		public void OnPredictedHurt(EnemyHitRecord hit, int frames)
-		{
-			Debug.Log($"{hit.hurtee.name} is predicted to be hurt by {hit.hitter.name} in {frames} {(frames == 1 ? "frame" : "frames")}");
-		}
-
 		protected override void OnStartAnimation(string animation)
 		{
 			switch (animation)
@@ -111,85 +104,6 @@ namespace StrikeOut.BossFight.Entities
 						Scene.I.locations.batter.farLeft, false);
 					break;
 			}
-		}
-
-		private int CalculateSwingStartupFrames(StrikeZone strikeZone)
-		{
-			EnemyHurtbox targetHurtbox = null;
-			int fastestSwingStartupFrames = -1;
-			int slowestSwingStartupFrames = -1;
-			foreach (EnemyHurtbox hurtbox in Scene.I.hitDetectionManager.enemyHurtboxes)
-			{
-				if (hurtbox.WillBeHurtBy(strikeZone, animator.fastestSwingStartupFrames, animator.slowestSwingStartupFrames))
-				{
-					int fastestSwingStartupFramesThatStillHits = hurtbox.isActive ?
-						animator.fastestSwingStartupFrames :
-						Mathf.Max(hurtbox.framesUntilActive, animator.fastestSwingStartupFrames);
-					int slowestSwingStartupFramesThatStillHits = hurtbox.willBeInactive ?
-						Mathf.Min(hurtbox.framesUntilInactive - 1, animator.slowestSwingStartupFrames) :
-						animator.slowestSwingStartupFrames;
-					if (fastestSwingStartupFrames == -1 || fastestSwingStartupFramesThatStillHits < fastestSwingStartupFrames)
-					{
-						fastestSwingStartupFrames = fastestSwingStartupFramesThatStillHits;
-						targetHurtbox = hurtbox;
-					}
-					if (slowestSwingStartupFrames == -1 || slowestSwingStartupFramesThatStillHits < slowestSwingStartupFrames)
-					{
-						slowestSwingStartupFrames = slowestSwingStartupFramesThatStillHits;
-						if (targetHurtbox == null)
-							targetHurtbox = hurtbox;
-					}
-				}
-			}
-			BatterAnimator.SwingDirection swingDirection = CalculateSwingDirection(strikeZone);
-			int swingFrames;
-			string messageDetails = "";
-			if (targetHurtbox != null && targetHurtbox.hasIdealHit)
-			{
-				int offset;
-				if (targetHurtbox.framesSinceIdealhit >= 0)
-					offset = -targetHurtbox.framesSinceIdealhit;
-				else if (targetHurtbox.framesUntilIdealHit >= 0)
-					offset = targetHurtbox.framesUntilIdealHit;
-				else
-					offset = animator.defaultSwingStartupFrames;
-				int swingOffset = offset - animator.defaultSwingStartupFrames;
-				int preferredSwingStartupFrames = animator.defaultSwingStartupFrames;
-				if (swingOffset > 0)
-					preferredSwingStartupFrames += Mathf.FloorToInt(swingOffset / 2);
-				else
-					preferredSwingStartupFrames += Mathf.CeilToInt(swingOffset / 2);
-				swingFrames = Mathf.Clamp(preferredSwingStartupFrames, fastestSwingStartupFrames, slowestSwingStartupFrames);
-				if (swingOffset > 0)
-					messageDetails += $" (swung <color=green>-{swingOffset}</color> {(swingOffset == 1 ? "frame" : "frames")} early;";
-				else if (swingOffset < 0)
-					messageDetails += $" (swung <color=red>+{-swingOffset}</color> {(-swingOffset == 1 ? "frame" : "frames")} late;";
-				else
-					messageDetails += " (swung exactly on time;";
-				if (swingFrames > offset)
-					messageDetails += $" swing will land <color=red>+{swingFrames - offset}</color> {(swingFrames - offset == 1 ? "frame" : "frames")} after the ideal frame)";
-				else if (swingFrames < offset)
-					messageDetails += $" swing will land <color=green>-{offset - swingFrames}</color> {(offset - swingFrames == 1 ? "frame" : "frames")} before the ideal frame)";
-				else
-					messageDetails += " swing will land on the ideal frame)";
-			}
-			else
-			{
-				if (slowestSwingStartupFrames != -1 && slowestSwingStartupFrames < animator.defaultSwingStartupFrames)
-					swingFrames = slowestSwingStartupFrames;
-				else if (fastestSwingStartupFrames != -1 && fastestSwingStartupFrames > animator.defaultSwingStartupFrames)
-					swingFrames = fastestSwingStartupFrames;
-				else
-					swingFrames = animator.defaultSwingStartupFrames;
-			}
-			string message = $"<color=white>{name}</color> swinging with <color=orange>{swingFrames}</color> frame startup";
-			if (targetHurtbox != null)
-				message += $" in order to hit <color=white>{targetHurtbox.entity.name}</color> within <color=orange>{fastestSwingStartupFrames}</color> to <color=orange>{slowestSwingStartupFrames}</color> frames";
-			else
-				message += $" at no target in particular";
-			message += messageDetails;
-			Debug.Log(message);
-			return swingFrames;
 		}
 
 		private BatterAnimator.SwingDirection CalculateSwingDirection(StrikeZone strikeZone)

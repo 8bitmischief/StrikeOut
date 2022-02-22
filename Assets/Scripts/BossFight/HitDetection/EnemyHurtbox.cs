@@ -17,30 +17,21 @@ namespace StrikeOut.BossFight
 		[SerializeField] private BatterHitResult _south;
 		[SerializeField] private BatterHitResult _west;
 		private IEnemyHurtable _hurtableEntity;
-		private IEnemyPredictedHurtable _predictedHurtableEntity;
 
 		public StrikeZone strikeZone { get => _strikeZone; set => _strikeZone = value; }
 
 		public event Action<BatterHitRecord> onHurt;
-		public event Action<BatterHitRecord, int> onPredictedHurt;
 
 		private void Awake()
 		{
 			if (entity is IEnemyHurtable)
 				_hurtableEntity = entity as IEnemyHurtable;
-			if (entity is IEnemyPredictedHurtable)
-				_predictedHurtableEntity = entity as IEnemyPredictedHurtable;
 		}
 
 		public bool IsHurtBy(StrikeZone strikeZone)
 		{
 			BatterHitResult result = GetHitResult(strikeZone);
 			return result == BatterHitResult.Damage || result == BatterHitResult.Ball || result == BatterHitResult.Parry;
-		}
-
-		public bool WillBeHurtBy(StrikeZone strikeZone, int startFrame, int endFrame = -1)
-		{
-			return IsHurtBy(strikeZone) && WillBeActive(startFrame, endFrame);
 		}
 
 		public BatterHitResult GetHitResult(StrikeZone strikeZone)
@@ -76,13 +67,6 @@ namespace StrikeOut.BossFight
 			onHurt?.Invoke(hit);
 		}
 
-		public void OnPredictedHurt(BatterHitRecord hit, int frames)
-		{
-			if (_predictedHurtableEntity != null)
-				_predictedHurtableEntity.OnPredictedHurt(hit, frames);
-			onPredictedHurt?.Invoke(hit, frames);
-		}
-
 		protected override void Register()
 		{
 			Scene.I.hitDetectionManager.RegisterHurtbox(this);
@@ -115,6 +99,8 @@ namespace StrikeOut.BossFight
 			{
 				case BatterHitResult.Damage:
 					return new Color(0f, 0f, 1f, 0.35f);
+				case BatterHitResult.CriticalDamage:
+					return new Color(0f, 0f, 1f, 0.55f);
 				case BatterHitResult.Ball:
 					return new Color(0f, 1f, 0f, 0.35f);
 				case BatterHitResult.Parry:

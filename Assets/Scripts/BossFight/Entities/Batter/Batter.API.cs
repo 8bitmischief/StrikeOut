@@ -6,7 +6,7 @@ using StrikeOut.BossFight.Data;
 namespace StrikeOut.BossFight.Entities
 {
 	[RequireComponent(typeof(BatterAnimator))]
-	public partial class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHittable, IBatterHurtable, IBatterPredictedHurtable
+	public partial class Batter : AnimatedEntity<BatterAnimator, string>, IBatterHittable, IBatterHurtable
 	{
 		public int health => _health;
 		public int lives => _lives;
@@ -77,7 +77,7 @@ namespace StrikeOut.BossFight.Entities
 		public void Swing(StrikeZone strikeZone)
 		{
 			_didSwingHit = false;
-			animator.Swing(CalculateSwingDirection(strikeZone), CalculateSwingStartupFrames(strikeZone));
+			animator.Swing(CalculateSwingDirection(strikeZone));
 		}
 
 		public void Dodge(Direction direction)
@@ -97,8 +97,7 @@ namespace StrikeOut.BossFight.Entities
 			if (animation == "Hurt" && Scene.I.hitDetectionManager.GetHitboxesThatHit(BatterArea.Center).Count > 0)
 				return;
 			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-			bool quickly = _quickDodgeFrames > 0 &&
-				Scene.I.hitDetectionManager.DoAnyHitboxesHit(_hurtbox.area, 0, _quickDodgeFrames - 1);
+			bool quickly = false;
 			animator.SwitchSides(quickly);
 		}
 
@@ -108,8 +107,7 @@ namespace StrikeOut.BossFight.Entities
 			_wasAbleToSideStepPriorToBeingHurt = false;
 			if (animation == "Hurt" && Scene.I.hitDetectionManager.GetHitboxesThatHit(isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft).Count > 0)
 				return;
-			bool quickly = _quickDodgeFrames > 0 &&
-				Scene.I.hitDetectionManager.DoAnyHitboxesHit(_hurtbox.area, 0, _quickDodgeFrames - 1);
+			bool quickly = false;
 			animator.SideStep(quickly);
 		}
 

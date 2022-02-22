@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using StrikeOut.BossFight.Data;
-using SharedUnityMischief.Entities;
 
 namespace StrikeOut.BossFight
 {
@@ -40,15 +39,6 @@ namespace StrikeOut.BossFight
 										hitbox.OnHit(hit);
 										hurtbox.OnHurt(hit);
 									}
-									else
-									{
-										int frames = CheckForFutureHit(hit, hitbox, hurtbox);
-										if (frames >= 0)
-										{
-											hitbox.OnPredictedHit(hit, frames);
-											hurtbox.OnPredictedHurt(hit, frames);
-										}
-									}
 								}
 							}
 						}
@@ -76,15 +66,6 @@ namespace StrikeOut.BossFight
 										hitbox.OnHit(hit);
 										hurtbox.OnHurt(hit);
 									}
-									else
-									{
-										int frames = CheckForFutureHit(hit, hitbox, hurtbox);
-										if (frames >= 0)
-										{
-											hitbox.OnPredictedHit(hit, frames);
-											hurtbox.OnPredictedHurt(hit, frames);
-										}
-									}
 								}
 							}
 						}
@@ -105,115 +86,76 @@ namespace StrikeOut.BossFight
 		public void UnregisterHurtbox(BatterHurtbox hurtbox) => _batterHurtboxes.Remove(hurtbox);
 		public void UnregisterHurtbox(EnemyHurtbox hurtbox) => _enemyHurtboxes.Remove(hurtbox);
 
-		public bool DoAnyHitboxesHit(BatterArea area, int startFrame = 0, int endFrame = -1)
+		public bool DoAnyHitboxesHit(BatterArea area)
 		{
 			HashSet<EnemyHitbox> hitters = new HashSet<EnemyHitbox>();
 			foreach (EnemyHitbox hitbox in _enemyHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, startFrame, endFrame))
+				if (hitbox.isActiveAndEnabled && hitbox.DoesHit(area))
 					return true;
 			return false;
 		}
 
-		public bool DoAnyHitboxesHit(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		public bool DoAnyHitboxesHit(StrikeZone strikeZone)
 		{
 			HashSet<BatterHitbox> hitters = new HashSet<BatterHitbox>();
 			foreach (BatterHitbox hitbox in _batterHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, startFrame, endFrame))
+				if (hitbox.isActiveAndEnabled && hitbox.DoesHit(strikeZone))
 					return true;
 			return false;
 		}
 
-		public bool DoAnyHurtboxesGetHurtBy(BatterArea area, int startFrame = 0, int endFrame = -1)
+		public bool DoAnyHurtboxesGetHurtBy(BatterArea area)
 		{
 			HashSet<BatterHurtbox> hurtees = new HashSet<BatterHurtbox>();
 			foreach (BatterHurtbox hurtbox in _batterHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, startFrame, endFrame))
+				if (hurtbox.isActiveAndEnabled && hurtbox.IsHurtBy(area))
 					return true;
 			return false;
 		}
 
-		public bool DoAnyHurtboxesGetHurtBy(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		public bool DoAnyHurtboxesGetHurtBy(StrikeZone strikeZone)
 		{
 			HashSet<EnemyHurtbox> hurtees = new HashSet<EnemyHurtbox>();
 			foreach (EnemyHurtbox hurtbox in _enemyHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, startFrame, endFrame))
+				if (hurtbox.isActiveAndEnabled && hurtbox.IsHurtBy(strikeZone))
 					return true;
 			return false;
 		}
 
-		public ICollection<EnemyHitbox> GetHitboxesThatHit(BatterArea area, int startFrame = 0, int endFrame = -1)
+		public ICollection<EnemyHitbox> GetHitboxesThatHit(BatterArea area)
 		{
 			HashSet<EnemyHitbox> hitters = new HashSet<EnemyHitbox>();
 			foreach (EnemyHitbox hitbox in _enemyHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(area, startFrame, endFrame))
+				if (hitbox.isActiveAndEnabled && hitbox.DoesHit(area))
 					hitters.Add(hitbox);
 			return hitters;
 		}
 
-		public ICollection<BatterHitbox> GetHitboxesThatHit(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		public ICollection<BatterHitbox> GetHitboxesThatHit(StrikeZone strikeZone)
 		{
 			HashSet<BatterHitbox> hitters = new HashSet<BatterHitbox>();
 			foreach (BatterHitbox hitbox in _batterHitboxes)
-				if (hitbox.isActiveAndEnabled && hitbox.WillHit(strikeZone, startFrame, endFrame))
+				if (hitbox.isActiveAndEnabled && hitbox.DoesHit(strikeZone))
 					hitters.Add(hitbox);
 			return hitters;
 		}
 
-		public ICollection<BatterHurtbox> GetHurtboxesHurtBy(BatterArea area, int startFrame = 0, int endFrame = -1)
+		public ICollection<BatterHurtbox> GetHurtboxesHurtBy(BatterArea area)
 		{
 			HashSet<BatterHurtbox> hurtees = new HashSet<BatterHurtbox>();
 			foreach (BatterHurtbox hurtbox in _batterHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(area, startFrame, endFrame))
+				if (hurtbox.isActiveAndEnabled && hurtbox.IsHurtBy(area))
 					hurtees.Add(hurtbox);
 			return hurtees;
 		}
 
-		public ICollection<EnemyHurtbox> GetHurtboxesHurtBy(StrikeZone strikeZone, int startFrame = 0, int endFrame = -1)
+		public ICollection<EnemyHurtbox> GetHurtboxesHurtBy(StrikeZone strikeZone)
 		{
 			HashSet<EnemyHurtbox> hurtees = new HashSet<EnemyHurtbox>();
 			foreach (EnemyHurtbox hurtbox in _enemyHurtboxes)
-				if (hurtbox.isActiveAndEnabled && hurtbox.WillBeHurtBy(strikeZone, startFrame, endFrame))
+				if (hurtbox.isActiveAndEnabled && hurtbox.IsHurtBy(strikeZone))
 					hurtees.Add(hurtbox);
 			return hurtees;
-		}
-
-		private int CheckForFutureHit(HitRecord hit, Hitbox hitbox, Hurtbox hurtbox)
-		{
-			int framesUntilHitboxActive;
-			if (hitbox.isActive)
-				framesUntilHitboxActive = 0;
-			else if (hitbox.willBeActive)
-				framesUntilHitboxActive = hitbox.framesUntilActive;
-			else
-				framesUntilHitboxActive = -1;
-
-			int framesUntilHitboxInactive;
-			if (hitbox.willBeInactive)
-				framesUntilHitboxInactive = hitbox.framesUntilInactive;
-			else
-				framesUntilHitboxInactive = -1;
-
-			int framesUntilHurtboxActive;
-			if (hurtbox.isActive)
-				framesUntilHurtboxActive = 0;
-			else if (hurtbox.willBeActive)
-				framesUntilHurtboxActive = hurtbox.framesUntilActive;
-			else
-				framesUntilHurtboxActive = -1;
-
-			int framesUntilHurtboxInactive;
-			if (hurtbox.willBeInactive)
-				framesUntilHurtboxInactive = hurtbox.framesUntilInactive;
-			else
-				framesUntilHurtboxInactive = -1;
-
-			if (framesUntilHitboxActive != -1 &&
-				framesUntilHurtboxActive != -1 &&
-				(framesUntilHitboxInactive == -1 || framesUntilHitboxInactive > framesUntilHurtboxActive) &&
-				(framesUntilHurtboxInactive == -1 || framesUntilHurtboxInactive > framesUntilHitboxActive))
-				return Mathf.Max(framesUntilHitboxActive, framesUntilHurtboxActive);
-			else
-				return -1;
 		}
 	}
 }

@@ -13,34 +13,25 @@ namespace StrikeOut.BossFight
 		[Header("Hit")]
 		[SerializeField] private StrikeZone _strikeZone;
 		private IBatterHittable _hittableEntity;
-		private IBatterPredictedHittable _predictedHittableEntity;
 
 		public event Action<BatterHitRecord> onHit;
-		public event Action<BatterHitRecord, int> onPredictedHit;
 
 		private void Start()
 		{
 			if (entity is IBatterHittable)
 				_hittableEntity = entity as IBatterHittable;
-			if (entity is IBatterPredictedHittable)
-				_predictedHittableEntity = entity as IBatterPredictedHittable;
 		}
 
 		public bool DoesHit(StrikeZone strikeZone)
 		{
-			return strikeZone == GetHitStrikeZone();
-		}
-
-		public bool WillHit(StrikeZone strikeZone, int startFrame, int endFrame = -1)
-		{
-			return DoesHit(strikeZone) && WillBeActive(startFrame, endFrame);
+			return strikeZone == GetProperlyFlippedStrikeZone();
 		}
 
 		public BatterHitRecord CheckForHit(EnemyHurtbox hurtbox)
 		{
 			if (base.IsHitting(hurtbox))
 			{
-				StrikeZone hitStrikeZone = GetHitStrikeZone();
+				StrikeZone hitStrikeZone = GetProperlyFlippedStrikeZone();
 				BatterHitResult result = hurtbox.GetHitResult(hitStrikeZone);
 				if (result != BatterHitResult.None && result != BatterHitResult.Miss)
 				{
@@ -71,13 +62,6 @@ namespace StrikeOut.BossFight
 			onHit?.Invoke(hit);
 		}
 
-		public void OnPredictedHit(BatterHitRecord hit, int frames)
-		{
-			if (_predictedHittableEntity != null)
-				_predictedHittableEntity.OnPredictedHit(hit, frames);
-			onPredictedHit?.Invoke(hit, frames);
-		}
-
 		protected override void Register()
 		{
 			base.Register();
@@ -98,7 +82,7 @@ namespace StrikeOut.BossFight
 			Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
 		}
 
-		private StrikeZone GetHitStrikeZone()
+		private StrikeZone GetProperlyFlippedStrikeZone()
 		{
 			if (_strikeZone == StrikeZone.West && entity.transform.localScale.x < 0f)
 				return StrikeZone.East;

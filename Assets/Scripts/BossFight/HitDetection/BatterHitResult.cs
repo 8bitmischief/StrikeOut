@@ -7,8 +7,9 @@ namespace StrikeOut.BossFight
 		None = 0,
 		Miss = 1,
 		Damage = 2,
-		Ball = 3,
-		Parry = 4,
-		Armor = 5
+		CriticalDamage = 3,
+		Ball = 4,
+		Parry = 5,
+		Armor = 6
 	}
 }

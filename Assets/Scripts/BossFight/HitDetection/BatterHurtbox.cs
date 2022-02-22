@@ -12,7 +12,6 @@ namespace StrikeOut.BossFight
 		[SerializeField] private RelativeBatterArea _area;
 		[SerializeField] private RelativeBatterArea _destinationArea;
 		private IBatterHurtable _hurtableEntity;
-		private IBatterPredictedHurtable _predictedHurtableEntity;
 
 		public BatterArea area
 		{
@@ -48,14 +47,11 @@ namespace StrikeOut.BossFight
 		}
 
 		public event Action<EnemyHitRecord> onHurt;
-		public event Action<EnemyHitRecord, int> onPredictedHurt;
 
 		private void Awake()
 		{
 			if (entity is IBatterHurtable)
 				_hurtableEntity = entity as IBatterHurtable;
-			if (entity is IBatterPredictedHurtable)
-				_predictedHurtableEntity = entity as IBatterPredictedHurtable;
 		}
 
 		public bool IsHurtBy(BatterArea area)
@@ -63,23 +59,11 @@ namespace StrikeOut.BossFight
 			return this.area == area;
 		}
 
-		public bool WillBeHurtBy(BatterArea area, int startFrame, int endFrame = -1)
-		{
-			return IsHurtBy(area) && WillBeActive(startFrame, endFrame);
-		}
-
 		public void OnHurt(EnemyHitRecord hit)
 		{
 			if (_hurtableEntity != null)
 				_hurtableEntity.OnHurt(hit);
 			onHurt?.Invoke(hit);
-		}
-
-		public void OnPredictedHurt(EnemyHitRecord hit, int frames)
-		{
-			if (_predictedHurtableEntity != null)
-				_predictedHurtableEntity.OnPredictedHurt(hit, frames);
-			onPredictedHurt?.Invoke(hit, frames);
 		}
 
 		protected override void Register()

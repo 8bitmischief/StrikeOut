@@ -249,11 +249,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3404806505450652545, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}
       propertyPath: _result
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3404806505450652545, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}
       propertyPath: _isActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404806505450652545, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}
+      propertyPath: _strikeZone
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21ffc8ddcf6e3441b9f6dc952236034, type: 3}

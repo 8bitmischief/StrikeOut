@@ -148,6 +148,9 @@ VisualEffect:
       - m_Value: {fileID: 2800000, guid: 3f9c34157090a41b78b5de8605426750, type: 3}
         m_Name: Texture
         m_Overridden: 0
+      - m_Value: {fileID: 2800000, guid: c35ef3c16141ff946ab30e333dcba729, type: 3}
+        m_Name: Gradient
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &3927868543715377139
@@ -313,16 +316,16 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 0}
-          key1: {r: 1, g: 1, b: 1, a: 1}
+          key0: {r: 1, g: 0.59641606, b: 0, a: 0}
+          key1: {r: 1, g: 0.1965001, b: 0, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0.8627451}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
+          ctime0: 8929
+          ctime1: 55181
           ctime2: 0
           ctime3: 0
           ctime4: 0
@@ -341,12 +344,15 @@ VisualEffect:
           m_NumColorKeys: 2
           m_NumAlphaKeys: 4
         m_Name: Color Over Lifetime
-        m_Overridden: 0
+        m_Overridden: 1
     m_NamedObject:
       m_Array:
       - m_Value: {fileID: 2800000, guid: 0c30550af46e241ddace20253e92771d, type: 3}
         m_Name: Texture
         m_Overridden: 0
+      - m_Value: {fileID: 2800000, guid: 2920b5c23141d49c99c5bde58c4b5d95, type: 3}
+        m_Name: Gradient
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &9199345598335252767
@@ -435,4 +441,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.8
-  _playOnEnable: 0
+  _delay: 0
+  _loops: 0

@@ -163,9 +163,9 @@ VisualEffect:
       - m_Value: {fileID: 2800000, guid: 239b96eafbb8e0f4abf8f29b009108d9, type: 3}
         m_Name: Sprite Sheet
         m_Overridden: 0
-      - m_Value: {fileID: 2800000, guid: 75a1f14a23b096a4a9c7735accd67a37, type: 3}
+      - m_Value: {fileID: 2800000, guid: 3f64c575a1f527d4190038230b35f510, type: 3}
         m_Name: Gradient
-        m_Overridden: 0
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &3927868543715377139
@@ -254,4 +254,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 1
   _delay: 0
-  _loops: 0
+  _loops: 1

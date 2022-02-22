@@ -459,7 +459,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"2edc3f308169245d08a3912ad593d6b0","type":3}}'
+      m_SerializableObject: 
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -4445,7 +4445,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614749}
   m_ExposedName: Spread Animation
   m_Exposed: 1
-  m_Order: 22
+  m_Order: 21
   m_Category: 
   m_Min:
     m_Type:
@@ -4525,7 +4525,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614751}
   m_ExposedName: Height Animation
   m_Exposed: 1
-  m_Order: 25
+  m_Order: 23
   m_Category: 
   m_Min:
     m_Type:
@@ -6364,7 +6364,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614831}
   m_ExposedName: Tiling Pivot
   m_Exposed: 1
-  m_Order: 26
+  m_Order: 24
   m_Category: 
   m_Min:
     m_Type:
@@ -6512,7 +6512,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614835}
   m_ExposedName: Min Tiling Clamp
   m_Exposed: 1
-  m_Order: 28
+  m_Order: 26
   m_Category: 
   m_Min:
     m_Type:
@@ -6660,7 +6660,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614839}
   m_ExposedName: Max Tiling Clamp
   m_Exposed: 1
-  m_Order: 29
+  m_Order: 27
   m_Category: 
   m_Min:
     m_Type:
@@ -6808,7 +6808,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614843}
   m_ExposedName: Clamp
   m_Exposed: 1
-  m_Order: 27
+  m_Order: 25
   m_Category: 
   m_Min:
     m_Type:
@@ -11915,7 +11915,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615054}
   m_ExposedName: Height
   m_Exposed: 1
-  m_Order: 23
+  m_Order: 22
   m_Category: 
   m_Min:
     m_Type:

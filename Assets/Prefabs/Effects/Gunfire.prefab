@@ -253,4 +253,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 1
-  _playOnEnable: 0
+  _delay: 0
+  _loops: 0

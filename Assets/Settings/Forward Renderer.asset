@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    showInSceneView: 1
+    showInSceneView: 0
     material: {fileID: 2100000, guid: 45de01a1d452ba547b39235aadd29471, type: 2}
     renderPassEvent: 550
 --- !u!114 &-3085382479275853524
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    showInSceneView: 1
+    showInSceneView: 0
     material: {fileID: 2100000, guid: e1226ae1cefe20546a8f7fa47bdcb5af, type: 2}
     renderPassEvent: 550
 --- !u!114 &11400000
@@ -93,6 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    showInSceneView: 1
+    showInSceneView: 0
     material: {fileID: 2100000, guid: 6f79f7f0d2c43d142abbe1648f92798a, type: 2}
     renderPassEvent: 550

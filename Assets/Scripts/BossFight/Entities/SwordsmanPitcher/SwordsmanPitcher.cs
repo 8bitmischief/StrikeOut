@@ -26,10 +26,10 @@ namespace StrikeOut.BossFight.Entities
 
 		public void TeleportSlash() => animator.TeleportSlash();
 
-		public void Pitch(PitchType pitchType, StrikeZone strikeZone)
+		public void Pitch(PitchType pitchType, Vector2 target)
 		{
 			_ballSpawner.pitchType = pitchType;
-			_ballSpawner.strikeZone = strikeZone;
+			_ballSpawner.target = target;
 			animator.Pitch();
 		}
 

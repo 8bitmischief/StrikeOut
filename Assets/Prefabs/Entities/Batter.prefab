@@ -133,7 +133,6 @@ MonoBehaviour:
       falloffScale: 50
       falloffDegree: 1
       axesMultiplier: {x: 1, y: 1, z: 1}
-  _quickDodgeFrames: 3
   _dodgeLateForgivenessFrames: 2
   _wasAbleToSwitchSidesPriorToBeingHurt: 0
   _wasAbleToSideStepPriorToBeingHurt: 0
@@ -163,9 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootMotionProgress: {x: 0, y: 0, z: 0}
-  _fastestSwingStartupFrames: 2
-  _defaultSwingStartupFrames: 5
-  _slowestSwingStartupFrames: 7
   _cancelAnimationLevel: 0
 --- !u!95 &527273590571610414
 Animator:
@@ -347,7 +343,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 683517204145035526, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_Name
-      value: North Hitbox
+      value: Hitbox
       objectReference: {fileID: 0}
     - target: {fileID: 683517204145035526, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_IsActive
@@ -358,44 +354,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1490821926611721240, guid: 7135e61eb35ff414c831cdab7ae3fed9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

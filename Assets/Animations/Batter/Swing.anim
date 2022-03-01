@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Swing South
+  m_Name: Swing
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -163,23 +163,23 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: _isActive
-    path: Hitboxes/South Hitbox
+    path: Hitboxes/Hitbox
     classID: 114
     script: {fileID: 11500000, guid: 82b8abb695513164387b4161aaf596d3, type: 3}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 5901223192394876035, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: -3679444008697966379, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     - time: 0.06666667
-      value: {fileID: -4630603689425951953, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: -6732892198075608501, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     - time: 0.1
-      value: {fileID: 3111019446223737722, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: 539233630253569554, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     - time: 0.18333334
-      value: {fileID: -7930907514563371044, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: 5443787012690329207, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     - time: 0.23333333
-      value: {fileID: 5373746447719702555, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: -956825942199802659, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     - time: 0.41666666
-      value: {fileID: 5373746447719702555, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+      value: {fileID: -956825942199802659, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -220,7 +220,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3279202066
+      path: 33466192
       attribute: 2763436984
       script: {fileID: 11500000, guid: 82b8abb695513164387b4161aaf596d3, type: 3}
       typeID: 114
@@ -234,12 +234,12 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 5901223192394876035, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
-    - {fileID: -4630603689425951953, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
-    - {fileID: 3111019446223737722, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
-    - {fileID: -7930907514563371044, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
-    - {fileID: 5373746447719702555, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
-    - {fileID: 5373746447719702555, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: -3679444008697966379, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: -6732892198075608501, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: 539233630253569554, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: 5443787012690329207, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: -956825942199802659, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
+    - {fileID: -956825942199802659, guid: 3f347dc734d75455fbe1b266799c4505, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -407,7 +407,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: _isActive
-    path: Hitboxes/South Hitbox
+    path: Hitboxes/Hitbox
     classID: 114
     script: {fileID: 11500000, guid: 82b8abb695513164387b4161aaf596d3, type: 3}
   m_EulerEditorCurves: []

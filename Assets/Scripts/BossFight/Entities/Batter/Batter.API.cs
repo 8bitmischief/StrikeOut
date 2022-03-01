@@ -12,7 +12,7 @@ namespace StrikeOut.BossFight.Entities
 		public int lives => _lives;
 		public bool isOnRightSide => transform.localScale.x < 0f;
 
-		public bool CanSwing(StrikeZone strikeZone)
+		public bool CanSwing()
 		{
 			switch (animation)
 			{
@@ -74,10 +74,10 @@ namespace StrikeOut.BossFight.Entities
 				animator.CanCancelAnimation(1);
 		}
 
-		public void Swing(StrikeZone strikeZone)
+		public void Swing()
 		{
 			_didSwingHit = false;
-			animator.Swing(CalculateSwingDirection(strikeZone));
+			animator.Swing();
 		}
 
 		public void Dodge(Direction direction)
@@ -90,25 +90,28 @@ namespace StrikeOut.BossFight.Entities
 				SwitchSides();
 		}
 
+		public void SetAim(Vector2 aim)
+		{
+			Scene.I.entityManager.strikeZone.SetAim(aim);
+		}
+
 		public void SwitchSides()
 		{
 			_wasAbleToSwitchSidesPriorToBeingHurt = false;
 			_wasAbleToSideStepPriorToBeingHurt = false;
-			if (animation == "Hurt" && Scene.I.hitDetectionManager.GetHitboxesThatHit(BatterArea.Center).Count > 0)
+			if (animation == "Hurt" && Scene.I.hitDetectionManager.DoAnyHitboxesHit(BatterArea.Center))
 				return;
 			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-			bool quickly = false;
-			animator.SwitchSides(quickly);
+			animator.SwitchSides();
 		}
 
 		public void SideStep()
 		{
 			_wasAbleToSwitchSidesPriorToBeingHurt = false;
 			_wasAbleToSideStepPriorToBeingHurt = false;
-			if (animation == "Hurt" && Scene.I.hitDetectionManager.GetHitboxesThatHit(isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft).Count > 0)
+			if (animation == "Hurt" && Scene.I.hitDetectionManager.DoAnyHitboxesHit(isOnRightSide ? BatterArea.FarRight : BatterArea.FarLeft))
 				return;
-			bool quickly = false;
-			animator.SideStep(quickly);
+			animator.SideStep();
 		}
 
 		public void EndSideStep()

@@ -29,10 +29,10 @@ namespace StrikeOut.BossFight.Entities
 
 		private class PitchCommand : PitcherCommand
 		{
-			public StrikeZone strikeZone;
+			public Vector2 target;
 			public PitchType pitchType;
 
-			public override void Start() => entity.Pitch(pitchType, strikeZone);
+			public override void Start() => entity.Pitch(pitchType, target);
 		}
 	}
 }

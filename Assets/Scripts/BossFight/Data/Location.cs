@@ -15,10 +15,6 @@ namespace StrikeOut.BossFight.Data
 		InFrontOfBatterCenter = 8,
 		InFrontOfBatterRight = 9,
 		InFrontOfBatterFarRight = 10,
-		PitchersMound = 11,
-		NorthStrikeZone = 12,
-		EastStrikeZone = 13,
-		SouthStrikeZone = 14,
-		WestStrikeZone = 15
+		PitchersMound = 11
 	}
 }

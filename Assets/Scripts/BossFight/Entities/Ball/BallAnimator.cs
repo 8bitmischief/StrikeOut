@@ -12,16 +12,16 @@ namespace StrikeOut.BossFight.Entities
 		private static readonly int HitHash = Animator.StringToHash("Hit");
 		private static readonly int PassesThroughStrikeZoneHash = Animator.StringToHash("Passes Through Strike Zone");
 
-		public void Pitch(PitchType pitch, Vector3 target, bool passesThroughStrikeZone)
+		public void Pitch(PitchType pitch, Vector3 targetPosition, bool passesThroughStrikeZone)
 		{
 			animator.SetInteger(PitchTypeHash, (int) pitch);
 			animator.SetBool(PassesThroughStrikeZoneHash, passesThroughStrikeZone);
-			Trigger(PitchHash, target, false);
+			Trigger(PitchHash, targetPosition, false);
 		}
 
-		public void Hit(Vector3 target)
+		public void Hit(Vector3 targetPosition)
 		{
-			Trigger(HitHash, target, false);
+			Trigger(HitHash, targetPosition, false);
 		}
 	}
 }

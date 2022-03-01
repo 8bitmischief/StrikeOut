@@ -9,7 +9,7 @@ namespace StrikeOut.BossFight.Entities
 		protected override void DecideNextAction()
 		{
 			QueueCommands(
-				new PitchCommand { pitchType = PitchType.Curveball, strikeZone = StrikeZone.East },
+				new PitchCommand { pitchType = PitchType.Curveball, target = new Vector2(0.1f, 0.1f) },
 				IdleForOneSecond,
 				new TeleportSlashCommand(),
 				IdleForTwoSeconds

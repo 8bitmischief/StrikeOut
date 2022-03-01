@@ -2,7 +2,6 @@ using UnityEngine;
 using CameraShake;
 using SharedUnityMischief.Effects;
 using SharedUnityMischief.Entities.Animated;
-using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -66,13 +65,7 @@ namespace StrikeOut.BossFight.Entities
 			{
 				Ball ball = hit.hurtee as Ball;
 				Vector3 targetPosition = new Vector3(15f, 5f, 50f);
-				Vector3 shakeDirection;
-				if (ball.strikeZone == StrikeZone.North)
-					shakeDirection = new Vector3(1f, 0.3f, 0f);
-				else if (ball.strikeZone == StrikeZone.South)
-					shakeDirection = new Vector3(1f, -0.3f, 0f);
-				else
-					shakeDirection = new Vector3(1f, 0f, 0f);
+				Vector3 shakeDirection = new Vector3(1f, 0f, 0f);
 				if (isOnRightSide)
 					shakeDirection.x *= -1;
 				ball.Hit(targetPosition);
@@ -103,18 +96,6 @@ namespace StrikeOut.BossFight.Entities
 						Scene.I.locations.batter.farRight :
 						Scene.I.locations.batter.farLeft, false);
 					break;
-			}
-		}
-
-		private BatterAnimator.SwingDirection CalculateSwingDirection(StrikeZone strikeZone)
-		{
-			switch (strikeZone)
-			{
-				case StrikeZone.North: return BatterAnimator.SwingDirection.North;
-				case StrikeZone.South: return BatterAnimator.SwingDirection.South;
-				case StrikeZone.East: return isOnRightSide ? BatterAnimator.SwingDirection.Inside : BatterAnimator.SwingDirection.Outside;
-				case StrikeZone.West: return isOnRightSide ? BatterAnimator.SwingDirection.Outside : BatterAnimator.SwingDirection.Inside;
-				default: return BatterAnimator.SwingDirection.None;
 			}
 		}
 	}

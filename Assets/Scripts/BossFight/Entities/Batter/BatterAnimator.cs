@@ -16,29 +16,19 @@ namespace StrikeOut.BossFight.Entities
 				5 = Can cancel into anything, the rest of the animation is just cosmetic
 		*/
 
-		public void Swing(SwingDirection direction)
+		public void Swing()
 		{
-			animator.SetInteger("Swing Direction", (int) direction);
 			Trigger("Swing");
 		}
 
-		public void SwitchSides(bool quickly) => Trigger("Switch Sides");
+		public void SwitchSides() => Trigger("Switch Sides");
 
-		public void SideStep(bool quickly) => Trigger("Side Step");
+		public void SideStep() => Trigger("Side Step");
 
 		public void EndSideStep() => Trigger("End Side Step");
 
 		public void Hurt() => Trigger("Hurt");
 
 		public bool CanCancelAnimation(int cancelLevel = 4) => animation == "Idle" || _cancelAnimationLevel >= cancelLevel;
-	
-		public enum SwingDirection
-		{
-			None = 0,
-			North = 1,
-			Inside = 2,
-			South = 3,
-			Outside = 4
-		}
 	}
 }

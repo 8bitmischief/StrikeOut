@@ -1,86 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &279135907040835437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9104889935195387371}
-  - component: {fileID: 60069353653710336}
-  - component: {fileID: 8970431243767582093}
-  m_Layer: 0
-  m_Name: Swing North
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9104889935195387371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279135907040835437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &60069353653710336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279135907040835437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1007ec2f05a785349ade7649f87151bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _control: {fileID: 8970431243767582093}
---- !u!114 &8970431243767582093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279135907040835437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9290c06a471ba4930bc28c7750c1958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input:
-    m_Name: Input
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 155054f3-c26e-4216-8653-21dce519b66b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 697c4ca6-270f-4dbe-aae6-5eed12812764
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    - m_Name: 
-      m_Id: b6cfdae3-95d0-4b38-a7b8-dc7c5782fba3
-      m_Path: <Gamepad>/buttonNorth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
 --- !u!1 &1099893721229854794
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +12,7 @@ GameObject:
   - component: {fileID: 5955339305237502387}
   - component: {fileID: 3167571825970733095}
   m_Layer: 0
-  m_Name: Swing South
+  m_Name: Swing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5955339305237502387
 MonoBehaviour:
@@ -162,6 +81,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+    m_Flags: 0
 --- !u!1 &2156765099917385391
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3324486473918119384
 MonoBehaviour:
@@ -223,12 +143,13 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 3df016e6-d915-4bea-ac3c-723586ca2c77
-      m_Path: <Gamepad>/rightShoulder
+      m_Path: <Gamepad>/dpad/right
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+    m_Flags: 0
 --- !u!1 &2172480260271085868
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +180,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7382822750267630704
 MonoBehaviour:
@@ -318,6 +239,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+    m_Flags: 0
 --- !u!1 &2294984877185404643
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8135656706598780440
 MonoBehaviour:
@@ -426,93 +348,13 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 3df016e6-d915-4bea-ac3c-723586ca2c77
-      m_Path: <Gamepad>/leftTrigger
+      m_Path: <Gamepad>/dpad/left
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Input
       m_Flags: 0
---- !u!1 &3779152273388471648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5140040282539410418}
-  - component: {fileID: 3075194680646453428}
-  - component: {fileID: 5068155462372293669}
-  m_Layer: 0
-  m_Name: Swing West
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5140040282539410418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779152273388471648}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3075194680646453428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779152273388471648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1007ec2f05a785349ade7649f87151bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _control: {fileID: 5068155462372293669}
---- !u!114 &5068155462372293669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779152273388471648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9290c06a471ba4930bc28c7750c1958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input:
-    m_Name: Input
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 155054f3-c26e-4216-8653-21dce519b66b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 697c4ca6-270f-4dbe-aae6-5eed12812764
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    - m_Name: 
-      m_Id: b6cfdae3-95d0-4b38-a7b8-dc7c5782fba3
-      m_Path: <Gamepad>/buttonWest
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &4468485566121953753
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,12 +383,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 9104889935195387371}
-  - {fileID: 2958541290058874985}
   - {fileID: 1501373490777383636}
-  - {fileID: 5140040282539410418}
   - {fileID: 4042972575219024848}
   - {fileID: 6031679751819102125}
+  - {fileID: 109866986319286192}
   - {fileID: 727310613012483513}
   - {fileID: 5095488831018289583}
   - {fileID: 578442509637941378}
@@ -568,16 +408,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInputSystem: 1
-  _swingNorth: {fileID: 60069353653710336}
-  _swingEast: {fileID: 8101449540668279033}
-  _swingSouth: {fileID: 5955339305237502387}
-  _swingWest: {fileID: 3075194680646453428}
+  _swing: {fileID: 5955339305237502387}
   _dodgeLeft: {fileID: 7382822750267630704}
   _dodgeRight: {fileID: 3276500627964740869}
+  _aim: {fileID: 2569755588259104810}
   _togglePause: {fileID: 2028544461531113601}
   _nextFrame: {fileID: 3324486473918119384}
   _slowTime: {fileID: 8135656706598780440}
   _forceQuit: {fileID: 2912863734866875087}
+--- !u!1 &4667961081343458587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 109866986319286192}
+  - component: {fileID: 2569755588259104810}
+  m_Layer: 0
+  m_Name: Aim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &109866986319286192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667961081343458587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2418401510152703267}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2569755588259104810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667961081343458587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6af29e151944dcfab4f56a84bbbb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vectorInput:
+    m_Name: Vector Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0fd685ba-6fd7-43af-87f1-7b8911d3bbac
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dc3f1b3c-253d-49cf-a0b1-061034966de8
+      m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vector Input
+      m_Flags: 0
+    m_Flags: 0
+  _pressureSensitivity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5573840882891817385
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2912863734866875087
 MonoBehaviour:
@@ -645,6 +567,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+    m_Flags: 0
 --- !u!1 &6587099079740877148
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +597,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3205255532414983478
 MonoBehaviour:
@@ -704,14 +627,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
-    - m_Name: 
-      m_Id: 3df016e6-d915-4bea-ac3c-723586ca2c77
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &6979090959424348911
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028544461531113601
 MonoBehaviour:
@@ -773,12 +689,13 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 9ec3c223-bf4c-4194-b735-42863e81bc58
-      m_Path: <Gamepad>/leftShoulder
+      m_Path: <Gamepad>/dpad/up
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Input
       m_Flags: 0
+    m_Flags: 0
 --- !u!1 &7086938081428659771
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +726,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3276500627964740869
 MonoBehaviour:
@@ -868,84 +785,4 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input
       m_Flags: 0
---- !u!1 &8079884542788800812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2958541290058874985}
-  - component: {fileID: 8101449540668279033}
-  - component: {fileID: 3113656791215348705}
-  m_Layer: 0
-  m_Name: Swing East
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2958541290058874985
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079884542788800812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2418401510152703267}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8101449540668279033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079884542788800812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1007ec2f05a785349ade7649f87151bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _control: {fileID: 3113656791215348705}
---- !u!114 &3113656791215348705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8079884542788800812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9290c06a471ba4930bc28c7750c1958e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input:
-    m_Name: Input
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 155054f3-c26e-4216-8653-21dce519b66b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 697c4ca6-270f-4dbe-aae6-5eed12812764
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    - m_Name: 
-      m_Id: b6cfdae3-95d0-4b38-a7b8-dc7c5782fba3
-      m_Path: <Gamepad>/buttonEast
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
+    m_Flags: 0

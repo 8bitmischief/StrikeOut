@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _size: 1
+  _size: 0.2
   _outline: 0
   _fill: 1
-  _mesh: 3
+  _mesh: 1
   _customMesh: {fileID: -8264766115119967290, guid: 643c363a6f7c7334da95d262843320fc, type: 3}

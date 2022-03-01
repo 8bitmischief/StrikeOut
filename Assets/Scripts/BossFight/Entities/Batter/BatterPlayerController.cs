@@ -1,7 +1,6 @@
 using UnityEngine;
 using SharedUnityMischief;
 using SharedUnityMischief.Entities;
-using StrikeOut.BossFight.Data;
 
 namespace StrikeOut.BossFight.Entities
 {
@@ -16,15 +15,22 @@ namespace StrikeOut.BossFight.Entities
 
 		public override void UpdateState()
 		{
+			Vector2 circularAim = Game.I.input.aim.vector;
+			float u = circularAim.x;
+			float v = circularAim.y;
+			Vector2 rectangularAim = new Vector2(
+				u * u > v * v ? Mathf.Sign(u) * Mathf.Sqrt(u * u + v * v) : Mathf.Sign(v) * u / v * Mathf.Sqrt(u * u + v * v),
+				u * u > v * v ? Mathf.Sign(u) * v / u * Mathf.Sqrt(u * u + v * v) : Mathf.Sign(v) * Mathf.Sqrt(u * u + v * v)
+			);
+			// Vector2 rectangularAim = new Vector2(
+			// 	0.5f * Mathf.Sqrt(2f + u * u - v * v + 2f * u * Mathf.Sqrt(2f)) - 0.5f * Mathf.Sqrt(2f + u * u - v * v - 2f * u * Mathf.Sqrt(2f)),
+			// 	0.5f * Mathf.Sqrt(2f - u * u + v * v + 2f * v * Mathf.Sqrt(2f)) - 0.5f * Mathf.Sqrt(2f - u * u + v * v - 2f * v * Mathf.Sqrt(2f))
+			// );
+			entity.SetAim(rectangularAim);
+
 			// Check for swing inputs
-			if (Game.I.input.swingNorth.justPressed)
-				UseOrBufferInput(BatterInput.SwingNorth);
-			if (Game.I.input.swingEast.justPressed)
-				UseOrBufferInput(BatterInput.SwingEast);
-			if (Game.I.input.swingSouth.justPressed)
-				UseOrBufferInput(BatterInput.SwingSouth);
-			if (Game.I.input.swingWest.justPressed)
-				UseOrBufferInput(BatterInput.SwingWest);
+			if (Game.I.input.swing.justPressed)
+				UseOrBufferInput(BatterInput.Swing);
 
 			// Check for dodge inputs
 			if (Game.I.input.dodgeLeft.justPressed)
@@ -62,14 +68,8 @@ namespace StrikeOut.BossFight.Entities
 		{
 			switch (input)
 			{
-				case BatterInput.SwingNorth:
-					return TrySwinging(StrikeZone.North);
-				case BatterInput.SwingEast:
-					return TrySwinging(StrikeZone.East);
-				case BatterInput.SwingSouth:
-					return TrySwinging(StrikeZone.South);
-				case BatterInput.SwingWest:
-					return TrySwinging(StrikeZone.West);
+				case BatterInput.Swing:
+					return TrySwinging();
 				case BatterInput.DodgeLeft:
 					return TryDodging(Direction.Left);
 				case BatterInput.DodgeRight:
@@ -79,11 +79,11 @@ namespace StrikeOut.BossFight.Entities
 			}
 		}
 
-		private bool TrySwinging(StrikeZone strikeZone)
+		private bool TrySwinging()
 		{
-			if (entity.CanSwing(strikeZone))
+			if (entity.CanSwing())
 			{
-				entity.Swing(strikeZone);
+				entity.Swing();
 				return true;
 			}
 			return false;
@@ -102,12 +102,9 @@ namespace StrikeOut.BossFight.Entities
 		private enum BatterInput
 		{
 			None = 0,
-			SwingNorth = 1,
-			SwingEast = 2,
-			SwingSouth = 3,
-			SwingWest = 4,
-			DodgeLeft = 5,
-			DodgeRight = 6
+			Swing = 1,
+			DodgeLeft = 2,
+			DodgeRight = 3
 		}
 	}
 }

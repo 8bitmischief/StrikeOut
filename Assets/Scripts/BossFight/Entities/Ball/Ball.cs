@@ -9,11 +9,11 @@ namespace StrikeOut.BossFight.Entities
 	{
 		[SerializeField] private EnemyHurtbox _hurtbox;
 
-		public StrikeZone strikeZone => _hurtbox.strikeZone;
+		public Vector2 target => _hurtbox.target;
 
 		public override void ResetComponent()
 		{
-			_hurtbox.strikeZone = StrikeZone.None;
+			_hurtbox.target = Vector2.zero;
 		}
 
 		public override void OnSpawn()
@@ -35,12 +35,10 @@ namespace StrikeOut.BossFight.Entities
 			Scene.I.entityManager.balls.Remove(this);
 		}
 
-		public void Pitch(PitchType pitchType, StrikeZone strikeZone) => Pitch(pitchType, strikeZone, Scene.I.locations.strikeZone[strikeZone]);
-		public void Pitch(PitchType pitchType, Vector3 target) => Pitch(pitchType, StrikeZone.None, target);
-		private void Pitch(PitchType pitchType, StrikeZone strikeZone, Vector3 target)
+		public void Pitch(PitchType pitchType, Vector2 target)
 		{
-			_hurtbox.strikeZone = strikeZone;
-			animator.Pitch(pitchType, target, strikeZone != StrikeZone.None);
+			_hurtbox.target = target;
+			animator.Pitch(pitchType, Scene.I.locations.GetStrikeZonePosition(target), true);
 		}
 
 		public void Hit(Vector3 target)

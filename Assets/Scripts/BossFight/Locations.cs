@@ -13,14 +13,11 @@ namespace StrikeOut.BossFight
 		[SerializeField] private Transform _batterRight;
 		[SerializeField] private Transform _batterFarRight;
 		[SerializeField] private Transform _pitchersMound;
-		[SerializeField] private Transform _northStrikeZone;
-		[SerializeField] private Transform _eastStrikeZone;
-		[SerializeField] private Transform _southStrikeZone;
-		[SerializeField] private Transform _westStrikeZone;
+		[SerializeField] private Transform _strikeZoneTopLeft;
+		[SerializeField] private Transform _strikeZoneBottomRight;
 		[SerializeField] private Vector3 _inFrontOfBatterOffset;
 		private BatterAreaLocations _batterAreas;
 		private BatterAreaLocations _inFrontOfBatterAreas;
-		private StrikeZoneLocations _strikeZones;
 
 		public Vector3 pitchersMound => _pitchersMound.position;
 		public BatterAreaLocations batter
@@ -41,15 +38,6 @@ namespace StrikeOut.BossFight
 				return _inFrontOfBatterAreas;
 			}
 		}
-		public StrikeZoneLocations strikeZone
-		{
-			get
-			{
-				if (_strikeZones == null)
-					_strikeZones = new StrikeZoneLocations(_northStrikeZone, _eastStrikeZone, _southStrikeZone, _westStrikeZone);
-				return _strikeZones;
-			}
-		}
 		public Vector3 this[Location location]
 		{
 			get
@@ -66,10 +54,6 @@ namespace StrikeOut.BossFight
 					case Location.InFrontOfBatterCenter: return inFrontOfBatter.center;
 					case Location.InFrontOfBatterRight: return inFrontOfBatter.right;
 					case Location.InFrontOfBatterFarRight: return inFrontOfBatter.farRight;
-					case Location.NorthStrikeZone: return strikeZone.north;
-					case Location.EastStrikeZone: return strikeZone.east;
-					case Location.SouthStrikeZone: return strikeZone.south;
-					case Location.WestStrikeZone: return strikeZone.west;
 					case Location.PitchersMound: return pitchersMound;
 					default: return Vector3.zero;
 				}
@@ -103,25 +87,14 @@ namespace StrikeOut.BossFight
 			}
 		}
 
-		public class StrikeZoneLocations
+		public Vector3 GetStrikeZonePosition(Vector2 target)
 		{
-			private Dictionary<StrikeZone, Transform> _strikeZones;
-
-			public Vector3 north => _strikeZones[StrikeZone.North].position;
-			public Vector3 east => _strikeZones[StrikeZone.East].position;
-			public Vector3 south => _strikeZones[StrikeZone.South].position;
-			public Vector3 west => _strikeZones[StrikeZone.West].position;
-			public Vector3 this[StrikeZone strikeZone] => _strikeZones[strikeZone].position;
-
-			public StrikeZoneLocations(Transform north, Transform east, Transform south, Transform west)
-			{
-				_strikeZones = new Dictionary<StrikeZone, Transform> {
-					{ StrikeZone.North, north },
-					{ StrikeZone.East, east },
-					{ StrikeZone.South, south },
-					{ StrikeZone.West, west }
-				};
-			}
+			float x = (target.x + 1f) / 2f;
+			float y = (target.y + 1f) / 2f;
+			return new Vector3(
+				_strikeZoneTopLeft.transform.position.x * (1f - x) + _strikeZoneBottomRight.transform.position.x * x,
+				_strikeZoneTopLeft.transform.position.y * (1f - y) + _strikeZoneBottomRight.transform.position.y * y,
+				_strikeZoneTopLeft.transform.position.z * (1f - y) + _strikeZoneBottomRight.transform.position.z * y);
 		}
 	}
 }

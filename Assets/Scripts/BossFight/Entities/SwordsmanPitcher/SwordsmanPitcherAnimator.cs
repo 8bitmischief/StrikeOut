@@ -9,15 +9,11 @@ namespace StrikeOut.BossFight.Entities
 		[Header("Pitcher Config")]
 		[SerializeField] private int _cancelAnimationLevel = 0;
 
-		public void Move(Vector3 targetPosition) => Trigger("Move", targetPosition, false);
-
-		public void Slash() => Trigger("Slash");
-
-		public void EnterRaisedSwordStance() => Trigger("Raised Sword Stance");
-
-		public void MeleeDownwardSlash() => Trigger("Melee Downward Slash");
+		public void TeleportSlash() => Trigger("Teleport Slash");
 
 		public void Pitch() => Trigger("Pitch");
+
+		public void Hurt() => Trigger("Hurt");
 
 		public bool CanCancelAnimation(int cancelLevel = 1)
 		{

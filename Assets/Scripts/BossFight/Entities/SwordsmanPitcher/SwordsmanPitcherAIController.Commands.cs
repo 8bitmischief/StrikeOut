@@ -22,16 +22,9 @@ namespace StrikeOut.BossFight.Entities
 			public override bool IsDone() => entity.isIdle && entity.idleTime >= duration;
 		}
 
-		private class MoveCommand : PitcherCommand
+		private class TeleportSlashCommand : PitcherCommand
 		{
-			public Location location;
-
-			public override void Start() => entity.Move(location);
-		}
-
-		private class SlashCommand : PitcherCommand
-		{
-			public override void Start() => entity.Slash();
+			public override void Start() => entity.TeleportSlash();
 		}
 
 		private class PitchCommand : PitcherCommand
@@ -40,22 +33,6 @@ namespace StrikeOut.BossFight.Entities
 			public PitchType pitchType;
 
 			public override void Start() => entity.Pitch(pitchType, strikeZone);
-		}
-
-		private class MeleeDownwardSlash : PitcherCommand
-		{
-			private bool _hasSlashed = false;
-
-			public override void Start() => entity.EnterRaisedSwordStance();
-
-			public override void Update()
-			{
-				if (!_hasSlashed && entity.CanCancelAnimation(3))
-				{
-					_hasSlashed = true;
-					entity.MeleeDownwardSlash();
-				}
-			}
 		}
 	}
 }

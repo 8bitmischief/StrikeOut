@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using SharedUnityMischief.Entities;
 
 namespace StrikeOut.BossFight
@@ -61,6 +63,7 @@ namespace StrikeOut.BossFight
 
 		private void OnDrawGizmosSelected()
 		{
+#if UNITY_EDITOR
 			if (!isActive && Selection.activeGameObject == gameObject)
 			{
 				Matrix4x4 matrix = Gizmos.matrix;
@@ -68,6 +71,7 @@ namespace StrikeOut.BossFight
 				DrawGizmo();
 				Gizmos.matrix = matrix;
 			}
+#endif
 		}
 	}
 }

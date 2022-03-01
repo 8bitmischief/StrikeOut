@@ -1444,6 +1444,9 @@
             "m_Id": "df46215339fb45a59d9c23bdc7ac0785"
         },
         {
+            "m_Id": "8e37a2251394423493203d09a437edb2"
+        },
+        {
             "m_Id": "93f1a768fb0248f5a94d877e1955662e"
         },
         {
@@ -1467,7 +1470,8 @@
         "fbb580ff-6ba9-4c6f-94c5-65a066d00835",
         "f4619ee1-5863-453b-98fd-d30787d01291",
         "2895bfad-10f2-4fd6-acce-5605ac353b5b",
-        "05b7ead3-8990-463d-bace-32f7aa0ab047"
+        "05b7ead3-8990-463d-bace-32f7aa0ab047",
+        "688b9f4c-f21b-47be-8889-c5381dd8f1c2"
     ],
     "m_PropertyIds": [
         -135355940,
@@ -1475,7 +1479,8 @@
         -182661979,
         2130893643,
         1852305440,
-        -1104696151
+        -1104696151,
+        1603328048
     ]
 }
 
@@ -2693,6 +2698,20 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
+    "m_ObjectId": "8e37a2251394423493203d09a437edb2",
+    "m_Id": 1603328048,
+    "m_DisplayName": "ClampX",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Boolean_4d34905273794dfdbbb446b5c922076b",
+    "m_StageCapability": 3,
+    "m_Value": true,
+    "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "8f5c5bcd595749efaa0d0d4e5fc4172e",
     "m_Id": 1852305440,
@@ -2758,7 +2777,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "93f1a768fb0248f5a94d877e1955662e",
     "m_Id": -1104696151,
-    "m_DisplayName": "Clamp",
+    "m_DisplayName": "ClampY",
     "m_SlotType": 0,
     "m_Hidden": false,
     "m_ShaderOutputName": "Boolean_dcef934aef124b6db0b0da1b804ab5b0",
@@ -4139,8 +4158,8 @@
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+        "y": 3.994358777999878,
+        "z": 36.32964324951172
     },
     "m_DefaultValue": {
         "x": 0.0,

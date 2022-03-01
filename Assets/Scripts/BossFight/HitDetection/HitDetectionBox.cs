@@ -50,6 +50,7 @@ namespace StrikeOut.BossFight
 
 		protected abstract void DrawGizmo();
 
+#if UNITY_EDITOR
 		private void OnDrawGizmos()
 		{
 			if (isActive)
@@ -63,7 +64,6 @@ namespace StrikeOut.BossFight
 
 		private void OnDrawGizmosSelected()
 		{
-#if UNITY_EDITOR
 			if (!isActive && Selection.activeGameObject == gameObject)
 			{
 				Matrix4x4 matrix = Gizmos.matrix;
@@ -71,7 +71,7 @@ namespace StrikeOut.BossFight
 				DrawGizmo();
 				Gizmos.matrix = matrix;
 			}
-#endif
 		}
+#endif
 	}
 }
